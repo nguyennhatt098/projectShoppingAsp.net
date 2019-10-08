@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Danh Mục Sản Phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var ListCategory = (List<Model.Category>)ViewBag.ListCategory;
+    var listCategory = (List<Model.Category>)ViewBag.ListCategory;
     var category = (Model.Category)ViewBag.Category;
     
 }
@@ -26,25 +26,60 @@
             <div class="col-md-3 col-sm-4">
                 <div class="column">
                     <h2 class="title-block">Danh Mục Sản Phẩm</h2>
-                    @foreach (var item in ListCategory.Where(x => x.ParentID == null))
-                    {
-                        var url = "/danh-muc-san-pham/" + item.Slug + "-" + item.ID;
-                        var child = ListCategory.Where(x => x.ParentID == item.ID);
-                        <div class="sidebar-widget">
-                            <h3 class="sidebar-title"><a href="@url">@item.Name</a> </h3>
-                            @if (child.Count() > 0)
-                            {
-                                <ul class="sidebar-menu">
-                                    @foreach (var submenu in child)
-                                    {
-                                     var url1 = "/danh-muc-san-pham/" + submenu.Slug + "-" + submenu.ID;
-                                        <li><a href="@url1">@submenu.Name</a></li>
-                                    }
-                                </ul>
-                            }
+	                <div class="container-menu-product">
+		                <ul class="">
+			                @foreach (var itemGrandParent in listCategory)
+			                {
+				                var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
+				                if (itemGrandParent.ParentID == null&& listCategory.Any(x=>x.ParentID==itemGrandParent.ID))
+				                {
+					                <li class="">
+						                <a  href="#">@itemGrandParent.Name</a>
+						                <ul class="">
+							                @foreach (var itemParent in listCategory)
+							                {
+								                var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
+								                if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x=>x.ParentID==itemParent.ID))
+								                {
+										
+									                <li class="">
+										                <a href="#">@itemParent.Name</a>
+										                <ul >
+											                @foreach (var itemChild in listCategory)
+											                {
+												                var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
+												                if (itemParent.ID == itemChild.ParentID)
+												                {
+													                <li>
+														                <a href="@urlChild">
+															                @itemChild.Name
+														                </a>
+													                </li>
+												                }
+											                }
+												
+										                </ul>
+									                </li>
+										
+								                }
+								                else if(itemGrandParent.ID == itemParent.ParentID)
+								                {
+									                <li ><a href="@urlParent">@itemParent.Name</a></li>
+								                }
+									
+							                }
+								
+						                </ul>
+					                </li>
+				                }else if (itemGrandParent.ParentID == null)
+				                {
+					                <li ><a href="@url">@itemGrandParent.Name</a></li>
+				                }
 
-                        </div>
-                    }
+			                }
+		                </ul>
+
+	                </div>
 
 
                 </div>
@@ -83,8 +118,8 @@
                                                         <div class="price-reviews">
                                                             <div class="price-box">
                                                                 <span class="price product-price">
-                                                                    @item.Price
-                                                                    <span class="old-price product-price">$262.00</span>
+                                                                    @item.Sale_Price VND
+                                                                    <span class="old-price product-price">@item.Price VND</span>
                                                                 </span>
                                                             </div>
                                                             <div class="pro-rating">

@@ -72,6 +72,13 @@ namespace ShopingCart.Controllers
 		[ChildActionOnly]
 		public ActionResult Slider()
 		{
+			List<Category> lst = new List<Category>();
+			using (var context = new DBEntityContext())
+			{
+				lst = context.Categories.ToList();
+			}
+
+			ViewBag.Categories = lst;
 			return PartialView(sliderService.GetAll());
 		}
 

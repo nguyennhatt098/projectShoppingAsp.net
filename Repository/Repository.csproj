@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="AboutRepository.cs" />
     <Compile Include="CategoryReponsitory.cs" />
+    <Compile Include="CategoryRepository.cs" />
     <Compile Include="ContactReponsitory.cs" />
     <Compile Include="FeedBackReponsitory.cs" />
     <Compile Include="FooterRepository.cs" />

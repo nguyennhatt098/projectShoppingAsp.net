@@ -13,7 +13,7 @@ namespace Service
         private IRepository<Category> repository;
         public CategoryService()
         {
-            repository = new CategoryReponsitory(new DBEntityContext());
+            repository = new CategoryRepository(new DBEntityContext());
         }
         public int Delete(int id)
         {

@@ -20,7 +20,7 @@
 				<strong>Đã có lỗi xảy ra</strong>
 			</div>
 		</div>
-		<div class="header-area header-middle">
+		<div class=" header-middle">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-2 col-sm-3 col-xs-12">
@@ -38,23 +38,7 @@
                                     <li>
                                         <a href="">Giới Thiệu</a>
                                     </li>
-
-                                    @foreach (var item in Model)
-                                    {
-                                        <li>
-                                            <a href="">@item.Name</a>
-                                            @Html.Action("LoadChilden","Home", new {parentID = item.ID })
-                                        </li>
-                                    }
-                                    @*<li>
-                                        <a href="shop.html">Phòng Khách</a>
-                                        <ul class="submenu">
-                                            <li><a href="index.html">home version 1</a></li>
-                                            <li><a href="index-2.html">home version 2</a></li>
-                                            <li><a href="index-3.html">home version 3</a></li>
-                                            <li><a href="index-4.html">home version 4</a></li>
-                                        </ul>
-                                    </li>*@
+                                   
                                  
                                     <li>
                                         <a href="/lien-he/">Liên Hệ</a>
@@ -100,7 +84,7 @@
                                     {
                                         
                                         <li>
-                                            <a href="">@item.Name</a>
+                                            <a href="#">@item.Name</a>
                                             @Html.Action("LoadChilden", "Home", new { parentID = item.ID })
                                         </li>
                                     }

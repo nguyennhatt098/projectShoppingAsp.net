@@ -3402,6 +3402,7 @@
     <Content Include="Asset\FrontEnd\css\error500.css" />
     <Content Include="Asset\FrontEnd\css\font-awesome.min.css" />
     <Content Include="Asset\FrontEnd\css\magnific-popup.css" />
+    <Content Include="Asset\FrontEnd\css\menu-product.css" />
     <Content Include="Asset\FrontEnd\css\menu.css" />
     <Content Include="Asset\FrontEnd\css\nivo-slider.css" />
     <Content Include="Asset\FrontEnd\css\pe-icon-7-stroke.css" />

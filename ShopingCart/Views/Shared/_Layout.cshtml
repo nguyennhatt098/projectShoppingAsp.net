@@ -12,7 +12,7 @@
     <!-- favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <!-- All css files are included here. -->
     <!-- Bootstrap framework main css -->
     <link rel="stylesheet" href="~/Asset/FrontEnd/css/bootstrap.min.css">
@@ -29,6 +29,8 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="~/Asset/FrontEnd/css/menu.css" type="text/css" />
+    <link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-product.css" type="text/css" />
+   
     <!-- Modernizr JS -->
     <script src="~/Asset/FrontEnd/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -140,13 +142,6 @@
 						}
 					}
 				})
-		});
-		$('.child').hide(); //Hide children by default
-
-		$('.parent').children().click(function () {
-			event.preventDefault();
-			$(this).children('.child').slideToggle('slow');
-			$(this).find('span').toggle();
 		});
 	});
 	</script>

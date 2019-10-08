@@ -58,7 +58,7 @@ namespace ShopingCart.Controllers
         {
             ViewBag.ListProductOther = productService.ListProductSale();
             var product = productService.GetById(id);
-            ViewBag.Category = productService.GetById(product.Category_ID);
+            ViewBag.Category = categoryService.GetById(product.Category_ID);
             return View(product);
         }
 
