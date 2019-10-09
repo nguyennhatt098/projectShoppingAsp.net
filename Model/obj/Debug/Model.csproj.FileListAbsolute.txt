@@ -10,3 +10,15 @@ C:\Users\nmnhat\Desktop\testingOnlne\ShopingCartMVC\Model\obj\Debug\Model.csproj
 C:\Users\nmnhat\Desktop\testingOnlne\ShopingCartMVC\Model\obj\Debug\Model.dll
 C:\Users\nmnhat\Desktop\testingOnlne\ShopingCartMVC\Model\obj\Debug\Model.pdb
 C:\Users\nmnhat\Desktop\testingOnlne\ShopingCartMVC\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\bin\Debug\Model.dll.config
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\bin\Debug\Model.dll
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\bin\Debug\Model.pdb
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\bin\Debug\EntityFramework.dll
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\bin\Debug\EntityFramework.xml
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\obj\Debug\Model.dll
+C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Model\obj\Debug\Model.pdb

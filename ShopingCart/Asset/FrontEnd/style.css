@@ -1298,14 +1298,3 @@ label.inline > a {
 .mailchimp-success {
   color: green;
 }
-@media only screen and (max-width: 990px) {
-	.container-menu {
-		display:none
-	}
-	.slider-1 {
-		margin-top: 0px !important;
-	}
-}
-.slider-1 {
-	margin-top: 150px;
-}

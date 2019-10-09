@@ -38,7 +38,7 @@
 		overflow: visible;
 	}
 
-		.container-menu > ul > li {
+		.container-menu > ul > li > a {
 		}
 
 			.container-menu > ul > li:hover {
@@ -103,4 +103,63 @@
 	left: 150px;
 	z-index: 9999;
 	background: white
+}
+/*990px*/
+@media only screen and (max-width: 990px) {
+	.container-menu {
+	
+	}
+
+	.slider-1 {
+		margin-top: 0px !important;
+	}
+	
+	.container-menu > ul > li > ul {
+		display: none;
+		position: absolute;
+		right: -200px;
+		top: 0;
+		width: 200px;
+		background-color: white;
+
+	}
+}
+/*760px*/
+@media only screen and (max-width: 766px) {
+	.container-menu {
+		margin-top: 50px;
+		height: 510px;
+		left: 10px
+	}
+
+	.slider-1 {
+		margin-top: 0px !important;
+	}
+
+	.container-menu > ul > li > ul {
+		display: none;
+		position: absolute;
+		right: -100px;
+		top: 0;
+		width: 100px;
+		background-color: white;
+	}
+	.container-menu > ul {
+		width: 100px;
+		background-color: white;
+		position: relative;
+		overflow: visible;
+	}
+	.container-menu > ul > li > ul > li > ul {
+		display: none;
+		position: absolute;
+		right: -100px;
+		top: 0;
+		width: 100px;
+		background-color: white;
+	}
+}
+
+.slider-1 {
+	margin-top: 150px;
 }

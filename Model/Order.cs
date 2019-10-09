@@ -33,5 +33,6 @@ namespace Model
 		[ForeignKey("User_ID")]
 		public virtual User Users { get; set; }
 		public ICollection<OrderDetail> OdersDetail { get; set; }
+		public virtual ICollection<ReviewProduct> ReviewProducts { get; set; }
 	}
 }

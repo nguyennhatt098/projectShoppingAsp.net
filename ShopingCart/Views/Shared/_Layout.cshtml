@@ -143,6 +143,23 @@
 					}
 				})
 		});
+		$(".meanmenu-reveal").click(function () {
+			if ($(".meanclose")[0]){
+				if (screen.width < 990&& screen.width>=768) {
+					$('#container-menu').css('margin-top',125);
+				}
+				if (screen.width < 768) {
+					$('#container-menu').css('margin-top',180);
+				}
+			} else {
+				if (screen.width < 990&& screen.width>=768) {
+					$('#container-menu').removeAttr('style');
+				}
+				if (screen.width < 768) {
+					$('#container-menu').removeAttr('style');
+				}
+			}
+		});
 	});
 	</script>
 

@@ -7,7 +7,7 @@
     
 }
 
-<div class="space-custom"></div>
+
 <!-- breadcrumb start -->
 <div  class="breadcrumb-area ">
     <div class="container">
@@ -20,11 +20,11 @@
 </div>
 <!-- breadcrumb end -->
 <!-- shop-area start -->
-<div class="shop-area">
+<div class="shop-area" >
     <div class="container">
         <div class="row " style="height: 500px">
             <div class="col-md-3 col-sm-4">
-                <div class="column">
+                <div class="column" style="margin-top: 50px;">
                     <h2 class="title-block">Danh Mục Sản Phẩm</h2>
 	                <div class="container-menu-product">
 		                <ul class="">
@@ -34,7 +34,7 @@
 				                if (itemGrandParent.ParentID == null&& listCategory.Any(x=>x.ParentID==itemGrandParent.ID))
 				                {
 					                <li class="">
-						                <a  href="#">@itemGrandParent.Name</a>
+						                <a  href="javascript:void(0)">@itemGrandParent.Name</a>
 						                <ul class="">
 							                @foreach (var itemParent in listCategory)
 							                {
@@ -43,7 +43,7 @@
 								                {
 										
 									                <li class="">
-										                <a href="#">@itemParent.Name</a>
+										                <a href="javascript:void(0)">@itemParent.Name</a>
 										                <ul >
 											                @foreach (var itemChild in listCategory)
 											                {

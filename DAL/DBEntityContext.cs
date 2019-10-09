@@ -30,6 +30,9 @@ namespace DAL
         public DbSet<Menu> Menus { get; set; }
         public DbSet<WishList> wishLists { get; set; }
         public DbSet<News> News { get; set; }
+		public DbSet<Notify> Notifies { get; set; }
+		public DbSet<Comment> Comments { get; set; }
+		public DbSet<ReviewProduct> ReviewProducts { get; set; }
     }
 
 }

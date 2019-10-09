@@ -41,7 +41,7 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-	<div class="container-menu">
+	<div class="container-menu" id="container-menu">
 		<ul class="">
 			@foreach (var itemGrandParent in listCategory)
 			{
@@ -49,7 +49,7 @@
 				if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
 				{
 					<li class="">
-						<a href="#">@itemGrandParent.Name</a>
+						<a href="#">@itemGrandParent.Name <span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
 						<ul class="">
 							@foreach (var itemParent in listCategory)
 							{
@@ -58,7 +58,7 @@
 								{
 
 									<li class="">
-										<a href="#">@itemParent.Name</a>
+										<a href="#">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
 										<ul class="parent">
 											@foreach (var itemChild in listCategory)
 											{

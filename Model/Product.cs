@@ -45,11 +45,11 @@ namespace Model
 		public bool Status { get; set; }
 		[DisplayName("Sản phẩm hot")]
 		public bool TopHot { get; set; }
-
-        [ForeignKey("Category_ID")]
+		[ForeignKey("Category_ID")]
         public virtual Category Categorys { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<WishList> wishLists { get; set; }
-
-    }
+        public virtual ICollection<ReviewProduct> ReviewProducts { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+	}
 }
