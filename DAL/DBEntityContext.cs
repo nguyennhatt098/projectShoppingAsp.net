@@ -33,6 +33,7 @@ namespace DAL
 		public DbSet<Notify> Notifies { get; set; }
 		public DbSet<Comment> Comments { get; set; }
 		public DbSet<ReviewProduct> ReviewProducts { get; set; }
-    }
+		public DbSet<AnswerComment> Answers { get; set; }
+	}
 
 }

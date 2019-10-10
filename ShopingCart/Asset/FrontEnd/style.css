@@ -1298,3 +1298,19 @@ label.inline > a {
 .mailchimp-success {
   color: green;
 }
+
+.comment-wrapper .panel-body {
+	
+	overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+	width:64px;
+	height:64px;
+	border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+	border-bottom:1px dashed #efefef;
+	margin-bottom:25px;
+}

@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="About.cs" />
     <Compile Include="Action.cs" />
+    <Compile Include="AnswerComment.cs" />
+    <Compile Include="AnswerReview.cs" />
     <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
