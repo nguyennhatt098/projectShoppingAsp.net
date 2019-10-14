@@ -55,11 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutRepository.cs" />
-    <Compile Include="CategoryReponsitory.cs" />
     <Compile Include="CategoryRepository.cs" />
+    <Compile Include="CommentRepository.cs" />
     <Compile Include="ContactReponsitory.cs" />
     <Compile Include="FeedBackReponsitory.cs" />
     <Compile Include="FooterRepository.cs" />
+    <Compile Include="Interface\ICommentRepository.cs" />
     <Compile Include="Interface\IListProduct.cs" />
     <Compile Include="Interface\ILoginRepository.cs" />
     <Compile Include="Interface\IOrderDetailRepository.cs" />

@@ -21,10 +21,10 @@ namespace Repository
 		{
 			var productList = context.Products.ToList();
 			var item = context.Categories.FirstOrDefault(c => c.ID == id);
-			var item1 = context.Categories.ToList().Where(x => x.ParentID == id).Count() > 0;
+			var items = !context.Categories.Any(x => x.ParentID == id);
 			if (productList.Any(x => x.Category_ID == id)) return -1;
 
-			if (item1 != null && item != null && item.Status == false)
+			if (items && item != null && !item.Status)
 			{
 				context.Categories.Remove(item);
 				return context.SaveChanges();
@@ -54,7 +54,13 @@ namespace Repository
 
 		public IEnumerable<Category> GetAll()
 		{
-			return context.Categories.ToList();
+			var listRemove = (from c1 in context.Categories
+							   join c2 in context.Categories on c1.ParentID equals c2.ID
+							   join c3 in context.Categories on c2.ParentID equals c3.ID
+							   select c1
+							  ).ToList();
+			var list = context.Categories.ToList().Where(x => !listRemove.Any(z=>z.ID==x.ID));
+			return list;
 		}
 
 
@@ -75,10 +81,7 @@ namespace Repository
 			return context.SaveChanges();
 		}
 
-		public IEnumerable<Category> Search(string searchString)
-		{
-			throw new NotImplementedException();
-		}
+		
 
 		public int Update(Category t)
 		{
@@ -91,7 +94,6 @@ namespace Repository
 			{
 				currentItem.ModifileDate = DateTime.Now;
 				currentItem.Name = t.Name;
-				currentItem.ParentID = t.ParentID;
 				currentItem.Slug = t.Slug;
 				currentItem.Status = t.Status;
 			}
@@ -114,7 +116,7 @@ namespace Repository
 
 		public IEnumerable<Category> Search(string searchString, int Page, int Pagesize)
 		{
-			throw new NotImplementedException();
+			return context.Categories.ToList();
 		}
 
 		public Contact GetContact()

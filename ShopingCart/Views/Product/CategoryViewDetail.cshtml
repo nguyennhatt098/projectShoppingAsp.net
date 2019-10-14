@@ -34,7 +34,7 @@
 				                if (itemGrandParent.ParentID == null&& listCategory.Any(x=>x.ParentID==itemGrandParent.ID))
 				                {
 					                <li class="">
-						                <a  href="javascript:void(0)">@itemGrandParent.Name</a>
+						                <a  href="javascript:void(0)">@itemGrandParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
 						                <ul class="">
 							                @foreach (var itemParent in listCategory)
 							                {
@@ -43,7 +43,7 @@
 								                {
 										
 									                <li class="">
-										                <a href="javascript:void(0)">@itemParent.Name</a>
+										                <a href="javascript:void(0)">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
 										                <ul >
 											                @foreach (var itemChild in listCategory)
 											                {
@@ -99,14 +99,15 @@
                                     <div class="row">
                                         @foreach (var item in Model)
                                         {
+											var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
                                             <div class="col-md-4 col-sm-6">
                                                 <div class="product-wrapper mb-40">
                                                     <div class="product-img">
 
-                                                        <a href="#"><img src="@item.Images" alt="" /></a>
+                                                        <a href="@url"><img src="@item.Images" alt="" /></a>
                                                         <span class="new-label">New</span>
                                                         <div class="product-action">
-                                                            <a href="cart.html"><i class="pe-7s-cart"></i></a>
+                                                            <a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
                                                             <a href="#"><i class="pe-7s-like"></i></a>
                                                             <a href="#" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
                                                         </div>
@@ -142,7 +143,7 @@
                                 </div>
 
                                 <div class="content-sortpagibar">
-                                    <div class="product-count display-inline">Showing 1 - 12 of 13 items</div>
+                                    
                                     @if (ViewBag.TotalPage > 1)
                                     {
                                         int totalpage = (int)ViewBag.TotalPage;
@@ -189,16 +190,7 @@
 
                                         </ul>
                                     }
-                                    else
-                                    {
-                                        <p>Danh Mục Không Có Sản Phẩm</p>
-                                    }
-
-                                    <div class="selector-field f-right">
-                                        <form action="#">
-                                            <button class="compare">Compare (1)</button>
-                                        </form>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>

@@ -31,6 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -71,6 +73,8 @@
     <Compile Include="RoleAction.cs" />
     <Compile Include="Slider.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="ViewModel\CategoryDTO.cs" />
+    <Compile Include="ViewModel\CommentDTO.cs" />
     <Compile Include="ViewModel\OrderDetailDTO.cs" />
     <Compile Include="ViewModel\RegisterUser.cs" />
     <Compile Include="ViewModel\ResetPassWord.cs" />

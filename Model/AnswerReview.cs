@@ -11,10 +11,13 @@ namespace Model
 	{
 		public int Id { get; set; }
 		public int ReviewId { get; set; }
+		public int? UserId { get; set; }
 		public string Content { get; set; }
 		public DateTime CreatedDate { get; set; }
 		public int Status { get; set; }
 		[ForeignKey("ReviewId")]
 		public virtual ReviewProduct ReviewProduct { get; set; }
+		[ForeignKey("UserId")]
+		public virtual User User { get; set; }
 	}
 }

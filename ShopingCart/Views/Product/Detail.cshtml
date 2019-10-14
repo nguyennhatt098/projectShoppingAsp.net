@@ -1,117 +1,121 @@
 ﻿@model Model.Product
 @{
-    ViewBag.Title = "Chi Tiết Sản Phẩm";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var category = (Model.Category)ViewBag.Category;
-    String str =Model.Images+ ";" + Model.MoreImages;
+	ViewBag.Title = "Chi Tiết Sản Phẩm";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	var category = (Model.Category)ViewBag.Category;
+	String str = Model.Images + ";" + Model.MoreImages;
 
-    // using the method 
-    String[] ListImages = new String[20];
-    ListImages = str.Split(';');
-    var listproductorther = (List<Model.Product>)ViewBag.ListProductOther;
-
+	// using the method
+	String[] ListImages = new String[20];
+	ListImages = str.Split(';');
+	var listproductorther = (List<Model.Product>)ViewBag.ListProductOther;
+	var commentList =(List<Model.ViewModel.CommentDTO>) ViewBag.CommentList;
+	var product =(Model.Product) ViewBag.Product;
+	var answerComment =(List<Model.AnswerComment>) ViewBag.AnswerComment;
 }
 
 <div class="space-custom"></div>
 <!-- breadcrumb start -->
 <div class="breadcrumb-area">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="/"><i class="fa fa-home"></i></a></li>
-            @*<li><a href="#"> Sofa</a></li>*@
-            <li class="active">@category.Name</li>
-        </ol>
-    </div>
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-home"></i></a></li>
+			@*<li><a href="#"> Sofa</a></li>*@
+			<li class="active">@category.Name</li>
+		</ol>
+	</div>
 </div>
 <!-- breadcrumb end -->
 <!-- shop-area start -->
 <div class="shop-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-5">
-              
-
-                <div class="product-zoom">
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        @{int i = 0;}
-                        @foreach (var item in ListImages)
-                        {
-                            
-                            if (i == 0)
-                            {
-                                <div class="tab-pane active" id="@("item"+i)">
-                                    <div class="pro-large-img">
-                                        <img src="@item" alt="" />
-                                        <a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="tab-pane" id="@("item"+i)">
-                                    <div class="pro-large-img">
-                                        <img src="@item" alt="" />
-                                        <a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            }
-                            i++;
-
-                        }
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-5">
 
 
-                    </div>
-                            <!-- Nav tabs -->
-                    <div class="details-tab">
-                        @{int i1 = 0;}
-                        @foreach (var item in ListImages)
-                        {
+				<div class="product-zoom">
+					<!-- Tab panes -->
+					<div class="tab-content">
+						@{int i = 0;}
+						@foreach (var item in ListImages)
+						{
 
-                            if (i1 == 0)
-                            {
-                                <div class="active"><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
-                            }
-                            else
-                            {
-                                <div><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
-                            }
-                            i1++;
+							if (i == 0)
+							{
+								<div class="tab-pane active" id="@("item"+i)">
+									<div class="pro-large-img">
+										<img src="@item" alt="" />
+										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							}
+							else
+							{
+								<div class="tab-pane" id="@("item"+i)">
+									<div class="pro-large-img">
+										<img src="@item" alt="" />
+										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							}
+							i++;
 
-                        }
+						}
 
-                    </div>
-                        </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-7">
-                <div class="product-details">
-                    <h2 class="pro-d-title">@Model.Name</h2>
-                    </div>
-                    <div class="price-box">
-                        <span class="price product-price">@(Model.Sale_Price.HasValue? Model.Sale_Price.Value.ToString("NO"):"Liên Hệ")</span>
-                       
-                    </div>
-                    <div class="short-desc">
-                        <p>@Model.Content</p>
-                    </div>
-                    <div class="box-quantity">
-                        <form action="#">
-                            <label>Quantity</label>
-	                        <input type="number" id="quantity" value="1" />
-	                        <script>
+
+					</div>
+					<!-- Nav tabs -->
+					<div class="details-tab">
+						@{int i1 = 0;}
+						@foreach (var item in ListImages)
+						{
+
+							if (i1 == 0)
+							{
+								<div class="active"><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+							}
+							else
+							{
+								<div><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+							}
+							i1++;
+
+						}
+
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-7">
+				<div class="product-details">
+					<h2 class="pro-d-title">@Model.Name</h2>
+
+					<div class="price-box">
+						<span class="price product-price">@Model.Sale_Price VND</span>
+						<span class="old-price product-price">@Model.Price VND</span>
+					</div>
+					<div class="short-desc">
+						<p>@Model.Content</p>
+					</div>
+					
+					<div class="box-quantity">
+						<form action="#">
+							<label>Quantity</label>
+							<input type="number" id="quantity" value="1" />
+							<script>
 	                            function myFunction() {
 		                            var quantity = document.getElementById("quantity").value;
 		                            window.location.href = '/them-vao-gio-hang?productID=@Model.Id&quantity='+quantity
 	                            }
-                            </script>
-                            <button onclick="myFunction()" >add to cart</button>
-                        </form>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
+							</script>
+							<button onclick="myFunction()">add to cart</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <!-- shop-area end -->
 <!-- pro-info-area start -->
@@ -137,90 +141,146 @@
 			<div class="tab-content">
 				<div class="tab-pane active" id="home3">
 					<div class="row bootstrap snippets">
-						
-							<div class="comment-wrapper">
-								<div class="panel panel-info">
-									<div class="panel-heading">
-										Bình luận sản phẩm
-									</div>
-									<div class="panel-body">
-										<textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
+
+						<div class="comment-wrapper">
+							<div class="panel panel-info">
+								<div class="panel-heading">
+									Bình luận sản phẩm
+								</div>
+								<div class="panel-body">
+									<form>
+										<input value="@Model.Id" name="productId" hidden />
+										<textarea class="form-control" name="content" placeholder="write a comment..." rows="3"></textarea>
 										<br>
-										<button type="button" class="btn btn-info pull-right">Post</button>
-										<div class="clearfix"></div>
-										<hr>
-										<ul class="media-list">
+										<button id="comment" type="button" class="btn btn-info pull-right ">Post</button>
+									</form>
+									<div class="clearfix"></div>
+									<hr>
+									<div onloadeddata="myScript" class="load-comment">
+									<ul class="media-list">
+										@foreach (var item in commentList)
+										{
+											var total = answerComment.Where(x => x.CommentId.Equals(item.CommentId)).Count() > 0 ? answerComment.Where(x => x.CommentId.Equals(item.CommentId)).Count().ToString() : "";
 											<li class="media">
 												<a href="#" class="pull-left">
 													<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
 												</a>
 												<div class="media-body">
 													<span class="text-muted pull-right">
-														<small class="text-muted">30 min ago</small>
+														<small class="text-muted">@item.CreatedDate</small>
 													</span>
-													<strong class="text-success">MartinoMont</strong>
+													<strong class="text-success">@item.UserName</strong>
 													<p>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-														Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+														@item.Question
 													</p>
-													<a href="#"><span class="glyphicon glyphicon-share-alt"></span> Trả lời</a>
+													<a href="javascript:void(0)" class="comment-id" checkComment="@item.CommentId"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
+													
+													<div style="display:none" class="show-comment-id-@item.CommentId ">
+														<div style="margin-top:30px;height:150px;">
+															<form class="answer-form">
+
+																<textarea class="form-control content-answer" commentIds="@item.CommentId" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
+																<br>
+																<button commentId="@item.CommentId" style="padding:0 ;height:30px;" id="comment-answer" type="button" class="btn btn-info pull-right comment-answer">Post</button>
+															</form>
+														</div>
+														@foreach (var itemAnswer in answerComment.Where(x => x.CommentId.Equals(item.CommentId)))
+														{
+															<div style="margin-top:10px">
+																<a href="#">
+																	<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+																</a>
+																<span class="text-muted pull-right">
+																	<small class="text-muted">@itemAnswer.CreatedDate</small>
+																</span>
+																<strong class="text-success">@itemAnswer.User.UserName</strong>
+																<p>
+																	@itemAnswer.Content
+																</p>
+
+															</div>
+														}
+													</div>
+
 												</div>
 											</li>
-											<li class="media">
-												<a href="#" class="pull-left">
-													<img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
-												</a>
-												<div class="media-body">
-													<span class="text-muted pull-right">
-														<small class="text-muted">30 min ago</small>
-													</span>
-													<strong class="text-success">LaurenceCorreil</strong>
-													<p>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-														Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
-													</p>
-												</div>
-											</li>
-											<li class="media">
-												<a href="#" class="pull-left">
-													<img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
-												</a>
-												<div class="media-body">
-													<span class="text-muted pull-right">
-														<small class="text-muted">30 min ago</small>
-													</span>
-													<strong class="text-success">JohnNida</strong>
-													<p>
-														Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
-													</p>
-												</div>
-											</li>
-										</ul>
+										}
+									</ul>
+									@if (ViewBag.TotalPage > 0)
+									{
+										int totalpage = (int)ViewBag.TotalPage;
+										int cureentPage = ((int)ViewBag.Page);
+										var next20 = cureentPage + 20;
+										var prev20 = cureentPage - 20;
+										var start = cureentPage <= 3 ? 1 : cureentPage - 3;
+										var end = totalpage >= cureentPage ? totalpage : cureentPage + 3;
+										var url = "/chi-tiet-san-pham/" + product.Slug + "-" + product.Id;
+										<div class="content-sortpagibar">
+											<ul class="shop-pagi display-inline">
+												@if (cureentPage > 1)
+												{
+													if (cureentPage > 20)
+													{
+														<li><a href="@url?page=@prev20"><i class="fa fa-backward"></i></a></li>
+													}
+													<li><a href="@url?page=@ViewBag.Prev"><i class="fa fa-angle-left"></i></a></li>
+
+												}
+
+												@for (int a = start; a <= end; a++)
+												{
+													if (cureentPage == a)
+													{
+														<li><a style="background: blue" href="@url?page=@a">@a</a></li>
+													}
+													else
+													{
+														<li><a href="@url?page=@a">@a</a></li>
+													}
+												}
+
+
+
+												@if (cureentPage < totalpage)
+												{
+													<li><a href="@url?page=@ViewBag.Next"><i class="fa fa-angle-right"></i></a></li>
+													if (totalpage > cureentPage + 20)
+													{
+														<li><a href="@url?page=@next20"><i class="fa fa-fast-forward"></i></a></li>
+													}
+
+												}
+
+											</ul>
+
+										</div>
+									}
 									</div>
 								</div>
 							</div>
+						</div>
 
-						
+
 					</div>
 				</div>
 				<div class="tab-pane" id="profile3">
 					<div class="pro-desc">
 						<table class="table-data-sheet">
 							<tbody>
-							<tr class="odd">
-								<td>Compositions</td>
-								<td>Cotton</td>
-							</tr>
-							<tr class="even">
-								<td>Styles</td>
-								<td>Casual</td>
-							</tr>
-							<tr class="odd">
-								<td>Properties</td>
-								<td>Short Sleeve</td>
-							</tr>
+								<tr class="odd">
+									<td>Compositions</td>
+									<td>Cotton</td>
+								</tr>
+								<tr class="even">
+									<td>Styles</td>
+									<td>Casual</td>
+								</tr>
+								<tr class="odd">
+									<td>Properties</td>
+									<td>Short Sleeve</td>
+								</tr>
 							</tbody>
-						</table>						
+						</table>
 					</div>
 				</div>
 				<div class="tab-pane" id="messages3">
@@ -250,7 +310,7 @@
 						<a href="#">Be the first to write your review!</a>
 					</div>
 				</div>
-			</div>		
+			</div>
 		</div>
 	</div>
 </div>
@@ -274,10 +334,10 @@
 								<a href="#"><img src="@item.Images" alt="" /></a>
 								<span class="new-label">New</span>
 								<div class="product-action">
-									<a href="cart.html"><i class="pe-7s-cart"></i></a>
+									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
 									<a href="#"><i class="pe-7s-like"></i></a>
 									<a href="#"><i class="pe-7s-folder"></i></a>
-                                 
+
 								</div>
 							</div>
 							<div class="product-content">
@@ -295,7 +355,7 @@
 											<span class="price product-price">Giá gốc:@item.Price VND</span>
 										}
 									</div>
-                                   
+
 								</div>
 							</div>
 						</div>
@@ -308,51 +368,49 @@
 </div>
 
 <div class="brand-area">
-    <div class="container">
-        <div class="brand-sep ptb-50">
-            <div class="row">
-                <div class="brand-active">
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/3.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/4.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/5.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="brand-sep ptb-50">
+			<div class="row">
+				<div class="brand-active">
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/3.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/4.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/5.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- brand-area end -->
 <!-- service-area start -->
-
-

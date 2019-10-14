@@ -42,3 +42,25 @@ C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Repository\obj\Debug\Repo
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Repository\obj\Debug\Repository.csproj.CopyComplete
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Repository\obj\Debug\Repository.dll
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Repository\obj\Debug\Repository.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\obj\Debug\Repository.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\obj\Debug\Repository.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Repository.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Repository.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Repository.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\DAL.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\EntityFramework.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Model.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\PagedList.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\PagedList.Mvc.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\DAL.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\DAL.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Model.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Model.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\EntityFramework.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\PagedList.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\PagedList.Mvc.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\obj\Debug\Repository.csproj.CopyComplete

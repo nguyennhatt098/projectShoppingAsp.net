@@ -48,6 +48,7 @@
 						<div class="col-md-10">
 							@Html.EditorFor(model => model.Images, new { htmlAttributes = new { data_multiple = "false", @class = "form-control uploadfile" } })
 							@Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+							<img style="width:150px;height:200px;" src="@Model.Images" />
 						</div>
 					</div>
 
@@ -122,7 +123,7 @@
 			<script src="~/Asset/ckfinder/ckfinder.js"></script>
 			<script>
 				$(function () {
-					CKEDITOR.replace("Content");
+					//CKEDITOR.replace("Content");
 					$(".uploadfile").click(function () {
 						var ip = $(this);
 						var finder = new CKFinder();

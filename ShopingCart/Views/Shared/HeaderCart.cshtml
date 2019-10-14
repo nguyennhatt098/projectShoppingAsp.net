@@ -3,7 +3,7 @@
         double TotalMoney = 0;
   }
     <div class="shopping-cart ml-20 display-inline">
-        <a href="cart.html"><b>shopping cart</b>@Model.Count</a>
+        <a href="#"><b>shopping cart</b>@Model.Count</a>
         @if (Model.Count > 0)
         {
 
@@ -15,7 +15,7 @@
             TotalMoney += total;
             <li>
                 <div class="cart-img">
-                    <a href=""><img width='100px' src="@item.Product.Images" alt="" /></a>
+                    <a href="#"><img style="width:100px;"  src="@item.Product.Images" alt="" /></a>
                 </div>
                 <div class="cart-content">
                     <h3><a href="#">@item.Quantity</a> </h3>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.Category>
+﻿@model IEnumerable<Model.ViewModel.CategoryDTO>
 
 @{
 	ViewBag.Title = "Index";
@@ -18,6 +18,9 @@
 					</th>
 					<th>
 						Tên
+					</th>
+					<th>
+						Tên danh mục cha
 					</th>
 					<th>
 						@Html.DisplayNameFor(model => model.Slug)
@@ -46,6 +49,9 @@
 						@Html.DisplayFor(modelItem => item.Name)
 					</td>
 					<td>
+						@Html.DisplayFor(modelItem => item.ParentName)
+					</td>
+					<td>
 						@Html.DisplayFor(modelItem => item.Slug)
 					</td>
 					<td>
@@ -57,9 +63,9 @@
 					<td>
 						@Html.DisplayFor(modelItem => item.ModifileDate)
 					</td>
-					
+
 					<td>
-						<a class="btn btn-primary"  style="font-size:10px;" href="@Url.Action("Edit", new { id=item.ID })"><i class="fa fa-fw  fa-pencil"></i></a>
+						<a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Edit", new { id=item.ID })"><i class="fa fa-fw  fa-pencil"></i></a>
 						<a class="btn btn-danger" style="margin-left:10px;font-size:10px;" href="@Url.Action("Delete", new { id=item.ID })"><i class="fa fa-fw fa-trash"></i></a>
 
 					</td>

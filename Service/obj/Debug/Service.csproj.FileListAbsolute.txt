@@ -44,3 +44,26 @@ C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Service\obj\Debug\Service
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Service\obj\Debug\Service.csproj.CopyComplete
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Service\obj\Debug\Service.dll
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\Service\obj\Debug\Service.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Service.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Service.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Service.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\DAL.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\EntityFramework.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Model.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Repository.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\PagedList.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\DAL.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\DAL.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Model.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Model.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Repository.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\Repository.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\EntityFramework.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\bin\Debug\PagedList.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\obj\Debug\Service.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\obj\Debug\Service.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\obj\Debug\Service.csproj.CopyComplete
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\obj\Debug\Service.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Service\obj\Debug\Service.pdb

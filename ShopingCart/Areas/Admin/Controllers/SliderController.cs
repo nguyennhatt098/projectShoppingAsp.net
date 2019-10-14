@@ -75,6 +75,11 @@ namespace ShopingCart.Areas.Admin.Controllers
 			{
 				TempData["message"] = "Added";
 			}
+			else if (result == -1)
+			{
+				TempData["message"] = "Ex";
+				TempData["data"] = "Slider đang được sử dụng! Bạn không thể xóa";
+			}
 			else
 			{
 				TempData["message"] = "false";

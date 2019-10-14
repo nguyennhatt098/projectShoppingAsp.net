@@ -50,9 +50,11 @@
   <ItemGroup>
     <Compile Include="AboutService.cs" />
     <Compile Include="CategoryService.cs" />
+    <Compile Include="CommentService.cs" />
     <Compile Include="ContactService.cs" />
     <Compile Include="FeedBackService.cs" />
     <Compile Include="FooterService.cs" />
+    <Compile Include="Interface\ICommentService.cs" />
     <Compile Include="Interface\IListProductService.cs" />
     <Compile Include="Interface\ILoginService.cs" />
     <Compile Include="Interface\IOrderDetailService.cs" />

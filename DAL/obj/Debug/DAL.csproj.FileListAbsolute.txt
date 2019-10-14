@@ -28,3 +28,18 @@ C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\DAL\obj\Debug\DAL.csproj.
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\DAL\obj\Debug\DAL.dll
 C:\Users\nmnhat\Desktop\project\projectShoppingAsp.net\DAL\obj\Debug\DAL.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\DAL.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\DAL.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\DAL.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\EntityFramework.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\Model.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\Model.pdb
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\Model.dll.config
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\EntityFramework.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\obj\Debug\DAL.dll
+C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\DAL\obj\Debug\DAL.pdb

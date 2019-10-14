@@ -161,6 +161,7 @@
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\HasCredentialAttribute.cs" />
     <Compile Include="Common\HelpMail.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -3521,6 +3522,7 @@
     <Content Include="Asset\FrontEnd\js\ajax-mail.js" />
     <Content Include="Asset\FrontEnd\js\bootstrap.min.js" />
     <Content Include="Asset\FrontEnd\js\CartJs.js" />
+    <Content Include="Asset\FrontEnd\js\comment.js" />
     <Content Include="Asset\FrontEnd\js\Contact.js" />
     <Content Include="Asset\FrontEnd\js\headroom.min.js" />
     <Content Include="Asset\FrontEnd\js\jquery-ui.min.js" />
@@ -3794,6 +3796,10 @@
     <Content Include="Areas\Admin\Views\Abouts\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Abouts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Abouts\Index.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3840,6 +3846,7 @@
     <Content Include="Views\News\GetById.cshtml" />
     <Content Include="Views\Home\Error404.cshtml" />
     <Content Include="Views\Home\Error500.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3848,10 +3855,6 @@
     <Folder Include="Views\Footer\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />

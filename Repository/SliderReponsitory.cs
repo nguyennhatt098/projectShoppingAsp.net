@@ -23,7 +23,7 @@ namespace Repository
 				context.Sliders.Remove(item);
 				return context.SaveChanges();
 			}
-			return 0;
+			return -1;
 		}
 
 		public void Dispose()

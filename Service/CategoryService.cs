@@ -59,7 +59,7 @@ namespace Service
 
 		public IEnumerable<Category> Search(string searchString, int Page, int Pagesize)
 		{
-			throw new NotImplementedException();
+			return repository.Search(searchString, Page, Pagesize);
 		}
 
 		public int Update(Category t)

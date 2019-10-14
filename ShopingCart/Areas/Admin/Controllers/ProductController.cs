@@ -25,7 +25,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 		[HasCredential(ActionId = 10)]
 		public ActionResult Create()
 		{
-			ViewBag.Category_ID = new SelectList(category.GetAll(), "ID", "Name");
+			ViewBag.Category_ID = new SelectList(category.Search("", 1, 1), "ID", "Name");
 			return View();
 		}
 		//public ActionResult Detail(int id)
@@ -43,7 +43,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 				if (p.Sale_Price != null && p.Sale_Price > p.Price)
 				{
 					ModelState.AddModelError("Price", "Giá gốc không được nhỏ hơn giá khuyến mãi");
-					ViewBag.Category_ID = new SelectList(category.GetAll(), "ID", "Name");
+					ViewBag.Category_ID = new SelectList(category.Search("", 1, 1), "ID", "Name");
 					return View();
 				}
 				var result = product.Insert(p);
@@ -55,7 +55,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 				else if (result == -2)
 				{
 					ModelState.AddModelError("Name", "Product Name Đã Tồn Tại");
-					ViewBag.Category_ID = new SelectList(category.GetAll(), "ID", "Name");
+					ViewBag.Category_ID = new SelectList(category.Search("", 1, 1), "ID", "Name");
 					return View();
 				}
 				else
@@ -65,14 +65,14 @@ namespace ShopingCart.Areas.Admin.Controllers
 
 				return RedirectToAction("Index");
 			}
-			ViewBag.Category_ID = new SelectList(category.GetAll(), "ID", "Name");
+			ViewBag.Category_ID = new SelectList(category.Search("", 1, 1), "ID", "Name");
 			return View();
 		}
 		[HttpGet]
 		[HasCredential(ActionId = 11)]
 		public ActionResult Edit(int id)
 		{
-			ViewBag.Category_ID = new SelectList(category.GetAll(), "ID", "Name", product.GetById(id).Category_ID);
+			ViewBag.Category_ID = new SelectList(category.Search("", 1, 1), "ID", "Name", product.GetById(id).Category_ID);
 			return View(product.GetById(id));
 		}
 		[HttpPost]
@@ -86,7 +86,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 				if (p.Sale_Price != null && p.Sale_Price > p.Price)
 				{
 					ModelState.AddModelError("Price", "Giá gốc không được nhỏ hơn giá khuyến mãi");
-					ViewBag.Category_ID = new SelectList(category.GetAll(), "ID", "Name");
+					ViewBag.Category_ID = new SelectList(category.Search("", 1, 1), "ID", "Name");
 					return View();
 				}
 				var result = product.Update(p);
@@ -98,7 +98,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 				else if (result == -2)
 				{
 					ModelState.AddModelError("Name", "Product Name Đã Tồn Tại");
-					ViewBag.Category_ID = new SelectList(category.GetAll(), "ID", "Name");
+					ViewBag.Category_ID = new SelectList(category.Search("",1,1), "ID", "Name");
 					return View();
 				}
 
@@ -108,7 +108,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 				}
 				return RedirectToAction("Index");
 			}
-			ViewBag.Category_ID = new SelectList(product.GetAll(), "ID", "Name", product.GetById(p.Category_ID));
+			ViewBag.Category_ID = new SelectList(category.Search("", 1, 1), "ID", "Name", product.GetById(p.Category_ID));
 			return View();
 
 		}

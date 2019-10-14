@@ -9,15 +9,17 @@ namespace ShopingCart.Areas.Admin.Controllers
 	public class CategoryController : BaseController
 	{
 		private CategoryService category;
+		private CommentService commentService;
 		public CategoryController()
 		{
+			commentService = new CommentService();
 			category = new CategoryService();
 		}
 		// GET: Admin/Category
 		[HasCredential(ActionId = 1)]
 		public ActionResult Index()
 		{
-			return View(category.GetAll());
+			return View(commentService.Categories());
 		}
 		[HttpGet]
 		[HasCredential(ActionId = 2)]
@@ -57,7 +59,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 		[HasCredential(ActionId = 3)]
 		public ActionResult Edit(int id)
 		{
-			ViewBag.ParentID = new SelectList(category.GetAll().Where(s => s.ParentID == null), "ID", "Name", category.GetById(id).ParentID);
+			
 			return View(category.GetById(id));
 		}
 		[HttpPost]
@@ -100,7 +102,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 			else if (result == -1)
 			{
 				TempData["message"] = "Ex";
-				TempData["data"] = "Role đang được sử dụng! Bạn không thể xóa";
+				TempData["data"] = "Danh mục đang được sử dụng! Bạn không thể xóa";
 			}
 			else
 			{
