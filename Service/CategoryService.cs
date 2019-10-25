@@ -2,13 +2,13 @@
 using Service.Interface;
 using System;
 using System.Collections.Generic;
-using DAL;
 using Repository;
 using Repository.Interface;
+using Repository.DAL;
 
 namespace Service
 {
-   public class CategoryService : IServices<Category>
+    public class CategoryService : IServices<Category>
     {
         private IRepository<Category> repository;
         public CategoryService()

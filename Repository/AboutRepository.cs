@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
 using Model;
 using Repository.Interface;
+using Repository.DAL;
 
 namespace Repository
 {

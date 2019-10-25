@@ -1,5 +1,5 @@
-﻿using DAL;
-using Model;
+﻿using Model;
+using Repository.DAL;
 using Service;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ShopingCart.Controllers
 {
-	public class HomeController : Controller
+    public class HomeController : Controller
 	{
 		private const string CartSession = "CartSession";
 		private MenuService menuService;

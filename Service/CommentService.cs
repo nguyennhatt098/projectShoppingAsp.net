@@ -1,14 +1,13 @@
-﻿using DAL;
-using Model;
+﻿using Model;
 using Model.ViewModel;
 using Repository;
+using Repository.DAL;
 using Repository.Interface;
-using System;
 using System.Collections.Generic;
 
 namespace Service
 {
-	public class CommentService : ICommentRepository
+    public class CommentService : ICommentRepository
 	{
 		private ICommentRepository repository;
 		public CommentService()

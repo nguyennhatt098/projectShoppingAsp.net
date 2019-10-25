@@ -55,10 +55,10 @@
       <HintPath>..\..\..\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -175,8 +175,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Helper.cs" />
-    <Compile Include="Models\ShopingCartContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -3734,11 +3732,6 @@
     <Content Include="Asset\Backend\vendor\tinymce\langs\readme.md" />
     <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\.travis.yml" />
     <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\AUTHORS" />
-    <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\bin\authors.sh" />
-    <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\bin\compress" />
-    <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\bin\lint" />
-    <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\bin\release" />
-    <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\bin\source-highlight" />
     <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\bower.json" />
     <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\CONTRIBUTING.md" />
     <Content Include="Asset\Backend\vendor\tinymce\plugins\codemirror\codemirror-4.8\LICENSE" />
@@ -3800,6 +3793,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3811,7 +3805,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -3860,13 +3856,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{12C33623-2FE2-4A2B-84A9-728C178B24EA}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{f5f5cf06-b913-41e9-8899-93875eb602d4}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{2D42435D-2138-428D-877F-F61BC50720C2}</Project>
+      <Name>Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Service\Service.csproj">
       <Project>{4320a49d-5d82-4d01-8430-2349631ceb74}</Project>

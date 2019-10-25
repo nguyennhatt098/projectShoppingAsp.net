@@ -1,0 +1,16 @@
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\Repository.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\Repository.dll
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\Repository.pdb
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\EntityFramework.dll
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\Model.dll
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\PagedList.dll
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\PagedList.Mvc.dll
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\Model.pdb
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\EntityFramework.xml
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\PagedList.xml
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Release\PagedList.Mvc.xml
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Release\Repository.csprojResolveAssemblyReference.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Release\Repository.dll
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Release\Repository.pdb

@@ -3,12 +3,12 @@ using Service.Interface;
 using System.Collections.Generic;
 using Model;
 using Repository.Interface;
-using DAL;
 using Repository;
+using Repository.DAL;
 
 namespace Service
 {
-	public class UserService : IServices<User>
+    public class UserService : IServices<User>
 	{
 		private IRepository<User> repository;
 		public UserService()

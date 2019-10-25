@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29025.244
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopingCart", "ShopingCart\ShopingCart.csproj", "{3BDF6C13-3AAA-441F-B845-FAEE186FF45B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{F5F5CF06-B913-41E9-8899-93875EB602D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{4320A49D-5D82-4D01-8430-2349631CEB74}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{12C33623-2FE2-4A2B-84A9-728C178B24EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{2D42435D-2138-428D-877F-F61BC50720C2}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{4320A49D-5D82-4D01-8430-2349631CEB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4320A49D-5D82-4D01-8430-2349631CEB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4320A49D-5D82-4D01-8430-2349631CEB74}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12C33623-2FE2-4A2B-84A9-728C178B24EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12C33623-2FE2-4A2B-84A9-728C178B24EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12C33623-2FE2-4A2B-84A9-728C178B24EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12C33623-2FE2-4A2B-84A9-728C178B24EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D42435D-2138-428D-877F-F61BC50720C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D42435D-2138-428D-877F-F61BC50720C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D42435D-2138-428D-877F-F61BC50720C2}.Release|Any CPU.ActiveCfg = Release|Any CPU

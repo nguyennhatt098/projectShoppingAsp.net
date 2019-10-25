@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using DAL;
 using Model;
 using Repository;
 using Repository.Interface;
 using Service.Interface;
 using Action = Model.Action;
+using Repository.DAL;
 
 namespace Service
 {
-	public class RoleActionService : IRoleActionService
+    public class RoleActionService : IRoleActionService
 	{
 		private IRoleActionRepository repository;
 		public RoleActionService()

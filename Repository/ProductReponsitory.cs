@@ -1,6 +1,7 @@
-﻿using DAL;
+﻿
 using Model;
 using PagedList;
+using Repository.DAL;
 using Repository.Interface;
 using System;
 using System.Collections.Generic;

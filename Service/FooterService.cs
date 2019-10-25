@@ -1,6 +1,6 @@
-﻿using DAL;
-using Model;
+﻿using Model;
 using Repository;
+using Repository.DAL;
 using Repository.Interface;
 using Service.Interface;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Service
 {
-	public class FooterService : IServices<Footer>
+    public class FooterService : IServices<Footer>
 	{
 		private IRepository<Footer> repository;
 		public FooterService()

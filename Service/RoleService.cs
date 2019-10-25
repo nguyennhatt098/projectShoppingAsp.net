@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using DAL;
 using Model;
 using Repository;
 using Repository.Interface;
 using Service.Interface;
+using Repository.DAL;
 
 namespace Service
 {
-public	class RoleService:IServices<Role>
+    public	class RoleService:IServices<Role>
 	{
 		private IRepository<Role> repository;
 		public RoleService()

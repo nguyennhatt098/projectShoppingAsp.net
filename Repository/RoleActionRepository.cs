@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DAL;
 using Model;
 using PagedList;
 using Repository.Interface;
 using Action = Model.Action;
+using Repository.DAL;
 
 namespace Repository
 {

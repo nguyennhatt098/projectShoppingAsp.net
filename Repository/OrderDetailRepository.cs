@@ -1,16 +1,14 @@
-﻿using DAL;
-using Model;
+﻿using Model;
 using Model.ViewModel;
+using Repository.DAL;
 using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository
 {
-	public class OrderDetailRepository :  IOrderDetailRepository,IRepository<OrderDetail>
+    public class OrderDetailRepository :  IOrderDetailRepository,IRepository<OrderDetail>
 	{
 		private DBEntityContext context;
 		public OrderDetailRepository(DBEntityContext context)

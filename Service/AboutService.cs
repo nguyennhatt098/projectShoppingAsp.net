@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
 using Model;
 using Repository;
 using Repository.Interface;
 using Service.Interface;
+using Repository.DAL;
 
 namespace Service
 {
-	public class AboutService : IServices<About>
+    public class AboutService : IServices<About>
 	{
 		private IRepository<About> repository;
 		public AboutService()

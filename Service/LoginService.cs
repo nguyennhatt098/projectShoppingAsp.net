@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DAL;
+using Repository.DAL;
 using Model;
 using Repository;
 using Repository.Interface;

@@ -1,6 +1,6 @@
-﻿using DAL;
-using Model;
+﻿using Model;
 using Repository;
+using Repository.DAL;
 using Repository.Interface;
 using Service.Interface;
 using System.Collections.Generic;

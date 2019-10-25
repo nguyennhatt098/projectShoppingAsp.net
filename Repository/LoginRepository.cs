@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
 using Model;
 using Repository.Interface;
+using Repository.DAL;
 
 namespace Repository
 {
-	public class LoginRepository : ILoginRepository
+    public class LoginRepository : ILoginRepository
 	{
 		private DBEntityContext context;
 		public LoginRepository(DBEntityContext context)

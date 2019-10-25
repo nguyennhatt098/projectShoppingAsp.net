@@ -1,15 +1,13 @@
-﻿using DAL;
-using Model;
+﻿using Model;
+using Repository.DAL;
 using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository
 {
-	public class FooterRepository : IRepository<Footer>
+    public class FooterRepository : IRepository<Footer>
 	{
 		private DBEntityContext context;
 		public FooterRepository(DBEntityContext context)

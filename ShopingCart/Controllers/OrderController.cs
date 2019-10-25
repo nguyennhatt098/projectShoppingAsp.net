@@ -1,7 +1,6 @@
 ﻿using Model;
 using Service;
 using ShopingCart.Common;
-using ShopingCart.Models;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;

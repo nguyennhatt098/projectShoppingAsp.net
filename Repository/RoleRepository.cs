@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using DAL;
 using Model;
 using Repository.Interface;
+using Repository.DAL;
 
 namespace Repository
 {
-public	class RoleRepository:IRepository<Role>
+    public	class RoleRepository:IRepository<Role>
 	{
 		private DBEntityContext context;
 		public RoleRepository(DBEntityContext context)

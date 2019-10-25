@@ -1,7 +1,7 @@
 ﻿using BotDetect.Web.Mvc;
-using DAL;
 using Model;
 using Model.ViewModel;
+using Repository.DAL;
 using Service;
 using ShopingCart.Common;
 using System;
