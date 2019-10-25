@@ -11,6 +11,10 @@ C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Release\Repository.pd
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Release\EntityFramework.xml
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Release\PagedList.xml
-C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Release\Service.csprojResolveAssemblyReference.cache
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Release\Service.dll
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Release\Service.pdb
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Release\Model.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Release\Repository.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Release\Service.csprojAssemblyReference.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Release\Service.csproj.CoreCompileInputs.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Release\Service.csproj.CopyComplete

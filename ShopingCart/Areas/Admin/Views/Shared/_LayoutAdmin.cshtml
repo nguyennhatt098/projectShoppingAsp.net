@@ -17,17 +17,17 @@
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.7 -->
-	<link rel="stylesheet" href="~/Asset/Backend/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../Asset/Backend/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="~/Asset/Backend/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../Asset/Backend/bower_components/font-awesome/css/font-awesome.min.css">
 	<!-- Ionicons -->
-	<link rel="stylesheet" href="~/Asset/Backend/bower_components/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="~/Asset/Backend/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="../Asset/Backend/bower_components/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="../Asset/Backend/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="~/Asset/Backend/dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="../Asset/Backend/dist/css/AdminLTE.min.css">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
 		 folder instead of downloading all of them to reduce the load. -->
-	<link rel="stylesheet" href="~/Asset/Backend/dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="../Asset/Backend/dist/css/skins/_all-skins.min.css">
 
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -71,7 +71,7 @@
 											<!-- start message -->
 											<a href="#">
 												<div class="pull-left">
-													<img src="~/Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+													<img src="../Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 												</div>
 												<h4>
 													Support Team
@@ -144,7 +144,7 @@
 						<!-- User Account: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="~/Asset/Backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+								<img src="../Asset/Backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
 								<span class="hidden-xs">@if (user != null)
 								                        {
 									                        @user.UserName
@@ -153,7 +153,7 @@
 							<ul class="dropdown-menu">
 								<!-- User image -->
 								<li class="user-header">
-									<img src="~/Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+									<img src="../Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
 									<p>
 										@if (user != null)
@@ -206,7 +206,7 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="~/Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+						<img src="../Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<p>@if (user != null)
@@ -232,7 +232,7 @@
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 					<li>
-						<a href="https://localhost:44347/Admin/Category">
+						<a href="/Admin/Category">
 							<i class="fa fa-dashboard"></i> <span>Quản Lý Danh mục</span>
 						</a>
 
@@ -248,7 +248,7 @@
 
 					</li>
 					<li>
-						<a href="https://localhost:44347/Admin/Orders">
+						<a href="/Admin/Orders">
 							<i class="fa fa-th"></i> <span>Quản lý đơn hàng</span>
 							<span class="pull-right-container">
 								<small class="label pull-right bg-green">Hot</small>
@@ -264,33 +264,33 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="https://localhost:44347/Admin/user"><i class="fa fa-circle-o"></i> Quản lý User</a></li>
-							<li><a href="https://localhost:44347/Admin/roles"><i class="fa fa-circle-o"></i> Quản lý Roles</a></li>
+							<li><a href="/Admin/user"><i class="fa fa-circle-o"></i> Quản lý User</a></li>
+							<li><a href="/Admin/roles"><i class="fa fa-circle-o"></i> Quản lý Roles</a></li>
 
 						</ul>
 					</li>
 					<li>
-						<a href="https://localhost:44347/Admin/slider">
+						<a href="/Admin/slider">
 							<i class="fa fa-laptop"></i>
 							<span>Quản lý slider</span>
 						</a>
 					</li>
 					<li >
-						<a href="https://localhost:44347/Admin/footers">
+						<a href="/Admin/footers">
 							<i class="fa fa-edit"></i> <span>Quản lý Footer</span>
 							
 						</a>
 						
 					</li>
 					<li >
-						<a href="https://localhost:44347/admin/news">
+						<a href="/admin/news">
 							<i class="fa fa-table"></i> <span>Quản lý tin tức</span>
 							
 						</a>
 						
 					</li>
 					<li>
-						<a href="https://localhost:44347/admin/abouts">
+						<a href="/admin/abouts">
 							<i class="fa fa-calendar"></i> <span>Quản lý trang giới thiệu</span>
 							
 						</a>
@@ -562,20 +562,20 @@
 	}
 	
 </script>
-	<script src="~/Asset/Backend/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../Asset/Backend/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap 3.3.7 -->
-	<script src="~/Asset/Backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../Asset/Backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- SlimScroll -->
-	<script src="~/Asset/Backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../Asset/Backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<!-- FastClick -->
-	<script src="~/Asset/Backend/bower_components/fastclick/lib/fastclick.js"></script>
+	<script src="../Asset/Backend/bower_components/fastclick/lib/fastclick.js"></script>
 	<!-- AdminLTE App -->
-	<script src="~/Asset/Backend/dist/js/adminlte.min.js"></script>
+	<script src="../Asset/Backend/dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="~/Asset/Backend/dist/js/demo.js"></script>
-	<script src="~/Asset/Backend/vendor/tinymce/tinymce.min.js"></script>
-	<script src="~/Asset/Backend/vendor/tinymce/config.js"></script>
-	<script src="~/Asset/Backend/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="../Asset/Backend/dist/js/demo.js"></script>
+	<script src="../Asset/Backend/vendor/tinymce/tinymce.min.js"></script>
+	<script src="../Asset/Backend/vendor/tinymce/config.js"></script>
+	<script src="../Asset/Backend/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script>
 		$(function () {
 			$('#example1').DataTable({
@@ -689,3 +689,4 @@
 </script>
 </body>
 </html>
+<noembed>

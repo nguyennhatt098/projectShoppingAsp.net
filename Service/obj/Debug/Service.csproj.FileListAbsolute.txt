@@ -80,6 +80,10 @@ C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Debug\Repository.pdb
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Debug\EntityFramework.xml
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Debug\PagedList.xml
-C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Debug\Service.dll
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Debug\Service.pdb
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Debug\Model.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\bin\Debug\Repository.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Debug\Service.csprojAssemblyReference.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Debug\Service.csproj.CoreCompileInputs.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Service\obj\Debug\Service.csproj.CopyComplete

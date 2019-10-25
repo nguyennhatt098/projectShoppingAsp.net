@@ -77,6 +77,9 @@ C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Debug\EntityFramew
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Debug\PagedList.xml
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Debug\PagedList.Mvc.xml
-C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Debug\Repository.csprojResolveAssemblyReference.cache
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Debug\Repository.dll
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Debug\Repository.pdb
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\bin\Debug\Model.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Repository\obj\Debug\Repository.csproj.CopyComplete

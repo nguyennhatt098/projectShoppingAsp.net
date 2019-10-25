@@ -87,6 +87,12 @@ C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\bin\Newtonsoft.Json.x
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\bin\Antlr3.Runtime.pdb
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\bin\Repository.pdb
-C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.csprojResolveAssemblyReference.cache
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.dll
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.pdb
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\bin\Model.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\bin\Repository.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\bin\Service.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Data.SQLite.dll.config
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.csprojAssemblyReference.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.csproj.CoreCompileInputs.cache
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.csproj.CopyComplete
