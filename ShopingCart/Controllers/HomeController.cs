@@ -37,25 +37,22 @@ namespace ShopingCart.Controllers
 			ViewBag.ListProductSale = productService.ListProductSale();
 			return View(productService.ListProductHot());
 		}
-		public PartialViewResult LoadChilden(int parentID)
-		{
-			List<Category> lst = new List<Category>();
-			using (var context = new DBEntityContext())
-			{
-				lst = context.Categories.Where(s => s.ParentID == parentID).ToList();
-			}
-			ViewBag.Count = lst.Count();
-			return PartialView("LoadChilden", lst);
-		}
+		//public PartialViewResult LoadChilden(int parentID)
+		//{
+		//	List<Category> lst = new List<Category>();
+		//	using (var context = new DBEntityContext())
+		//	{
+		//		lst = context.Categories.Where(s => s.ParentID == parentID).ToList();
+		//	}
+		//	ViewBag.Count = lst.Count();
+		//	return PartialView("LoadChilden", lst);
+		//}
 
 		[ChildActionOnly]
 		public ActionResult MainMenu()
 		{
 			List<Category> lst = new List<Category>();
-			using (var context = new DBEntityContext())
-			{
-				lst = context.Categories.Where(s => s.ParentID == null).ToList();
-			}
+			lst=categoryService.Search("",1,1).ToList();
 			return PartialView(lst);
 		}
         [ChildActionOnly]

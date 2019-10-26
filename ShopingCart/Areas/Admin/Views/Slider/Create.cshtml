@@ -15,7 +15,7 @@
 				@Html.AntiForgeryToken()
 
 				<div class="form-horizontal container">
-					
+
 					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 					<div class="form-group">
 						@Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -68,26 +68,37 @@
 			}
 
 			<div>
-				<a class="btn btn-primary"  href="@Url.Action("Index")">Quay về</a>
+				<a class="btn btn-primary" href="@Url.Action("Index")">Quay về</a>
 			</div>
 			@section Scripts {
-				<script src="~/Asset/ckeditor/ckeditor.js"></script>
-				<script src="~/Asset/ckfinder/ckfinder.js"></script>
+				@*<script src="~/Asset/ckeditor/ckeditor.js"></script>*@
+				<script src="../../../Asset/ckfinder/ckfinder.js"></script>
 				<script>
 					$(function () {
-						CKEDITOR.replace("Description");
+						//CKEDITOR.replace("Content");
 						$(".uploadfile").click(function () {
 							var ip = $(this);
 							var finder = new CKFinder();
-							finder.selectActionFunction = function (url) {
-								ip.val(url);
-								$("img[data-for='" + ip.attr("id") + "']").attr("src", url);
+							finder.selectActionFunction = function (url, file, files) {
+								if (ip.data("multiple") == true) {
+									var imgs = "";
+									$.each(files, function () {
+										imgs += $(this)[0].url + ";"
+										ip.after("<img src='" + $(this)[0].url + "' width='75px'/>");
+									})
+									ip.val(imgs);
+								} else {
+									ip.val(url);
+									ip.after("<img src='" + url + "' width='75px'/>");
+								}
+
 							}
 							finder.popup();
 
-						})
+						});
+
 					})
 				</script>
 			}
-			</div>
+		</div>
 </div>

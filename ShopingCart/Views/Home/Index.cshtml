@@ -1,14 +1,14 @@
 ﻿@using Model
 @model IEnumerable<Model.Product>
 @{
-    ViewBag.Title = "Trang Chủ";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var listproducthot = (List<Model.Product>)ViewBag.ListProductHot;
-    var ListProductNew = (List<Model.Product>)ViewBag.ListProductNew;
-    var wishList = (List<Model.WishList>)ViewBag.wishList;
-    var user = (User)Session["User"];
-    var ListNotInUser = (List<int>)ViewBag.ListNotInUser;
-    var listNews = (List<Model.News>)ViewBag.ListNews;
+	ViewBag.Title = "Trang Chủ";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	var listproducthot = (List<Model.Product>)ViewBag.ListProductHot;
+	var ListProductNew = (List<Model.Product>)ViewBag.ListProductNew;
+	var wishList = (List<Model.WishList>)ViewBag.wishList;
+	var user = (User)Session["User"];
+	var ListNotInUser = (List<int>)ViewBag.ListNotInUser;
+	var listNews = (List<Model.News>)ViewBag.ListNews;
 
 }
 @section footer{
@@ -51,71 +51,75 @@
 					<!-- Tab panes -->
 					<div class="row">
 						<div class="tab-content reload-wish">
-							@foreach (var item in Model)
-							{
-								var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
+							<div class="tab-pane active" id="home">
+								<div class="product-carousel">
+									@foreach (var item in Model)
+									{
+										var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
 
-								<div class="col-md-3">
-									<div class="product-wrapper mb-40  ">
-										<div class="product-img">
-											<a href="@url"><img src="@item.Images" alt="@item.Name" /></a>
-											@{ if (item.TopHot)
-												{
-													<span class="new-label-hot">Hot</span>
-												}
-												else
-												{
-													<span>OOOOO</span>
-												}
-											}
-										<div class="product-action">
-											<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
-
-											@if (user == null)
-											{
-												if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
-												{
-													<a class="wishlistDisLike" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
-												}
-												else
-												{
-													<a class="wishlist" data-id="@item.Id" href="#"><i class="pe-7s-like"></i></a>
-												}
-
-											}
-											else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
-											{
-												<a class="wishlistDisLike" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
-											}
-											else
-											{
-												<a class="wishlist" data-id="@item.Id" href="#"><i class="pe-7s-like"></i></a>}
-
-											<a href="#" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
-										</div>
-										</div>
-										<div class="product-content">
-											<div class="pro-title">
-												<h3><a href="@url">@item.Name</a></h3>
-											</div>
-											<div class="price-reviews">
-												<div class="price-box">
-
-													@if (item.Sale_Price != null)
-													{
-														<span class="old-price product-price">Giá gốc:@item.Price VND</span> <span class="price product-price">Giá KM:@item.Sale_Price VND</span>
+										<div class="col-md-12">
+											<div class="product-wrapper mb-40  ">
+												<div class="product-img">
+													<a href="@url"><img src="@item.Images" alt="@item.Name" /></a>
+													@{ if (item.TopHot)
+														{
+															<span class="new-label-hot">Hot</span>
+														}
+														else
+														{
+															<span>OOOOO</span>
+														}
 													}
-													else
-													{
-														<span class="price product-price">Giá gốc:@item.Price VND</span>
-													}
+													<div class="product-action">
+														<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
 
+														@if (user == null)
+														{
+															if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
+															{
+																<a class="wishlistDisLike" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
+															}
+															else
+															{
+																<a class="wishlist" data-id="@item.Id" href="#"><i class="pe-7s-like"></i></a>
+															}
+
+														}
+														else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
+														{
+															<a class="wishlistDisLike" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
+														}
+														else
+														{
+															<a class="wishlist" data-id="@item.Id" href="#"><i class="pe-7s-like"></i></a>}
+
+														<a href="#" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
+													</div>
+												</div>
+												<div class="product-content">
+													<div class="pro-title">
+														<h3><a href="@url">@item.Name</a></h3>
+													</div>
+													<div class="price-reviews">
+														<div class="price-box">
+
+															@if (item.Sale_Price != null)
+															{
+																<span class="old-price product-price">Giá gốc:@item.Price VND</span> <span class="price product-price">Giá KM:@item.Sale_Price VND</span>
+															}
+															else
+															{
+																<span class="price product-price">Giá gốc:@item.Price VND</span>
+															}
+
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
+									}
 								</div>
-							}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -123,10 +127,9 @@
 		</div>
 	</div>
 </div>
-<!-- new-arrival-area end -->
-<!-- newsletter-area start -->
-<!-- newsletter-area end -->
-<!-- best-sell-area start -->
+
+
+
 <div class="best-sell-area pt-30">
 	<div class="container">
 		<div class="row">
@@ -135,48 +138,50 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
-				<div class="product-tab">
-					<!-- Nav tabs -->
-					<!-- Tab panes -->
-					<div class="row">
-						<div class="tab-content">
-							@foreach (var item in ListProductNew)
-							{
-								var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
-								<div class="col-md-3">
-									<div class="product-wrapper mb-40">
-										<div class="product-img">
-											<a href="@url"><img src="@item.Images" alt="@item.Name" /></a>
-											<span class="new-label">New</span>
-											<div class="product-action">
-												<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
-												<a href="@url" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
-											</div>
-										</div>
-										<div class="product-content">
-											<div class="pro-title">
-												<h3><a href="@url">@item.Name</a></h3>
-											</div>
-											<div class="price-reviews">
-												<div class="price-box">
-													@if (item.Sale_Price != null)
-													{
-														<span class="old-price product-price">Giá gốc:@item.Price VND</span> <span class="price product-price">Giá KM:@item.Sale_Price VND</span>
-													}
-													else
-													{
-														<span class="price product-price">Giá gốc:@item.Price VND</span>
-													}
-												</div>
-											</div>
-										</div>
+			<div class="product-carousel">
+				@foreach (var item in ListProductNew)
+				{
+					var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
+					<div class="col-md-12">
+
+
+						<div class="product-wrapper mb-40">
+							<div class="product-img">
+								<a href="@url"><img src="@item.Images" alt="@item.Name" /></a>
+								<span class="new-label">New</span>
+								<div class="product-action">
+									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
+									<a href="@url" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
+								</div>
+							</div>
+							<div class="product-content">
+								<div class="pro-title">
+									<h3><a href="@url">@item.Name</a></h3>
+								</div>
+								<div class="price-reviews">
+									<div class="price-box">
+										@if (item.Sale_Price != null)
+										{
+											<span class="old-price product-price">Giá gốc:@item.Price VND</span> <span class="price product-price">Giá KM:@item.Sale_Price VND</span>
+										}
+										else
+										{
+											<span class="price product-price">Giá gốc:@item.Price VND</span>
+										}
+									</div>
+									<div class="pro-rating">
+										<a href="#"><i class="fa fa-star-o"></i></a>
+										<a href="#"><i class="fa fa-star-o"></i></a>
+										<a href="#"><i class="fa fa-star-o"></i></a>
+										<a href="#"><i class="fa fa-star-o"></i></a>
+										<a href="#"><i class="fa fa-star-o"></i></a>
 									</div>
 								</div>
-							}
+							</div>
 						</div>
+
 					</div>
-				</div>
+				}
 			</div>
 		</div>
 	</div>
@@ -191,26 +196,26 @@
 			</div>
 		</div>
 		<div class="row">
-            <div class="blog-active">
-                @foreach (var item in listNews)
-                {
-                    var url = "/chi-tiet-tin-tuc/" + item.Slug + "-" + item.ID;
-                    <div class="col-lg-12">
-                        <div class="blog-wrapper mb-40">
-                            <div class="blog-img">
-                                <a href="@url"><img src="@item.Images" alt="" /></a>
-                            </div>
-                            <div class="blog-info">
-                                <h3><a href="@url">@item.Summary</a></h3>
-                                <div class="blog-meta">
-                                    <span class="f-left">@item.CreateDate</span>
-                                    <span class="f-right"><a href="@url">Xem Thêm </a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
+			<div class="blog-active">
+				@foreach (var item in listNews)
+				{
+					var url = "/chi-tiet-tin-tuc/" + item.Slug + "-" + item.ID;
+					<div class="col-lg-12">
+						<div class="blog-wrapper mb-40">
+							<div class="blog-img">
+								<a href="@url"><img src="@item.Images" alt="" /></a>
+							</div>
+							<div class="blog-info">
+								<h3><a href="@url">@item.Summary</a></h3>
+								<div class="blog-meta">
+									<span class="f-left">@item.CreateDate</span>
+									<span class="f-right"><a href="@url">Xem Thêm </a></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
 		</div>
 	</div>
 </div>
@@ -263,6 +268,5 @@
 </div>
 <!-- brand-area end -->
 <!-- service-area start -->
-
 <!-- service-area end -->
 <!-- footer start -->

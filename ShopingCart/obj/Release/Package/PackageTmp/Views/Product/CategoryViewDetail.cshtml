@@ -22,237 +22,345 @@
 <!-- shop-area start -->
 <div class="shop-area" >
     <div class="container">
-        <div class="row " style="height: 500px">
-            <div class="col-md-3 col-sm-4">
-                <div class="column" style="margin-top: 50px;">
-                    <h2 class="title-block">Danh Mục Sản Phẩm</h2>
-	                <div class="container-menu-product">
-		                <ul class="">
-			                @foreach (var itemGrandParent in listCategory)
-			                {
-				                var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-				                if (itemGrandParent.ParentID == null&& listCategory.Any(x=>x.ParentID==itemGrandParent.ID))
-				                {
-					                <li class="">
-						                <a  href="javascript:void(0)">@itemGrandParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-						                <ul class="">
-							                @foreach (var itemParent in listCategory)
-							                {
-								                var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
-								                if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x=>x.ParentID==itemParent.ID))
-								                {
-										
-									                <li class="">
-										                <a href="javascript:void(0)">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-										                <ul >
-											                @foreach (var itemChild in listCategory)
-											                {
-												                var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
-												                if (itemParent.ID == itemChild.ParentID)
-												                {
-													                <li>
-														                <a href="@urlChild">
-															                @itemChild.Name
-														                </a>
-													                </li>
-												                }
-											                }
-												
-										                </ul>
-									                </li>
-										
-								                }
-								                else if(itemGrandParent.ID == itemParent.ParentID)
-								                {
-									                <li ><a href="@urlParent">@itemParent.Name</a></li>
-								                }
-									
-							                }
-								
-						                </ul>
-					                </li>
-				                }else if (itemGrandParent.ParentID == null)
-				                {
-					                <li ><a href="@url">@itemGrandParent.Name</a></li>
-				                }
+		<div  class="row " >
+			<div style="background:#f0f0f0;border-left: 1px dotted rgba(0, 0, 0, 0.5);box-shadow: 3px 3px;height:auto" class="col-md-3 col-sm-4">
+				@*menu mobile*@
+				<div id="accordian">
+					<ul>
+						<li class="active">
+							<h3><a href="javascript:void(0)"><i class="fa fa-lg fa-tasks"></i>Danh mục</a></h3>
+							<ul>
+								@foreach (var itemGrandParent in listCategory)
+								{
+									var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
+									if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
+									{
+										<li>
+											<a href="javascript:void(0)">@itemGrandParent.Name</a>
+											<ul>
+												@foreach (var itemParent in listCategory)
+												{
+													var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
+													if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
+													{
+														<li>
+															<a href="javascript:void(0)">@itemParent.Name</a>
+															<ul>
+																@foreach (var itemChild in listCategory)
+																{
+																	var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
+																	if (itemParent.ID == itemChild.ParentID)
+																	{
+																		<li>
+																			<a href="@urlChild">
+																				@itemChild.Name
+																			</a>
+																		</li>
+																	}
+																}
+															</ul>
+														</li>
+													}
+													else if (itemGrandParent.ID == itemParent.ParentID)
+													{
+														<li><a href="@urlParent">@itemParent.Name</a></li>
+													}
+												}
+											</ul>
+										</li>
+									}
+									else if (itemGrandParent.ParentID == null)
+									{
+										<li><a href="@url"> @itemGrandParent.Name </a></li>
+									}
 
-			                }
-		                </ul>
+								}
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="column">
+					<h2 class="title-block">Danh Mục Sản Phẩm</h2>
 
-	                </div>
+					@*menu desktop*@
+					<div class="container-menu-product">
+						<ul class="">
+							@foreach (var itemGrandParent in listCategory)
+							{
+								var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
+								if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
+								{
+									<li class="">
+										<a href="javascript:void(0)">@itemGrandParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
+										<ul class="">
+											@foreach (var itemParent in listCategory)
+											{
+												var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
+												if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
+												{
 
+													<li class="">
+														<a href="javascript:void(0)">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
+														<ul>
+															@foreach (var itemChild in listCategory)
+															{
+																var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
+																if (itemParent.ID == itemChild.ParentID)
+																{
+																	<li>
+																		<a href="@urlChild">
+																			@itemChild.Name
+																		</a>
+																	</li>
+																}
+															}
 
-                </div>
-            </div>
-            @if (Model.Count > 0)
-            {
-                <div class="col-md-9 col-sm-8">
-                    <h2 class="page-heading mt-40">
-                        <span class="cat-name">Tất Cả Sản Phẩm</span>
-                        <span class="heading-counter">@*Có Tất Cả @ListProduct.Count() Sản Phẩm*@</span>
-                    </h2>
-                    <div class="shop-page-bar">
-                        <div>
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="home">
-                                    <div class="row">
-                                        @foreach (var item in Model)
-                                        {
-											var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
-                                            <div class="col-md-4 col-sm-6">
-                                                <div class="product-wrapper mb-40">
-                                                    <div class="product-img">
+														</ul>
+													</li>
 
-                                                        <a href="@url"><img src="@item.Images" alt="" /></a>
-                                                        <span class="new-label">New</span>
-                                                        <div class="product-action">
-                                                            <a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
-                                                            <a href="#"><i class="pe-7s-like"></i></a>
-                                                            <a href="#" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-content">
-                                                        <div class="pro-title">
-                                                            <h3><a href="product-details.html">@item.Name</a></h3>
-                                                        </div>
-                                                        <div class="price-reviews">
-                                                            <div class="price-box">
-                                                                <span class="price product-price">
-                                                                    @item.Sale_Price VND
-                                                                    <span class="old-price product-price">@item.Price VND</span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="pro-rating">
-                                                                <a href="#"><i class="fa fa-star-o"></i></a>
-                                                                <a href="#"><i class="fa fa-star-o"></i></a>
-                                                                <a href="#"><i class="fa fa-star-o"></i></a>
-                                                                <a href="#"><i class="fa fa-star-o"></i></a>
-                                                                <a href="#"><i class="fa fa-star-o"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
+												}
+												else if (itemGrandParent.ID == itemParent.ParentID)
+												{
+													<li><a href="@urlParent">@itemParent.Name</a></li>
+												}
 
-
-
-
-                                    </div>
-                                </div>
-
-                                <div class="content-sortpagibar">
-                                    
-                                    @if (ViewBag.TotalPage > 1)
-                                    {
-                                        int totalpage = (int)ViewBag.TotalPage;
-                                        int cureentPage = ((int)ViewBag.Page);
-	                                    var next20 = cureentPage + 20;
-	                                    var prev20 = cureentPage - 20;
-	                                    var start = cureentPage <= 3 ? 1 : cureentPage - 3;
-	                                    var end =totalpage==cureentPage?totalpage:cureentPage+3;
-                                        var url = "/danh-muc-san-pham/" + category.Slug + "-" + category.ID;
-                                        <ul class="shop-pagi display-inline">
-                                            @if (cureentPage > 1)
-                                            {
-	                                            if (cureentPage > 20)
-	                                            {
-		                                            <li><a href="@url?page=@prev20"><i class="fa fa-backward"></i></a></li>
-	                                            }
-	                                            <li><a href="@url?page=@ViewBag.Prev"><i class="fa fa-angle-left"></i></a></li>
-	                                           
 											}
 
-                                            @for (int i = start; i <= end; i++)
-                                            {
-                                                if (cureentPage == i)
-                                                {
-                                                    <li><a style="background: blue" href="@url?page=@i">@i</a></li>
-                                                 }
-                                                 else
-                                                 {
-                                                     <li><a href="@url?page=@i">@i</a></li>
-                                                 }
-                                            }
+										</ul>
+									</li>
+								}
+								else if (itemGrandParent.ParentID == null)
+								{
+									<li><a href="@url">@itemGrandParent.Name</a></li>
+								}
+
+							}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9 col-sm-8">
+				<h2 class="page-heading mt-40">
+					<span class="cat-name">@category.Name</span>
+					<span class="heading-counter">There are 13 products.</span>
+				</h2>
+				<div class="shop-page-bar">
+					<div>
+						<div class="shop-bar">
+							<!-- Nav tabs -->
+							<ul class="shop-tab f-left" role="tablist">
+								<li role="presentation" class="active"><a href="#home" data-toggle="tab"><i class="fa fa-th-large" aria-hidden="true"></i></a></li>
+								<li role="presentation"><a href="#profile" data-toggle="tab"><i class="fa fa-th-list" aria-hidden="true"></i></a></li>
+							</ul>
+							<div class="selector-field f-left ml-20 hidden-xs">
+								<form action="#">
+									<label>Sort by</label>
+									<select name="select">
+										<option value="">----</option>
+										<option value="">Price: Lowest first</option>
+										<option value="">Price: Highest first</option>
+										<option value="">Product Name: A to Z</option>
+										<option value="">Product Name: Z to A</option>
+										<option value="">In stock</option>
+										<option value="">Reference: Lowest first</option>
+										<option value="">Reference: Highest first</option>
+									</select>
+								</form>
+							</div>
+							<div class="selector-field f-left ml-30 hidden-xs">
+								<form action="#">
+									<label>Show</label>
+									<select name="select">
+										<option value="">12</option>
+										<option value="">13</option>
+										<option value="">14</option>
+									</select>
+								</form>
+							</div>
+							<div class="selector-field f-right ml-30">
+								<form action="#">
+									<button class="compare">Compare (1)</button>
+								</form>
+							</div>
+						</div>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="home">
+								<div role="tabpanel" class="tab-pane" id="profile">
+									@if (Model.Count > 0)
+									{
+
+
+										foreach (var item in Model)
+										{
+											var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
+											<div class="col-md-4 col-sm-6">
+												<div class="product-wrapper mb-40">
+													<div class="product-img">
+
+														<a href="@url"><img src="@item.Images" alt="" /></a>
+														<span class="new-label">New</span>
+														<div class="product-action">
+															<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
+															<a href="#"><i class="pe-7s-like"></i></a>
+															<a href="#" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
+														</div>
+													</div>
+													<div class="product-content">
+														<div class="pro-title">
+															<h3><a href="product-details.html">@item.Name</a></h3>
+														</div>
+														<div class="price-reviews">
+															<div class="price-box">
+																<span class="price product-price">
+																	@item.Sale_Price VND
+																	<span class="old-price product-price">@item.Price VND</span>
+																</span>
+															</div>
+															<div class="pro-rating">
+																<a href="#"><i class="fa fa-star-o"></i></a>
+																<a href="#"><i class="fa fa-star-o"></i></a>
+																<a href="#"><i class="fa fa-star-o"></i></a>
+																<a href="#"><i class="fa fa-star-o"></i></a>
+																<a href="#"><i class="fa fa-star-o"></i></a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										}
+									}
+									else
+									{
+										<p>Danh Mục Không Có Sản Phẩm</p>
+									}
+								</div>
+
+							</div>
+							<div class="content-sortpagibar">
+
+								@if (ViewBag.TotalPage > 1)
+								{
+									int totalpage = (int)ViewBag.TotalPage;
+									int cureentPage = ((int)ViewBag.Page);
+									var next20 = cureentPage + 20;
+									var prev20 = cureentPage - 20;
+									var start = cureentPage <= 3 ? 1 : cureentPage - 3;
+									var end = totalpage == cureentPage ? totalpage : cureentPage + 3;
+									var url = "/danh-muc-san-pham/" + category.Slug + "-" + category.ID;
+									<ul class="shop-pagi display-inline">
+										@if (cureentPage > 1)
+										{
+											if (cureentPage > 20)
+											{
+												<li><a href="@url?page=@prev20"><i class="fa fa-backward"></i></a></li>
+											}
+											<li><a href="@url?page=@ViewBag.Prev"><i class="fa fa-angle-left"></i></a></li>
+
+										}
+
+										@for (int i = start; i <= end; i++)
+										{
+											if (cureentPage == i)
+											{
+												<li><a style="background: blue" href="@url?page=@i">@i</a></li>
+											}
+											else
+											{
+												<li><a href="@url?page=@i">@i</a></li>
+											}
+										}
 
 
 
-                                            @if (cureentPage < totalpage)
-                                            {
-	                                            <li><a href="@url?page=@ViewBag.Next"><i class="fa fa-angle-right"></i></a></li>
-	                                            if (totalpage > cureentPage + 20)
-	                                             {
-		                                             <li><a href="@url?page=@next20"><i class="fa fa-fast-forward"></i></a></li>
-	                                             }
-	                                            
-                                            }
+										@if (cureentPage < totalpage)
+										{
+											<li><a href="@url?page=@ViewBag.Next"><i class="fa fa-angle-right"></i></a></li>
+											if (totalpage > cureentPage + 20)
+											{
+												<li><a href="@url?page=@next20"><i class="fa fa-fast-forward"></i></a></li>
+											}
 
-                                        </ul>
-                                    }
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <p>Danh Mục Không Có Sản Phẩm</p>
-            }
+										}
 
-        </div>
-    </div>
-</div>
-<!-- shop-area end -->
-<!-- brand-area start -->
-<div class="brand-area">
-    <div class="container">
-        <div class="brand-sep ptb-50">
-            <div class="row">
-                <div class="brand-active">
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/3.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/4.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/5.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="single-brand">
-                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- brand-area end -->
-<!-- service-area start -->
+									</ul>
+								}
+								else
+								{
+									<div class="product-count display-inline">Showing 1 - 12 of 13 items</div>
+									<ul class="shop-pagi display-inline">
+										<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+										<li class="active"><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+									</ul>
+									<div class="selector-field f-right">
+										<form action="#">
+											<button class="compare">Compare (1)</button>
+										</form>
+									</div>
+								}
+
+							</div>
+						</div>
+						</div>
+					</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+
+
+					<!-- shop-area end -->
+					<!-- brand-area start -->
+					<div class="brand-area">
+						<div class="container">
+							<div class="brand-sep ptb-50">
+								<div class="row">
+									<div class="brand-active">
+										<div class="col-lg-12">
+											<div class="single-brand">
+												<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="single-brand">
+												<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="single-brand">
+												<a href="#"><img src="~/Asset/FrontEnd/img/brand/3.jpg" alt="" /></a>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="single-brand">
+												<a href="#"><img src="~/Asset/FrontEnd/img/brand/4.jpg" alt="" /></a>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="single-brand">
+												<a href="#"><img src="~/Asset/FrontEnd/img/brand/5.jpg" alt="" /></a>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="single-brand">
+												<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="single-brand">
+												<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- brand-area end -->
+					<!-- service-area start -->
 
 

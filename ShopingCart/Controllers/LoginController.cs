@@ -137,9 +137,9 @@ namespace ShopingCart.Controllers
             var verifyUrl = "/Login/" + emailFor + "/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("danhminhhm@gmail.com", "Nội Thất Đồ Gỗ");
+            var fromEmail = new MailAddress("nguyennhatt098@gmail.com", "Shop Fashe");
             var toEmail = new MailAddress(EmailAddress);
-            var fromEmailPassword = "danhngoc99"; // Replace with actual password
+            var fromEmailPassword = "anhyeuem123"; // Replace with actual password
 
             string subject = "";
             string body = "";

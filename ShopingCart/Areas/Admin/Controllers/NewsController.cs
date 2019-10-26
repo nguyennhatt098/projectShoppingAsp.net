@@ -43,6 +43,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 				{
 					TempData["message"] = "false";
 				}
+				return View();
 			}
 			return RedirectToAction("Index");
 		}
@@ -51,7 +52,9 @@ namespace ShopingCart.Areas.Admin.Controllers
 		{
 			return View(newsService.GetById(id));
 		}
+
 		[HasCredential(ActionId = 33)]
+		[HttpPost]
 		public ActionResult Edit(News n)
 		{
 			if (ModelState.IsValid)

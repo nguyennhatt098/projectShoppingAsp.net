@@ -30,60 +30,60 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu.css" type="text/css" />
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-product.css" type="text/css" />
-
+	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-mobile.css" type="text/css" />
 	<!-- Modernizr JS -->
 	<script src="~/Asset/FrontEnd/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
-<!--[if lt IE 8]>
-	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-<!-- header start -->
+	<!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!-- header start -->
 
-@{Html.RenderAction("MainMenu", "Home");}
+	@{Html.RenderAction("MainMenu", "Home");}
 
-@RenderBody()
-@{Html.RenderAction("Footer", "Home");}
-<!-- footer end -->
-<!-- Modal -->
-<!-- Modal end -->
-<!-- jquery latest version -->
-<div class="container">
+	@RenderBody()
+	@{Html.RenderAction("Footer", "Home");}
+	<!-- footer end -->
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModalCenter" role="dialog">
-		<div class="modal-dialog ">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 style="color:red" class="modal-title">Thông báo</h4>
-				</div>
-				<div class="modal-body">
-					<p>Bạn chưa đăng nhập! Vui lòng đăng nhập để có thể sử dụng tính năng này</p>
-						
-				</div>
-				<div class="modal-footer">
-					<a  class="btn btn-primary" href="/Login">Đăng nhập</a>
-					<button type="button" class="btn  btn-danger btn-xs" data-dismiss="modal">Đồng ý</button>
+	<!-- Modal end -->
+	<!-- jquery latest version -->
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" role="dialog">
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 style="color:red" class="modal-title">Thông báo</h4>
+					</div>
+					<div class="modal-body">
+						<p>Bạn chưa đăng nhập! Vui lòng đăng nhập để có thể sử dụng tính năng này</p>
+
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-primary" href="/Login">Đăng nhập</a>
+						<button type="button" class="btn  btn-danger btn-xs" data-dismiss="modal">Đồng ý</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
-<!-- Bootstrap framework js -->
-<script src="~/Asset/FrontEnd/js/bootstrap.min.js"></script>
-<!-- ajax-mail js -->
-<script src="~/Asset/FrontEnd/js/ajax-mail.js"></script>
-<!-- owl.carousel js -->
-<script src="~/Asset/FrontEnd/js/owl.carousel.min.js"></script>
-<!-- jquery.nivo.slider js -->
-<script src="~/Asset/FrontEnd/js/jquery.nivo.slider.pack.js"></script>
-<!-- All js plugins included in this file. -->
-<script src="~/Asset/FrontEnd/js/plugins.js"></script>
-<!-- Main js file that contents all jQuery plugins activation. -->
-<script src="~/Asset/FrontEnd/js/main.js"></script>
-<script type="text/javascript">
+	<script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
+	<!-- Bootstrap framework js -->
+	<script src="~/Asset/FrontEnd/js/bootstrap.min.js"></script>
+	<!-- ajax-mail js -->
+	<script src="~/Asset/FrontEnd/js/ajax-mail.js"></script>
+	<!-- owl.carousel js -->
+	<script src="~/Asset/FrontEnd/js/owl.carousel.min.js"></script>
+	<!-- jquery.nivo.slider js -->
+	<script src="~/Asset/FrontEnd/js/jquery.nivo.slider.pack.js"></script>
+	<!-- All js plugins included in this file. -->
+	<script src="~/Asset/FrontEnd/js/plugins.js"></script>
+	<!-- Main js file that contents all jQuery plugins activation. -->
+	<script src="~/Asset/FrontEnd/js/main.js"></script>
+	<script type="text/javascript">
 	$(document).ready(function () {
 		if ('@TempData["message"]' == "Added") {
 			$(".alert-success").show();
@@ -259,13 +259,16 @@
 				$('.show-comment-id-' + commentId).addClass("active-question-"+ commentId);
 				$('.show-comment-id-' + commentId).show("slow");
 			}
-			
+
 		});
 	});
-</script>
+	</script>
 
-@RenderSection("footer", required: false)
-@RenderSection("scripts", required: false)
+	@RenderSection("footer", required: false)
+	@RenderSection("scripts", required: false)
+	
+	<script src="~/Asset/FrontEnd/js/menu-mobile.js"></script>
+
 </body>
 
 
