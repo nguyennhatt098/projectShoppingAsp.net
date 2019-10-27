@@ -51,8 +51,6 @@ namespace Repository
 			this.disposed = true;
 		}
 
-
-
 		public IEnumerable<Product> GetAll()
 		{
 			return context.Products.ToList();
@@ -78,11 +76,6 @@ namespace Repository
 		}
 
 		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IEnumerable<Product> Search(string searchString)
 		{
 			throw new NotImplementedException();
 		}

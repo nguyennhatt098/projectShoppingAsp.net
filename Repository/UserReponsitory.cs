@@ -45,7 +45,7 @@ namespace Repository
 
 		public IEnumerable<User> GetAll()
 		{
-			return context.Users.ToList();
+			return context.Users.OrderByDescending(x=>x.CreatedDate).ToList();
 		}
 
 		public User GetById(int id)

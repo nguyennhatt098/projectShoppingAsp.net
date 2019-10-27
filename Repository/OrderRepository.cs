@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Repository
 {
-    public class OrderRepository : IRepository<Order>, IDisposable
+	public class OrderRepository : IRepository<Order>, IDisposable
 	{
 		private DBEntityContext context;
 		public OrderRepository(DBEntityContext context)
@@ -30,7 +30,7 @@ namespace Repository
 
 		public IEnumerable<Order> GetAll()
 		{
-		 return	context.Orders.ToList();
+			return context.Orders.OrderByDescending(x=>x.Created).ToList();
 		}
 
 		public Order GetById(int id)
@@ -43,15 +43,15 @@ namespace Repository
 			throw new NotImplementedException();
 		}
 
-        public Contact GetContact()
-        {
-            throw new NotImplementedException();
-        }
+		public Contact GetContact()
+		{
+			throw new NotImplementedException();
+		}
 
-        public int Insert(Order t)
+		public int Insert(Order t)
 		{
 			context.Orders.Add(t);
-		return	context.SaveChanges();
+			return context.SaveChanges();
 		}
 		public bool Login(string username, string password)
 		{
@@ -65,18 +65,27 @@ namespace Repository
 
 		public int Update(Order t)
 		{
-			var currentItem = context.Orders.FirstOrDefault(s => s.ID==t.ID);
-			if (currentItem != null)
+			var currentItem = context.Orders.FirstOrDefault(s => s.ID == t.ID);
+			if (currentItem == null) return 0;
+			currentItem.ID = t.ID;
+			currentItem.Name = t.Name;
+			currentItem.Phone = t.Phone;
+			currentItem.Status = t.Status;
+			currentItem.Email = t.Email;
+			currentItem.Created = t.Created;
+			currentItem.Address = t.Address;
+			if (t.Status == 3)
 			{
-				currentItem.ID = t.ID;
-				currentItem.Name = t.Name;
-				currentItem.Phone = t.Phone;
-				currentItem.Status = t.Status;
-				currentItem.Email = t.Email;
-				currentItem.Created = t.Created;
-				currentItem.Address = t.Address;
+				var notify = new Notify
+				{
+					Status = 1,
+					Content = "Đơn hàng "+ currentItem.ID+ "của bạn đã được giao thành công! Vui lòng kiểm tra lại email",
+					CreatedDate = DateTime.Now,
+					UserId = currentItem.User_ID
+				};
+				context.Notifies.Add(notify);
+				context.SaveChanges();
 			}
-			
 			context.Entry(currentItem).State = System.Data.Entity.EntityState.Modified;
 			return context.SaveChanges();
 		}

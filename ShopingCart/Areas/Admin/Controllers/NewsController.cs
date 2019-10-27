@@ -43,9 +43,9 @@ namespace ShopingCart.Areas.Admin.Controllers
 				{
 					TempData["message"] = "false";
 				}
-				return View();
+				return RedirectToAction("Index");
 			}
-			return RedirectToAction("Index");
+			return View();
 		}
 		[HasCredential(ActionId = 33)]
 		public ActionResult Edit(int id)
@@ -68,8 +68,9 @@ namespace ShopingCart.Areas.Admin.Controllers
 				{
 					TempData["message"] = "false";
 				}
+				return RedirectToAction("Index");
 			}
-			return RedirectToAction("Index");
+			return View();
 		}
 		[HasCredential(ActionId = 34)]
 		public ActionResult Delete(int id)
@@ -85,6 +86,5 @@ namespace ShopingCart.Areas.Admin.Controllers
 			}
 			return RedirectToAction("Index");
 		}
-
 	}
 }

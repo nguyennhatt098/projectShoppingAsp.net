@@ -34,7 +34,7 @@ namespace ShopingCart.Controllers
 				wishListService.Delete(c);
 				return Json(new
 				{
-					status = true
+					status = false
 				});
 			}
 

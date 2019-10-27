@@ -108,36 +108,36 @@
 					$("#exampleModalCenter").modal();
 				}, 200);
 			};
-			$(document).on('click',
-				'.wishlists',
-				function() {
-					debugger;
+			//$(document).on('click',
+			//	'.wishlists',
+			//	function() {
+			//		debugger;
 
-					$.ajax({
-						url: '/Home/Create',
-						data: { ProductID: $(this).data('id') },
-						dataType: 'json',
-						type: 'POST',
-						success: (res) => {
-							$('.reload-wish').load('/Product/Index .reload-wish');
-						}
-					});
-				}
-			);
-			$(document).on('click',
-				'.wishlistDisLikes',
-				function() {
-					debugger;
-					$.ajax({
-						url: '/WishList/Remove',
-						data: { ProductID: $(this).data('id') },
-						dataType: 'json',
-						type: 'POST',
-						success: (res) => {
-							$('.reload-wish').load('/Product/Index .reload-wish');
-						}
-					});
-				});
+			//		$.ajax({
+			//			url: '/Home/Create',
+			//			data: { ProductID: $(this).data('id') },
+			//			dataType: 'json',
+			//			type: 'POST',
+			//			success: (res) => {
+			//				$('.reload-wish').load('/Product/Index .reload-wish');
+			//			}
+			//		});
+			//	}
+			//);
+			//$(document).on('click',
+			//	'.wishlistDisLikes',
+			//	function() {
+			//		debugger;
+			//		$.ajax({
+			//			url: '/WishList/Remove',
+			//			data: { ProductID: $(this).data('id') },
+			//			dataType: 'json',
+			//			type: 'POST',
+			//			success: (res) => {
+			//				$('.reload-wish').load('/Product/Index .reload-wish');
+			//			}
+			//		});
+			//	});
 
 			window.carts = [];
 			$(".quantity").change(function () {
@@ -169,23 +169,6 @@
 						}
 					}
 				})
-			});
-			$(".meanmenu-reveal").click(function () {
-				if ($(".meanclose")[0]){
-					if (screen.width < 990&& screen.width>=768) {
-						$('#container-menu').css('margin-top',125);
-					}
-					if (screen.width < 768) {
-						$('#container-menu').css('margin-top',180);
-					}
-				} else {
-					if (screen.width < 990&& screen.width>=768) {
-						$('#container-menu').removeAttr('style');
-					}
-					if (screen.width < 768) {
-						$('#container-menu').removeAttr('style');
-					}
-				}
 			});
 			$("#comment").on("click", function () {
 
@@ -262,6 +245,92 @@
 
 		});
 	});
+		//window.wishListAdd = [];
+		//window.wishListRemove = [];
+		$(document).on('click', '.wishlist', function () {
+			var id = $(this).attr("id");
+			//var currentItemAdd = wishListAdd.find(x => x.ProductID === id);
+			//var currentItemRemove = wishListRemove.find(x => x.ProductID === id);
+			//debugger
+				if ($(".wishlist-" + id).hasClass("wishlistDisLike")) {
+					//if (currentItemRemove === undefined || currentItemRemove === null) {
+					//	wishListRemove.push({ ProductID: id });
+					//} else {
+					//	wishListRemove = $.grep(wishListRemove, function(e) { return e.ProductID!=id });
+					//}
+					
+				$(".wishlist-" + $(this).data('id')).removeClass("wishlistDisLike");		
+			} else {
+				//if (currentItemAdd === undefined || currentItemAdd === null) {
+				//		wishListAdd.push({ ProductID: id });
+				//	} else {
+				//		wishListAdd = $.grep(wishListAdd, function(e) { return e.ProductID!=id });
+				//	}
+				$(".wishlist-"+$(this).data('id')).addClass("wishlistDisLike");
+			}
+			});
+//	$.each(wishList, function( index, value ) {
+//  alert( index + ": " + value );
+//});
+			//console.log(wishListAdd);
+			//console.log(wishListRemove);
+		//	window.onbeforeunload = function (e) {
+		//	if ($(".wishlist-" + id).hasClass("wishlistDisLike")) {	
+		//		$.ajax({
+		//				url: '/Home/Create',
+		//				data: { ProductID: id },
+		//				dataType: 'json',
+		//				type: 'POST',
+		//				success: (res) => {
+		//				}
+		//			});
+		//} else {
+		//	$.ajax({
+		//				url: '/WishList/Remove',
+		//				data: { ProductID: id },
+		//				dataType: 'json',
+		//				type: 'POST',
+		//				success: (res) => {
+		//				}
+		//			});
+		//		};
+		//	}
+		
+		
+					
+			//debugger
+		//	$.ajax({
+		//		url: '/Home/CreateWishListIndex',
+		//		data: { ProductID: id },
+		//		dataType: 'json',
+		//		type: 'POST',
+		//		success: (res) => {
+		//			debugger
+		//			if (res.status) {
+		//				$(".wishlist-"+$(this).data('id')).addClass("wishlistDisLike");
+		//			}
+		//			if (!res.status) {
+		//				$(".wishlist-"+$(this).data('id')).removeClass("wishlistDisLike");
+		//			}
+		//			//$('.reload-wish').load('/Home/Index .reload-wish');
+					
+					
+		//			} 
+		//	});
+		//});
+		//$(document).on('click', '.wishlist', function () {
+		//	debugger
+		//	$.ajax({
+		//		url: '/WishList/Remove',
+		//		data: { ProductID: $(this).data('id') },
+		//		dataType: 'json',
+		//		type: 'POST',
+		//		success: (res) => {
+		//			$(".wishlist-"+$(this).data('id')).removeClass("wishlistDisLike");
+					
+		//		}
+		//	})
+		//});
 	</script>
 
 	@RenderSection("footer", required: false)
@@ -272,6 +341,5 @@
 </body>
 
 
-<!-- Mirrored from demo.devitems.com/gicor-preview/gicor/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Nov 2018 04:49:50 GMT -->
 </html>
 <noembed>

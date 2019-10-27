@@ -1,7 +1,7 @@
 ﻿@model List<Model.Category>
 @{
 	var user = (Model.User)Session["User"];
-
+	var notifies = (List<Model.Notify>)ViewBag.notifies;
 }
 <header class="header-pos">
 	<div style="float:right;width:300px;position:relative;position:absolute;top:50px; right: 100px;z-index: 9999">
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-md-2 col-sm-3 col-xs-12">
 					<div class="logo">
-<a><img style="width:150px;height:50px;" src="~/Asset/FrontEnd/images/Logo4.jfif" alt="Alternate Text" /></a>					
+						<a><img style="width:150px;height:50px;" src="~/Asset/FrontEnd/images/Logo4.jfif" alt="Alternate Text" /></a>
 					</div>
 				</div>
 				<div class="col-md-10 col-sm-9 col-xs-12 text-right xs-center">
@@ -53,29 +53,40 @@
 					</div>
 
 					<div style="width: 40%" class="search-block-top display-inline">
+						@*<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Notification <span class="caret"></span>
+							</button>*@
 						@if (Session["User"] != null)
 						{
 
-							<div style="font-weight:700;color:#2c2c2c">Chào! @user.FullName | <a style="color:#2c2c2c" href="@Url.Action("LogOut","Login")">Đăng xuất</a></div>
+							<div style="float:left;color:#2c2c2c">
+								<p>Chào! @user.FullName | <a style="color:#2c2c2c" href="@Url.Action("LogOut","Login")">Đăng xuất</a></p>
+							</div>
 						}
 						else
 						{
-
-							<div style="">
+							<div style="float:left;color:#2c2c2c">
 								<a style="color: #2c2c2c;font-weight: 700;" href="@Url.Action("Index", "Login")">Đăng nhập</a>
 								| <a style="color: #2c2c2c;font-weight: 700;" href="@Url.Action("Index", "Resgiter")">Đăng ký</a>
-
-								<div style="float: left" class="dropdown">
-									<span type="button" data-toggle="dropdown">
-										<a style="color: #2c2c2c;font-weight: 700;" class="glyphicon glyphicon-bell "></a>
-									</span>
-									<ul class="dropdown-menu">
-										<li><a href="#">HTML</a></li>
-										<li><a href="#">CSS</a></li>
-										<li><a href="#">JavaScript</a></li>
-									</ul>
-								</div>
 							</div>
+						}
+						@if (notifies.Count > 0)
+						{
+							<a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #2c2c2c;font-weight: 700;font-size:20px;" class="glyphicon glyphicon-bell "></a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								@foreach (var item in notifies)
+								{
+									<li>
+										<a href="#" class="top-text-block">
+											<div style="font-size:12px" class="top-text-heading">@item.Content</div>
+											<div style="font-size:14px" class="top-text-light"><b>Ngày tạo</b> @item.CreatedDate</div>
+										</a>
+									</li>
+								}
+								@*<li>
+										<div class="loader-topbar"></div>
+									</li>*@
+							</ul>
 						}
 					</div>
 					@{ Html.RenderAction("HeaderCart", "Home");}
@@ -109,9 +120,9 @@
 									<ul>
 										@foreach (var itemGrandParent in Model)
 										{
-										var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-										if ( Model.Any(x => x.ParentID == itemGrandParent.ID))
-										{
+											var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
+											if (Model.Any(x => x.ParentID == itemGrandParent.ID))
+											{
 												<li>
 													<a href="#">@itemGrandParent.Name </a>
 													<ul>
@@ -133,7 +144,7 @@
 																					<a href="@urlChild">
 																						@itemChild.Name
 																					</a>
-																				</li>				}
+																				</li>}
 																		}
 
 																	</ul>
@@ -149,9 +160,9 @@
 
 													</ul>
 												</li>
-												}
-												else if (itemGrandParent.ParentID == null)
-												{
+											}
+											else if (itemGrandParent.ParentID == null)
+											{
 												<li><a href="@url">@itemGrandParent.Name</a></li>
 												<li><a href="@url">@itemGrandParent.Name</a></li>
 											}

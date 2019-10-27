@@ -16,6 +16,7 @@ namespace ShopingCart.Controllers
 		private CategoryService categoryService;
 		private WishListService wishListService;
         private NewsService newsService;
+		private NotifyService notifyService;
 		public HomeController()
 		{
             newsService = new NewsService();
@@ -24,7 +25,7 @@ namespace ShopingCart.Controllers
 			menuService = new MenuService();
 			categoryService = new CategoryService();
 			wishListService = new WishListService();
-
+			notifyService = new NotifyService();
 		}
 		public ActionResult Index()
 		{
@@ -37,22 +38,13 @@ namespace ShopingCart.Controllers
 			ViewBag.ListProductSale = productService.ListProductSale();
 			return View(productService.ListProductHot());
 		}
-		//public PartialViewResult LoadChilden(int parentID)
-		//{
-		//	List<Category> lst = new List<Category>();
-		//	using (var context = new DBEntityContext())
-		//	{
-		//		lst = context.Categories.Where(s => s.ParentID == parentID).ToList();
-		//	}
-		//	ViewBag.Count = lst.Count();
-		//	return PartialView("LoadChilden", lst);
-		//}
 
 		[ChildActionOnly]
 		public ActionResult MainMenu()
 		{
-			List<Category> lst = new List<Category>();
-			lst=categoryService.Search("",1,1).ToList();
+			var currentUser = (User)Session["User"];
+			ViewBag.notifies = currentUser != null ? notifyService.GetById(currentUser.UserId) : new List<Notify>();
+			var lst=categoryService.Search("",1,1).ToList();
 			return PartialView(lst);
 		}
         [ChildActionOnly]
@@ -61,7 +53,7 @@ namespace ShopingCart.Controllers
             var model = new Footer();
             using (var context = new DBEntityContext())
             {
-                 model = context.Footers.FirstOrDefault(x => x.Status == true);
+                 model = context.Footers.FirstOrDefault(x => x.Status);
             }
             return PartialView(model);
         }
@@ -120,10 +112,87 @@ namespace ShopingCart.Controllers
 				var data = (Model.User)Session["User"];
 				c.UserID = data.UserId;
 				wishListService.Insert(c);
-				return Json(new
+			}
+
+			return Json(new
+			{
+				status = false
+
+			});
+		}
+
+		[HttpPost]
+		public ActionResult CreateWishListIndex(WishList c)
+		{
+			var user = (Model.User)Session["User"];
+			var listWishs = (List<int>)Session[Common.CommonConstants.DATA_WISH]==null ? new List<int>(): (List<int>)Session[Common.CommonConstants.DATA_WISH];
+			if (user == null)
+			{
+
+				if (listWishs.Count==0)
 				{
-					status = true
-				});
+					var listWish = new List<int>();
+					listWish.Add(c.ProductID);
+					Session[Common.CommonConstants.DATA_WISH] = listWish;
+					return Json(new
+					{
+						status = true
+					});
+				}
+				else
+				{
+					
+					foreach (var item in listWishs)
+					{
+						if (item == c.ProductID)
+						{
+							listWishs.Remove(c.ProductID);
+							Session[Common.CommonConstants.DATA_WISH] = listWishs;
+							return Json(new
+							{
+								status = false
+							});
+						}
+						else
+						{
+							listWishs.Add(c.ProductID);
+							Session[Common.CommonConstants.DATA_WISH] = listWishs;
+							return Json(new
+							{
+								status = true
+							});
+						}
+					}
+					
+					Session[Common.CommonConstants.DATA_WISH] = listWishs;
+				}
+			}
+			if (user != null)
+			{
+				
+				
+				var wishLists = wishListService.GetById(user.UserId).ToList();
+				foreach (var item in wishLists)
+				{
+					if (item.ProductID == c.ProductID)
+					{
+						wishListService.Delete(c);
+						return Json(new
+						{
+							status = false
+						});
+					}
+					else
+					{
+						c.UserID = user.UserId;
+						wishListService.Insert(c);
+						return Json(new
+						{
+							status = true
+						});
+					}
+				}
+				
 			}
 
 			return Json(new

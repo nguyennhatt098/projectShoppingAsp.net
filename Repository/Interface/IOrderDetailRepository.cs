@@ -13,5 +13,6 @@ public	interface IOrderDetailRepository
 		IList<OrderDetailDTO> GetAll(int id);
 		int Update(OrderDetail t);
 		int Inserts(Order order, List<OrderDetail> orderDetails);
+		//int InsertNotify(Notify notify);
 	}
 }

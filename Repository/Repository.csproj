@@ -65,6 +65,7 @@
     <Compile Include="Interface\ICommentRepository.cs" />
     <Compile Include="Interface\IListProduct.cs" />
     <Compile Include="Interface\ILoginRepository.cs" />
+    <Compile Include="Interface\INotify.cs" />
     <Compile Include="Interface\IOrderDetailRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IRoleActionRepository.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="LoginRepository.cs" />
     <Compile Include="MenuReponsitory.cs" />
     <Compile Include="NewsReponsitory.cs" />
+    <Compile Include="NotifyRepository.cs" />
     <Compile Include="ProductReponsitory.cs" />
     <Compile Include="OrderDetailRepository.cs" />
     <Compile Include="OrderRepository.cs" />

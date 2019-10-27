@@ -29,31 +29,7 @@ namespace ShopingCart.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
-        [HttpPost]
-        [CaptchaValidationActionFilter("CaptchaCode", "registerCaptcha", "Mã Xác Nhận Không Đúng!")]
-        public ActionResult Register(RegisterUser r)
-        {
-            if (ModelState.IsValid)
-            {
-                User u = new User();
-    
-                u.UserName = r.UserName;
-                u.FullName = r.FullName;
-                u.Email = r.Email;
-                u.Phone = r.Phone;
-                u.Password = Encryptor.MD5Hash(r.PassWord);
-                u.Address = r.Address;
-                _userService.Insert(u);
-                return RedirectToAction("Login");
-
-            }
-            return View();
-        }
+       
 		[HttpPost]
 		public ActionResult Index(LoginModel model)
 		{

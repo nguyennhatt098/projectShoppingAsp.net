@@ -26,7 +26,7 @@ namespace Repository
 
 		public IEnumerable<News> GetAll()
 		{
-			return context.News.ToList();
+			return context.News.OrderByDescending(x=>x.CreateDate).ToList();
 		}
 
 		public News GetById(int id)

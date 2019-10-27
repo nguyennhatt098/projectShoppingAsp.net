@@ -57,7 +57,7 @@ namespace Repository
 							   join c3 in context.Categories on c2.ParentID equals c3.ID
 							   select c1
 							  ).ToList();
-			var list = context.Categories.ToList().Where(x => !listRemove.Any(z=>z.ID==x.ID));
+			var list = context.Categories.ToList().Where(x => !listRemove.Any(z=>z.ID==x.ID)).OrderByDescending(x=>x.CreatedDate);
 			return list;
 		}
 
@@ -114,7 +114,7 @@ namespace Repository
 
 		public IEnumerable<Category> Search(string searchString, int Page, int Pagesize)
 		{
-			return context.Categories.ToList();
+			return context.Categories.OrderByDescending(x=>x.CreatedDate).ToList();
 		}
 
 		public Contact GetContact()

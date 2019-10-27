@@ -17,7 +17,7 @@ namespace Repository
 		}
 		public IEnumerable<Role> GetAll()
 		{
-			return context.Roles.ToList();
+			return context.Roles.OrderByDescending(x=>x.RoleId).ToList();
 		}
 
 		public IEnumerable<Role> Search(string searchString, int Page, int Pagesize)

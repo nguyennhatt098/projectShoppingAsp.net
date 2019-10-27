@@ -7,7 +7,7 @@
 
 	<div class="box">
 
-		<h2 style="text-align:center">Tạo mới sản phẩm</h2>
+		<h2 style="text-align:center">Tạo mới tin tức</h2>
 		<div class="box-body">
 
 			@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "create" }))
@@ -49,8 +49,8 @@
 						</div>
 					</div>
 
-					
-					<input  name="CreateDate" value="1-1-2100" hidden/>
+
+					<input name="CreateDate" value="1-1-2100" hidden />
 					<div class="form-group">
 						@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
 						<div class="col-md-10">
@@ -68,11 +68,12 @@
 					</div>
 				</div>
 			}
-			</div>
 		</div>
-			<div>
-				@Html.ActionLink("Back to List", "Index")
-			</div>
+		<div>
+			<a class="btn btn-primary" href="@Url.Action("Index")">Quay về</a>
+		</div>
+	</div>
+			
 			@section Scripts {
 				@*<script src="~/Asset/ckeditor/ckeditor.js"></script>*@
 				<script src="../../../Asset/ckfinder/ckfinder.js"></script>

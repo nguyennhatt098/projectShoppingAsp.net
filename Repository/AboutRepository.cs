@@ -19,7 +19,7 @@ namespace Repository
 		}
 		public IEnumerable<About> GetAll()
 		{
-			return context.Abouts.ToList();
+			return context.Abouts.OrderByDescending(x=>x.CreatedDate).ToList();
 		}
 
 		public IEnumerable<About> Search(string searchString, int Page, int Pagesize)

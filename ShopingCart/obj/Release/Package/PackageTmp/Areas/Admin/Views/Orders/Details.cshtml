@@ -7,7 +7,7 @@
 }
 
 	<div class="box">
-		<h2 style="text-align:center"><div class="panel-heading">Thông tin khách Hàng</div></h2>
+		<h2 style="text-align:center">Thông tin khách Hàng</h2>
 
 		<div class="box-body">
 
@@ -51,24 +51,26 @@
 							<input hidden name="Status" value="1" />
 							<p>
 								Trạng thái giao hàng: <label class="btn btn-success">Đang chờ</label>
-								Xử lý <button type="submit" value="1" class="btn btn-primary">Xác nhận</button>
 							</p>
+							<p>Xử lý <button type="submit" value="1" class="btn btn-primary">Xác nhận</button></p> 
 						}
 						else if (ViewBag.Order.Status == 1)
 						{
 							<input hidden name="Status" value="2" />
 							<p>
 								Trạng thái giao hàng:  <label class="btn btn-success">Xác Nhận</label>
-								Xử lý <button type="submit" value="2" class="btn btn-primary">Đang giao</button>
+								
 							</p>
+							<p>Xử lý <button type="submit" value="2" class="btn btn-primary">Đang giao</button></p>
 						}
 						else if (ViewBag.Order.Status == 2)
 						{
 							<input hidden name="Status" value="3" />
 							<p>
 								Trạng thái giao hàng:  <label class="btn btn-success">Đang giao</label>
-								Xử lý <button type="submit" class="btn btn-primary">Đã giao</button>
+								
 							</p>
+							<p>Xử lý <button type="submit" class="btn btn-primary">Đã giao</button></p>
 						}
 						else
 						{

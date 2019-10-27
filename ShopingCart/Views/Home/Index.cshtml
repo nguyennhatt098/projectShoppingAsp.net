@@ -24,12 +24,12 @@
 		<div class="row">
 			<div class="col-md-6 col-sm-6">
 				<div class="single-banner">
-					<a href="shop.html"><img src="~/asset/frontend/img/banner/1.jpg" alt="" /></a>
+					<a href=""><img src="~/asset/frontend/img/banner/1.jpg" alt="" /></a>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-6">
 				<div class="single-banner">
-					<a href="shop.html"><img src="~/asset/frontend/img/banner/2.jpg" alt="" /></a>
+					<a href="#"><img src="~/asset/frontend/img/banner/2.jpg" alt="" /></a>
 				</div>
 			</div>
 		</div>
@@ -37,20 +37,20 @@
 </div>
 <!-- banner-area end -->
 <!-- new-arrival-area start -->
-<div class="new-arrival-area pt-100">
+<div class="new-arrival-area pt-100 reload-wish">
 	<div class="container">
 		<div class="row">
 			<div class="section-title text-center mb-20">
 				<h2>Sản Phẩm Nổi Bật</h2>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row ">
 			<div class="col-md-12">
 				<div class="product-tab">
 					<!-- Nav tabs -->
 					<!-- Tab panes -->
 					<div class="row">
-						<div class="tab-content reload-wish">
+						<div class="tab-content ">
 							<div class="tab-pane active" id="home">
 								<div class="product-carousel">
 									@foreach (var item in Model)
@@ -77,23 +77,23 @@
 														{
 															if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
 															{
-																<a class="wishlistDisLike" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
+																<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i  class="pe-7s-like "></i></a>
 															}
 															else
 															{
-																<a class="wishlist" data-id="@item.Id" href="#"><i class="pe-7s-like"></i></a>
+																<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
 															}
 
 														}
 														else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 														{
-															<a class="wishlistDisLike" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
+															<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i  class="pe-7s-like "></i></a>
 														}
 														else
 														{
-															<a class="wishlist" data-id="@item.Id" href="#"><i class="pe-7s-like"></i></a>}
+															<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>}
 
-														<a href="#" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
+														<a href="@url" ><i class="pe-7s-look"></i></a>
 													</div>
 												</div>
 												<div class="product-content">
@@ -151,7 +151,7 @@
 								<span class="new-label">New</span>
 								<div class="product-action">
 									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
-									<a href="@url" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
+									<a href="@url" ><i class="pe-7s-look"></i></a>
 								</div>
 							</div>
 							<div class="product-content">

@@ -21,20 +21,17 @@ namespace ShopingCart.Controllers
 			wishListService=new WishListService();
 			commentService = new CommentService();
         }
-        // GET: Product
-        public ActionResult Index(string searchString, int Page = 1, int PageSize = 10)
+		// GET: Product
+		public ActionResult Index()
+		{
+			return View();
+		}
+        public ActionResult CategoryViewDetail(int id, int pageIndex = 1, int pageSize = 6)
         {
-	        var user = (User)Session["User"];
-	        if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-	        if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
-			ViewBag.searchString = searchString;
-			ViewBag.ListCategory = categoryService.Search(searchString,Page, PageSize);
-            ViewBag.ListProduct = productService.Search(searchString,Page,PageSize);
-            return View(productService.Search(searchString, Page, PageSize).Where(x=>x.Status==true).ToPagedList(Page, PageSize));
-        }
-        public ActionResult CategoryViewDetail(int id, int pageIndex = 1, int pageSize = 10)
-        {
-	        var index = Request.Params["page"];
+			var user = (User)Session["User"];
+			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
+			if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
+			var index = Request.Params["page"];
 	        double value;
 	        ViewBag.ListCategory = categoryService.Search("", pageIndex, pageSize);
 			var category = categoryService.GetById(id);
@@ -81,6 +78,11 @@ namespace ShopingCart.Controllers
 		[HttpPost]
 		public ActionResult Comment(string content,int productId)
 		{
+			if (string.IsNullOrWhiteSpace(content)) return Json(new
+			{
+				status = true
+			});
+
 			var user = (User)Session["User"];
 			if (user == null)
 			{
@@ -107,7 +109,13 @@ namespace ShopingCart.Controllers
 		[HttpPost]
 		public ActionResult CommentAnswer(string content,int commentId)
 		{
+			if (string.IsNullOrWhiteSpace(content)) return Json(new
+			{
+				status = true
+			});
+
 			var user = (User)Session["User"];
+
 			if (user == null)
 			{
 				return Json(new
@@ -115,6 +123,7 @@ namespace ShopingCart.Controllers
 					status = false
 				});
 			}
+
 			var answer = new AnswerComment
 			{
 				CommentId=commentId,
@@ -124,6 +133,7 @@ namespace ShopingCart.Controllers
 				Status=1
 			};
 			commentService.InsertAnswer(answer);
+
 			return Json(new
 			{
 				status = true
