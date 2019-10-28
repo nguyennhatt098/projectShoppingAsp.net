@@ -32,7 +32,7 @@
 	}
 
 	.container-menu > ul {
-		width: 200px;
+		width: 250px;
 		background-color: #f0f0f0;
 		box-shadow: 3px 3px 0 1px grey;
 		position: relative;
@@ -54,9 +54,9 @@
 		.container-menu > ul > li > ul {
 			display: none;
 			position: absolute;
-			right: -200px;
+			right: -250px;
 			top: 0;
-			width: 200px;
+			width: 250px;
 			background-color: #f0f0f0;
 			box-shadow: 3px 3px 0 1px grey;
 		}
@@ -76,9 +76,9 @@
 		.container-menu > ul > li > ul > li > ul {
 			display: none;
 			position: absolute;
-			right: -200px;
+			right: -250px;
 			top: 0;
-			width: 200px;
+			width: 250px;
 			background-color: #f0f0f0;
 			box-shadow: 3px 3px 0 1px grey;
 		}

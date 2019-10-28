@@ -39,7 +39,6 @@ C:\Users\PC\Desktop\projectShoppingAsp.net\Model\bin\Release\de\DevExpress.Xpo.v
 C:\Users\PC\Desktop\projectShoppingAsp.net\Model\bin\Release\es\DevExpress.Xpo.v18.2.resources.dll
 C:\Users\PC\Desktop\projectShoppingAsp.net\Model\bin\Release\ja\DevExpress.Xpo.v18.2.resources.dll
 C:\Users\PC\Desktop\projectShoppingAsp.net\Model\bin\Release\ru\DevExpress.Xpo.v18.2.resources.dll
-C:\Users\PC\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.csprojAssemblyReference.cache
 C:\Users\PC\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
 C:\Users\PC\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.csproj.CopyComplete
 C:\Users\PC\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.dll

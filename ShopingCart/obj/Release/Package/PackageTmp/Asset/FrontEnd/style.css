@@ -1408,3 +1408,6 @@ li:last-child {
 		transform: rotate(360deg);
 	}
 }
+.wishlistDisLike > i{
+	color: red !important;
+}

@@ -26,95 +26,96 @@
 </div>
 <!-- breadcrumb end -->
 <!-- shop-area start -->
-<div class="shop-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-5">
+@*<div class="container">*@
+	<div class="shop-area ">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-5">
 
 
-				<div class="product-zoom">
-					<!-- Tab panes -->
-					<div class="tab-content">
-						@{int i = 0;}
-						@foreach (var item in ListImages)
-						{
-
-							if (i == 0)
+					<div class="product-zoom">
+						<!-- Tab panes -->
+						<div class="tab-content">
+							@{int i = 0;}
+							@foreach (var item in ListImages)
 							{
-								<div class="tab-pane active" id="@("item"+i)">
-									<div class="pro-large-img">
-										<img src="@item" alt="" />
-										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+
+								if (i == 0)
+								{
+									<div class="tab-pane active" id="@("item"+i)">
+										<div class="pro-large-img">
+											<img style="width:100%" src="@item" alt="" />
+											<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+										</div>
 									</div>
-								</div>
-							}
-							else
-							{
-								<div class="tab-pane" id="@("item"+i)">
-									<div class="pro-large-img">
-										<img src="@item" alt="" />
-										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+								}
+								else
+								{
+									<div class="tab-pane" id="@("item"+i)">
+										<div class="pro-large-img">
+											<img src="@item" alt="" />
+											<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+										</div>
 									</div>
-								</div>
+								}
+								i++;
+
 							}
-							i++;
-
-						}
 
 
-					</div>
-					<!-- Nav tabs -->
-					<div class="details-tab">
-						@{int i1 = 0;}
-						@foreach (var item in ListImages)
-						{
-
-							if (i1 == 0)
+						</div>
+						<!-- Nav tabs -->
+						<div class="details-tab">
+							@{int i1 = 0;}
+							@foreach (var item in ListImages)
 							{
-								<div class="active"><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
-							}
-							else
-							{
-								<div><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
-							}
-							i1++;
 
-						}
+								if (i1 == 0)
+								{
+									<div class="active"><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+								}
+								else
+								{
+									<div><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+								}
+								i1++;
 
+							}
+
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-7">
-				<div class="product-details">
-					<h2 class="pro-d-title">@Model.Name</h2>
+				<div class="col-xs-12 col-sm-6 col-md-7">
+					<div class="product-details">
+						<h2 class="pro-d-title">@Model.Name</h2>
 
-					<div class="price-box">
-						<span class="price product-price">@Model.Sale_Price VND</span>
-						<span class="old-price product-price">@Model.Price VND</span>
-					</div>
-					<div class="short-desc">
-						<p>@Model.Content</p>
-					</div>
-					
-					<div class="box-quantity">
-						<form action="#">
-							<label>Quantity</label>
-							<input type="number" id="quantity" value="1" />
-							<script>
+						<div class="price-box">
+							<span class="price product-price">@Model.Sale_Price VND</span>
+							<span class="old-price product-price">@Model.Price VND</span>
+						</div>
+						<div class="short-desc">
+							<p>@Model.Content</p>
+						</div>
+
+						<div class="box-quantity">
+							<form action="#">
+								<label>Quantity</label>
+								<input type="number" id="quantity" value="1" />
+								<script>
 	                            function myFunction() {
 		                            var quantity = document.getElementById("quantity").value;
 		                            window.location.href = '/them-vao-gio-hang?productID=@Model.Id&quantity='+quantity
 	                            }
-							</script>
-							<button onclick="myFunction()">add to cart</button>
-						</form>
+								</script>
+								<button onclick="myFunction()">add to cart</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
+@*</div>*@
 
 <!-- shop-area end -->
 <!-- pro-info-area start -->

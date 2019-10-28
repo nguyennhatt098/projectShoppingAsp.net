@@ -24,10 +24,14 @@
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
 		 folder instead of downloading all of them to reduce the load. -->
 	<link rel="stylesheet" href="../../../Asset/Backend/dist/css/skins/_all-skins.min.css">
-
+	<link rel="stylesheet" href="../../../Asset/FrontEnd/css/process-bar.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+	<div id="overlay">
+		<div id="progstat"></div>
+		<div id="progress"></div>
+	</div>
 	<!-- Site wrapper -->
 	<div class="wrapper">
 
@@ -140,449 +144,453 @@
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="../../../Asset/Backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-								<span class="hidden-xs">@if (user != null)
-								                        {
-									                        @user.UserName
-								                        }</span>
-							</a>
-							<ul class="dropdown-menu">
-								<!-- User image -->
-								<li class="user-header">
-									<img src="../../../Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-									<p>
-										@if (user != null)
-										{
-											@user.UserName
-										}
-										<small>Member since Nov. 2012</small>
-									</p>
-								</li>
-								<!-- Menu Body -->
-								<li class="user-body">
-									<div class="row">
-										<div class="col-xs-4 text-center">
-											<a href="#">Followers</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Sales</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Friends</a>
-										</div>
-									</div>
-									<!-- /.row -->
-								</li>
-								<!-- Menu Footer-->
-								<li class="user-footer">
-									<div class="pull-left">
-										<a href="#" class="btn btn-default btn-flat">Profile</a>
-									</div>
-									<div class="pull-right">
-										<a href="@Url.Action("LogOut","Login")" class="btn btn-default btn-flat">Sign out</a>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<!-- Control Sidebar Toggle Button -->
-						<li>
-							<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</header>
-
-		<!-- =============================================== -->
-		<!-- Left side column. contains the sidebar -->
-		<aside class="main-sidebar">
-			<!-- sidebar: style can be found in sidebar.less -->
-			<section class="sidebar">
-				<!-- Sidebar user panel -->
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="../../../Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-					</div>
-					<div class="pull-left info">
-						<p>@if (user != null)
-						   {
-							   @user.UserName
-						   }</p>
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
-				</div>
-				<!-- search form -->
-				<form action="#" method="get" class="sidebar-form">
-					<div class="input-group">
-						<input type="text" name="q" class="form-control" placeholder="Search...">
-						<span class="input-group-btn">
-							<button type="submit" name="search" id="search-btn" class="btn btn-flat">
-								<i class="fa fa-search"></i>
-							</button>
-						</span>
-					</div>
-				</form>
-				<!-- /.search form -->
-				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">MAIN NAVIGATION</li>
-					<li>
-						<a href="/Admin/Category">
-							<i class="fa fa-dashboard"></i> <span>Quản Lý Danh mục</span>
-						</a>
-
-					</li>
-					<li>
-						<a href="@Url.Action("Index","product")">
-							<i class="fa fa-files-o"></i>
-							<span>Quản lý sản phẩm</span>
-							<span class="pull-right-container">
-								<span class="label label-primary pull-right">4</span>
+								<span class="hidden-xs">
+									@if (user != null)
+									{
+										@user.UserName
+									}
 							</span>
 						</a>
+						<ul class="dropdown-menu">
+							<!-- User image -->
+							<li class="user-header">
+								<img src="../../../Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-					</li>
-					<li>
-						<a href="/Admin/Orders">
-							<i class="fa fa-th"></i> <span>Quản lý đơn hàng</span>
-							<span class="pull-right-container">
-								<small class="label pull-right bg-green">Hot</small>
-							</span>
-						</a>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-pie-chart"></i>
-							<span>Quản lý user</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="/Admin/user"><i class="fa fa-circle-o"></i> Quản lý User</a></li>
-							<li><a href="/Admin/roles"><i class="fa fa-circle-o"></i> Quản lý Roles</a></li>
-
+								<p>
+									@if (user != null)
+									{
+										@user.UserName
+									}
+									<small>Member since Nov. 2012</small>
+								</p>
+							</li>
+							<!-- Menu Body -->
+							<li class="user-body">
+								<div class="row">
+									<div class="col-xs-4 text-center">
+										<a href="#">Followers</a>
+									</div>
+									<div class="col-xs-4 text-center">
+										<a href="#">Sales</a>
+									</div>
+									<div class="col-xs-4 text-center">
+										<a href="#">Friends</a>
+									</div>
+								</div>
+								<!-- /.row -->
+							</li>
+							<!-- Menu Footer-->
+							<li class="user-footer">
+								<div class="pull-left">
+									<a href="#" class="btn btn-default btn-flat">Profile</a>
+								</div>
+								<div class="pull-right">
+									<a href="@Url.Action("LogOut","Login")" class="btn btn-default btn-flat">Sign out</a>
+								</div>
+							</li>
 						</ul>
 					</li>
+					<!-- Control Sidebar Toggle Button -->
 					<li>
-						<a href="/Admin/slider">
-							<i class="fa fa-laptop"></i>
-							<span>Quản lý slider</span>
-						</a>
-					</li>
-					<li >
-						<a href="/Admin/footers">
-							<i class="fa fa-edit"></i> <span>Quản lý Footer</span>
-							
-						</a>
-						
-					</li>
-					<li >
-						<a href="/admin/news">
-							<i class="fa fa-table"></i> <span>Quản lý tin tức</span>
-							
-						</a>
-						
-					</li>
-					<li>
-						<a href="/admin/abouts">
-							<i class="fa fa-calendar"></i> <span>Quản lý trang giới thiệu</span>
-							
-						</a>
+						<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
 					</li>
 				</ul>
-			</section>
-			<!-- /.sidebar -->
-		</aside>
-
-		<!-- =============================================== -->
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<div style="float:right;width:300px">
-				<div style="position:absolute; z-index: 9999; width: 300px;" class="alert alert-success alert-dismissible" hidden>
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<h4><i class="icon fa fa-check"></i> Thông báo!</h4>
-					Lưu thành công
-				</div>
-				<div style="position:absolute;z-index:9999;width: 300px" class="alert alert-warning alert-dismissible" hidden>
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<h4><i class="icon fa fa-warning"></i> Cảnh báo!</h4>
-					Đã có lỗi xảy ra! vui lòng thử lại
-				</div>
 			</div>
+		</nav>
+	</header>
 
-
-
-			<!-- Main content -->
-			<section class="content">
-
-				<!-- Default box -->
-				@RenderBody()
-				<!-- /.box -->
-
-			</section>
-			<!-- /.content -->
+	<!-- =============================================== -->
+	<!-- Left side column. contains the sidebar -->
+	<aside class="main-sidebar">
+		<!-- sidebar: style can be found in sidebar.less -->
+		<section class="sidebar">
+			<!-- Sidebar user panel -->
+			<div class="user-panel">
+				<div class="pull-left image">
+					<img src="../../../Asset/Backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+				</div>
+				<div class="pull-left info">
+					<p>
+						@if (user != null)
+						{
+							@user.UserName
+						}
+				</p>
+				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+			</div>
 		</div>
-		<!-- /.content-wrapper -->
-
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.4.13
+		<!-- search form -->
+		<form action="#" method="get" class="sidebar-form">
+			<div class="input-group">
+				<input type="text" name="q" class="form-control" placeholder="Search...">
+				<span class="input-group-btn">
+					<button type="submit" name="search" id="search-btn" class="btn btn-flat">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
 			</div>
-			<strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-			reserved.
-		</footer>
+		</form>
+		<!-- /.search form -->
+		<!-- sidebar menu: : style can be found in sidebar.less -->
+		<ul class="sidebar-menu" data-widget="tree">
+			<li class="header">MAIN NAVIGATION</li>
+			<li>
+				<a href="/Admin/Category">
+					<i class="fa fa-dashboard"></i> <span>Quản Lý Danh mục</span>
+				</a>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+			</li>
+			<li>
+				<a href="@Url.Action("Index","product")">
+					<i class="fa fa-files-o"></i>
+					<span>Quản lý sản phẩm</span>
+					<span class="pull-right-container">
+						<span class="label label-primary pull-right">4</span>
+					</span>
+				</a>
 
-				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+			</li>
+			<li>
+				<a href="/Admin/Orders">
+					<i class="fa fa-th"></i> <span>Quản lý đơn hàng</span>
+					<span class="pull-right-container">
+						<small class="label pull-right bg-green">Hot</small>
+					</span>
+				</a>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-pie-chart"></i>
+					<span>Quản lý user</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="/Admin/user"><i class="fa fa-circle-o"></i> Quản lý User</a></li>
+					<li><a href="/Admin/roles"><i class="fa fa-circle-o"></i> Quản lý Roles</a></li>
+
+				</ul>
+			</li>
+			<li>
+				<a href="/Admin/slider">
+					<i class="fa fa-laptop"></i>
+					<span>Quản lý slider</span>
+				</a>
+			</li>
+			<li>
+				<a href="/Admin/footers">
+					<i class="fa fa-edit"></i> <span>Quản lý Footer</span>
+
+				</a>
+
+			</li>
+			<li>
+				<a href="/admin/news">
+					<i class="fa fa-table"></i> <span>Quản lý tin tức</span>
+
+				</a>
+
+			</li>
+			<li>
+				<a href="/admin/abouts">
+					<i class="fa fa-calendar"></i> <span>Quản lý trang giới thiệu</span>
+
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- /.sidebar -->
+</aside>
+
+<!-- =============================================== -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<div style="float:right;width:300px">
+		<div style="position:absolute; z-index: 9999; width: 300px;" class="alert alert-success alert-dismissible" hidden>
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<h4><i class="icon fa fa-check"></i> Thông báo!</h4>
+			Lưu thành công
+		</div>
+		<div style="position:absolute;z-index:9999;width: 300px" class="alert alert-warning alert-dismissible" hidden>
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<h4><i class="icon fa fa-warning"></i> Cảnh báo!</h4>
+			Đã có lỗi xảy ra! vui lòng thử lại
+		</div>
+	</div>
+
+
+
+	<!-- Main content -->
+	<section class="content">
+
+		<!-- Default box -->
+		@RenderBody()
+		<!-- /.box -->
+
+	</section>
+	<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<footer class="main-footer">
+	<div class="pull-right hidden-xs">
+		<b>Version</b> 2.4.13
+	</div>
+	<strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+	reserved.
+</footer>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+	<!-- Create the tabs -->
+	<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+		<li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+
+		<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+	</ul>
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<!-- Home tab content -->
+		<div class="tab-pane" id="control-sidebar-home-tab">
+			<h3 class="control-sidebar-heading">Recent Activity</h3>
+			<ul class="control-sidebar-menu">
+				<li>
+					<a href="javascript:void(0)">
+						<i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+						<div class="menu-info">
+							<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+							<p>Will be 23 on April 24th</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)">
+						<i class="menu-icon fa fa-user bg-yellow"></i>
+
+						<div class="menu-info">
+							<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+							<p>New phone +1(800)555-1234</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)">
+						<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+						<div class="menu-info">
+							<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+							<p>nora@example.com</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)">
+						<i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+						<div class="menu-info">
+							<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+							<p>Execution time 5 seconds</p>
+						</div>
+					</a>
+				</li>
 			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li>
-							<a href="javascript:void(0)">
-								<i class="menu-icon fa fa-birthday-cake bg-red"></i>
+			<!-- /.control-sidebar-menu -->
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+			<h3 class="control-sidebar-heading">Tasks Progress</h3>
+			<ul class="control-sidebar-menu">
+				<li>
+					<a href="javascript:void(0)">
+						<h4 class="control-sidebar-subheading">
+							Custom Template Design
+							<span class="label label-danger pull-right">70%</span>
+						</h4>
 
-									<p>Will be 23 on April 24th</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<i class="menu-icon fa fa-user bg-yellow"></i>
+						<div class="progress progress-xxs">
+							<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)">
+						<h4 class="control-sidebar-subheading">
+							Update Resume
+							<span class="label label-success pull-right">95%</span>
+						</h4>
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+						<div class="progress progress-xxs">
+							<div class="progress-bar progress-bar-success" style="width: 95%"></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)">
+						<h4 class="control-sidebar-subheading">
+							Laravel Integration
+							<span class="label label-warning pull-right">50%</span>
+						</h4>
 
-									<p>New phone +1(800)555-1234</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+						<div class="progress progress-xxs">
+							<div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)">
+						<h4 class="control-sidebar-subheading">
+							Back End Framework
+							<span class="label label-primary pull-right">68%</span>
+						</h4>
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+						<div class="progress progress-xxs">
+							<div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<!-- /.control-sidebar-menu -->
 
-									<p>nora@example.com</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<i class="menu-icon fa fa-file-code-o bg-green"></i>
+		</div>
+		<!-- /.tab-pane -->
+		<!-- Stats tab content -->
+		<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+		<!-- /.tab-pane -->
+		<!-- Settings tab content -->
+		<div class="tab-pane" id="control-sidebar-settings-tab">
+			<form method="post">
+				<h3 class="control-sidebar-heading">General Settings</h3>
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+						Report panel usage
+						<input type="checkbox" class="pull-right" checked>
+					</label>
 
-									<p>Execution time 5 seconds</p>
-								</div>
-							</a>
-						</li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li>
-							<a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-									Custom Template Design
-									<span class="label label-danger pull-right">70%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-									Update Resume
-									<span class="label label-success pull-right">95%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-success" style="width: 95%"></div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-									Laravel Integration
-									<span class="label label-warning pull-right">50%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-									Back End Framework
-									<span class="label label-primary pull-right">68%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-								</div>
-							</a>
-						</li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
+					<p>
+						Some information about this general settings option
+					</p>
 				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">General Settings</h3>
+				<!-- /.form-group -->
 
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-								Report panel usage
-								<input type="checkbox" class="pull-right" checked>
-							</label>
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+						Allow mail redirect
+						<input type="checkbox" class="pull-right" checked>
+					</label>
 
-							<p>
-								Some information about this general settings option
-							</p>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-								Allow mail redirect
-								<input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>
-								Other sets of options are available
-							</p>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-								Expose author name in posts
-								<input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>
-								Allow the user to show his name in blog posts
-							</p>
-						</div>
-						<!-- /.form-group -->
-
-						<h3 class="control-sidebar-heading">Chat Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-								Show me as online
-								<input type="checkbox" class="pull-right" checked>
-							</label>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-								Turn off notifications
-								<input type="checkbox" class="pull-right">
-							</label>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-								Delete chat history
-								<a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-							</label>
-						</div>
-						<!-- /.form-group -->
-					</form>
+					<p>
+						Other sets of options are available
+					</p>
 				</div>
-				<!-- /.tab-pane -->
-			</div>
-		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
-			 immediately after the control sidebar -->
-		<div class="control-sidebar-bg"></div>
+				<!-- /.form-group -->
+
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+						Expose author name in posts
+						<input type="checkbox" class="pull-right" checked>
+					</label>
+
+					<p>
+						Allow the user to show his name in blog posts
+					</p>
+				</div>
+				<!-- /.form-group -->
+
+				<h3 class="control-sidebar-heading">Chat Settings</h3>
+
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+						Show me as online
+						<input type="checkbox" class="pull-right" checked>
+					</label>
+				</div>
+				<!-- /.form-group -->
+
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+						Turn off notifications
+						<input type="checkbox" class="pull-right">
+					</label>
+				</div>
+				<!-- /.form-group -->
+
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+						Delete chat history
+						<a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+					</label>
+				</div>
+				<!-- /.form-group -->
+			</form>
+		</div>
+		<!-- /.tab-pane -->
 	</div>
-	
-	<div class="container">
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 style="color:red" class="modal-title">Cảnh báo</h4>
-					</div>
-					<div class="modal-body">
-						@TempData["data"] 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
-					</div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+	 immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+
+<div class="container">
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 style="color:red" class="modal-title">Cảnh báo</h4>
+				</div>
+				<div class="modal-body">
+					@TempData["data"]
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ./wrapper -->
+</div>
+<!-- ./wrapper -->
 <!-- jQuery 3 -->
 <script>
-	if(performance.navigation.type == 2){
+	if (performance.navigation.type == 2) {
 		location.reload(true);
 	}
-	
+
 </script>
-	<script src="../../../Asset/Backend/bower_components/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap 3.3.7 -->
-	<script src="../../../Asset/Backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- SlimScroll -->
-	<script src="../../../Asset/Backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<!-- FastClick -->
-	<script src="../../../Asset/Backend/bower_components/fastclick/lib/fastclick.js"></script>
-	<!-- AdminLTE App -->
-	<script src="../../../Asset/Backend/dist/js/adminlte.min.js"></script>
-	<!-- AdminLTE for demo purposes -->
-	<script src="../../../Asset/Backend/dist/js/demo.js"></script>
-	<script src="../../../Asset/Backend/vendor/tinymce/tinymce.min.js"></script>
-	<script src="../../../Asset/Backend/vendor/tinymce/config.js"></script>
-	<script src="../../../Asset/Backend/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script>
-		$(function () {
-			$('#example1').DataTable({
-				'paging': false,
-				'lengthChange': true,
-				'searching': false,
-				'ordering': true,
-				'info': true,
-				'autoWidth': false,
-			})
-		});
-	</script>
+<script src="../../../Asset/Backend/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../../Asset/Backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../../Asset/Backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../../Asset/Backend/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../../Asset/Backend/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../../Asset/Backend/dist/js/demo.js"></script>
+<script src="../../../Asset/Backend/vendor/tinymce/tinymce.min.js"></script>
+<script src="../../../Asset/Backend/vendor/tinymce/config.js"></script>
+<script src="../../../Asset/Backend/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script>
+	$(function () {
+		$('#example1').DataTable({
+			'paging': false,
+			'lengthChange': true,
+			'searching': false,
+			'ordering': true,
+			'info': true,
+			'autoWidth': false,
+		})
+	});
+</script>
 <script>
 
 	$(".Listdeletes").change(function () {
@@ -612,17 +620,48 @@
 			}
 		}
 	});
+		(function(){
+		function id(v){return document.getElementById(v); }
+		function loadbar() {
+			var ovrl = id("overlay"),
+				prog = id("progress"),
+				stat = id("progstat"),
+				img = document.images,
+				c = 0;
+			tot = img.length;
 
+			function imgLoaded(){
+				c += 1;
+				var perc = ((100/tot*c) << 0) +"%";
+				prog.style.width = perc;
+				stat.innerHTML = "Loading "+ perc;
+				if(c===tot) return doneLoading();
+			}
+			function doneLoading(){
+				ovrl.style.opacity = 0;
+				setTimeout(function(){ 
+					ovrl.style.display = "none";
+				}, 1200);
+			}
+			for(var i=0; i<tot; i++) {
+				var tImg     = new Image();
+				tImg.onload  = imgLoaded;
+				tImg.onerror = imgLoaded;
+				tImg.src     = img[i].src;
+			}    
+		}
+		document.addEventListener('DOMContentLoaded', loadbar, false);
+	}());
 </script>
-	@RenderSection("Scripts", required: false);
-	<script>
-		$(document).ready(function () {
-			$('.sidebar-menu').tree()
-		})
-	</script>
+@RenderSection("Scripts", required: false);
+<script>
+	$(document).ready(function () {
+		$('.sidebar-menu').tree()
+	})
+</script>
 
 <script type="text/javascript">
-	
+
 	function message() {
 		if ('@TempData["message"]' == "Added" ) {
 			$(".alert-success").show();
@@ -664,7 +703,7 @@
 			});
 
 			$('#create').data('initial-state', $('#create').serialize());
-			
+
 			$("#check-click").click(function() {
 				checkButton = false;
 			});
@@ -680,7 +719,7 @@
 	message();
 </script>
 <script>
-	
+
 </script>
 </body>
 </html>

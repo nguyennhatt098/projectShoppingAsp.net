@@ -97,7 +97,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/27/2019 16:08:10</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/_LayoutAdmin.cshtml">
-      <publishTime>10/27/2019 02:08:52</publishTime>
+      <publishTime>10/28/2019 20:28:48</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Slider/Create.cshtml">
       <publishTime>10/26/2019 15:24:01</publishTime>
@@ -30892,7 +30892,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2019 23:37:00</publishTime>
     </File>
     <File Include="Asset/FrontEnd/css/menu.css">
-      <publishTime>10/26/2019 23:36:19</publishTime>
+      <publishTime>10/28/2019 20:18:57</publishTime>
     </File>
     <File Include="Asset/FrontEnd/css/nivo-slider.css">
       <publishTime>10/25/2019 08:10:50</publishTime>
@@ -30956,6 +30956,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Asset/FrontEnd/css/plugins/slick.css">
       <publishTime>10/25/2019 08:10:50</publishTime>
+    </File>
+    <File Include="Asset/FrontEnd/css/process-bar.css">
+      <publishTime>10/28/2019 20:37:49</publishTime>
     </File>
     <File Include="Asset/FrontEnd/css/responsive.css">
       <publishTime>10/27/2019 01:52:37</publishTime>
@@ -31321,7 +31324,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/25/2019 08:10:53</publishTime>
     </File>
     <File Include="Asset/FrontEnd/js/WishList.js">
-      <publishTime>10/25/2019 08:10:52</publishTime>
+      <publishTime>10/27/2019 20:40:10</publishTime>
     </File>
     <File Include="Asset/FrontEnd/login.html">
       <publishTime>10/25/2019 08:10:53</publishTime>
@@ -31336,7 +31339,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2019 21:26:45</publishTime>
     </File>
     <File Include="Asset/FrontEnd/style.css">
-      <publishTime>10/27/2019 16:42:44</publishTime>
+      <publishTime>10/27/2019 20:51:14</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>10/26/2019 11:06:25</publishTime>
@@ -31369,13 +31372,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2019 11:06:26</publishTime>
     </File>
     <File Include="bin/Model.dll">
-      <publishTime>10/27/2019 17:37:52</publishTime>
+      <publishTime>10/28/2019 20:42:32</publishTime>
     </File>
     <File Include="bin/Model.dll.config">
       <publishTime>10/26/2019 11:06:00</publishTime>
     </File>
     <File Include="bin/Model.pdb">
-      <publishTime>10/27/2019 17:37:52</publishTime>
+      <publishTime>10/28/2019 20:42:32</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/26/2019 11:06:26</publishTime>
@@ -31387,13 +31390,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2019 11:06:26</publishTime>
     </File>
     <File Include="bin/Repository.dll">
-      <publishTime>10/27/2019 17:37:52</publishTime>
+      <publishTime>10/28/2019 20:42:32</publishTime>
     </File>
     <File Include="bin/Repository.dll.config">
       <publishTime>10/26/2019 11:06:01</publishTime>
     </File>
     <File Include="bin/Repository.pdb">
-      <publishTime>10/27/2019 17:37:52</publishTime>
+      <publishTime>10/28/2019 20:42:32</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>10/26/2019 11:06:26</publishTime>
@@ -31534,19 +31537,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2019 11:06:26</publishTime>
     </File>
     <File Include="bin/Service.dll">
-      <publishTime>10/27/2019 17:37:52</publishTime>
+      <publishTime>10/28/2019 20:42:32</publishTime>
     </File>
     <File Include="bin/Service.dll.config">
       <publishTime>10/26/2019 11:06:01</publishTime>
     </File>
     <File Include="bin/Service.pdb">
-      <publishTime>10/27/2019 17:37:52</publishTime>
+      <publishTime>10/28/2019 20:42:32</publishTime>
     </File>
     <File Include="bin/ShopingCart.dll">
-      <publishTime>10/27/2019 17:37:55</publishTime>
+      <publishTime>10/28/2019 20:42:33</publishTime>
     </File>
     <File Include="bin/ShopingCart.pdb">
-      <publishTime>10/27/2019 17:37:55</publishTime>
+      <publishTime>10/28/2019 20:42:33</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>10/26/2019 11:06:27</publishTime>
@@ -31711,7 +31714,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/27/2019 16:08:10</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/26/2019 13:00:33</publishTime>
+      <publishTime>10/27/2019 21:56:19</publishTime>
     </File>
     <File Include="Views/Login/ForgotPassWord.cshtml">
       <publishTime>10/26/2019 16:05:11</publishTime>
@@ -31732,10 +31735,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2019 15:53:05</publishTime>
     </File>
     <File Include="Views/Product/CategoryViewDetail.cshtml">
-      <publishTime>10/26/2019 23:35:17</publishTime>
+      <publishTime>10/28/2019 20:01:56</publishTime>
     </File>
     <File Include="Views/Product/Detail.cshtml">
-      <publishTime>10/26/2019 11:06:14</publishTime>
+      <publishTime>10/27/2019 19:53:16</publishTime>
     </File>
     <File Include="Views/Product/Index.cshtml">
       <publishTime>10/26/2019 11:06:14</publishTime>
@@ -31759,10 +31762,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/27/2019 17:05:22</publishTime>
     </File>
     <File Include="Views/Shared/Slider.cshtml">
-      <publishTime>10/26/2019 11:06:14</publishTime>
+      <publishTime>10/27/2019 20:23:23</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/26/2019 20:36:15</publishTime>
+      <publishTime>10/28/2019 20:37:37</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/26/2019 11:06:14</publishTime>
@@ -31774,7 +31777,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2019 11:06:14</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/27/2019 17:38:20</publishTime>
+      <publishTime>10/28/2019 20:42:45</publishTime>
     </File>
   </ItemGroup>
 </Project>

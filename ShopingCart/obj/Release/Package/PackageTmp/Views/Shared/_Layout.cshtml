@@ -31,15 +31,16 @@
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu.css" type="text/css" />
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-product.css" type="text/css" />
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-mobile.css" type="text/css" />
+	<link rel="stylesheet" href="~/Asset/FrontEnd/css/process-bar.css" type="text/css" />
 	<!-- Modernizr JS -->
 	<script src="~/Asset/FrontEnd/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
-	<!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-	<!-- header start -->
+<div id="overlay">
+	<div id="progstat"></div>
+	<div id="progress"></div>
+</div>
 
 	@{Html.RenderAction("MainMenu", "Home");}
 
@@ -108,36 +109,6 @@
 					$("#exampleModalCenter").modal();
 				}, 200);
 			};
-			$(document).on('click',
-				'.wishlists',
-				function() {
-					debugger;
-
-					$.ajax({
-						url: '/Home/Create',
-						data: { ProductID: $(this).data('id') },
-						dataType: 'json',
-						type: 'POST',
-						success: (res) => {
-							$('.reload-wish').load('/Product/Index .reload-wish');
-						}
-					});
-				}
-			);
-			$(document).on('click',
-				'.wishlistDisLikes',
-				function() {
-					debugger;
-					$.ajax({
-						url: '/WishList/Remove',
-						data: { ProductID: $(this).data('id') },
-						dataType: 'json',
-						type: 'POST',
-						success: (res) => {
-							$('.reload-wish').load('/Product/Index .reload-wish');
-						}
-					});
-				});
 
 			window.carts = [];
 			$(".quantity").change(function () {
@@ -169,23 +140,6 @@
 						}
 					}
 				})
-			});
-			$(".meanmenu-reveal").click(function () {
-				if ($(".meanclose")[0]){
-					if (screen.width < 990&& screen.width>=768) {
-						$('#container-menu').css('margin-top',125);
-					}
-					if (screen.width < 768) {
-						$('#container-menu').css('margin-top',180);
-					}
-				} else {
-					if (screen.width < 990&& screen.width>=768) {
-						$('#container-menu').removeAttr('style');
-					}
-					if (screen.width < 768) {
-						$('#container-menu').removeAttr('style');
-					}
-				}
 			});
 			$("#comment").on("click", function () {
 
@@ -261,17 +215,83 @@
 			}
 
 		});
+		var wishLists = [];
+		$(document).on('click', '.wishlist', function () {
+			var id = $(this).attr("id");
+			
+			var currentItem = wishLists.find(x => x.ProductID === id);
+
+			if (currentItem === undefined || currentItem === null) {
+				wishLists.push({ 'ProductID': id});
+			} else {
+				wishLists = $.grep(wishLists, function(e) { return e.ProductID!==id });
+			}
+
+			if ($(".wishlist-" + id).hasClass("wishlistDisLike")) {
+				$(".wishlist-" + $(this).data('id')).removeClass("wishlistDisLike");
+			} else {
+				$(".wishlist-"+$(this).data('id')).addClass("wishlistDisLike");
+			}
+			window.onbeforeunload = function(event)
+			{
+				var data = wishLists;
+				console.log(JSON.stringify({ 'data': data}));
+				debugger 
+				$.ajax({
+					url: '/Home/CreateWishListIndex',
+					data:{ 'data': JSON.stringify(data) },
+					dataType: 'json',
+					type: 'POST',
+					traditional: true,
+					success: (res) => {
+						debugger;
+					}
+				});
+			};
+
+		});
 	});
+	(function(){
+		function id(v){return document.getElementById(v); }
+		function loadbar() {
+			var ovrl = id("overlay"),
+				prog = id("progress"),
+				stat = id("progstat"),
+				img = document.images,
+				c = 0;
+			tot = img.length;
+
+			function imgLoaded(){
+				c += 1;
+				var perc = ((100/tot*c) << 0) +"%";
+				prog.style.width = perc;
+				stat.innerHTML = "Loading "+ perc;
+				if(c===tot) return doneLoading();
+			}
+			function doneLoading(){
+				ovrl.style.opacity = 0;
+				setTimeout(function(){ 
+					ovrl.style.display = "none";
+				}, 1200);
+			}
+			for(var i=0; i<tot; i++) {
+				var tImg     = new Image();
+				tImg.onload  = imgLoaded;
+				tImg.onerror = imgLoaded;
+				tImg.src     = img[i].src;
+			}    
+		}
+		document.addEventListener('DOMContentLoaded', loadbar, false);
+	}());
 	</script>
 
 	@RenderSection("footer", required: false)
 	@RenderSection("scripts", required: false)
-	
+
 	<script src="~/Asset/FrontEnd/js/menu-mobile.js"></script>
 
 </body>
 
 
-<!-- Mirrored from demo.devitems.com/gicor-preview/gicor/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Nov 2018 04:49:50 GMT -->
 </html>
 <noembed>
