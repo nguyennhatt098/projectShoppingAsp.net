@@ -21,11 +21,6 @@ namespace ShopingCart.Controllers
 			wishListService=new WishListService();
 			commentService = new CommentService();
         }
-		// GET: Product
-		public ActionResult Index()
-		{
-			return View();
-		}
         public ActionResult CategoryViewDetail(int id, int pageIndex = 1, int pageSize = 6)
         {
 			var user = (User)Session["User"];
@@ -36,7 +31,7 @@ namespace ShopingCart.Controllers
 	        ViewBag.ListCategory = categoryService.Search("", pageIndex, pageSize);
 			var category = categoryService.GetById(id);
 	        ViewBag.Category = category;
-			if (!double.TryParse(index, out value)&&index!=null) return Redirect("https://localhost:44347/danh-muc-san-pham/4321-"+TempData["categoryId"]+"?page="+ TempData["GoBack"]);
+			if (!double.TryParse(index, out value)&&index!=null) return Redirect("/danh-muc-san-pham/4321-"+TempData["categoryId"]+"?page="+ TempData["GoBack"]);
 			TempData["GoBack"] = index;
 			TempData["categoryId"] = id;
 			var totalPage = 0;

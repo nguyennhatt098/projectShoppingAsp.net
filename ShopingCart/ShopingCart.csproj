@@ -2985,6 +2985,7 @@
     <Content Include="Asset\FrontEnd\css\plugins\owl.carousel.css" />
     <Content Include="Asset\FrontEnd\css\plugins\owl.video.play.png" />
     <Content Include="Asset\FrontEnd\css\plugins\slick.css" />
+    <Content Include="Asset\FrontEnd\css\process-bar.css" />
     <Content Include="Asset\FrontEnd\css\responsive.css" />
     <Content Include="Asset\FrontEnd\css\shortcode\banner.css" />
     <Content Include="Asset\FrontEnd\css\shortcode\blog.css" />

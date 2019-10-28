@@ -208,21 +208,21 @@
 															{
 																if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
 																{
-																	<a class="wishlist wishlistDisLike wishlist-@item.Id" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
+																	<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
 																}
 																else
 																{
-																	<a class="wishlist wishlist-@item.Id" data-id="@item.Id" href="#"><i class="pe-7s-like"></i></a>
+																	<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="#"><i class="pe-7s-like"></i></a>
 																}
 
 															}
 															else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 															{
-																<a class="wishlist wishlistDisLike wishlist-@item.Id" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
+																<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="#"><i style="color: red" class="pe-7s-like"></i></a>
 															}
 															else
 															{
-																<a class="wishlist wishlist-@item.Id" data-id="@item.Id" href="#"><i class="pe-7s-like"></i></a>
+																<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="#"><i class="pe-7s-like"></i></a>
 															}
 															<a href="#" data-toggle="modal" data-target="#productModal"><i class="pe-7s-look"></i></a>
 														</div>

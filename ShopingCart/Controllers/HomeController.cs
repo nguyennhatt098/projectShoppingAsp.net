@@ -4,10 +4,14 @@ using Service;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using Microsoft.Ajax.Utilities;
+using Model.ViewModel;
+using Newtonsoft.Json;
 
 namespace ShopingCart.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
 	{
 		private const string CartSession = "CartSession";
 		private MenuService menuService;
@@ -15,12 +19,12 @@ namespace ShopingCart.Controllers
 		private SliderService sliderService;
 		private CategoryService categoryService;
 		private WishListService wishListService;
-        private NewsService newsService;
+		private NewsService newsService;
 		private NotifyService notifyService;
 		public HomeController()
 		{
-            newsService = new NewsService();
-            sliderService = new SliderService();
+			newsService = new NewsService();
+			sliderService = new SliderService();
 			productService = new ProductService();
 			menuService = new MenuService();
 			categoryService = new CategoryService();
@@ -34,7 +38,7 @@ namespace ShopingCart.Controllers
 			if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
 			//ViewBag.ListProductHot = productService.ListProductHot();
 			ViewBag.ListProductNew = productService.ListProductNew();
-            ViewBag.ListNews = newsService.GetAll();
+			ViewBag.ListNews = newsService.GetAll();
 			ViewBag.ListProductSale = productService.ListProductSale();
 			return View(productService.ListProductHot());
 		}
@@ -44,19 +48,19 @@ namespace ShopingCart.Controllers
 		{
 			var currentUser = (User)Session["User"];
 			ViewBag.notifies = currentUser != null ? notifyService.GetById(currentUser.UserId) : new List<Notify>();
-			var lst=categoryService.Search("",1,1).ToList();
+			var lst = categoryService.Search("", 1, 1).ToList();
 			return PartialView(lst);
 		}
-        [ChildActionOnly]
-        public ActionResult Footer()
-        {
-            var model = new Footer();
-            using (var context = new DBEntityContext())
-            {
-                 model = context.Footers.FirstOrDefault(x => x.Status);
-            }
-            return PartialView(model);
-        }
+		[ChildActionOnly]
+		public ActionResult Footer()
+		{
+			var model = new Footer();
+			using (var context = new DBEntityContext())
+			{
+				model = context.Footers.FirstOrDefault(x => x.Status);
+			}
+			return PartialView(model);
+		}
 
 		[ChildActionOnly]
 		public ActionResult Slider()
@@ -88,113 +92,99 @@ namespace ShopingCart.Controllers
 
 			return View();
 		}
+		//[HttpPost]
+		//public ActionResult Create(WishList c)
+		//{
+		//	if (Session["User"] == null)
+		//	{
+
+		//		if (Session[Common.CommonConstants.DATA_WISH] == null)
+		//		{
+		//			var listWish = new List<int>();
+		//			listWish.Add(c.ProductID);
+		//			Session[Common.CommonConstants.DATA_WISH] = listWish;
+		//		}
+		//		else
+		//		{
+		//			var listWishs = (List<int>)Session[Common.CommonConstants.DATA_WISH];
+		//			listWishs.Add(c.ProductID);
+		//			Session[Common.CommonConstants.DATA_WISH] = listWishs;
+		//		}
+		//	}
+		//	if (Session["User"] != null)
+		//	{
+		//		var data = (Model.User)Session["User"];
+		//		c.UserID = data.UserId;
+		//		wishListService.Insert(c);
+		//	}
+
+		//	return Json(new
+		//	{
+		//		status = false
+
+		//	});
+		//}
+
 		[HttpPost]
-		public ActionResult Create(WishList c)
+		public ActionResult CreateWishListIndex(string data)
 		{
-			if (Session["User"] == null)
-			{
-
-				if (Session[Common.CommonConstants.DATA_WISH] == null)
-				{
-					var listWish = new List<int>();
-					listWish.Add(c.ProductID);
-					Session[Common.CommonConstants.DATA_WISH] = listWish;
-				}
-				else
-				{
-					var listWishs = (List<int>)Session[Common.CommonConstants.DATA_WISH];
-					listWishs.Add(c.ProductID);
-					Session[Common.CommonConstants.DATA_WISH] = listWishs;
-				}
-			}
-			if (Session["User"] != null)
-			{
-				var data = (Model.User)Session["User"];
-				c.UserID = data.UserId;
-				wishListService.Insert(c);
-			}
-
-			return Json(new
-			{
-				status = false
-
-			});
-		}
-
-		[HttpPost]
-		public ActionResult CreateWishListIndex(WishList c)
-		{
+			var items = JsonConvert.DeserializeObject<List<WishList>>(data);
 			var user = (Model.User)Session["User"];
-			var listWishs = (List<int>)Session[Common.CommonConstants.DATA_WISH]==null ? new List<int>(): (List<int>)Session[Common.CommonConstants.DATA_WISH];
+			var listWishs = (List<int>)Session[Common.CommonConstants.DATA_WISH] == null ? new List<int>() : (List<int>)Session[Common.CommonConstants.DATA_WISH];
 			if (user == null)
 			{
 
-				if (listWishs.Count==0)
+				if (listWishs.Count == 0)
 				{
-					var listWish = new List<int>();
-					listWish.Add(c.ProductID);
-					Session[Common.CommonConstants.DATA_WISH] = listWish;
-					return Json(new
+					foreach (var item in items)
 					{
-						status = true
-					});
+						listWishs.Add(item.ProductID);
+					}
 				}
 				else
 				{
-					
-					foreach (var item in listWishs)
+
+					foreach (var item in items)
 					{
-						if (item == c.ProductID)
+						var currentItem = listWishs.FirstOrDefault(x => x == item.ProductID);
+						if (currentItem == item.ProductID)
 						{
-							listWishs.Remove(c.ProductID);
-							Session[Common.CommonConstants.DATA_WISH] = listWishs;
-							return Json(new
-							{
-								status = false
-							});
+							listWishs.Remove(currentItem);
 						}
 						else
 						{
-							listWishs.Add(c.ProductID);
-							Session[Common.CommonConstants.DATA_WISH] = listWishs;
-							return Json(new
-							{
-								status = true
-							});
+							listWishs.Add(item.ProductID);
 						}
 					}
-					
-					Session[Common.CommonConstants.DATA_WISH] = listWishs;
+
+
 				}
+				Session[Common.CommonConstants.DATA_WISH] = listWishs;
 			}
 			if (user != null)
 			{
-				
-				
 				var wishLists = wishListService.GetById(user.UserId).ToList();
-				foreach (var item in wishLists)
+				foreach (var item in items)
 				{
-					if (item.ProductID == c.ProductID)
+					var currentItem = wishLists.FirstOrDefault(x => x.ProductID == item.ProductID);
+					if (currentItem != null && item.ProductID == currentItem.ProductID)
 					{
-						wishListService.Delete(c);
-						return Json(new
-						{
-							status = false
-						});
+						wishListService.Delete(currentItem);
 					}
 					else
 					{
-						c.UserID = user.UserId;
-						wishListService.Insert(c);
-						return Json(new
+						var w = new WishList
 						{
-							status = true
-						});
+							UserID = user.UserId,
+							ProductID = item.ProductID
+						};
+
+						wishListService.Insert(w);
 					}
 				}
-				
-			}
 
+			}
+			
 			return Json(new
 			{
 				status = false
