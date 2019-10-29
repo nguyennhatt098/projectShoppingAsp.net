@@ -86,18 +86,17 @@ namespace ShopingCart.Controllers
 							<th>Sản phẩm</th>
 							<th>Đơn giá</th>
 							<th>Số lượng</th>
-							<th>Thành tiền</th>
                             <th>Tổng Tiền </th>
 						</tr>
 					</thead>
 					<tbody>";
                     foreach (var item in cart)
                     {
-                        main += "< tr>";
+                        main += "<tr>";
                         main += "	<td>" + item.Product.Name + "</td>";
-                        main += "    < td>" + item.Product.Price + " VNĐ</td>";
-                        main += "    < td>" + item.Quantity + "</td>";
-                        main += "    < td>" + (item.Quantity * item.Product.Price) + "</td>";
+                        main += "    <td>" + item.Product.Price + " VNd</td>";
+                        main += "    <td>" + item.Quantity + "</td>";
+                        main += "    <td>" + (item.Quantity * item.Product.Price) + " VND </td>";
                         main += "</tr>";
                     }
                     main += @"</tbody>
