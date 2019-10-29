@@ -28,7 +28,7 @@
 					<form action="#" method="post" class="login-form">
 						@Html.ValidationSummary(false, "", "error")
 						<p class="form-row pd-right">
-							<label for="username">Username or email <span class="required">*</span></label>
+							<label for="username">Username<span class="required">*</span></label>
 							@Html.TextBoxFor(model => model.UserName, new { @class = "form-control form-control-user", @autofocus = "autofocus" })
 						</p>
 						<p class="form-row pd-left">

@@ -77,7 +77,7 @@
 														{
 															if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
 															{
-																<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i  class="pe-7s-like "></i></a>
+																<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like "></i></a>
 															}
 															else
 															{
@@ -87,13 +87,14 @@
 														}
 														else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 														{
-															<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i  class="pe-7s-like "></i></a>
+															<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like "></i></a>
 														}
 														else
 														{
-															<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>}
+															<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
+														}
 
-														<a href="@url" ><i class="pe-7s-look"></i></a>
+														<a href="@url"><i class="pe-7s-look"></i></a>
 													</div>
 												</div>
 												<div class="product-content">
@@ -151,7 +152,27 @@
 								<span class="new-label">New</span>
 								<div class="product-action">
 									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
-									<a href="@url" ><i class="pe-7s-look"></i></a>
+									@if (user == null)
+									{
+										if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
+										{
+											<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like "></i></a>
+										}
+										else
+										{
+											<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
+										}
+
+									}
+									else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
+									{
+										<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like "></i></a>
+									}
+									else
+									{
+										<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
+									}
+									<a href="@url"><i class="pe-7s-look"></i></a>
 								</div>
 							</div>
 							<div class="product-content">

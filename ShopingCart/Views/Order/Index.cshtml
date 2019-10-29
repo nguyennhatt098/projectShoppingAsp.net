@@ -20,17 +20,20 @@
 </div>
 @if (Session["User"] == null)
 {
-<div class="alert alert-warning">
+<div style="margin: 30px;">
+	<p style="text-align: center"><i style=" font-size: 300px;" class="fa fa-user"></i></p>
 	<p style="text-align: center">Mời bạn đăng nhập để có thể đặt hàng</p>
-	<a class="btn btn-primary" href="@Url.Action("Index","Login")">Đăng nhập</a>
+	<button class="btn btn-primary center-block" onclick="location.href = '/Login';">Đăng nhập</button>
 </div>
 	
 	
 }
 else if (Session["CartSession"] == null)
 {
-	<div class="alert alert-warning">
-		<p style="text-align: center">Giỏ hàng trống! Mời bạn chọn sản phẩm</p>
+	<div style="margin: 30px">
+		<p style="text-align: center"><i style=" font-size: 300px;" class="fa fa-shopping-cart"></i></p>
+		<p style="text-align: center">Bạn chưa có sản phẩm nào trong giỏ hàng.</p>
+		<button onclick="location.href = '/';" class="btn btn-primary center-block">Tiếp tục mua sắm</button>
 	</div>
 	
 }

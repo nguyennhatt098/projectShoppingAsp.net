@@ -3049,6 +3049,7 @@
     <Content Include="Asset\FrontEnd\img\brand\4.jpg" />
     <Content Include="Asset\FrontEnd\img\brand\5.jpg" />
     <Content Include="Asset\FrontEnd\img\cart\1.jpg" />
+    <Content Include="Asset\FrontEnd\img\cart\shopping-cart.png" />
     <Content Include="Asset\FrontEnd\img\favicon.png" />
     <Content Include="Asset\FrontEnd\img\icons\accordion-down.png" />
     <Content Include="Asset\FrontEnd\img\icons\accordion-up.png" />

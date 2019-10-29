@@ -49,6 +49,9 @@ namespace ShopingCart.Controllers
         }
         public ActionResult Detail(int id, int pageIndex = 1, int pageSize = 5)
         {
+	        var user = (User)Session["User"];
+			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
+	        if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
 			var index = Request.Params["page"];
 			int totalPage = 0;
 			var total = commentService.Count(id);

@@ -44,13 +44,14 @@
 								<tbody>
 									@foreach (var item in Model)
 									{
+										var url = "/chi-tiet-san-pham/" + item.Product.Slug + "-" + item.Product.Id;
 										var price = (item.Product.Price > item.Product.Sale_Price) ? item.Product.Sale_Price : item.Product.Price;
 										<input hidden="" name="productId" value="@item.Product.Id" />
 										var total = (price * item.Quantity);
 										TotalMoney += total;
 										<tr>
-											<td class="product-thumbnail"><a href=""><img src="@item.Product.Images" alt="" /></a></td>
-											<td class="product-name"><a href="#">@item.Product.Name</a></td>
+											<td class="product-thumbnail"><a href="@url"><img src="@item.Product.Images" alt="" /></a></td>
+											<td class="product-name"><a href="@url">@item.Product.Name</a></td>
 											<td class="product-price"><span class="amount">@price VND</span></td>
 											<td class="product-quantity"><input style="width: 150px" name="quantity" price="@price" productId="@item.Product.Id" class="quantity" min="1" data-id="@item.Product.Id" type="number" id="CartId" value="@item.Quantity" /></td>
 											<td class="product-subtotal" id="total_@item.Product.Id">@total VND</td>
@@ -100,5 +101,9 @@
 }
 else
 {
-	<p class="alert-danger">chưa có sản phẩm</p>
+<div style="margin: 30px">
+	<p style="text-align: center"><i style=" font-size: 300px;" class="fa fa-shopping-cart"></i></p>
+	<p style="text-align: center">Bạn chưa có sản phẩm nào trong giỏ hàng.</p>
+	<button onclick="location.href = '/';" class="btn btn-primary center-block">Tiếp tục mua sắm</button>
+</div>
 }
