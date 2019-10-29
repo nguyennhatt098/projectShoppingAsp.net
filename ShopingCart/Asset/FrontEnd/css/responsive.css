@@ -135,9 +135,10 @@ span.phone {
   padding: 0 0 30px;
   position: static;
 }
-.space-custom {
-  height: inherit;
-}
+	.space-custom {
+		/*height: inherit;*/
+		height: 15px;
+	}
 .setting-menu {
   margin: 20px 0 0 30px;
 }
@@ -411,9 +412,10 @@ header.header-4 {
 .banner-style a .text .text2 {
   margin-top: 15px;
 }
-.space-custom {
-  height: inherit;
-}
+	.space-custom {
+		/*height: inherit;*/
+		height: 15px;
+	}
 .buttons-cart input, .coupon input[type="submit"], .buttons-cart a, .coupon-info p.form-row input[type="submit"] {
   margin-right: 6px;
   padding: 0 10px;

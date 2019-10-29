@@ -16,7 +16,7 @@
 	var wishList = (List<Model.WishList>)ViewBag.wishList;
 	var user = (Model.User)Session["User"];
 }
-
+	<div class="space-custom"></div>
 <!-- breadcrumb start -->
 <div class="breadcrumb-area">
 	<div class="container">
@@ -155,7 +155,7 @@
 										<input value="@Model.Id" name="productId" hidden />
 										<textarea class="form-control" name="content" placeholder="write a comment..." rows="3"></textarea>
 										<br>
-										<button id="comment" type="button" class="btn btn-info pull-right ">Post</button>
+										<button id="comment" type="button" class="btn btn-info pull-right ">Gửi</button>
 									</form>
 									<div class="clearfix"></div>
 									<hr>
@@ -166,7 +166,7 @@
 											var total = answerComment.Where(x => x.CommentId.Equals(item.CommentId)).Count() > 0 ? answerComment.Where(x => x.CommentId.Equals(item.CommentId)).Count().ToString() : "";
 											<li class="media">
 												<a href="#" class="pull-left">
-													<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+													<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
 												</a>
 												<div class="media-body">
 													<span class="text-muted pull-right">
@@ -184,14 +184,14 @@
 
 																<textarea class="form-control content-answer" commentIds="@item.CommentId" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
 																<br>
-																<button commentId="@item.CommentId" style="padding:0 ;height:30px;" id="comment-answer" type="button" class="btn btn-info pull-right comment-answer">Post</button>
+																<button commentId="@item.CommentId"  id="comment-answer" type="button" class="btn btn-info pull-right comment-answer">Gửi</button>
 															</form>
 														</div>
 														@foreach (var itemAnswer in answerComment.Where(x => x.CommentId.Equals(item.CommentId)))
 														{
 															<div style="margin-top:10px">
 																<a href="#">
-																	<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+																	<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
 																</a>
 																<span class="text-muted pull-right">
 																	<small class="text-muted">@itemAnswer.CreatedDate</small>

@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="col-md-6 col-sm-6">
 				<div class="single-banner">
-					<a href=""><img src="~/asset/frontend/img/banner/1.jpg" alt="" /></a>
+					<a href="#"><img src="~/asset/frontend/img/banner/1.jpg" alt="" /></a>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-6">
@@ -61,15 +61,11 @@
 											<div class="product-wrapper mb-40  ">
 												<div class="product-img">
 													<a href="@url"><img src="@item.Images" alt="@item.Name" /></a>
-													@{ if (item.TopHot)
+													@if (item.TopHot)
 														{
 															<span class="new-label-hot">Hot</span>
 														}
-														else
-														{
-															<span>OOOOO</span>
-														}
-													}
+
 													<div class="product-action">
 														<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
 
