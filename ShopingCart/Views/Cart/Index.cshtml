@@ -52,9 +52,9 @@
 										<tr>
 											<td class="product-thumbnail"><a href="@url"><img src="@item.Product.Images" alt="" /></a></td>
 											<td class="product-name"><a href="@url">@item.Product.Name</a></td>
-											<td class="product-price"><span class="amount">@price VND</span></td>
+											<td class="product-price"><span class="amount">@String.Format("{0:n0}", price) VND</span></td>
 											<td class="product-quantity"><input style="width: 150px" name="quantity" price="@price" productId="@item.Product.Id" class="quantity" min="1" data-id="@item.Product.Id" type="number" id="CartId" value="@item.Quantity" /></td>
-											<td class="product-subtotal" id="total_@item.Product.Id">@total VND</td>
+											<td class="product-subtotal" id="total_@item.Product.Id">@String.Format("{0:n0}", total) VND</td>
 											<td class="product-remove"><a data-id="@item.Product.Id" class="btn-delete" href="#"><i class="fa fa-times"></i></a></td>
 										</tr>
 									}
@@ -82,7 +82,7 @@
 											<tr class="order-total">
 												<th>Tổng Tiền</th>
 												<td>
-													<strong><span class="amount">@TotalMoney VND</span></strong>
+													<strong><span class="amount">@String.Format("{0:n0}", TotalMoney) VND</span></strong>
 												</td>
 											</tr>
 										</tbody>

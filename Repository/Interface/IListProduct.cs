@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
 
 namespace Repository.Interface
 {
@@ -12,6 +13,7 @@ namespace Repository.Interface
         IEnumerable<T> ListProductSale();
         IEnumerable<T> ListProductNew();
         IEnumerable<T> ListProductGetByCategory(int id,int pageIndex,int pageSize);
-        int Count();
+        int Count(int id);
+        IEnumerable<Category> Categories();
     }
 }

@@ -1411,3 +1411,6 @@ li:last-child {
 .wishlistDisLike > i{
 	color: red !important;
 }
+.pro-large-img img {
+	width:100%;
+}

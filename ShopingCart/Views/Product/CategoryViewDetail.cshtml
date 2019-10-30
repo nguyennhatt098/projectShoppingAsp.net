@@ -1,30 +1,30 @@
 ﻿@model List<Model.Product>
 @{
-    ViewBag.Title = "Danh Mục Sản Phẩm";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var listCategory = (List<Model.Category>)ViewBag.ListCategory;
-    var category = (Model.Category)ViewBag.Category;
+	ViewBag.Title = "Danh Mục Sản Phẩm";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	var listCategory = (List<Model.Category>)ViewBag.ListCategory;
+	var category = (Model.Category)ViewBag.Category;
 	var ListNotInUser = (List<int>)ViewBag.ListNotInUser;
 	var wishList = (List<Model.WishList>)ViewBag.wishList;
 	var user = (Model.User)Session["User"];
 }
 
-	<div class="space-custom"></div>
+<div class="space-custom"></div>
 <!-- breadcrumb start -->
-<div  class="breadcrumb-area ">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i></a></li>
-            <li><a href="#">Danh Mục Sản Phẩm</a></li>
-            <li class="active">@category.Name</li>
-        </ol>
-    </div>
+<div class="breadcrumb-area ">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-home"></i></a></li>
+			<li><a href="#">Danh Mục Sản Phẩm</a></li>
+			<li class="active">@category.Name</li>
+		</ol>
+	</div>
 </div>
 <!-- breadcrumb end -->
 <!-- shop-area start -->
-<div class="shop-area" >
-    <div class="container">
-		<div  class="row " >
+<div class="shop-area">
+	<div class="container">
+		<div class="row ">
 			<div style="background:#f0f0f0;border-left: 1px dotted rgba(0, 0, 0, 0.5);box-shadow: 3px 3px;height:auto" class="col-md-3 col-sm-4">
 				@*menu mobile*@
 				<div id="accordian">
@@ -144,7 +144,7 @@
 			<div class="col-md-9 col-sm-8">
 				<h2 class="page-heading mt-40">
 					<span class="cat-name">@category.Name</span>
-					<span class="heading-counter">There are 13 products.</span>
+					<span class="heading-counter">There are @ViewBag.CountProduct products.</span>
 				</h2>
 				<div class="shop-page-bar">
 					<div>
@@ -234,8 +234,14 @@
 														<div class="price-reviews">
 															<div class="price-box">
 																<span class="price product-price">
-																	@item.Sale_Price VND
-																	<span class="old-price product-price">@item.Price VND</span>
+																	@if (item.Sale_Price != null)
+																	{
+																		<span class="old-price product-price">@String.Format("{0:n0}", item.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", item.Sale_Price) VND</span>
+																	}
+																	else
+																	{
+																		<span class="price product-price">@String.Format("{0:n0}", item.Price) VND</span>
+																	}
 																</span>
 															</div>
 															<div class="pro-rating">
@@ -266,9 +272,14 @@
 									int cureentPage = ((int)ViewBag.Page);
 									var next20 = cureentPage + 20;
 									var prev20 = cureentPage - 20;
-									var start = cureentPage <= 3 ? 1 : cureentPage - 3;
-									var end = totalpage == cureentPage ? totalpage : cureentPage + 3;
+									var start = (cureentPage <= 3 || totalpage == 0) ? 1 : cureentPage - 3;
+									var end = (totalpage <= cureentPage) ? cureentPage : cureentPage + 3;
+									if (end >= totalpage)
+									{
+										end = totalpage;
+									}
 									var url = "/danh-muc-san-pham/" + category.Slug + "-" + category.ID;
+									<div class="product-count display-inline">Showing 1 - @Model.Count of @ViewBag.CountProduct items</div>
 									<ul class="shop-pagi display-inline">
 										@if (cureentPage > 1)
 										{
@@ -284,15 +295,13 @@
 										{
 											if (cureentPage == i)
 											{
-												<li><a style="background: blue" href="@url?page=@i">@i</a></li>
+												<li class="active"><a href="@url?page=@i">@i</a></li>
 											}
 											else
 											{
 												<li><a href="@url?page=@i">@i</a></li>
 											}
 										}
-
-
 
 										@if (cureentPage < totalpage)
 										{
@@ -308,80 +317,72 @@
 								}
 								else
 								{
-									<div class="product-count display-inline">Showing 1 - 12 of 13 items</div>
+
 									<ul class="shop-pagi display-inline">
-										<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-										<li class="active"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+
+										<li class="active"><a href="javascript:void(0)">1</a></li>
+
 									</ul>
-									<div class="selector-field f-right">
-										<form action="#">
-											<button class="compare">Compare (1)</button>
-										</form>
-									</div>
+
 								}
 
 							</div>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- shop-area end -->
+<!-- brand-area start -->
+<div class="brand-area">
+	<div class="container">
+		<div class="brand-sep ptb-50">
+			<div class="row">
+				<div class="brand-active">
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
 						</div>
 					</div>
-								</div>
-							</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
 						</div>
 					</div>
-					
-
-
-					<!-- shop-area end -->
-					<!-- brand-area start -->
-					<div class="brand-area">
-						<div class="container">
-							<div class="brand-sep ptb-50">
-								<div class="row">
-									<div class="brand-active">
-										<div class="col-lg-12">
-											<div class="single-brand">
-												<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="single-brand">
-												<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="single-brand">
-												<a href="#"><img src="~/Asset/FrontEnd/img/brand/3.jpg" alt="" /></a>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="single-brand">
-												<a href="#"><img src="~/Asset/FrontEnd/img/brand/4.jpg" alt="" /></a>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="single-brand">
-												<a href="#"><img src="~/Asset/FrontEnd/img/brand/5.jpg" alt="" /></a>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="single-brand">
-												<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="single-brand">
-												<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/3.jpg" alt="" /></a>
 						</div>
 					</div>
-					<!-- brand-area end -->
-					<!-- service-area start -->
-
-
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/4.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/5.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="single-brand">
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- brand-area end -->
+<!-- service-area start -->

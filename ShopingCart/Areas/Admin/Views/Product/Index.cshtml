@@ -88,13 +88,18 @@
 									<img style="width:150px" src="@Html.DisplayFor(modelItem => item.Images)" alt="Alternate Text" />
 								</td>
 								<td>
-									@Html.DisplayFor(modelItem => item.Price)
+									@String.Format("{0:n0}",item.Price) VND
 								</td>
 								<td>
-									@Html.DisplayFor(modelItem => item.Sale_Price)
+									@if (item.Sale_Price != null)
+									{
+									<span>@String.Format("{0:n0}", item.Sale_Price)VND</span>
+									}
+
 								</td>
 
 								<td>
+									
 									@Html.DisplayFor(modelItem => item.Created)
 								</td>
 								<td>

@@ -1,88 +1,102 @@
-﻿@model IEnumerable<Model.Order>
-
+﻿@model PagedList.IPagedList<Model.Order>
+@using PagedList.Mvc
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-	<div class="box container">
-		<h2 style="text-align:center">Quản lý đơn hàng </h2>
-		
-		<div style="overflow-x:auto;" class="box-body">
-			<table id="example1" class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>
-							@Html.DisplayNameFor(model => model.Users.UserName)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Name)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Email)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Phone)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Address)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Created)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Status)
-						</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach (var item in Model)
-					{
-						<tr>
-							<td>
-								@Html.DisplayFor(modelItem => item.Users.UserName)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Name)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Email)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Phone)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Address)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Created)
-							</td>
-							<td>
-								@if (item.Status == 0)
-								{
-										 <label class="btn btn-danger">Đang chờ</label>
-								}
-								else if (item.Status == 1)
-								{
-									 <label class="btn btn-success">Xác Nhận</label>
-								}
-								else if (item.Status == 2)
-								{
-									 <label class="btn btn-primary">Đang giao</label>
-								}
-								else
-								{
-									 <label class="btn btn-success">Hoàn thành</label>
-								}
-							</td>
-							<td>
-								<a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Details", new { id=item.ID })"><i class="fa fa-fw  fa-pencil"></i></a>
+<div class="box container">
+	<h2 style="text-align:center">Quản lý đơn hàng </h2>
+	@using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+	{
+		<div class="row">
+			<div class="col-md-2">
+				<input type="text" placeholder="tìm kiếm theo tên" name="searchString" value="@ViewBag.searchString" />
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-primary" type="submit">Tìm kiếm</button>
+			</div>
+			<div class="col-md-6">
 
-							</td>
-						</tr>
-					}
-				</tbody>
-			</table>
 			</div>
 		</div>
+	}
+	<div style="overflow-x:auto;" class="box-body">
+		<table id="example1" class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>
+						Tên người mua
+					</th>
+					<th>
+						tên người nhận
+					</th>
+					<th>
+						Email
+					</th>
+					<th>
+						số điện thoại
+					</th>
+					<th>
+						Địa chỉ
+					</th>
+					<th>
+						Ngày tạo
+					</th>
+					<th>
+						Trạng thái
+					</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Users.UserName)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Name)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Email)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Phone)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Address)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Created)
+						</td>
+						<td>
+							@if (item.Status == 0)
+							{
+								<label class="btn btn-danger">Đang chờ</label>
+							}
+							else if (item.Status == 1)
+							{
+								<label class="btn btn-success">Xác Nhận</label>
+							}
+							else if (item.Status == 2)
+							{
+								<label class="btn btn-primary">Đang giao</label>
+							}
+							else
+							{
+								<label class="btn btn-success">Hoàn thành</label>
+							}
+						</td>
+						<td>
+							<a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Details", new { id=item.ID })"><i class="fa fa-fw  fa-pencil"></i></a>
+
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, @searchString = @ViewBag.searchString }))
+	</div>
+</div>

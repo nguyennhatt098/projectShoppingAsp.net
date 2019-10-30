@@ -86,14 +86,7 @@ namespace Repository
 				context.Users.Add(currentUser);
 			}
 
-			try
-			{
 				return context.SaveChanges();
-			}
-			catch (Exception e)
-			{
-				return 0;
-			}
 		}
 
 		public bool Login(string username, string password)
@@ -145,21 +138,6 @@ namespace Repository
 			}
 			context.Entry(currentItem).State = System.Data.Entity.EntityState.Modified;
 			return context.SaveChanges();
-		}
-
-		public IEnumerable<User> ListProductHot()
-		{
-			throw new NotImplementedException();
-		}
-
-		public IEnumerable<User> ListProductSale()
-		{
-			throw new NotImplementedException();
-		}
-
-		public IEnumerable<User> ListProductNew()
-		{
-			throw new NotImplementedException();
 		}
 
 		public Contact GetContact()

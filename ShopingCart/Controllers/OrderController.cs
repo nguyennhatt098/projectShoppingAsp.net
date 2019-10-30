@@ -38,49 +38,56 @@ namespace ShopingCart.Controllers
 				var user = _userService.GetById(currentUser.UserId);
 				ViewBag.User = user;
 			}
-			if (ModelState.IsValid)
+
+			if (!ModelState.IsValid) return View();
 			{
-                var currentUser = (User)Session["User"];
-                var cart =(List<CartItem>) Session["CartSession"];
+				var currentUser = (User)Session["User"];
+               
+				var cart =(List<CartItem>) Session["CartSession"];
 				var orderDetails = new List<OrderDetail>();
+				double totalQuantity=0;
 				foreach (var item in cart)
 				{
+					var currentPrice = (item.Product.Sale_Price != null && item.Product.Sale_Price < item.Product.Price)
+						? float.Parse(item.Product.Sale_Price.ToString())
+						: float.Parse(item.Product.Price.ToString());
+					totalQuantity += item.Quantity * currentPrice;
 					var orderDetail = new OrderDetail {
-						Price = (item.Product.Sale_Price !=null&&item.Product.Sale_Price<item.Product.Price) ? float.Parse(item.Product.Sale_Price.ToString()): float.Parse( item.Product.Price.ToString()),
-					Product_Id=item.Product.Id,
-					Quantity=item.Quantity,
+						Price =currentPrice,
+						Product_Id=item.Product.Id,
+						Quantity=item.Quantity,
 					
 					};
 					orderDetails.Add(orderDetail);
 
 				}
-			    var result=	_orderDetailService.Inserts(order,orderDetails);
+				var result=	_orderDetailService.Inserts(order,orderDetails);
 				if (result > 0)
 				{
-                    string header = System.IO.File.ReadAllText(Server.MapPath(@"~/App_Start/header.txt"));
-                    string footer = System.IO.File.ReadAllText(Server.MapPath(@"~/App_Start/footer.txt"));
-                    string main = String.Format(@"<h2 class='title'>ĐƠN HÀNG Fashion</h2>
+					string header = System.IO.File.ReadAllText(Server.MapPath(@"~/App_Start/header.txt"));
+					string footer = System.IO.File.ReadAllText(Server.MapPath(@"~/App_Start/footer.txt"));
+					string main = String.Format(@"<h2 class='title'>ĐƠN HÀNG Fashion</h2>
                 <p>
 					<b>Họ tên người nhận</b>
 					<span>{0}</span>
 				</p>
 				<p>
-					<b>Email</b>
+					<b>SĐT</b>
 					<span>{1}</span>
 				</p>
 				<p>
-					<b>SĐT</b>
+					<b>Địa chỉ</b>
 					<span>{2}</span>
 				</p>
 				<p>
-					<b>Địa chỉ</b>
+					<b>Ngày mua</b>
 					<span>{3}</span>
 				</p>
 				<p>
-					<b>Ngày mua</b>
-					<span>{4}</span>
-				</p>", currentUser.FullName, currentUser.Email, currentUser.Phone, currentUser.Address, DateTime.Now);
-                    main += @"<table class='table text-center'>
+					<b>Tổng tiền</b>
+					<span>{4} VND</span>
+				</p>", order.Name, order.Phone, order.Address, DateTime.Now, String.Format("{0:n0}", totalQuantity));
+					main += @"<table class='table text-center'>
 					<thead>
 						<tr>
 							<th>Sản phẩm</th>
@@ -90,21 +97,24 @@ namespace ShopingCart.Controllers
 						</tr>
 					</thead>
 					<tbody>";
-                    foreach (var item in cart)
-                    {
-                        main += "<tr>";
-                        main += "	<td>" + item.Product.Name + "</td>";
-                        main += "    <td>" + item.Product.Price + " VNd</td>";
-                        main += "    <td>" + item.Quantity + "</td>";
-                        main += "    <td>" + (item.Quantity * item.Product.Price) + " VND </td>";
-                        main += "</tr>";
-                    }
-                    main += @"</tbody>
+					foreach (var item in cart)
+					{
+						var currentPrice = (item.Product.Sale_Price != null && item.Product.Sale_Price < item.Product.Price)
+							? float.Parse(item.Product.Sale_Price.ToString())
+							: float.Parse(item.Product.Price.ToString());
+						main += "<tr>";
+						main += "	<td>" + item.Product.Name + "</td>";
+						main += "    <td>" + String.Format("{0:n0}", currentPrice) + " VND</td>";
+						main += "    <td>" + item.Quantity + "</td>";
+						main += "    <td>" + String.Format("{0:n0}", (item.Quantity * currentPrice)) + " VND </td>";
+						main += "</tr>";
+					}
+					main += @"</tbody>
 				</table>";
-                    HelpMail.SendEmail(currentUser.Email, "nguyennhatt098@gmail.com", "anhyeuem123", "[CASTAR]_Đơn hàng", header + main + footer);
+					HelpMail.SendEmail(currentUser.Email, "donking2510@gmail.com", "anhyeuem123", "[CASTAR]_Đơn hàng", header + main + footer);
 
-                    TempData["message"] = "Added";
-                    TempData["DataSuccess"] = "Đặt hàng thành công";
+					TempData["message"] = "Added";
+					TempData["DataSuccess"] = "Đặt hàng thành công";
 					Session["CartSession"] = null;
 				}
 				else
@@ -113,7 +123,6 @@ namespace ShopingCart.Controllers
 				}
 				return RedirectToAction("Index","Home");
 			}
-			return View();
 		}
     }
 }

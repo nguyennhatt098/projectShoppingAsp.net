@@ -4,6 +4,7 @@ using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PagedList;
 
 namespace Repository
 {
@@ -35,7 +36,7 @@ namespace Repository
 
 		public Order GetById(int id)
 		{
-			return context.Orders.FirstOrDefault(x => x.ID == id);
+			return context.Orders.OrderByDescending(x=>x.Created).FirstOrDefault(x => x.ID == id);
 		}
 
 		public Order GetByUserName(string UserName)
@@ -60,7 +61,12 @@ namespace Repository
 
 		public IEnumerable<Order> Search(string searchString, int Page, int Pagesize)
 		{
-			throw new NotImplementedException();
+			var model = context.Orders.ToList();
+			if (!string.IsNullOrWhiteSpace(searchString))
+			{
+				model = model.Where(x => x.Name.Contains(searchString)).ToList();
+			}
+			return model.OrderByDescending(x => x.Created).ToPagedList(Page, Pagesize);
 		}
 
 		public int Update(Order t)

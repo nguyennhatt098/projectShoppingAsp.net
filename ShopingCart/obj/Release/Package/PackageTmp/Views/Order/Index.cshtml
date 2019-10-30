@@ -7,7 +7,7 @@
 	double? currentTotal = 0;
 	double? price;
 }
-
+	<div class="space-custom"></div>
 <!-- breadcrumb start -->
 <div class="breadcrumb-area">
 	<div class="container">
@@ -20,17 +20,20 @@
 </div>
 @if (Session["User"] == null)
 {
-<div class="alert alert-warning">
+<div style="margin: 30px;">
+	<p style="text-align: center"><i style=" font-size: 300px;" class="fa fa-user"></i></p>
 	<p style="text-align: center">Mời bạn đăng nhập để có thể đặt hàng</p>
-	<a class="btn btn-primary" href="@Url.Action("Index","Login")">Đăng nhập</a>
+	<button class="btn btn-primary center-block" onclick="location.href = '/Login';">Đăng nhập</button>
 </div>
 	
 	
 }
 else if (Session["CartSession"] == null)
 {
-	<div class="alert alert-warning">
-		<p style="text-align: center">Giỏ hàng trống! Mời bạn chọn sản phẩm</p>
+	<div style="margin: 30px">
+		<p style="text-align: center"><i style=" font-size: 300px;" class="fa fa-shopping-cart"></i></p>
+		<p style="text-align: center">Bạn chưa có sản phẩm nào trong giỏ hàng.</p>
+		<button onclick="location.href = '/';" class="btn btn-primary center-block">Tiếp tục mua sắm</button>
 	</div>
 	
 }
@@ -66,15 +69,15 @@ else
 
 									</div>
 								</div>
-								<div class="col-md-12">
+								<div class="col-md-12" hidden>
 									<div class="checkout-form-list">
 										<label>Email</label>
-										<input type="text" name="Email" value="@ViewBag.User.Email" placeholder="" />
+										<input type="text" name="Email" value="@ViewBag.User.Email" placeholder="" hidden/>
 										@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
 									</div>
 								</div>
-								<div class="col-md-12">
+								<div class="col-md-12" >
 									<div class="checkout-form-list">
 										<label>Số điện thoại</label>
 										<input type="text" name="Phone" value="@ViewBag.User.Phone" placeholder="" />
@@ -101,47 +104,44 @@ else
 							<div class="your-order-table table-responsive">
 								<table>
 									<thead>
-										<tr>
-											<th class="product-name">Tên sản phẩm</th>
-											<th class="product-name">Đơn giá</th>
-											<th class="product-total">Hình ảnh</th>
-											<th class="product-total">Tổng tiền</th>
-										</tr>
+									<tr>
+										<th class="product-name">Tên sản phẩm</th>
+										<th class="product-name">Đơn giá</th>
+										<th class="product-total">Hình ảnh</th>
+										<th class="product-total">Tổng tiền</th>
+									</tr>
 									</thead>
 									<tbody>
 
-										@foreach (var item in items)
-										{
-											price = (item.Product.Price >  item.Product.Sale_Price) ? item.Product.Sale_Price : item.Product.Price;
-											TotalMoney += (price * item.Quantity);
-											currentTotal=(price * item.Quantity);
+									@foreach (var item in items)
+									{
+										price = (item.Product.Price >  item.Product.Sale_Price) ? item.Product.Sale_Price : item.Product.Price;
+										TotalMoney += (price * item.Quantity);
+										currentTotal=(price * item.Quantity);
 											
 										<tr class="cart_item">
 											<td class="product-name">
 												@item.Product.Name <strong class="product-quantity"> × @item.Quantity</strong>
 											</td>
 											<td class="product-name">
-												@price VND
+												@String.Format("{0:n0}", price) VND
 											</td>
 											<td class="product-name">
 												<img style="width: 100px" src="@item.Product.Images" alt="Alternate Text" />
 											</td>
 											<td class="product-total">
-												<span class="amount"> @currentTotal VND</span>
+												<span class="amount">@String.Format("{0:n0}", currentTotal)  VND</span>
 											</td>
 										</tr>
-										}
+									}
 									</tbody>
-									<tfoot>
-										
-										<tr class="order-total">
-											<th>Tổng tiền đơn hàng</th>
-											<td>
-												<strong><span class="amount">@TotalMoney VND</span></strong>
-											</td>
-										</tr>
-									</tfoot>
 								</table>
+								<div style="padding: 20px" class="order-total">
+									<th>Tổng tiền đơn hàng</th>
+									<td>
+										<strong><span style="width: 20%; color: #ffae00;" class="amount">@String.Format("{0:n0}", TotalMoney) VND</span></strong>
+									</td>
+								</div>
 							</div>
 							<div class="order-button-payment">
 								<input type="submit" value="Đặt hàng" />

@@ -36,17 +36,20 @@ namespace Repository
 		{
 			var currentActions = context.RoleActions.Where(x => x.RoleId.Equals(id)).ToList();
 			var listActions = new List<Action>();
+
 			if (currentActions.Count==0) return listActions.OrderByDescending(x => x.ActionId).ToPagedList(Page, Pagesize);
+
 			foreach (var item in currentActions)
 			{
 				var current = context.Actions.SingleOrDefault(s => s.ActionId.Equals(item.ActionId));
 				listActions.Add(current);
 			}
+
 			if (!string.IsNullOrEmpty(searchString))
 			{
 				listActions = listActions.Where(x => x.ActionName.ToLower().Contains(searchString.ToLower())).ToList();
 			}
-			var list = context.Actions.ToList();
+
 			return listActions.OrderByDescending(x => x.ActionId).ToPagedList(Page, Pagesize);
 		}
 

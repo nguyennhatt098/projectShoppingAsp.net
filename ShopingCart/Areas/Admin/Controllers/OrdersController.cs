@@ -17,9 +17,10 @@ namespace ShopingCart.Areas.Admin.Controllers
 
 		// GET: Admin/Orders
 		[HasCredential(ActionId = 35)]
-		public ActionResult Index()
+		public ActionResult Index(string searchString, int Page = 1, int PageSize = 10)
         {
-            return View(_orderService.GetAll());
+	        ViewBag.searchString = searchString;
+			return View(_orderService.Search(searchString,Page,PageSize));
         }
 		[HttpPost]
 		[HasCredential(ActionId = 36)]

@@ -12,8 +12,11 @@
 	var commentList =(List<Model.ViewModel.CommentDTO>) ViewBag.CommentList;
 	var product =(Model.Product) ViewBag.Product;
 	var answerComment =(List<Model.AnswerComment>) ViewBag.AnswerComment;
+	var ListNotInUser = (List<int>)ViewBag.ListNotInUser;
+	var wishList = (List<Model.WishList>)ViewBag.wishList;
+	var user = (Model.User)Session["User"];
 }
-
+	<div class="space-custom"></div>
 <!-- breadcrumb start -->
 <div class="breadcrumb-area">
 	<div class="container">
@@ -26,95 +29,102 @@
 </div>
 <!-- breadcrumb end -->
 <!-- shop-area start -->
-<div class="shop-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-5">
+@*<div class="container">*@
+	<div class="shop-area ">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-5">
 
 
-				<div class="product-zoom">
-					<!-- Tab panes -->
-					<div class="tab-content">
-						@{int i = 0;}
-						@foreach (var item in ListImages)
-						{
-
-							if (i == 0)
+					<div class="product-zoom">
+						<!-- Tab panes -->
+						<div class="tab-content">
+							@{int i = 0;}
+							@foreach (var item in ListImages)
 							{
-								<div class="tab-pane active" id="@("item"+i)">
-									<div class="pro-large-img">
-										<img src="@item" alt="" />
-										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+
+								if (i == 0)
+								{
+									<div class="tab-pane active" id="@("item"+i)">
+										<div class="pro-large-img">
+											<img style="width:100%" src="@item" alt="" />
+											<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+										</div>
 									</div>
-								</div>
-							}
-							else
-							{
-								<div class="tab-pane" id="@("item"+i)">
-									<div class="pro-large-img">
-										<img src="@item" alt="" />
-										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+								}
+								else
+								{
+									<div class="tab-pane" id="@("item"+i)">
+										<div class="pro-large-img">
+											<img src="@item" alt="" />
+											<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+										</div>
 									</div>
-								</div>
+								}
+								i++;
+
 							}
-							i++;
-
-						}
 
 
-					</div>
-					<!-- Nav tabs -->
-					<div class="details-tab">
-						@{int i1 = 0;}
-						@foreach (var item in ListImages)
-						{
-
-							if (i1 == 0)
+						</div>
+						<!-- Nav tabs -->
+						<div class="details-tab">
+							@{int i1 = 0;}
+							@foreach (var item in ListImages)
 							{
-								<div class="active"><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
-							}
-							else
-							{
-								<div><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
-							}
-							i1++;
 
-						}
+								if (i1 == 0)
+								{
+									<div class="active"><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+								}
+								else
+								{
+									<div><a href="@("#item"+i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+								}
+								i1++;
 
+							}
+
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-7">
-				<div class="product-details">
-					<h2 class="pro-d-title">@Model.Name</h2>
+				<div class="col-xs-12 col-sm-6 col-md-7">
+					<div class="product-details">
+						<h2 class="pro-d-title">@Model.Name</h2>
 
-					<div class="price-box">
-						<span class="price product-price">@Model.Sale_Price VND</span>
-						<span class="old-price product-price">@Model.Price VND</span>
-					</div>
-					<div class="short-desc">
-						<p>@Model.Content</p>
-					</div>
-					
-					<div class="box-quantity">
-						<form action="#">
-							<label>Quantity</label>
-							<input type="number" id="quantity" value="1" />
-							<script>
+						<div class="price-box">
+							@if (Model.Sale_Price != null)
+							{
+								<span class="old-price product-price">@String.Format("{0:n0}", Model.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", Model.Sale_Price) VND</span>
+							}
+							else
+							{
+								<span class="price product-price">@String.Format("{0:n0}", Model.Price) VND</span>
+							}
+						</div>
+						<div class="short-desc">
+							<p>@Model.Content</p>
+						</div>
+
+						<div class="box-quantity">
+							<form action="#">
+								<label>Quantity</label>
+								<input type="number" id="quantity" value="1" />
+								<script>
 	                            function myFunction() {
 		                            var quantity = document.getElementById("quantity").value;
 		                            window.location.href = '/them-vao-gio-hang?productID=@Model.Id&quantity='+quantity
 	                            }
-							</script>
-							<button onclick="myFunction()">add to cart</button>
-						</form>
+								</script>
+								<button onclick="myFunction()">add to cart</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
+@*</div>*@
 
 <!-- shop-area end -->
 <!-- pro-info-area start -->
@@ -151,7 +161,7 @@
 										<input value="@Model.Id" name="productId" hidden />
 										<textarea class="form-control" name="content" placeholder="write a comment..." rows="3"></textarea>
 										<br>
-										<button id="comment" type="button" class="btn btn-info pull-right ">Post</button>
+										<button id="comment" type="button" class="btn btn-info pull-right ">Gửi</button>
 									</form>
 									<div class="clearfix"></div>
 									<hr>
@@ -162,7 +172,7 @@
 											var total = answerComment.Where(x => x.CommentId.Equals(item.CommentId)).Count() > 0 ? answerComment.Where(x => x.CommentId.Equals(item.CommentId)).Count().ToString() : "";
 											<li class="media">
 												<a href="#" class="pull-left">
-													<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+													<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
 												</a>
 												<div class="media-body">
 													<span class="text-muted pull-right">
@@ -180,14 +190,14 @@
 
 																<textarea class="form-control content-answer" commentIds="@item.CommentId" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
 																<br>
-																<button commentId="@item.CommentId" style="padding:0 ;height:30px;" id="comment-answer" type="button" class="btn btn-info pull-right comment-answer">Post</button>
+																<button commentId="@item.CommentId"  id="comment-answer" type="button" class="btn btn-info pull-right comment-answer">Gửi</button>
 															</form>
 														</div>
 														@foreach (var itemAnswer in answerComment.Where(x => x.CommentId.Equals(item.CommentId)))
 														{
 															<div style="margin-top:10px">
 																<a href="#">
-																	<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+																	<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
 																</a>
 																<span class="text-muted pull-right">
 																	<small class="text-muted">@itemAnswer.CreatedDate</small>
@@ -314,7 +324,26 @@
 								<span class="new-label">New</span>
 								<div class="product-action">
 									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
-									<a href="#"><i class="pe-7s-like"></i></a>
+									@if (user == null)
+									{
+										if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
+										{
+											<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i  class="pe-7s-like"></i></a>
+										}
+										else
+										{
+											<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
+										}
+
+									}
+									else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
+									{
+										<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i  class="pe-7s-like"></i></a>
+									}
+									else
+									{
+										<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
+									}
 									<a href="#"><i class="pe-7s-folder"></i></a>
 
 								</div>
@@ -327,11 +356,11 @@
 									<div class="price-box">
 										@if (item.Sale_Price != null)
 										{
-											<span class="old-price product-price">Giá gốc:@item.Price VND</span> <span class="price product-price">Giá KM:@item.Sale_Price VND</span>
+											<span class="old-price product-price">@String.Format("{0:n0}", item.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", item.Sale_Price) VND</span>
 										}
 										else
 										{
-											<span class="price product-price">Giá gốc:@item.Price VND</span>
+											<span class="price product-price">@String.Format("{0:n0}", item.Price) VND</span>
 										}
 									</div>
 

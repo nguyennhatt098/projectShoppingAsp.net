@@ -21,7 +21,7 @@
 		        <div class="cart-content">
 
 			        <span>@item.Product.Name<b>x @item.Quantity</b></span>
-			        <span class="cart-price">Đơn giá:@item.Product.Price VND</span>
+					<span class="cart-price">Đơn giá:@String.Format("{0:n0}", item.Product.Price) VND</span>
 		        </div>
 		        <div class="cart-del">
 			        <a data-id="@item.Product.Id" class="btn-delete"><i class="fa fa-times-circle"></i></a>
@@ -36,7 +36,7 @@
         <li>
             <hr class="shipping-border" />
             <div class="shipping">
-                <span class="f-left"> Tổng Tiền: @TotalMoney VND</span>
+				<span class="f-left"> Tổng Tiền:@String.Format("{0:n0}", TotalMoney)  VND</span>
                 <span class="f-right cart-price"></span>
             </div>
         </li>

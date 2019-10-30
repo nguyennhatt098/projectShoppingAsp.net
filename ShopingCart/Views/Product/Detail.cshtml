@@ -93,8 +93,14 @@
 						<h2 class="pro-d-title">@Model.Name</h2>
 
 						<div class="price-box">
-							<span class="price product-price">@Model.Sale_Price VND</span>
-							<span class="old-price product-price">@Model.Price VND</span>
+							@if (Model.Sale_Price != null)
+							{
+								<span class="old-price product-price">@String.Format("{0:n0}", Model.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", Model.Sale_Price) VND</span>
+							}
+							else
+							{
+								<span class="price product-price">@String.Format("{0:n0}", Model.Price) VND</span>
+							}
 						</div>
 						<div class="short-desc">
 							<p>@Model.Content</p>
@@ -350,11 +356,11 @@
 									<div class="price-box">
 										@if (item.Sale_Price != null)
 										{
-											<span class="old-price product-price">Giá gốc:@item.Price VND</span> <span class="price product-price">Giá KM:@item.Sale_Price VND</span>
+											<span class="old-price product-price">@String.Format("{0:n0}", item.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", item.Sale_Price) VND</span>
 										}
 										else
 										{
-											<span class="price product-price">Giá gốc:@item.Price VND</span>
+											<span class="price product-price">@String.Format("{0:n0}", item.Price) VND</span>
 										}
 									</div>
 

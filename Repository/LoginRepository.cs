@@ -29,6 +29,7 @@ namespace Repository
 							RoleId = x.RoleId,
 							ActionId = x.ActionId
 						});
+
 			return data.Select(x => x.ActionId).ToList();
 		}
 
@@ -41,8 +42,7 @@ namespace Repository
 
 			if (userList.Any(x => x.Phone.Equals(user.Phone))) return -3;
 
-			
-				var currentUser = new User
+			var currentUser = new User
 				{
 					RoleId = user.RoleId,
 					Password = user.Password,
@@ -56,16 +56,7 @@ namespace Repository
 					ConfirmPassword = user.Password,
 				};
 				context.Users.Add(currentUser);
-			
-
-			//try
-			//{
 				return context.SaveChanges();
-			//}
-			//catch (Exception e)
-			//{
-			//	return 0;
-			//}
 		}
 	}
 }

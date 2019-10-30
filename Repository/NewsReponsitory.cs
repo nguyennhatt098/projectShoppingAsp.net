@@ -17,7 +17,7 @@ namespace Repository
 
 		public int Delete(int id)
 		{
-			var item = context.News.Where(x => x.ID == id).SingleOrDefault();
+			var item = context.News.SingleOrDefault(x => x.ID == id);
 			context.News.Remove(item);
 			return context.SaveChanges();
 		}
@@ -31,7 +31,7 @@ namespace Repository
 
 		public News GetById(int id)
 		{
-			return context.News.Where(x => x.ID == id).SingleOrDefault();
+			return context.News.SingleOrDefault(x => x.ID == id);
 		}
 
 		public News GetByUserName(string UserName)

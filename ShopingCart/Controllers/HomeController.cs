@@ -36,7 +36,6 @@ namespace ShopingCart.Controllers
 			var user = (User)Session["User"];
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
 			if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
-			//ViewBag.ListProductHot = productService.ListProductHot();
 			ViewBag.ListProductNew = productService.ListProductNew();
 			ViewBag.ListNews = newsService.GetAll();
 			ViewBag.ListProductSale = productService.ListProductSale();

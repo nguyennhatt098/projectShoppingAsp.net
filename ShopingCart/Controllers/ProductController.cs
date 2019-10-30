@@ -35,12 +35,15 @@ namespace ShopingCart.Controllers
 			TempData["GoBack"] = index;
 			TempData["categoryId"] = id;
 			var totalPage = 0;
-			var total = productService.Count();
-	        totalPage = (int)Math.Ceiling((double)(total / pageSize));
+			var total = productService.Count(id);
+			var realTotalPage = float.Parse(total.ToString()) / float.Parse(pageSize.ToString());
+			totalPage = (int)Math.Ceiling((double)(total / pageSize));
+			if (total % pageSize != 0) totalPage += 1;
 			var convertIndex = 0;
 			if (index == null || double.Parse(index) <= 0) convertIndex = 1;
 			else convertIndex = (double.Parse(index) > totalPage) ? totalPage : int.Parse(index);
 			var model = productService.ListProductGetByCategory(id, convertIndex, pageSize).ToList();
+			ViewBag.CountProduct = total;
 			ViewBag.Page = convertIndex;
             ViewBag.TotalPage = totalPage;
             ViewBag.Next = convertIndex + 1;
@@ -54,7 +57,7 @@ namespace ShopingCart.Controllers
 	        if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
 			var index = Request.Params["page"];
 			int totalPage = 0;
-			var total = commentService.Count(id);
+			var total = productService.Count(id);
 			totalPage = (int)Math.Ceiling((double)(total / pageSize));
 			int convertIndex;
 			if (index == null || double.Parse(index) <= 0) convertIndex = 1;

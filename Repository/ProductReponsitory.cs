@@ -116,14 +116,7 @@ namespace Repository
 
 			return context.Products.Where(s => s.TopHot == true && s.Status == true).OrderByDescending(s => s.Created).Take(8).ToList();
 		}
-		//public IEnumerable<Product> ListWishLists( int id)
-		//{
-
-		//    return context.wishLists.Where(s => s.UserID == id).ToList();
-
-		//    //return context.Products.Include(x => x.w).Where(s => s.TopHot == true && s.Status == true).OrderByDescending(s => s.Created).Take(8).ToList();
-		//}
-
+		
 		public IEnumerable<Product> ListProductSale()
 		{
 			var randomItem = context.Products.OrderBy(x => Guid.NewGuid()).Take(4).ToList();
@@ -133,13 +126,13 @@ namespace Repository
 
 		public IEnumerable<Product> ListProductNew()
 		{
-			return context.Products.Where(s => s.Status == true).OrderByDescending(s => s.Created).Take(8).ToList();
+			return context.Products.Where(s => s.Status).OrderByDescending(s => s.Created).Take(8).ToList();
 		}
 
 		public IEnumerable<Product> Search(string searchString, int Page, int Pagesize)
 		{
 			var model = context.Products.ToList();
-			if (!string.IsNullOrEmpty(searchString))
+			if (!string.IsNullOrWhiteSpace(searchString))
 			{
 				model = model.Where(x => x.Name.Contains(searchString)).ToList();
 			}
@@ -153,12 +146,44 @@ namespace Repository
 
 		public IEnumerable<Product> ListProductGetByCategory(int id, int pageIndex, int pageSize)
 		{
+			var total =pageIndex*pageSize;
+			if (total > Count(id))
+			{
+				pageSize = Count(id) - (pageSize * (pageIndex-1));
+			}
+
+			if (pageSize <= 0)
+			{
+				pageSize = 6;
+			}
 			return context.Products.Where(x => x.Category_ID == id).OrderByDescending(x => x.Created).Skip((pageIndex - 1) * pageSize).Take(pageSize).AsQueryable();
 		}
 
-		public int Count()
+		public int Count(int id)
 		{
-			return context.Products.Count();
+			return context.Products.Count(x => x.Category_ID==id);
+		}
+
+		public IEnumerable<Category> Categories()
+		{
+			var listLv2 = (from c1 in context.Categories
+					join c2 in context.Categories on c1.ParentID equals c2.ID
+					select c1
+				).ToList();
+			var listLv3 = (from c1 in context.Categories
+					join c2 in context.Categories on c1.ParentID equals c2.ID
+					join c3 in context.Categories on c2.ParentID equals c3.ID
+					select c1
+				).ToList();
+			var listLv23 = (from c1 in listLv2
+							join c2 in listLv3 on c1.ID equals c2.ParentID
+					select c1
+				).ToList();
+			foreach (var item in listLv23)
+			{
+				listLv2.Remove(item);
+			}
+			return listLv2;
 		}
 	}
 }

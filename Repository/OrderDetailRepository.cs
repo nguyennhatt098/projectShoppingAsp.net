@@ -65,11 +65,6 @@ namespace Repository
 			return context.SaveChanges();
 		}
 
-		public int Inserts(Order order, OrderDetail orderDetail)
-		{
-			throw new NotImplementedException();
-		}
-
 		public int Inserts(Order order, List<OrderDetail> orderDetails)
 		{
 			using (var transaction = context.Database.BeginTransaction())

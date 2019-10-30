@@ -46,21 +46,6 @@ namespace Repository
 			return context.SaveChanges();
 		}
 
-		public IEnumerable<Footer> ListProductHot()
-		{
-			throw new NotImplementedException();
-		}
-
-		public IEnumerable<Footer> ListProductNew()
-		{
-			throw new NotImplementedException();
-		}
-
-		public IEnumerable<Footer> ListProductSale()
-		{
-			throw new NotImplementedException();
-		}
-
 		public bool Login(string username, string password)
 		{
 			throw new NotImplementedException();

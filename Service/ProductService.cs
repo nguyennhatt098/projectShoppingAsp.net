@@ -55,9 +55,14 @@ namespace Service
             return rep.ListProductGetByCategory(id,pageIndex,pageSize);
         }
 
-        public int Count()
+        public int Count(int id)
         {
-	        return rep.Count();
+	        return rep.Count(id);
+        }
+
+        public IEnumerable<Category> Categories()
+        {
+	        return rep.Categories();
         }
 
         public IEnumerable<Product> ListProductHot()

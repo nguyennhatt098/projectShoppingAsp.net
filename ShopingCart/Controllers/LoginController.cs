@@ -89,7 +89,7 @@ namespace ShopingCart.Controllers
             bool status = false;
             using (DBEntityContext db = new DBEntityContext())
             {
-                var acc = db.Users.Where(x => x.Email == EmailAddress).FirstOrDefault();
+                var acc = db.Users.FirstOrDefault(x => x.Email == EmailAddress);
                 if (acc!=null)
                 {
                     string resetCode = Guid.NewGuid().ToString();
@@ -113,7 +113,7 @@ namespace ShopingCart.Controllers
             var verifyUrl = "/Login/" + emailFor + "/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("nguyennhatt098@gmail.com", "Shop Fashe");
+            var fromEmail = new MailAddress("donking2510@gmail.com", "Shop Fashe");
             var toEmail = new MailAddress(EmailAddress);
             var fromEmailPassword = "anhyeuem123"; // Replace with actual password
 
@@ -197,7 +197,5 @@ namespace ShopingCart.Controllers
             ViewBag.Message = message;
             return View(model);
         }
-
-
     }
 }

@@ -20,7 +20,7 @@
 			<strong>Đã có lỗi xảy ra</strong>
 		</div>
 	</div>
-	<div class=" header-middle">
+	<div class="header-area header-middle">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-2 col-sm-3 col-xs-12">
@@ -59,13 +59,13 @@
 						@if (Session["User"] != null)
 						{
 
-							<div style="float:left;color:#2c2c2c">
+							<div style="float:left; color: #2c2c2c; margin-bottom: -5px;">
 								<p>Chào! @user.FullName | <a style="color:#2c2c2c" href="@Url.Action("LogOut","Login")">Đăng xuất</a></p>
 							</div>
 						}
 						else
 						{
-							<div style="float:left;color:#2c2c2c">
+							<div style="float:left; color: #2c2c2c;margin-bottom: -5px;">
 								<a style="color: #2c2c2c;font-weight: 700;" href="@Url.Action("Index", "Login")">Đăng nhập</a>
 								| <a style="color: #2c2c2c;font-weight: 700;" href="@Url.Action("Index", "Resgiter")">Đăng ký</a>
 							</div>
@@ -121,10 +121,10 @@
 										@foreach (var itemGrandParent in Model)
 										{
 											var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-											if (Model.Any(x => x.ParentID == itemGrandParent.ID))
+											if (itemGrandParent.ParentID == null && Model.Any(x => x.ParentID == itemGrandParent.ID))
 											{
 												<li>
-													<a href="#">@itemGrandParent.Name </a>
+													<a href="javascript:void(0)">@itemGrandParent.Name </a>
 													<ul>
 														@foreach (var itemParent in Model)
 														{
@@ -133,7 +133,7 @@
 															{
 
 																<li>
-																	<a href="#">@itemParent.Name</a>
+																	<a href="javascript:void(0)">@itemParent.Name</a>
 																	<ul>
 																		@foreach (var itemChild in Model)
 																		{
@@ -163,7 +163,6 @@
 											}
 											else if (itemGrandParent.ParentID == null)
 											{
-												<li><a href="@url">@itemGrandParent.Name</a></li>
 												<li><a href="@url">@itemGrandParent.Name</a></li>
 											}
 

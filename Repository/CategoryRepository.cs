@@ -48,8 +48,6 @@ namespace Repository
 			GC.SuppressFinalize(this);
 		}
 
-
-
 		public IEnumerable<Category> GetAll()
 		{
 			var listRemove = (from c1 in context.Categories
@@ -78,8 +76,6 @@ namespace Repository
 
 			return context.SaveChanges();
 		}
-
-		
 
 		public int Update(Category t)
 		{

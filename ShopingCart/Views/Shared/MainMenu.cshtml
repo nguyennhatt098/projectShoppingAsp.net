@@ -121,7 +121,7 @@
 										@foreach (var itemGrandParent in Model)
 										{
 											var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-											if (Model.Any(x => x.ParentID == itemGrandParent.ID))
+											if (itemGrandParent.ParentID == null && Model.Any(x => x.ParentID == itemGrandParent.ID))
 											{
 												<li>
 													<a href="javascript:void(0)">@itemGrandParent.Name </a>
