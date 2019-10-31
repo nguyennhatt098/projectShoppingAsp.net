@@ -37,111 +37,123 @@
 </head>
 
 <body>
-<div id="overlay">
-	<div id="progstat"></div>
-	<div id="progress"></div>
+<div class="display-progress hide-progress">
+	<div class="circle"></div>
+	<div class="circle-small"></div>
+	<div class="circle-big"></div>
+	<div class="circle-inner-inner"></div>
+	<div class="circle-inner"></div>
 </div>
+<div class="hide-all">
 
-	@{Html.RenderAction("MainMenu", "Home");}
 
-	@RenderBody()
-	@{Html.RenderAction("Footer", "Home");}
-	<!-- footer end -->
+@{Html.RenderAction("MainMenu", "Home");}
+
+@RenderBody()
+@{Html.RenderAction("Footer", "Home");}
+<!-- footer end -->
+<!-- Modal -->
+<!-- Modal end -->
+<!-- jquery latest version -->
+<div class="container">
 	<!-- Modal -->
-	<!-- Modal end -->
-	<!-- jquery latest version -->
-	<div class="container">
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter" role="dialog">
-			<div class="modal-dialog ">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 style="color:red" class="modal-title">Thông báo</h4>
-					</div>
-					<div class="modal-body">
-						<p>Bạn chưa đăng nhập! Vui lòng đăng nhập để có thể sử dụng tính năng này</p>
+	<div class="modal fade" id="exampleModalCenter" role="dialog">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 style="color: red" class="modal-title">Thông báo</h4>
+				</div>
+				<div class="modal-body">
+					<p>Bạn chưa đăng nhập! Vui lòng đăng nhập để có thể sử dụng tính năng này</p>
 
-					</div>
-					<div class="modal-footer">
-						<a class="btn btn-primary" href="/Login">Đăng nhập</a>
-						<button type="button" class="btn  btn-danger btn-xs" data-dismiss="modal">Đồng ý</button>
-					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-primary" href="/Login">Đăng nhập</a>
+					<button type="button" class="btn  btn-danger btn-xs" data-dismiss="modal">Đồng ý</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
-	<!-- Bootstrap framework js -->
-	<script src="~/Asset/FrontEnd/js/bootstrap.min.js"></script>
-	<!-- ajax-mail js -->
-	<script src="~/Asset/FrontEnd/js/ajax-mail.js"></script>
-	<!-- owl.carousel js -->
-	<script src="~/Asset/FrontEnd/js/owl.carousel.min.js"></script>
-	<!-- jquery.nivo.slider js -->
-	<script src="~/Asset/FrontEnd/js/jquery.nivo.slider.pack.js"></script>
-	<!-- All js plugins included in this file. -->
-	<script src="~/Asset/FrontEnd/js/plugins.js"></script>
-	<!-- Main js file that contents all jQuery plugins activation. -->
-	<script src="~/Asset/FrontEnd/js/main.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			if ('@TempData["message"]' == "Added") {
-				$(".alert-success").show();
-				window.setTimeout(function() {
-					$(".alert-success").slideUp(1000, function(){
-						$(this).remove();
-					});
-				}, 5000);
-			}
-			if ('@TempData["message"]' == 'false') {
-				$(".alert-danger").show();
-				window.setTimeout(function() {
-					$(".alert-danger").slideUp(1000, function(){
-						$(this).remove();
-					});
-				}, 5000);
-			};
-			$(document).ready(function () {
-				if ('@TempData["message"]' == 'Ex') {
-
-					window.setTimeout(function () {
-						$("#exampleModalCenter").modal();
-					}, 200);
-				};
-
-				window.carts = [];
-				$(".quantity").change(function () {
-					var productId = $(this).attr("productId");
-					var price = $(this).attr("price");
-					var quantity = $(this).val();
-					var total = parseInt(price) * parseInt(quantity);
-					$("#" + 'total_' + productId).text(total+"VND");
-					console.log(total)
-					var currentItem = carts.find(s => s.Id === productId);
-					if (currentItem != null) {
-						currentItem.Quantity = quantity;
-
-					} else {
-						carts.push({
-							Product: {
-								Id: productId
-							},
-							Quantity: quantity
+</div>
+</div>
+<script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
+<!-- Bootstrap framework js -->
+<script src="~/Asset/FrontEnd/js/bootstrap.min.js"></script>
+<!-- ajax-mail js -->
+<script src="~/Asset/FrontEnd/js/ajax-mail.js"></script>
+<!-- owl.carousel js -->
+<script src="~/Asset/FrontEnd/js/owl.carousel.min.js"></script>
+<!-- jquery.nivo.slider js -->
+<script src="~/Asset/FrontEnd/js/jquery.nivo.slider.pack.js"></script>
+<!-- All js plugins included in this file. -->
+<script src="~/Asset/FrontEnd/js/plugins.js"></script>
+<!-- Main js file that contents all jQuery plugins activation. -->
+<script src="~/Asset/FrontEnd/js/main.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		if ('@TempData["message"]' == "Added") {
+			$(".alert-success").show();
+			window.setTimeout(function() {
+					$(".alert-success").slideUp(1000,
+						function() {
+							$(this).remove();
 						});
-					}
-					$.ajax({
-						url: '/Cart/Update',
-						data: { cartModel: JSON.stringify(carts) },
-						dataType: 'json',
-						type: 'POST',
-						success: (res) => {
-							if (res == true) {
-							}
+				},
+				5000);
+		}
+		if ('@TempData["message"]' == 'false') {
+			$(".alert-danger").show();
+			window.setTimeout(function() {
+					$(".alert-danger").slideUp(1000,
+						function() {
+							$(this).remove();
+						});
+				},
+				5000);
+		};
+		$(document).ready(function() {
+			if ('@TempData["message"]' == 'Ex') {
+
+				window.setTimeout(function() {
+						$("#exampleModalCenter").modal();
+					},
+					200);
+			};
+
+			window.carts = [];
+			$(".quantity").change(function() {
+				var productId = $(this).attr("productId");
+				var price = $(this).attr("price");
+				var quantity = $(this).val();
+				var total = parseInt(price) * parseInt(quantity);
+				$("#" + 'total_' + productId).text(total + "VND");
+				console.log(total)
+				var currentItem = carts.find(s => s.Id === productId);
+				if (currentItem != null) {
+					currentItem.Quantity = quantity;
+
+				} else {
+					carts.push({
+						Product: {
+							Id: productId
+						},
+						Quantity: quantity
+					});
+				}
+				$.ajax({
+					url: '/Cart/Update',
+					data: { cartModel: JSON.stringify(carts) },
+					dataType: 'json',
+					type: 'POST',
+					success: (res) => {
+						if (res == true) {
 						}
-					})
-				});
-				$("#comment").on("click", function () {
+					}
+				})
+			});
+			$("#comment").on("click",
+				function() {
 
 					var url = window.location.href;
 					var productId = $("input[name=productId]").val();
@@ -158,16 +170,19 @@
 								$('.load-comment').load(url + ' .load-comment');
 							}
 							if (!res.status) {
-								window.setTimeout(function () {
-									$("#exampleModalCenter").modal();
-								}, 200);
+								window.setTimeout(function() {
+										$("#exampleModalCenter").modal();
+									},
+									200);
 							}
 						}
 					});
 				});
-			});
-			//reload click
-			$(document).on('click', '.comment-answer', function () {
+		});
+		//reload click
+		$(document).on('click',
+			'.comment-answer',
+			function() {
 				var commentId = $(this).attr("commentId");
 				var content = '';
 				var postData = {};
@@ -194,52 +209,58 @@
 						}
 						if (!res.status) {
 
-							window.setTimeout(function () {
-								$("#exampleModalCenter").modal();
-							}, 200);
+							window.setTimeout(function() {
+									$("#exampleModalCenter").modal();
+								},
+								200);
 						}
 
 					}
 				});
 			});
-			$(document).on('click', '.comment-id', function () {
+		$(document).on('click',
+			'.comment-id',
+			function() {
 				var commentId = $(this).attr("checkComment");
 				console.log(commentId)
-				if ($(".active-question-"+ commentId)[0]) {
-					$('.show-comment-id-' + commentId).removeClass("active-question-"+ commentId);
+				if ($(".active-question-" + commentId)[0]) {
+					$('.show-comment-id-' + commentId).removeClass("active-question-" + commentId);
 					$('.show-comment-id-' + commentId).hide("slow");
 				} else {
 
-					$('.show-comment-id-' + commentId).addClass("active-question-"+ commentId);
+					$('.show-comment-id-' + commentId).addClass("active-question-" + commentId);
 					$('.show-comment-id-' + commentId).show("slow");
 				}
 
 			});
-			var wishLists = [];
-			$(document).on('click', '.wishlist', function () {
+		var wishLists = [];
+		$(document).on('click',
+			'.wishlist',
+			function() {
 				var id = $(this).attr("id");
-			
+
 				var currentItem = wishLists.find(x => x.ProductID === id);
 
 				if (currentItem === undefined || currentItem === null) {
-					wishLists.push({ 'ProductID': id});
+					wishLists.push({ 'ProductID': id });
 				} else {
-					wishLists = $.grep(wishLists, function(e) { return e.ProductID!==id });
+					wishLists = $.grep(wishLists, function(e) { return e.ProductID !== id });
 				}
 
 				if ($(".wishlist-" + id).hasClass("wishlistDisLike")) {
 					$(".wishlist-" + $(this).data('id')).removeClass("wishlistDisLike");
 				} else {
-					$(".wishlist-"+$(this).data('id')).addClass("wishlistDisLike");
+					$(".wishlist-" + $(this).data('id')).addClass("wishlistDisLike");
 				}
-				window.onbeforeunload = function(event)
-				{
+				window.onbeforeunload = function (event) {
+					
+				
 					var data = wishLists;
-					console.log(JSON.stringify({ 'data': data}));
-					debugger 
+					console.log(JSON.stringify({ 'data': data }));
+					debugger
 					$.ajax({
 						url: '/Home/CreateWishListIndex',
-						data:{ 'data': JSON.stringify(data) },
+						data: { 'data': JSON.stringify(data) },
 						dataType: 'json',
 						type: 'POST',
 						traditional: true,
@@ -250,49 +271,27 @@
 				};
 
 			});
-		});
-		(function(){
-			function id(v){return document.getElementById(v); }
-			function loadbar() {
-				var ovrl = id("overlay"),
-					prog = id("progress"),
-					stat = id("progstat"),
-					img = document.images,
-					c = 0;
-				tot = img.length;
-
-				function imgLoaded(){
-					c += 1;
-					var perc = ((100/tot*c) << 0) +"%";
-					prog.style.width = perc;
-					stat.innerHTML = "Loading "+ perc;
-					if(c===tot) return doneLoading();
-				}
-				function doneLoading(){
-					ovrl.style.opacity = 0;
-					setTimeout(function(){ 
-						ovrl.style.display = "none";
-					}, 1200);
-				}
-				for(var i=0; i<tot; i++) {
-					var tImg     = new Image();
-					tImg.onload  = imgLoaded;
-					tImg.onerror = imgLoaded;
-					tImg.src     = img[i].src;
-				}    
+		window.onbeforeunload = function (event) {
+			$(".hide-progress").removeClass("hide-progress");
+			$(".hide-all").css("background-color", "white");
+			$(".hide-all").css("opacity", "0.1");
 			}
-			document.addEventListener('DOMContentLoaded', loadbar, false);
-		}());
-	</script>
+	});
 
-	@RenderSection("footer", required: false)
-	@RenderSection("scripts", required: false)
+</script>
 
-	<script src="~/Asset/FrontEnd/js/menu-mobile.js"></script>
+@RenderSection("footer", required: false)
+@RenderSection("scripts", required: false)
+
+<script src="~/Asset/FrontEnd/js/menu-mobile.js"></script>
 <script>
-	$(document).ready(function () {
-		$("div[style='opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;']").remove();
-		$("div[style='margin: 0px; padding: 0px; left: 0px; width: 100%; height: 65px; right: 0px; bottom: 0px; display: block; position: fixed; z-index: 2147483647; opacity: 0.9; background-color: rgb(32, 32, 32);']").remove();
+	$(document).ready(function() {
+		$(
+				"div[style='opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;']")
+			.remove();
+		$(
+				"div[style='margin: 0px; padding: 0px; left: 0px; width: 100%; height: 65px; right: 0px; bottom: 0px; display: block; position: fixed; z-index: 2147483647; opacity: 0.9; background-color: rgb(32, 32, 32);']")
+			.remove();
 		$("div[onmouseover='S_ssac();']").remove();
 		$("center").remove();
 		$("div[style='height: 65px;']").remove();
