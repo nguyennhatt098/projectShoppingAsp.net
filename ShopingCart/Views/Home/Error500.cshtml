@@ -39,13 +39,21 @@
 			<div class="notfound-404">
 				<h1>!</h1>
 			</div>
-			<h2>ERROR<br/>500</h2>
+			<h2>ERROR<br />500</h2>
 		</div>
 		<p>Đã có lỗi xảy ra! Xin vui lòng thử lại <a href="/">Quay về trang chủ</a></p>
 	</div>
 </div>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+<script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$("div[style='opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;']").remove();
+		$("div[style='margin: 0px; padding: 0px; left: 0px; width: 100%; height: 65px; right: 0px; bottom: 0px; display: block; position: fixed; z-index: 2147483647; opacity: 0.9; background-color: rgb(32, 32, 32);']").remove();
+		$("div[onmouseover='S_ssac();']").remove();
+		$("center").remove();
+		$("div[style='height: 65px;']").remove();
+	});
+</script>
+</body>
 
 </html>
-<noembed>
