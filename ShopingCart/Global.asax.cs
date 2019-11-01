@@ -18,24 +18,24 @@ namespace ShopingCart
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-		//protected void Application_Error(object sender, EventArgs e)
-		//{
-		//	var errors = Server.GetLastError();
+		protected void Application_Error(object sender, EventArgs e)
+		{
+			var errors = Server.GetLastError();
 
-		//	var error = Server.GetLastError() as HttpException;
-		//	if (errors != null || error != null && !string.IsNullOrWhiteSpace(error.Message))
-		//	{
-		//		if (error != null && error.GetHttpCode() == 404)
-		//		{
-		//			Server.ClearError();
-		//			Context.Response.Redirect("/Home/Error404");
-		//		}
-		//		else
-		//		{
-		//			Context.ClearError();
-		//			Context.Response.Redirect("/Home/Error500");
-		//		}
-		//	}
-		//}
+			var error = Server.GetLastError() as HttpException;
+			if (errors != null || error != null && !string.IsNullOrWhiteSpace(error.Message))
+			{
+				if (error != null && error.GetHttpCode() == 404)
+				{
+					Server.ClearError();
+					Context.Response.Redirect("/Home/Error404");
+				}
+				else
+				{
+					Context.ClearError();
+					Context.Response.Redirect("/Home/Error500");
+				}
+			}
+		}
 	}
 }

@@ -31375,13 +31375,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2019 10:05:49</publishTime>
     </File>
     <File Include="bin/Model.dll">
-      <publishTime>11/01/2019 14:56:34</publishTime>
+      <publishTime>11/01/2019 17:11:58</publishTime>
     </File>
     <File Include="bin/Model.dll.config">
       <publishTime>10/29/2019 10:04:30</publishTime>
     </File>
     <File Include="bin/Model.pdb">
-      <publishTime>11/01/2019 14:56:34</publishTime>
+      <publishTime>11/01/2019 17:11:58</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/29/2019 10:05:50</publishTime>
@@ -31393,13 +31393,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2019 10:05:50</publishTime>
     </File>
     <File Include="bin/Repository.dll">
-      <publishTime>11/01/2019 14:56:35</publishTime>
+      <publishTime>11/01/2019 17:12:00</publishTime>
     </File>
     <File Include="bin/Repository.dll.config">
       <publishTime>10/29/2019 10:04:31</publishTime>
     </File>
     <File Include="bin/Repository.pdb">
-      <publishTime>11/01/2019 14:56:35</publishTime>
+      <publishTime>11/01/2019 17:12:00</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>10/29/2019 10:05:49</publishTime>
@@ -31540,19 +31540,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2019 10:05:49</publishTime>
     </File>
     <File Include="bin/Service.dll">
-      <publishTime>11/01/2019 14:56:36</publishTime>
+      <publishTime>11/01/2019 17:12:01</publishTime>
     </File>
     <File Include="bin/Service.dll.config">
       <publishTime>10/29/2019 10:04:33</publishTime>
     </File>
     <File Include="bin/Service.pdb">
-      <publishTime>11/01/2019 14:56:36</publishTime>
+      <publishTime>11/01/2019 17:12:01</publishTime>
     </File>
     <File Include="bin/ShopingCart.dll">
-      <publishTime>11/01/2019 14:56:44</publishTime>
+      <publishTime>11/01/2019 17:12:17</publishTime>
     </File>
     <File Include="bin/ShopingCart.pdb">
-      <publishTime>11/01/2019 14:56:44</publishTime>
+      <publishTime>11/01/2019 17:12:17</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>10/29/2019 10:05:51</publishTime>
@@ -31780,7 +31780,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2019 10:05:09</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/01/2019 14:57:16</publishTime>
+      <publishTime>11/01/2019 17:12:55</publishTime>
     </File>
   </ItemGroup>
 </Project>
