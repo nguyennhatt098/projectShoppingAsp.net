@@ -91,38 +91,6 @@ namespace ShopingCart.Controllers
 
 			return View();
 		}
-		//[HttpPost]
-		//public ActionResult Create(WishList c)
-		//{
-		//	if (Session["User"] == null)
-		//	{
-
-		//		if (Session[Common.CommonConstants.DATA_WISH] == null)
-		//		{
-		//			var listWish = new List<int>();
-		//			listWish.Add(c.ProductID);
-		//			Session[Common.CommonConstants.DATA_WISH] = listWish;
-		//		}
-		//		else
-		//		{
-		//			var listWishs = (List<int>)Session[Common.CommonConstants.DATA_WISH];
-		//			listWishs.Add(c.ProductID);
-		//			Session[Common.CommonConstants.DATA_WISH] = listWishs;
-		//		}
-		//	}
-		//	if (Session["User"] != null)
-		//	{
-		//		var data = (Model.User)Session["User"];
-		//		c.UserID = data.UserId;
-		//		wishListService.Insert(c);
-		//	}
-
-		//	return Json(new
-		//	{
-		//		status = false
-
-		//	});
-		//}
 
 		[HttpPost]
 		public ActionResult CreateWishListIndex(string data)

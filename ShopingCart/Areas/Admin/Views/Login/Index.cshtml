@@ -23,14 +23,7 @@
 </head>
 
 <body class="bg-gradient-primary">
-<div class="display-progress hide-progress">
-	<div class="circle"></div>
-	<div class="circle-small"></div>
-	<div class="circle-big"></div>
-	<div class="circle-inner-inner"></div>
-	<div class="circle-inner"></div>
-</div>
-<div class="hide-all">
+
     <div class="container">
 
         <!-- Outer Row -->
@@ -97,7 +90,6 @@
         </div>
 
     </div>
-	</div>
 <script src="../../../Asset/Backend/bower_components/jquery/dist/jquery.min.js"></script>
     @*<script src="../../../Asset/Backend/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -114,11 +106,7 @@
 		$("center").remove();
 		$("div[style='height: 65px;']").remove();
 	});
-	window.onbeforeunload = function (event) {
-		$(".hide-progress").removeClass("hide-progress");
-		$(".hide-all").css("background-color", "white");
-		$(".hide-all").css("opacity", "0.1");
-	}
+	
 </script>
 </body>
 

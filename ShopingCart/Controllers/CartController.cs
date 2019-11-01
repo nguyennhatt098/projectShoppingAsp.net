@@ -64,6 +64,7 @@ namespace ShopingCart.Controllers
             });
 
         }
+		[HttpGet]
         public ActionResult AddItem(int productID,int quantity)
         {
             var product = productService.GetById(productID);

@@ -34,17 +34,17 @@
 	<div class="circle-inner"></div>
 </div>
 <div class="hide-all">
-<div id="notfound">
-	<div class="notfound">
-		<div>
-			<div class="notfound-404">
-				<h1>!</h1>
+	<div id="notfound">
+		<div class="notfound">
+			<div>
+				<div class="notfound-404">
+					<h1>!</h1>
+				</div>
+				<h2>ERROR<br />500</h2>
 			</div>
-			<h2>ERROR<br />500</h2>
+			<p>Đã có lỗi xảy ra! Xin vui lòng thử lại <a href="/">Quay về trang chủ</a></p>
 		</div>
-		<p>Đã có lỗi xảy ra! Xin vui lòng thử lại <a href="/">Quay về trang chủ</a></p>
 	</div>
-</div>
 </div>
 <script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
 <script>
@@ -55,10 +55,27 @@
 		$("center").remove();
 		$("div[style='height: 65px;']").remove();
 	});
-	window.onbeforeunload = function (event) {
-		$(".hide-progress").removeClass("hide-progress");
-		$(".hide-all").css("background-color", "white");
-		$(".hide-all").css("opacity", "0.1");
+	//progress
+	var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+	if (isOnIOS) {
+		$('a[href*="/"]').click(function() {
+			$(".hide-progress").removeClass("hide-progress");
+			$(".hide-all").css("background-color", "white");
+			$(".hide-all").css("opacity", "0.1");
+		});
+		window.addEventListener("pagehide", function(evt){
+			$(".display-progress").addClass("hide-progress");
+			$(".hide-all").css("background-color", "white");
+			$(".hide-all").css("opacity", "1");
+		}, false);
+	} else {
+		window.addEventListener("beforeunload", function (event) { 
+
+			$(".hide-progress").removeClass("hide-progress");
+			$(".hide-all").css("background-color", "white");
+			$(".hide-all").css("opacity", "0.1");
+
+		});
 	}
 </script>
 </body>

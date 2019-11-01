@@ -8,8 +8,8 @@ body {
 }
 
 .circle {
-	width: 180px;
-	height: 180px;
+	width: 190px;
+	height: 190px;
 	border: 10px inset rgb(133,224,242);
 	display: block;
 	position: fixed;
@@ -99,10 +99,12 @@ body {
 
 @-moz-keyframes rotate {
 	0% {
+		-webkit-transform: rotate(0deg);
 		-moz-transform: rotate(0deg);
 	}
 
 	100% {
+		-webkit-transform: rotate(360deg);
 		-moz-transform: rotate(360deg);
 	}
 }
@@ -119,10 +121,12 @@ body {
 
 @keyframes rotate {
 	0% {
+		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
 
 	100% {
+		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg);
 	}
 }
@@ -151,10 +155,12 @@ body {
 
 @keyframes rotate-rev {
 	0% {
+		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
 
 	100% {
+		-webkit-transform: rotate(-360deg);
 		transform: rotate(-360deg);
 	}
 }
@@ -163,16 +169,19 @@ body {
 
 @-moz-keyframes pulse {
 	0% {
+		-webkit-transform: scale(0.1);
 		-moz-transform: scale(0.1);
 		opacity: 0.2;
 	}
 
 	50% {
+		-webkit-transform: scale(1);
 		-moz-transform: scale(1);
 		opacity: 0.8;
 	}
 
 	100% {
+		-webkit-transform: scale(0.1);
 		-moz-transform: scale(0.1);
 		opacity: 0.2;
 	}
@@ -197,26 +206,24 @@ body {
 
 @keyframes pulse {
 	0% {
+		-webkit-transform: scale(0.1);
 		transform: scale(0.1);
 		opacity: 0.2;
 	}
 
 	50% {
+		-webkit-transform: scale(1);
 		transform: scale(1);
 		opacity: 0.8;
 	}
 
 	100% {
+		-webkit-transform: scale(0.1);
 		transform: scale(0.1);
 		opacity: 0.2;
 	}
 }
 
-.display-progress {
-	background: white;
-	/*position: absolute;
-	z-index: 9999;*/
-}
 .hide-progress {
 	display: none;
 }

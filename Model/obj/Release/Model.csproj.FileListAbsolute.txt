@@ -44,3 +44,4 @@ C:\Users\PC\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.dll
 C:\Users\PC\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.pdb
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
 C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.csproj.CopyComplete
+C:\Users\nmnhat\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.csprojAssemblyReference.cache

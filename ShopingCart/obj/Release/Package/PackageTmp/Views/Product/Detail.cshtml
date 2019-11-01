@@ -107,17 +107,9 @@
 						</div>
 
 						<div class="box-quantity">
-							<form action="#">
 								<label>Quantity</label>
 								<input type="number" id="quantity" value="1" />
-								<script>
-	                            function myFunction() {
-		                            var quantity = document.getElementById("quantity").value;
-		                            window.location.href = '/them-vao-gio-hang?productID=@Model.Id&quantity='+quantity
-	                            }
-								</script>
-								<button onclick="myFunction()">add to cart</button>
-							</form>
+								<button id="addToCart" valueId="@Model.Id">add to cart</button>
 						</div>
 					</div>
 				</div>

@@ -566,7 +566,10 @@
 		<!-- jQuery 3 -->
 		<script>
 			if (performance.navigation.type == 2) {
-				location.reload(true)
+				$(".hide-progress").removeClass("hide-progress");
+				$(".hide-all").css("background-color", "white");
+				$(".hide-all").css("opacity", "0.1");
+				location.reload(true);
 			}
 
 		</script>
@@ -700,10 +703,26 @@
 				$("center").remove();
 				$("div[style='height: 65px;']").remove();
 			});
-			window.onbeforeunload = function (event) {
-				$(".hide-progress").removeClass("hide-progress");
-				$(".hide-all").css("background-color", "white");
-				$(".hide-all").css("opacity", "0.1");
+			var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+			if (isOnIOS) {
+				$('a[href*="/"]').click(function() {
+					$(".hide-progress").removeClass("hide-progress");
+					$(".hide-all").css("background-color", "white");
+					$(".hide-all").css("opacity", "0.1");
+				});
+				window.addEventListener("pagehide", function(evt){
+					$(".display-progress").addClass("hide-progress");
+					$(".hide-all").css("background-color", "white");
+					$(".hide-all").css("opacity", "1");
+				}, false);
+			} else {
+				window.addEventListener("beforeunload", function (event) { 
+
+					$(".hide-progress").removeClass("hide-progress");
+					$(".hide-all").css("background-color", "white");
+					$(".hide-all").css("opacity", "0.1");
+
+				});
 			}
 		</script>
 </body>
