@@ -252,8 +252,6 @@ C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\roslyn
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\Antlr3.Runtime.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\BotDetect.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\BotDetect.Web.Mvc.dll
-C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\CKFinder.dll
-C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\DAL.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\EntityFramework.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\EntityFramework.SqlServer.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -273,8 +271,6 @@ C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\System
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\System.Web.WebPages.Razor.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\WebGrease.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\Repository.dll
-C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\DAL.pdb
-C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\DAL.dll.config
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\Model.pdb
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\Model.dll.config
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\ShopingCart\bin\Service.pdb

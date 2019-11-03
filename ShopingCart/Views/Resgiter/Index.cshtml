@@ -17,7 +17,7 @@
 		</ol>
 	</div>
 </div>
-<div class="login-area mb-50">
+<div class="login-area mb-50 form-register">
 	<div class="container">
 		<div class="row">
 			<div class="centered-title text-center mb-40">
@@ -66,22 +66,22 @@
 						</p>
 						<p class="form-row col-sm-12">
 							@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-							@Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+							<input class="form-control" type="password" name="Password"/>
 							@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 						</p>
 						<p class="form-row col-sm-12">
 							@Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-							@Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+							<input class="form-control" type="password" name="ConfirmPassword" />
 							@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
 						</p>
 						<div class="col-sm-12">
 							@Html.Captcha(registerCaptcha)
 							@Html.ValidationMessage("CaptchaCode", new { @class = "text-danger" })
-							@Html.TextBox("CaptchaCode")
+							@Html.TextBox("CaptchaCode", null, new { @class = "form-control" })
 
 						</div>
-						<p class="col-sm-12">
-							<input type="submit" value="Register" name="signup" class="theme-button marL0">
+						<p style="" class="form-row">
+							<input style="border:1px;margin-top:20px;margin-left:12px;" type="submit" value="Register" name="signup" class="theme-button marL0">
 						</p>
 					</div>
 				</div>

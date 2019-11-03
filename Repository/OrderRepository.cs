@@ -61,7 +61,7 @@ namespace Repository
 
 		public IEnumerable<Order> Search(string searchString, int Page, int Pagesize)
 		{
-			var model = context.Orders.ToList();
+			var model = context.Orders.OrderByDescending(x => x.Created).ToList();
 			if (!string.IsNullOrWhiteSpace(searchString))
 			{
 				model = model.Where(x => x.Name.Contains(searchString)).ToList();

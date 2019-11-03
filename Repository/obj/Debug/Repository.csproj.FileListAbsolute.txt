@@ -49,14 +49,11 @@ C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\obj\Debug\R
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Repository.dll.config
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Repository.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Repository.pdb
-C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\DAL.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\EntityFramework.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Model.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\PagedList.dll
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\PagedList.Mvc.dll
-C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\DAL.pdb
-C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\DAL.dll.config
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Model.pdb
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\Model.dll.config
 C:\Users\PC\Desktop\New folder (2)\projectShoppingAsp.net\Repository\bin\Debug\EntityFramework.xml

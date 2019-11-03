@@ -584,10 +584,10 @@ form#searchbox input {
   display: none;
 }
 .box-quantity input {
-  display: block;;
+  display: block;
 } 
-
-
- 
 }
- 
+.form-register input{
+	border:1px solid grey;
+}
+
