@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace Service.Interface
 {
-public	interface IOrderDetailService
+	public interface IOrderDetailService
 	{
 		IList<OrderDetailDTO> GetAll(int id);
 		int Update(OrderDetail t);
 		int Inserts(Order order, List<OrderDetail> orderDetail);
+		IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize);
 	}
 }

@@ -126,8 +126,13 @@ namespace ShopingCart.Controllers
 			}
 		}
 
-		public ActionResult OrderHistory()
+		public ActionResult OrderHistory(int Page = 1, int pageSize = 6)
 		{
+			if (Session["User"] != null)
+			{
+				var currentUser = (User)Session["User"];
+				return View(_orderDetailService.GetListOrderById(currentUser.UserId, Page, pageSize));
+			}
 			return View();
 		}
     }

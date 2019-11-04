@@ -1,5 +1,6 @@
 ﻿using Model;
 using Model.ViewModel;
+using PagedList;
 using Repository.DAL;
 using Repository.Interface;
 using System;
@@ -57,6 +58,12 @@ namespace Repository
 		public Contact GetContact()
 		{
 			throw new NotImplementedException();
+		}
+
+		public IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize)
+		{
+			var model = context.Orders.Where(x => x.User_ID == userId);
+			return model.OrderByDescending(x => x.Created).ToPagedList(Page, Pagesize);
 		}
 
 		public int Insert(OrderDetail t)

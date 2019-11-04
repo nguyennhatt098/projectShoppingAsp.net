@@ -12,7 +12,7 @@ namespace Model
 		[ForeignKey("Oder_ID")]
 		public  Order Order { get; set; }
 		[ForeignKey("Product_Id")]
-		public Product Product { get; set; }
+		public virtual Product Product { get; set; }
 	}
 
 }

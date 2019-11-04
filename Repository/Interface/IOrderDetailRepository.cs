@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Repository.Interface
 {
-public	interface IOrderDetailRepository
+	public interface IOrderDetailRepository
 	{
 		IList<OrderDetailDTO> GetAll(int id);
 		int Update(OrderDetail t);
 		int Inserts(Order order, List<OrderDetail> orderDetails);
-		//int InsertNotify(Notify notify);
+		IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize);
 	}
 }

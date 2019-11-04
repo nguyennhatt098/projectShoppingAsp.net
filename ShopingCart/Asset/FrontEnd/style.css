@@ -1414,3 +1414,6 @@ li:last-child {
 .pro-large-img img {
 	width:100%;
 }
+body {
+	font-family:  Seagoe UI, sans-serif !important;
+}

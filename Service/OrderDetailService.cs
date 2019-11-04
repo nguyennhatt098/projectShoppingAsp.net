@@ -19,7 +19,10 @@ namespace Service
 			return repository.GetAll(id);
 		}
 
-		
+		public IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize)
+		{
+			return repository.GetListOrderById(userId, Page, Pagesize);
+		}
 
 		public int Inserts(Order order, List<OrderDetail> orderDetails)
 		{
