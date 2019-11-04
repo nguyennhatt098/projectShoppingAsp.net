@@ -590,4 +590,6 @@ form#searchbox input {
 .form-register input{
 	border:1px solid grey;
 }
-
+.menu-left > a{
+	color: black !important;
+}

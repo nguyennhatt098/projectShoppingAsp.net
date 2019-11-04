@@ -25,7 +25,6 @@ namespace ShopingCart.Controllers
         {
 			var user = (User)Session["User"];
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
 			var index = Request.Params["page"];
 	        double value;
 	        ViewBag.ListCategory = categoryService.Search("", pageIndex, pageSize);
@@ -54,7 +53,6 @@ namespace ShopingCart.Controllers
         {
 	        var user = (User)Session["User"];
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-	        if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
 			var index = Request.Params["page"];
 			int totalPage = 0;
 			var total = productService.Count(id);

@@ -3445,6 +3445,7 @@
     <Content Include="Views\Home\Error500.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Order\OrderHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

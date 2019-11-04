@@ -45,31 +45,11 @@ namespace ShopingCart.Controllers
 						return View("Index");
 					}
 
-					if (Session[Common.CommonConstants.DATA_WISH] != null)
-					{
-						var wishList = new List<WishList>();
-						var productList = (List<int>)Session[Common.CommonConstants.DATA_WISH];
-						foreach (var item in productList)
-						{
-							wishList.Add(new WishList
-							{
-								UserID = user.UserId,
-								ProductID = item
-							});
-						}
-
-						var currentWishList = wishListService.GetById(user.UserId);
-						var checkExist = wishList.Where(x => !currentWishList.Any(w => w.ProductID.Equals(x.ProductID))).ToList();
-						Session[Common.CommonConstants.DATA_WISH] = null;
-						wishListService.AddMutiple(checkExist);
-					}
 					Session["User"] = user;
 					return RedirectToAction("Index", "Home");
 				}
-				else
-				{
-					ModelState.AddModelError("", "Login sai");
-				}
+
+				ModelState.AddModelError("", "Login sai");
 			}
 			return View("Index");
 		}

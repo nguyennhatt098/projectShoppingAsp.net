@@ -77,6 +77,25 @@
 			</div>
 		</div>
 	</div>
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="checkWishLish" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 style="color:red" class="modal-title">Thông báo</h4>
+					</div>
+					<div class="modal-body">
+						Bạn phải đăng nhập mới được thực hiện chức năng này
+					</div>
+					<div class="modal-footer">
+						<button type="button" onclick="location.href = '/login';" class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
 <!-- Bootstrap framework js -->
@@ -249,7 +268,7 @@
 				} else {
 					wishLists = $.grep(wishLists, function(e) { return e.ProductID !== id });
 				}
-
+	debugger 
 				if ($(".wishlist-" + id).hasClass("wishlistDisLike")) {
 					$(".wishlist-" + $(this).data('id')).removeClass("wishlistDisLike");
 				} else {

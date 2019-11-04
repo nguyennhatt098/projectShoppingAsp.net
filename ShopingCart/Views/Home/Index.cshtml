@@ -3,11 +3,9 @@
 @{
 	ViewBag.Title = "Trang Chủ";
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	var listproducthot = (List<Model.Product>)ViewBag.ListProductHot;
 	var ListProductNew = (List<Model.Product>)ViewBag.ListProductNew;
 	var wishList = (List<Model.WishList>)ViewBag.wishList;
 	var user = (User)Session["User"];
-	var ListNotInUser = (List<int>)ViewBag.ListNotInUser;
 	var listNews = (List<Model.News>)ViewBag.ListNews;
 
 }
@@ -71,15 +69,7 @@
 
 														@if (user == null)
 														{
-															if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
-															{
-																<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like "></i></a>
-															}
-															else
-															{
-																<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
-															}
-
+															<a  data-toggle="modal" data-target="#checkWishLish" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
 														}
 														else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 														{
@@ -150,15 +140,7 @@
 									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
 									@if (user == null)
 									{
-										if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
-										{
-											<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like "></i></a>
-										}
-										else
-										{
-											<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
-										}
-
+										<a  data-toggle="modal" data-target="#checkWishLish" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
 									}
 									else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 									{

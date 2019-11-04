@@ -35,7 +35,6 @@ namespace ShopingCart.Controllers
 		{
 			var user = (User)Session["User"];
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			if (user == null) ViewBag.ListNotInUser = Session[Common.CommonConstants.DATA_WISH];
 			ViewBag.ListProductNew = productService.ListProductNew();
 			ViewBag.ListNews = newsService.GetAll();
 			ViewBag.ListProductSale = productService.ListProductSale();
@@ -97,37 +96,7 @@ namespace ShopingCart.Controllers
 		{
 			var items = JsonConvert.DeserializeObject<List<WishList>>(data);
 			var user = (Model.User)Session["User"];
-			var listWishs = (List<int>)Session[Common.CommonConstants.DATA_WISH] == null ? new List<int>() : (List<int>)Session[Common.CommonConstants.DATA_WISH];
-			if (user == null)
-			{
-
-				if (listWishs.Count == 0)
-				{
-					foreach (var item in items)
-					{
-						listWishs.Add(item.ProductID);
-					}
-				}
-				else
-				{
-
-					foreach (var item in items)
-					{
-						var currentItem = listWishs.FirstOrDefault(x => x == item.ProductID);
-						if (currentItem == item.ProductID)
-						{
-							listWishs.Remove(currentItem);
-						}
-						else
-						{
-							listWishs.Add(item.ProductID);
-						}
-					}
-
-
-				}
-				Session[Common.CommonConstants.DATA_WISH] = listWishs;
-			}
+			
 			if (user != null)
 			{
 				var wishLists = wishListService.GetById(user.UserId).ToList();

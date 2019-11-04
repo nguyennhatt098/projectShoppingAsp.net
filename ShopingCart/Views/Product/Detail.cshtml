@@ -12,7 +12,6 @@
 	var commentList =(List<Model.ViewModel.CommentDTO>) ViewBag.CommentList;
 	var product =(Model.Product) ViewBag.Product;
 	var answerComment =(List<Model.AnswerComment>) ViewBag.AnswerComment;
-	var ListNotInUser = (List<int>)ViewBag.ListNotInUser;
 	var wishList = (List<Model.WishList>)ViewBag.wishList;
 	var user = (Model.User)Session["User"];
 }
@@ -161,7 +160,7 @@
 									<ul class="media-list">
 										@foreach (var item in commentList)
 										{
-											var total = answerComment.Where(x => x.CommentId.Equals(item.CommentId)).Count() > 0 ? answerComment.Where(x => x.CommentId.Equals(item.CommentId)).Count().ToString() : "";
+											var total = answerComment.Any(x => x.CommentId.Equals(item.CommentId)) ? answerComment.Count(x => x.CommentId.Equals(item.CommentId)).ToString() : "";
 											<li class="media">
 												<a href="#" class="pull-left">
 													<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
@@ -318,15 +317,7 @@
 									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
 									@if (user == null)
 									{
-										if (ListNotInUser != null && ListNotInUser.Any(x => x.Equals(item.Id)))
-										{
-											<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i  class="pe-7s-like"></i></a>
-										}
-										else
-										{
-											<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
-										}
-
+										<a  data-toggle="modal" data-target="#checkWishLish" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
 									}
 									else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 									{
