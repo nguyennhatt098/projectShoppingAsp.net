@@ -11,7 +11,8 @@ namespace Model
 		public double Quantity { get; set; }
 		[ForeignKey("OrderId")]
 		public  Order Order { get; set; }
-		[ForeignKey("ProductId")] public virtual Product Product { get; set; }
+		[ForeignKey("ProductId")]
+		public virtual Product Product { get; set; }
 		public ReviewProduct ReviewProduct { get; set; }
 	}
 

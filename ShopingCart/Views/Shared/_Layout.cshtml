@@ -337,8 +337,15 @@
 			var productId=$(this).attr("valueId");
 			window.location.href = '/them-vao-gio-hang?productID='+productId+'&quantity=' + quantity
 		});
-	});
+	
+		$('.star').on('change', function() {
+			let stars = $(this).val();
+  console.log(stars);
+		});
 
+
+	});
+		
 </script>
 
 @RenderSection("footer", required: false)

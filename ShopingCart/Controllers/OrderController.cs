@@ -135,5 +135,9 @@ namespace ShopingCart.Controllers
 			}
 			return View();
 		}
+		public ActionResult ReviewOrder(string id)
+		{
+			return View();
+		}
     }
 }

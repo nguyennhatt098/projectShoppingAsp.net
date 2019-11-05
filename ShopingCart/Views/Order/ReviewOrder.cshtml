@@ -1,0 +1,90 @@
+﻿
+@{
+	ViewBag.Title = "ReviewOrder";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="space-custom"></div>
+
+<div class="breadcrumb-area">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-home"></i></a></li>
+			<li><a href="#">Shop</a></li>
+			<li class="active">Register</li>
+		</ol>
+	</div>
+</div>
+<div class="login-area mb-50 form-register">
+	<div class="container">
+		<div class="row">
+			<div class="centered-title text-center mb-40">
+				<h2>Đánh giá sản phẩm</h2>
+				<div class="clear"></div>
+				<em>Chia sẻ cảm nhận của bạn về sản phẩm</em>
+			</div>
+			<div class="clear"></div>
+			<div style="background:white;padding:10px">
+				<div class="clearfix">
+					<div class="col-md-2 col-sm-2 	col-xs-2 col-lg-2">
+						<img style="width:100%" src="https://cfshopeetw-a.akamaihd.net/file/5f5f68be8b4621fedd559b240bd06131" />
+					</div>
+					<div class="col-md-10 col-sm-10 	col-xs-10 col-lg-10">
+						<h3>Đảo Mèo nhưng xin phép đăng ảnh thằn lằn   </h3>
+					</div>
+				</div>
+				<div class="rating">
+					<input id="radio1_1" type="radio" name="star1" value="5" class="star" />
+					<label for="radio1_1">&#9733;</label>
+					<input id="radio1_2" type="radio" name="star1" value="4" class="star" />
+					<label for="radio1_2">&#9733;</label>
+					<input id="radio1_3" type="radio" name="star1" value="3" class="star" />
+					<label for="radio1_3">&#9733;</label>
+					<input id="radio1_4" type="radio" name="star1" value="2" class="star" />
+					<label for="radio1_4">&#9733;</label>
+					<input id="radio1_5" type="radio" name="star1" value="1" class="star" />
+					<label for="radio1_5">&#9733;</label>
+				</div>
+				<div>
+					<textarea style="height:150px;border:1px solid grey;background:white" placeholder="Hãy chia sẻ những điều bạn thích về sản phẩm này nhé"></textarea>
+					<input class="uploadfile"/>
+
+				</div>
+			</div>
+			<button type="button" class="btn btn-primary">Gửi</button>
+			<div class="col-md-6 marTB30"></div>
+			@*<div class="rating">
+			<input id="radio2_1" type="radio" name="star2" value="5" class="star" />
+			<label for="radio2_1">&#9733;</label>
+			<input id="radio2_2" type="radio" name="star2" value="4" class="star" />
+			<label for="radio2_2">&#9733;</label>
+			<input id="radio2_3" type="radio" name="star2" value="3" class="star" />
+			<label for="radio2_3">&#9733;</label>
+			<input id="radio2_4" type="radio" name="star2" value="2" class="star" />
+			<label for="radio2_4">&#9733;</label>
+			<input id="radio2_5" type="radio" name="star2" value="1" class="star" />
+			<label for="radio2_5">&#9733;</label>
+		</div>
+		<div class="rating">
+			<input id="radio3_1" type="radio" name="star3" value="5" class="star" />
+			<label for="radio3_1">&#9733;</label>
+			<input id="radio3_2" type="radio" name="star3" value="4" class="star" />
+			<label for="radio3_2">&#9733;</label>
+			<input id="radio3_3" type="radio" name="star3" value="3" class="star" />
+			<label for="radio3_3">&#9733;</label>
+			<input id="radio3_4" type="radio" name="star3" value="2" class="star" />
+			<label for="radio3_4">&#9733;</label>
+			<input id="radio3_5" type="radio" name="star3" value="1" class="star" />
+			<label for="radio3_5">&#9733;</label>
+		</div>*@
+			<!-- /.col-md-6 -->
+		</div>
+		<!-- /.row -->
+	</div>
+</div>
+<!-- login-area end -->
+<!-- service-area start -->
+@section footer{
+	@Scripts.Render("~/bundles/jqueryval");
+}
+
