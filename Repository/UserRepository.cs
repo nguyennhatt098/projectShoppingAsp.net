@@ -8,10 +8,10 @@ using Repository.DAL;
 
 namespace Repository
 {
-    public class UserReponsitory : IRepository<User>, IDisposable
+	public class UserRepository : IRepository<User>, IDisposable
 	{
 		private DBEntityContext context;
-		public UserReponsitory(DBEntityContext context)
+		public UserRepository(DBEntityContext context)
 		{
 			this.context = context;
 		}
@@ -45,7 +45,7 @@ namespace Repository
 
 		public IEnumerable<User> GetAll()
 		{
-			return context.Users.OrderByDescending(x=>x.CreatedDate).ToList();
+			return context.Users.OrderByDescending(x => x.CreatedDate).ToList();
 		}
 
 		public User GetById(int id)
@@ -86,7 +86,7 @@ namespace Repository
 				context.Users.Add(currentUser);
 			}
 
-				return context.SaveChanges();
+			return context.SaveChanges();
 		}
 
 		public bool Login(string username, string password)

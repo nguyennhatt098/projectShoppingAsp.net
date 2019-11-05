@@ -81,7 +81,7 @@
     <Compile Include="RoleActionRepository.cs" />
     <Compile Include="RoleRepository.cs" />
     <Compile Include="SliderRepository.cs" />
-    <Compile Include="UserReponsitory.cs" />
+    <Compile Include="UserRepository.cs" />
     <Compile Include="WishListReponsitory.cs" />
   </ItemGroup>
   <ItemGroup>
