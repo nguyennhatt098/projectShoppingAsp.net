@@ -54,7 +54,7 @@ namespace Repository
 
 		public int Count(int productId)
 		{
-			return context.Comments.Where(x => x.ProductId == productId).Count();
+			return context.Comments.Count(x => x.ProductId == productId);
 		}
 
 		public int Insert(Comment t)

@@ -58,7 +58,7 @@
 										<div class="col-md-12">
 											<div class="product-wrapper mb-40  ">
 												<div class="product-img">
-													<a href="javascript:void(0)"><img src="@item.Images" alt="@item.Name" /></a>
+													<a href="@url"><img src="@item.Images" alt="@item.Name" /></a>
 													@if (item.TopHot)
 													{
 														<span class="new-label-hot">Hot</span>
@@ -130,17 +130,15 @@
 				{
 					var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
 					<div class="col-md-12">
-
-
 						<div class="product-wrapper mb-40">
 							<div class="product-img">
-								<a href="javascript:void(0)"><img src="@item.Images" alt="@item.Name" /></a>
+								<a  href="@url"><img src="@item.Images" alt="@item.Name" /></a>
 								<span class="new-label">New</span>
 								<div class="product-action">
 									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
 									@if (user == null)
 									{
-										<a  data-toggle="modal" data-target="#checkWishLish" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
+										<a data-toggle="modal" data-target="#checkWishLish" href="javascript:void(0)"><i class="pe-7s-like"></i></a>
 									}
 									else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 									{

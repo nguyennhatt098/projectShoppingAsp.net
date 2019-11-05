@@ -21,57 +21,45 @@ namespace ShopingCart.Controllers
 			wishListService=new WishListService();
 			commentService = new CommentService();
         }
-        public ActionResult CategoryViewDetail(int id, int pageIndex = 1, int pageSize = 6)
+        public ActionResult CategoryViewDetail(int id, int page = 1, int pageSize = 6)
         {
 			var user = (User)Session["User"];
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			var index = Request.Params["page"];
-	        double value;
-	        ViewBag.ListCategory = categoryService.Search("", pageIndex, pageSize);
+	        ViewBag.ListCategory = categoryService.Search("", page, pageSize);
 			var category = categoryService.GetById(id);
 	        ViewBag.Category = category;
-			if (!double.TryParse(index, out value)&&index!=null) return Redirect("/danh-muc-san-pham/4321-"+TempData["categoryId"]+"?page="+ TempData["GoBack"]);
-			TempData["GoBack"] = index;
-			TempData["categoryId"] = id;
-			var totalPage = 0;
 			var total = productService.Count(id);
-			var realTotalPage = float.Parse(total.ToString()) / float.Parse(pageSize.ToString());
-			totalPage = (int)Math.Ceiling((double)(total / pageSize));
+			var totalPage = (int)Math.Ceiling((double)(total / pageSize));
 			if (total % pageSize != 0) totalPage += 1;
-			var convertIndex = 0;
-			if (index == null || double.Parse(index) <= 0) convertIndex = 1;
-			else convertIndex = (double.Parse(index) > totalPage) ? totalPage : int.Parse(index);
-			var model = productService.ListProductGetByCategory(id, convertIndex, pageSize).ToList();
+			if (page <= 0) page = 1;
+			else page = (page > totalPage && totalPage > 0) ? totalPage : page;
+			var model = productService.ListProductGetByCategory(id, page, pageSize).ToList();
 			ViewBag.CountProduct = total;
-			ViewBag.Page = convertIndex;
+			ViewBag.Page = page;
             ViewBag.TotalPage = totalPage;
-            ViewBag.Next = convertIndex + 1;
-            ViewBag.Prev = convertIndex - 1;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
             return View(model);
         }
-        public ActionResult Detail(int id, int pageIndex = 1, int pageSize = 5)
+        public ActionResult Detail(int id, int page = 1, int pageSize = 5)
         {
 	        var user = (User)Session["User"];
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			var index = Request.Params["page"];
-			int totalPage = 0;
-			var total = productService.Count(id);
-			totalPage = (int)Math.Ceiling((double)(total / pageSize));
-			int convertIndex;
-			if (index == null || double.Parse(index) <= 0) convertIndex = 1;
-			else convertIndex = (double.Parse(index) > totalPage) ? totalPage : int.Parse(index);
-			var model = commentService.Search(id, convertIndex, pageSize).ToList();
-			ViewBag.Page = convertIndex;
+			var total = commentService.Count(id);
+			var totalPage = (int)Math.Ceiling((double)(total / pageSize));
+			if (page <= 0) page = 1;
+			else page = (page > totalPage && totalPage > 0) ? totalPage : page;
+			var model = commentService.Search(id, page, pageSize).ToList();
+			ViewBag.Page = page;
 			ViewBag.TotalPage = totalPage;
-			ViewBag.Next = convertIndex + 1;
-			ViewBag.Prev = convertIndex - 1;
+			ViewBag.Next = page + 1;
+			ViewBag.Prev = page - 1;
 			ViewBag.CommentList = model;
 			//detail
 			ViewBag.AnswerComment = commentService.answerComments();
 			ViewBag.ListProductOther = productService.ListProductSale();
             var product = productService.GetById(id);
             ViewBag.Category = categoryService.GetById(product.Category_ID);
-			ViewBag.Product = product;
 			return View(product);
         }
 		[HttpPost]

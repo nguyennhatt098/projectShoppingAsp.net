@@ -80,7 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleActionRepository.cs" />
     <Compile Include="RoleRepository.cs" />
-    <Compile Include="SliderReponsitory.cs" />
+    <Compile Include="SliderRepository.cs" />
     <Compile Include="UserReponsitory.cs" />
     <Compile Include="WishListReponsitory.cs" />
   </ItemGroup>

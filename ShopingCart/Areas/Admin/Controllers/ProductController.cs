@@ -28,10 +28,6 @@ namespace ShopingCart.Areas.Admin.Controllers
 			ViewBag.Category_ID = new SelectList(product.Categories(), "ID", "Name");
 			return View();
 		}
-		//public ActionResult Detail(int id)
-		//{
-		//	return View(product.GetById(id));
-		//}
 		[HttpPost]
 		[ValidateInput(false)]
 		[ValidateAntiForgeryToken]

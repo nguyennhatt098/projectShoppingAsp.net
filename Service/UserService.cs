@@ -13,7 +13,7 @@ namespace Service
 		private IRepository<User> repository;
 		public UserService()
 		{
-			repository = new UserReponsitory(new DBEntityContext());
+			repository = new UserRepository(new DBEntityContext());
 		}
 
 		public int Delete(int id)

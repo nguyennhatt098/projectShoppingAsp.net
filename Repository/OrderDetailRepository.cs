@@ -25,13 +25,13 @@ namespace Repository
 		public IList<OrderDetailDTO> GetAll(int id)
 		{
 			var result = (from c in context.OrderDetails
-						  join p in context.Products on c.Product_Id equals p.Id
-						  where c.Oder_ID == id
+						  join p in context.Products on c.ProductId equals p.Id
+						  where c.OrderId == id
 						  select new OrderDetailDTO
 						  {
 							  Images = p.Images,
 							  NameProduct = p.Name,
-							  Oder_ID = c.Oder_ID,
+							  Oder_ID = c.OrderId,
 							  Price = c.Price,
 							  Quantity = c.Quantity,
 							  Product_Id = p.Id,
@@ -62,7 +62,7 @@ namespace Repository
 
 		public IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize)
 		{
-			var model = context.Orders.Where(x => x.User_ID == userId);
+			var model = context.Orders.Where(x => x.UserId == userId);
 			return model.OrderByDescending(x => x.Created).ToPagedList(Page, Pagesize);
 		}
 
@@ -84,7 +84,7 @@ namespace Repository
 					var firstOrder = context.Orders.OrderByDescending(x => x.Created).FirstOrDefault();
 					foreach (var item in orderDetails)
 					{
-						item.Oder_ID = firstOrder.ID;
+						item.OrderId = firstOrder.ID;
 						context.OrderDetails.Add(item);
 						context.SaveChanges();
 					}

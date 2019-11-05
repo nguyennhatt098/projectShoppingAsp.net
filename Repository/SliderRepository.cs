@@ -1,5 +1,4 @@
-﻿
-using Model;
+﻿using Model;
 using Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -9,10 +8,10 @@ using Repository.DAL;
 
 namespace Repository
 {
-	public class SliderReponsitory : IRepository<Slider>, IDisposable
+	public class SliderRepository : IRepository<Slider>, IDisposable
 	{
 		private DBEntityContext context;
-		public SliderReponsitory(DBEntityContext context)
+		public SliderRepository(DBEntityContext context)
 		{
 			this.context = context;
 		}
@@ -34,7 +33,7 @@ namespace Repository
 
 		public IEnumerable<Slider> GetAll()
 		{
-			return context.Sliders.Where(x => x.Status == true).OrderByDescending(x => x.Created).Take(3).ToList();
+			return context.Sliders.Where(x => x.Status == true).OrderByDescending(x => x.DisplayOrder).Take(3).ToList();
 		}
 
 		public Slider GetById(int id)

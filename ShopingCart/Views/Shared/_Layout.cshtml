@@ -268,7 +268,7 @@
 				} else {
 					wishLists = $.grep(wishLists, function(e) { return e.ProductID !== id });
 				}
-	debugger 
+
 				if ($(".wishlist-" + id).hasClass("wishlistDisLike")) {
 					$(".wishlist-" + $(this).data('id')).removeClass("wishlistDisLike");
 				} else {
@@ -277,8 +277,6 @@
 				if (isOnIOS) {
 					$('a[href*="/"]').click(function() {
 						var data = wishLists;
-						console.log(JSON.stringify({ 'data': data }));
-						debugger
 						$.ajax({
 							url: '/Home/CreateWishListIndex',
 							data: { 'data': JSON.stringify(data) },
@@ -286,17 +284,13 @@
 							type: 'POST',
 							traditional: true,
 							success: (res) => {
-								debugger;
+								
 							}
 						});
 					});
 				} else {
 					window.onbeforeunload = function (event) {
-					
-				
 						var data = wishLists;
-						console.log(JSON.stringify({ 'data': data }));
-						debugger
 						$.ajax({
 							url: '/Home/CreateWishListIndex',
 							data: { 'data': JSON.stringify(data) },
@@ -304,13 +298,11 @@
 							type: 'POST',
 							traditional: true,
 							success: (res) => {
-								debugger;
+								
 							}
 						});
 					};
 				}
-			
-
 			});
 		window.addEventListener("pagehide",
 			function(evt) {

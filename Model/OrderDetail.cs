@@ -5,14 +5,14 @@ namespace Model
 	public class OrderDetail
 	{
 		public int ID { get; set; }
-		public int Product_Id { get; set; }
-		public int Oder_ID { get; set; }
+		public int ProductId { get; set; }
+		public int OrderId { get; set; }
 		public float Price { get; set; }
 		public double Quantity { get; set; }
-		[ForeignKey("Oder_ID")]
+		[ForeignKey("OrderId")]
 		public  Order Order { get; set; }
-		[ForeignKey("Product_Id")]
-		public virtual Product Product { get; set; }
+		[ForeignKey("ProductId")] public virtual Product Product { get; set; }
+		public ReviewProduct ReviewProduct { get; set; }
 	}
 
 }

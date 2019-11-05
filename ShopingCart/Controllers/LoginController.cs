@@ -66,7 +66,6 @@ namespace ShopingCart.Controllers
         public ActionResult ForgotPassWord(string EmailAddress)
         {
             string mesage = "";
-            bool status = false;
             using (DBEntityContext db = new DBEntityContext())
             {
                 var acc = db.Users.FirstOrDefault(x => x.Email == EmailAddress);
@@ -137,7 +136,7 @@ namespace ShopingCart.Controllers
         {
             using(DBEntityContext db = new DBEntityContext())
             {
-                var user = db.Users.Where(s => s.RessetPasswordCode == id).FirstOrDefault();
+                var user = db.Users.FirstOrDefault(s => s.RessetPasswordCode == id);
                 if (user != null)
                 {
                     ResetPassWord model = new ResetPassWord();
@@ -159,7 +158,7 @@ namespace ShopingCart.Controllers
             {
                 using (DBEntityContext db = new DBEntityContext())
                 {
-                    var user = db.Users.Where(s => s.RessetPasswordCode == model.ResetCode).FirstOrDefault();
+                    var user = db.Users.FirstOrDefault(s => s.RessetPasswordCode == model.ResetCode);
                     if (user !=null)
                     {
                         user.Password = Encryptor.MD5Hash(model.NewPassword);

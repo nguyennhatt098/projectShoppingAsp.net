@@ -47,6 +47,8 @@ namespace Model
         [DisplayName("Trạng thái")]
         public bool Status { get; set; }
         public string RessetPasswordCode { get; set; }
+        public string Image { get; set; }
+        public string Gender { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<Notify> Notifies { get; set; }
 	}

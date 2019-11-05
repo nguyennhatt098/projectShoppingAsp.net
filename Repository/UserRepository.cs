@@ -92,14 +92,7 @@ namespace Repository
 		public bool Login(string username, string password)
 		{
 			var res = context.Users.Count(s => s.UserName == username && s.Password == password);
-			if (res > 0)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			return res > 0;
 		}
 
 		public IEnumerable<User> Search(string searchString, int Page, int Pagesize)

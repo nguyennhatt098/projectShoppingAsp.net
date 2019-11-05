@@ -1,6 +1,7 @@
 ﻿@model List<Model.Slider>
 @{
 	var listCategory = (List<Model.Category>)ViewBag.Categories;
+	var check = true;
 }
 <div class="slider-1" style="">
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -13,21 +14,23 @@
 
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
+			
 			@foreach (var item in Model)
 			{
-				if (item.ID == 1)
-				 {
-					 <div class="banner-main item active">
-						 <img style="width: 100%;" src="@item.Images" alt="Los Angeles">
-					 </div>
-				 }
-				 else
-				 {
-					 <div class="banner-main item">
-						 <img style="width: 100%;" src="@item.Images" alt="Los Angeles">
-					 </div>
-				 }
-				
+				if (check)
+				{
+					check = false;
+					<div class="banner-main item active">
+						<img style="width: 100%;" src="@item.Images" alt="Los Angeles">
+					</div>
+				}
+				else
+				{
+					<div class="banner-main item">
+						<img style="width: 100%;" src="@item.Images" alt="Los Angeles">
+					</div>
+				}
+
 			}
 		</div>
 

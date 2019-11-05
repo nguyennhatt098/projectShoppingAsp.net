@@ -21,7 +21,7 @@ namespace Repository
 		{
 			var orderDetailList = context.OrderDetails.ToList();
 
-			if (orderDetailList.Any(x => x.Product_Id == id)) return -1;
+			if (orderDetailList.Any(x => x.ProductId == id)) return -1;
 
 			var item = context.Products.FirstOrDefault(c => c.Id == id);
 

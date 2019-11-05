@@ -13,7 +13,7 @@ namespace Service
         private IRepository<Slider> repository;
         public SliderService()
         {
-            repository = new SliderReponsitory(new DBEntityContext());
+            repository = new SliderRepository(new DBEntityContext());
         }
         
         public int Delete(int id)

@@ -10,7 +10,7 @@ namespace Model
 	{
 		[Key]
 		public int ID { get; set; }
-		public int User_ID { get; set; }
+		public int UserId { get; set; }
 		[DisplayName("Tên người nhận")]
 		[Required(ErrorMessage = "Trường này không được để trống")]
 		public string Name { get; set; }
@@ -28,9 +28,8 @@ namespace Model
 		public DateTime? Created { get; set; }
 		[DisplayName("Trạng thái")]
 		public int Status { get; set; }
-		[ForeignKey("User_ID")]
+		[ForeignKey("UserId")]
 		public virtual User Users { get; set; }
 		public virtual ICollection<OrderDetail> OdersDetail { get; set; }
-		public virtual ICollection<ReviewProduct> ReviewProducts { get; set; }
 	}
 }

@@ -87,7 +87,7 @@ namespace Repository
 					Status = 1,
 					Content = "Đơn hàng "+ currentItem.ID+ "của bạn đã được giao thành công! Vui lòng kiểm tra lại email",
 					CreatedDate = DateTime.Now,
-					UserId = currentItem.User_ID
+					UserId = currentItem.UserId
 				};
 				context.Notifies.Add(notify);
 				context.SaveChanges();

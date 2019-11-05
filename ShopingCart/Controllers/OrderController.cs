@@ -55,7 +55,7 @@ namespace ShopingCart.Controllers
 					totalQuantity += item.Quantity * currentPrice;
 					var orderDetail = new OrderDetail {
 						Price =currentPrice,
-						Product_Id=item.Product.Id,
+						ProductId=item.Product.Id,
 						Quantity=item.Quantity,
 					
 					};

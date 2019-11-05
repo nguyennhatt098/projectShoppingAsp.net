@@ -15,6 +15,7 @@ namespace Model
 		public DateTime? CreatedDate { get; set; }
 		public DateTime? ModifyDate { get; set; }
 		public DateTime? EndDate { get; set; }
+		public string Link { get; set; }
 		public int Status { get; set; }
 		[ForeignKey("UserId")]
 		public User User { get; set; }
