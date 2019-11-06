@@ -44,20 +44,5 @@ namespace Service
 		{
 			return repository.GetById(id);
 		}
-
-		public About GetByUserName(string UserName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

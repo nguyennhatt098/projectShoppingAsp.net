@@ -7,10 +7,10 @@ using System.Linq;
 
 namespace Repository
 {
-	public class NewsReponsitory : IRepository<News>, IDisposable
+	public class NewsRepository : IRepository<News>, IDisposable
 	{
 		private DBEntityContext context;
-		public NewsReponsitory(DBEntityContext context)
+		public NewsRepository(DBEntityContext context)
 		{
 			this.context = context;
 		}
@@ -18,11 +18,10 @@ namespace Repository
 		public int Delete(int id)
 		{
 			var item = context.News.SingleOrDefault(x => x.ID == id);
+			if (item == null) return 0;
 			context.News.Remove(item);
 			return context.SaveChanges();
 		}
-
-
 
 		public IEnumerable<News> GetAll()
 		{
@@ -34,27 +33,12 @@ namespace Repository
 			return context.News.SingleOrDefault(x => x.ID == id);
 		}
 
-		public News GetByUserName(string UserName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
-		}
-
 		public int Insert(News t)
 		{
 			t.CreateDate = DateTime.Now;
 			context.News.Add(t);
 			return context.SaveChanges();
 
-		}
-
-		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
 		}
 
 		public IEnumerable<News> Search(string searchString, int Page, int Pagesize)

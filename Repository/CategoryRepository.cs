@@ -96,26 +96,9 @@ namespace Repository
 			return context.SaveChanges();
 		}
 
-		public Category GetByUserName(string UserName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
-		}
-
-
-
 		public IEnumerable<Category> Search(string searchString, int Page, int Pagesize)
 		{
 			return context.Categories.OrderByDescending(x=>x.CreatedDate).ToList();
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

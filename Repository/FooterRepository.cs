@@ -30,25 +30,10 @@ namespace Repository
 			return context.Footers.Find(id);
 		}
 
-		public Footer GetByUserName(string UserName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
-		}
-
 		public int Insert(Footer t)
 		{
 			context.Footers.Add(t);
 			return context.SaveChanges();
-		}
-
-		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
 		}
 
 		public IEnumerable<Footer> Search(string searchString, int Page, int Pagesize)

@@ -50,16 +50,6 @@ namespace Repository
 			throw new NotImplementedException();
 		}
 
-		public OrderDetail GetByUserName(string UserName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
-		}
-
 		public IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize)
 		{
 			var model = context.Orders.Where(x => x.UserId == userId);
@@ -99,13 +89,6 @@ namespace Repository
 				}
 			}
 			return 1;
-		}
-
-
-
-		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
 		}
 
 		public IEnumerable<OrderDetail> Search(string searchString, int Page, int Pagesize)

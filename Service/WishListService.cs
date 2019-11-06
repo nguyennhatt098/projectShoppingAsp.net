@@ -12,7 +12,7 @@ namespace Service
         private IWishListReponsitory<WishList> repository;
         public WishListService()
         {
-            repository = new WishListReponsitory(new DBEntityContext());
+            repository = new WishListRepository(new DBEntityContext());
         }
 
 
@@ -28,7 +28,7 @@ namespace Service
 
         public int AddMutiple(List<WishList> items)
         {
-	        return repository.AddMutiple(items);
+	        return repository.AddMultiple(items);
         }
 
         public IEnumerable<WishList> GetAll()

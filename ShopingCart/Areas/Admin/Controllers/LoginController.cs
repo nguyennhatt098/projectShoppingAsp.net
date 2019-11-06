@@ -27,10 +27,10 @@ namespace ShopingCart.Areas.Admin.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var res = userService.Login(model.UserName, Encryptor.MD5Hash(model.Password));
+				var res = loginService.Login(model.UserName, Encryptor.MD5Hash(model.Password));
 				if (res)
 				{
-					var user = userService.GetByUserName(model.UserName);
+					var user = loginService.GetByUserName(model.UserName);
 					if (!user.Status)
 					{
 						ModelState.AddModelError("", "Tài khoản của bạn hiện đang bị khóa");

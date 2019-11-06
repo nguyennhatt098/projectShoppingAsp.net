@@ -15,9 +15,5 @@ namespace Service.Interface
         int Update(T t);
         int Delete(int id);
         T GetById(int id);
-        T GetByUserName(string UserName);
-        bool Login(string username, string password);
-      
-        Contact GetContact();
     }
 }

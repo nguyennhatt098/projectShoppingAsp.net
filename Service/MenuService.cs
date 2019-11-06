@@ -13,14 +13,12 @@ namespace Service
         private IRepository<Menu> repository;
         public MenuService()
         {
-            repository = new MenuReponsitory(new DBEntityContext());
+            repository = new MenuRepository(new DBEntityContext());
         }
         public int Delete(int id)
         {
             throw new NotImplementedException();
         }
-
-      
 
         public IEnumerable<Menu> GetAll()
         {
@@ -32,29 +30,7 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        public Menu GetByUserName(string UserName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Contact GetContact()
-        {
-            throw new NotImplementedException();
-        }
-
         public int Insert(Menu t)
-        {
-            throw new NotImplementedException();
-        }
-
-   
-
-        public bool Login(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Menu> Search(string searchString)
         {
             throw new NotImplementedException();
         }

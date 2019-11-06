@@ -58,5 +58,16 @@ namespace Repository
 				context.Users.Add(currentUser);
 				return context.SaveChanges();
 		}
+
+		public bool Login(string username, string password)
+		{
+			var res = context.Users.Count(s => s.UserName == username && s.Password == password);
+			return res > 0;
+		}
+
+		public User GetByUserName(string UserName)
+		{
+			return context.Users.FirstOrDefault(s => s.UserName == UserName);
+		}
 	}
 }

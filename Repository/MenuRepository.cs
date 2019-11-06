@@ -7,10 +7,10 @@ using System.Linq;
 
 namespace Repository
 {
-    public class MenuReponsitory : IRepository<Menu>, IDisposable
+    public class MenuRepository : IRepository<Menu>, IDisposable
     {
         private DBEntityContext context;
-        public MenuReponsitory(DBEntityContext context)
+        public MenuRepository(DBEntityContext context)
         {
             this.context = context;
         }
@@ -59,11 +59,6 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public bool Login(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Menu> Search(string searchString)
         {
             throw new NotImplementedException();
@@ -79,10 +74,5 @@ namespace Repository
 		{
 			throw new NotImplementedException();
 		}
-
-        public Contact GetContact()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

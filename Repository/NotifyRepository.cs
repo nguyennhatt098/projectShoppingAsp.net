@@ -20,8 +20,8 @@ namespace Repository
 		public IEnumerable<Notify> GetById(int id)
 		{
 			TimeSpan duration = new TimeSpan(30, 0, 0, 0);
-			var caculateDate = DateTime.Now.Subtract(duration);
-			return context.Notifies.OrderByDescending(x => x.CreatedDate).Where(c => c.UserId.Equals(id) && c.CreatedDate>caculateDate).ToList();
+			var calculateDate = DateTime.Now.Subtract(duration);
+			return context.Notifies.OrderByDescending(x => x.CreatedDate).Where(c => c.UserId.Equals(id) && c.CreatedDate>calculateDate).ToList();
 		}
 	}
 }

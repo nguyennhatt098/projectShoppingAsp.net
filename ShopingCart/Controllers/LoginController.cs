@@ -16,11 +16,11 @@ namespace ShopingCart.Controllers
     public class LoginController : Controller
     {
 		private UserService _userService;
-		private WishListService wishListService;
+		private LoginService _loginService;
 		public LoginController()
 		{
 			_userService = new UserService();
-			wishListService=new WishListService();
+			_loginService=new LoginService();
 		}
 
 
@@ -35,10 +35,10 @@ namespace ShopingCart.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var res = _userService.Login(model.UserName, Encryptor.MD5Hash(model.Password));
+				var res = _loginService.Login(model.UserName, Encryptor.MD5Hash(model.Password));
 				if (res)
 				{
-					var user = _userService.GetByUserName(model.UserName);
+					var user = _loginService.GetByUserName(model.UserName);
 					if (!user.Status)
 					{
 						ModelState.AddModelError("", "Tài khoản của bạn hiện đang bị khóa");

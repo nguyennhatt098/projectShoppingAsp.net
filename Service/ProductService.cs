@@ -14,8 +14,8 @@ namespace Service
         private IListProduct<Product> rep;
         public ProductService()
         {
-            rep = new ProductReponsitory(new DBEntityContext());
-            repository = new ProductReponsitory(new DBEntityContext());
+            rep = new ProductRepository(new DBEntityContext());
+            repository = new ProductRepository(new DBEntityContext());
         }
         public int Delete(int id)
         {
@@ -32,17 +32,6 @@ namespace Service
         public Product GetById(int id)
         {
             return repository.GetById(id);
-        }
-
-        public Product GetByUserName(string UserName)
-        {
-            throw new NotImplementedException();
-        }
-     
-
-        public Contact GetContact()
-        {
-            throw new NotImplementedException();
         }
 
         public int Insert(Product t)
@@ -79,16 +68,6 @@ namespace Service
         {
 
             return rep.ListProductSale();
-        }
-
-        public bool Login(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Product> Search(string searchString)
-        {
-            throw new NotImplementedException();
         }
 
 		public IEnumerable<Product> Search(string searchString, int Page, int Pagesize)

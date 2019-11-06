@@ -23,5 +23,15 @@ namespace Service
 		{
 			return repository.AddUser(user);
 		}
+
+		public bool Login(string username, string password)
+		{
+			return repository.Login(username, password);
+		}
+
+		public User GetByUserName(string UserName)
+		{
+			return repository.GetByUserName(UserName);
+		}
 	}
 }

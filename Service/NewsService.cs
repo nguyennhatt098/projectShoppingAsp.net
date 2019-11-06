@@ -9,10 +9,10 @@ namespace Service
 {
     public class NewsService : IServices<News>
     {
-        private NewsReponsitory repository;
+        private NewsRepository repository;
         public NewsService()
         {
-            repository = new NewsReponsitory(new DBEntityContext());
+            repository = new NewsRepository(new DBEntityContext());
         }
         public int Delete(int id)
         {
@@ -29,24 +29,9 @@ namespace Service
             return repository.GetById(id);
         }
 
-        public News GetByUserName(string UserName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Contact GetContact()
-        {
-            throw new NotImplementedException();
-        }
-
         public int Insert(News t)
         {
             return repository.Insert(t);
-        }
-
-        public bool Login(string username, string password)
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<News> Search(string searchString, int Page, int Pagesize)

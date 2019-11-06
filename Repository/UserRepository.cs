@@ -53,11 +53,6 @@ namespace Repository
 			return context.Users.Find(id);
 		}
 
-		public User GetByUserName(string UserName)
-		{
-			return context.Users.FirstOrDefault(s => s.UserName == UserName);
-		}
-
 		public int Insert(User user)
 		{
 			var userList = context.Users.ToList();
@@ -87,12 +82,6 @@ namespace Repository
 			}
 
 			return context.SaveChanges();
-		}
-
-		public bool Login(string username, string password)
-		{
-			var res = context.Users.Count(s => s.UserName == username && s.Password == password);
-			return res > 0;
 		}
 
 		public IEnumerable<User> Search(string searchString, int Page, int Pagesize)
@@ -131,11 +120,6 @@ namespace Repository
 			}
 			context.Entry(currentItem).State = System.Data.Entity.EntityState.Modified;
 			return context.SaveChanges();
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

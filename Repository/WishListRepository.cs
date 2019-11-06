@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace Repository
 {
-    public class WishListReponsitory : IWishListReponsitory<WishList>, IDisposable
+    public class WishListRepository : IWishListReponsitory<WishList>, IDisposable
     {
         private DBEntityContext context;
-        public WishListReponsitory(DBEntityContext context)
+        public WishListRepository(DBEntityContext context)
         {
             this.context = context;
         }
@@ -22,7 +22,7 @@ namespace Repository
 	        return context.wishLists.Where(x => x.UserID.Equals(id)).ToList();
         }
 
-        public int AddMutiple(List<WishList> items)
+        public int AddMultiple(List<WishList> items)
         {
 	        context.wishLists.AddRange(items);
 	        return context.SaveChanges();

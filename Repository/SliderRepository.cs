@@ -41,27 +41,11 @@ namespace Repository
 			return context.Sliders.FirstOrDefault(s => s.ID == id);
 		}
 
-		public Slider GetByUserName(string UserName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
-		}
-
 		public int Insert(Slider t)
 		{
 			t.Created = DateTime.Now;
 			context.Sliders.Add(t);
 			return context.SaveChanges();
-		}
-
-
-		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
 		}
 
 

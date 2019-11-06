@@ -57,7 +57,7 @@
     <Compile Include="AboutRepository.cs" />
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="CommentRepository.cs" />
-    <Compile Include="ContactReponsitory.cs" />
+    <Compile Include="ContactRepository.cs" />
     <Compile Include="DAL\DBEntityContext.cs" />
     <Compile Include="DAL\DbInitializer.cs" />
     <Compile Include="FeedBackReponsitory.cs" />
@@ -71,10 +71,10 @@
     <Compile Include="Interface\IRoleActionRepository.cs" />
     <Compile Include="Interface\IWishListReponsitory.cs" />
     <Compile Include="LoginRepository.cs" />
-    <Compile Include="MenuReponsitory.cs" />
-    <Compile Include="NewsReponsitory.cs" />
+    <Compile Include="MenuRepository.cs" />
+    <Compile Include="NewsRepository.cs" />
     <Compile Include="NotifyRepository.cs" />
-    <Compile Include="ProductReponsitory.cs" />
+    <Compile Include="ProductRepository.cs" />
     <Compile Include="OrderDetailRepository.cs" />
     <Compile Include="OrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="RoleRepository.cs" />
     <Compile Include="SliderRepository.cs" />
     <Compile Include="UserRepository.cs" />
-    <Compile Include="WishListReponsitory.cs" />
+    <Compile Include="WishListRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

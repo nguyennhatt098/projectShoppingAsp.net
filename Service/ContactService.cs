@@ -13,7 +13,7 @@ namespace Service
         private IRepository<Contact> repository;
         public ContactService()
         {
-            repository = new ContactReponsitory(new DBEntityContext());
+            repository = new ContactRepository(new DBEntityContext());
         }
         public int Delete(int id)
         {
@@ -27,30 +27,10 @@ namespace Service
 
         public Contact GetById(int id)
         {
-            throw new NotImplementedException();
+	        return repository.GetById(id);
         }
-
-        public Contact GetByUserName(string UserName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Contact GetContact()
-        {
-            return repository.GetContact();
-        }
-
-       
 
         public int Insert(Contact t)
-        {
-            throw new NotImplementedException();
-        }
-
-       
-         
-
-        public bool Login(string username, string password)
         {
             throw new NotImplementedException();
         }

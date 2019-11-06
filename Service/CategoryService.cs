@@ -20,11 +20,6 @@ namespace Service
             return repository.Delete(id);
         }
 
-        public IEnumerable<Category> Filter(Category t)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Category> GetAll()
         {
             return repository.GetAll();
@@ -35,26 +30,9 @@ namespace Service
             return repository.GetById(id);
         }
 
-        public Category GetByUserName(string UserName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Contact GetContact()
-        {
-            throw new NotImplementedException();
-        }
-
         public int Insert(Category t)
         {
             return repository.Insert(t);
-        }
-
-      
-
-        public bool Login(string username, string password)
-        {
-            throw new NotImplementedException();
         }
 
 		public IEnumerable<Category> Search(string searchString, int Page, int Pagesize)

@@ -17,7 +17,7 @@ namespace ShopingCart.Controllers
         // GET: Contact
         public ActionResult Index()
         {
-            return View(service.GetContact());
+            return View();
         }
         public JsonResult Send(string name, string email,int phone,string message)
         {

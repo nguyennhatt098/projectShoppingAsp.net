@@ -10,10 +10,10 @@ using System.Linq;
 
 namespace Repository
 {
-	public class ProductReponsitory : IRepository<Product>, IDisposable, IListProduct<Product>
+	public class ProductRepository : IRepository<Product>, IDisposable, IListProduct<Product>
 	{
 		private DBEntityContext context;
-		public ProductReponsitory(DBEntityContext context)
+		public ProductRepository(DBEntityContext context)
 		{
 			this.context = context;
 		}
@@ -58,11 +58,6 @@ namespace Repository
 			return context.Products.SingleOrDefault(s => s.Id == id);
 		}
 
-		public Product GetByUserName(string UserName)
-		{
-			throw new NotImplementedException();
-		}
-
 		public int Insert(Product product)
 		{
 			var productList = context.Products.ToList();
@@ -70,11 +65,6 @@ namespace Repository
 			product.Created = DateTime.Now;
 			context.Products.Add(product);
 			return context.SaveChanges();
-		}
-
-		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
 		}
 
 		public int Update(Product t)
@@ -111,7 +101,7 @@ namespace Repository
 		public IEnumerable<Product> ListProductHot()
 		{
 
-			return context.Products.Where(s => s.TopHot == true && s.Status == true).OrderByDescending(s => s.Created).Take(8).ToList();
+			return context.Products.Where(s => s.TopHot && s.Status).OrderByDescending(s => s.Created).Take(8).ToList();
 		}
 		
 		public IEnumerable<Product> ListProductSale()
@@ -134,11 +124,6 @@ namespace Repository
 				model = model.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
 			}
 			return model.OrderByDescending(x => x.Created).ToPagedList(Page, Pagesize);
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
 		}
 
 		public IEnumerable<Product> ListProductGetByCategory(int id, int pageIndex, int pageSize)

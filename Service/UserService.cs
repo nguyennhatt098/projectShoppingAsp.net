@@ -33,26 +33,9 @@ namespace Service
 			return repository.GetById(id);
 		}
 
-		public User GetByUserName(string UserName)
-		{
-			return repository.GetByUserName(UserName);
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
-		}
-
 		public int Insert(User t)
 		{
 			return repository.Insert(t);
-		}
-
-		
-
-		public bool Login(string username, string password)
-		{
-			return repository.Login(username, password);
 		}
 
 		public IEnumerable<User> Search(string searchString, int Page, int Pagesize)

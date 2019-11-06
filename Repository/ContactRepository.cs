@@ -7,10 +7,10 @@ using System.Linq;
 
 namespace Repository
 {
-    public class ContactReponsitory : IRepository<Contact>, IDisposable
+    public class ContactRepository : IRepository<Contact>, IDisposable
     {
         private DBEntityContext context;
-        public ContactReponsitory(DBEntityContext context)
+        public ContactRepository(DBEntityContext context)
         {
             this.context = context;
         }
@@ -43,19 +43,8 @@ namespace Repository
 
         public Contact GetById(int id)
         {
-            throw new NotImplementedException();
-
-        }
-
-        public Contact GetByUserName(string UserName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Login(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
+			return context.Contacts.FirstOrDefault(x => x.Status);
+		}
 
         public IEnumerable<Contact> Search(string searchString, int Page, int Pagesize)
         {
@@ -65,11 +54,6 @@ namespace Repository
         public int Update(Contact t)
         {
             throw new NotImplementedException();
-        }
-
-        public Contact GetContact()
-        {
-            return context.Contacts.FirstOrDefault(x => x.Status == true);
         }
 
         public int Insert(Contact t)

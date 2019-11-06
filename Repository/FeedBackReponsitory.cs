@@ -34,27 +34,10 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public FeedBack GetByUserName(string UserName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Contact GetContact()
-        {
-            throw new NotImplementedException();
-        }
-
         public int Insert(FeedBack t)
         {
             context.FeedBacks.Add(t);
             return context.SaveChanges();
-        }
-
-        
-
-        public bool Login(string username, string password)
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<FeedBack> Search(string searchString, int Page, int Pagesize)

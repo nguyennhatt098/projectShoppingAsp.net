@@ -39,24 +39,10 @@ namespace Repository
 			return context.Orders.OrderByDescending(x=>x.Created).FirstOrDefault(x => x.ID == id);
 		}
 
-		public Order GetByUserName(string UserName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Contact GetContact()
-		{
-			throw new NotImplementedException();
-		}
-
 		public int Insert(Order t)
 		{
 			context.Orders.Add(t);
 			return context.SaveChanges();
-		}
-		public bool Login(string username, string password)
-		{
-			throw new NotImplementedException();
 		}
 
 		public IEnumerable<Order> Search(string searchString, int Page, int Pagesize)

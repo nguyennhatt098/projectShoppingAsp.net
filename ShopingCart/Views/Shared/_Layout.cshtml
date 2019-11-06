@@ -204,18 +204,15 @@
 			'.comment-answer',
 			function() {
 				var commentId = $(this).attr("commentId");
-				var content = '';
 				var postData = {};
-				console.log(commentId)
 				var inputs = $(".content-answer");
 				for (var i = 0; i < inputs.length; i++) {
 					if (commentId == $(inputs[i]).attr("commentIds")) {
 						postData = { content: $(inputs[i]).val(), commentId: commentId }
 					}
 				}
-				console.log(postData);
+				console.log(inputs);
 				var url = window.location.href;
-				debugger
 				$.ajax({
 					url: '/Product/CommentAnswer',
 					data: postData,
@@ -238,6 +235,7 @@
 					}
 				});
 			});
+		//progress event click comment
 		$(document).on('click',
 			'.comment-id',
 			function() {
@@ -253,8 +251,9 @@
 				}
 
 			});
-		var wishLists = [];
-		var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+		//progress data wishlish
+		window.wishLists = [];
+		window.isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
 		$(document).on('click',
 			'.wishlist',
 			function () {
@@ -274,41 +273,41 @@
 				} else {
 					$(".wishlist-" + $(this).data('id')).addClass("wishlistDisLike");
 				}
-				if (isOnIOS) {
-					$('a[href*="/"]').click(function() {
-						var data = wishLists;
-						$.ajax({
-							url: '/Home/CreateWishListIndex',
-							data: { 'data': JSON.stringify(data) },
-							dataType: 'json',
-							type: 'POST',
-							traditional: true,
-							success: (res) => {
+				
+			});
+		if (this.isOnIOS) {
+			if (this.wishLists.length > 0 && this.wishLists !== undefined) {
+			$('a[href*="/"]').click(function() {
+				$.ajax({
+					url: '/Home/CreateWishListIndex',
+					data: { 'data': JSON.stringify(this.wishLists) },
+					dataType: 'json',
+					type: 'POST',
+					traditional: true,
+					success: (res) => {
 								
-							}
-						});
+					}
+				});
+			});
+			}
+		} else {
+			window.onbeforeunload = function (event) {
+				if (this.wishLists.length > 0 && this.wishLists !== undefined) {
+					$.ajax({
+						url: '/Home/CreateWishListIndex',
+						data: { 'data': JSON.stringify(this.wishLists) },
+						dataType: 'json',
+						type: 'POST',
+						traditional: true,
+						success: (res) => {
+								
+						}
 					});
-				} else {
-					window.onbeforeunload = function (event) {
-						var data = wishLists;
-						$.ajax({
-							url: '/Home/CreateWishListIndex',
-							data: { 'data': JSON.stringify(data) },
-							dataType: 'json',
-							type: 'POST',
-							traditional: true,
-							success: (res) => {
-								
-							}
-						});
-					};
 				}
-			});
-		window.addEventListener("pagehide",
-			function(evt) {
-				location.reload(true);
-			});
-		//progress
+				
+			};
+		}
+		//progress color hert
 		
 		if (isOnIOS) {
 			$('a[href*="/"]').click(function() {
@@ -322,6 +321,7 @@
 				$(".hide-all").css("opacity", "1");
 			}, false);
 		} else {
+			
 			window.addEventListener("beforeunload", function (event) { 
 
 				$(".hide-progress").removeClass("hide-progress");
@@ -337,7 +337,7 @@
 			var productId=$(this).attr("valueId");
 			window.location.href = '/them-vao-gio-hang?productID='+productId+'&quantity=' + quantity
 		});
-	
+	//event star
 		$('.star').on('change', function() {
 			let stars = $(this).val();
   console.log(stars);
