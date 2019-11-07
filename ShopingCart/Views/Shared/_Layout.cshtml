@@ -339,11 +339,28 @@
 		});
 	//event star
 		$('.star').on('change', function() {
-			let stars = $(this).val();
+			var  stars = $(this).val();
   console.log(stars);
 		});
+		
+		$('.order-review').on('click', function () {
+			var formElements = document.getElementsByClassName("form-review");
+			var obj ={};
+			var data = [];
+			for (var i = 0; i < formElements.length; i++) {
+				var item = formElements.item(i);
+				debugger 
+				obj[item.star_+i] = item.value;
 
-
+			}
+			console.log(obj)
+				
+			//$(".form-review").each(function() {
+			//	console.log($(this).val());
+			//});
+			
+		});
+		
 	});
 		
 </script>

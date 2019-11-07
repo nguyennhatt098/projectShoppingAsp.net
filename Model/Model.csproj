@@ -75,7 +75,6 @@
     <Compile Include="User.cs" />
     <Compile Include="ViewModel\CategoryDTO.cs" />
     <Compile Include="ViewModel\CommentDTO.cs" />
-    <Compile Include="ViewModel\OrderDetailDTO.cs" />
     <Compile Include="ViewModel\RegisterUser.cs" />
     <Compile Include="ViewModel\ResetPassWord.cs" />
     <Compile Include="WishList.cs" />

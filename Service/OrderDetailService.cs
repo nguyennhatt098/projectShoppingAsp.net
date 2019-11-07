@@ -14,14 +14,19 @@ namespace Service
 		{
 			repository = new OrderDetailRepository(new DBEntityContext());
 		}
-		public IList<OrderDetailDTO> GetAll(int id)
+		public IList<OrderDetail> GetListOrderDetailById(int id)
 		{
-			return repository.GetAll(id);
+			return repository.GetListOrderDetailById(id);
 		}
 
 		public IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize)
 		{
 			return repository.GetListOrderById(userId, Page, Pagesize);
+		}
+
+		public Order GetOrderById(string verifyCode)
+		{
+			return repository.GetOrderById(verifyCode);
 		}
 
 		public int Inserts(Order order, List<OrderDetail> orderDetails)

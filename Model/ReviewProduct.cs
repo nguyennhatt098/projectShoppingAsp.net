@@ -20,8 +20,6 @@ namespace Model
 		public DateTime? EndDate { get; set; }
 		public bool Status { get; set; }
 		public string Image { get; set; }
-		public string VerifyCode { get; set; }
-		
 		public virtual OrderDetail OrderDetail { get; set; }
 		[ForeignKey("ProductId")]
 		public virtual Product Product { get; set; }

@@ -137,7 +137,11 @@ namespace ShopingCart.Controllers
 		}
 		public ActionResult ReviewOrder(string id)
 		{
+			var orderItem = _orderDetailService.GetOrderById(id);
+			if (orderItem == null) return Redirect("/Home/Error404");
+			ViewBag.OrderDetailList = _orderDetailService.GetListOrderDetailById(orderItem.ID);
 			return View();
+
 		}
     }
 }

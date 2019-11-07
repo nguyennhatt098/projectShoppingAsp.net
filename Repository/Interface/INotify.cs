@@ -10,5 +10,6 @@ namespace Repository.Interface
 	public interface INotify
 	{
 		IEnumerable<Notify> GetById(int id);
+		int Insert(Notify item);
 	}
 }

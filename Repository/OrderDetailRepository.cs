@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Repository
 {
-    public class OrderDetailRepository :  IOrderDetailRepository,IRepository<OrderDetail>
+    public class OrderDetailRepository :  IOrderDetailRepository
 	{
 		private DBEntityContext context;
 		public OrderDetailRepository(DBEntityContext context)
@@ -17,37 +17,10 @@ namespace Repository
 			this.context = context;
 		}
 
-		public int Delete(int id)
+		public IList<OrderDetail> GetListOrderDetailById(int id)
 		{
-			throw new NotImplementedException();
-		}
-
-		public IList<OrderDetailDTO> GetAll(int id)
-		{
-			var result = (from c in context.OrderDetails
-						  join p in context.Products on c.ProductId equals p.Id
-						  where c.OrderId == id
-						  select new OrderDetailDTO
-						  {
-							  Images = p.Images,
-							  NameProduct = p.Name,
-							  Oder_ID = c.OrderId,
-							  Price = c.Price,
-							  Quantity = c.Quantity,
-							  Product_Id = p.Id,
-						  }).ToList();
-		
+			var result = context.OrderDetails.Where(x=>x.OrderId == id).ToList();
 			return result;
-		}
-
-		public IEnumerable<OrderDetail> GetAll()
-		{
-			throw new NotImplementedException();
-		}
-
-		public OrderDetail GetById(int id)
-		{
-			throw new NotImplementedException();
 		}
 
 		public IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize)
@@ -56,10 +29,9 @@ namespace Repository
 			return model.OrderByDescending(x => x.Created).ToPagedList(Page, Pagesize);
 		}
 
-		public int Insert(OrderDetail t)
+		public Order GetOrderById(string verifyCode)
 		{
-			context.OrderDetails.Add(t);
-			return context.SaveChanges();
+			return context.Orders.FirstOrDefault(x => x.VerifyCode == verifyCode);
 		}
 
 		public int Inserts(Order order, List<OrderDetail> orderDetails)
@@ -89,11 +61,6 @@ namespace Repository
 				}
 			}
 			return 1;
-		}
-
-		public IEnumerable<OrderDetail> Search(string searchString, int Page, int Pagesize)
-		{
-			throw new NotImplementedException();
 		}
 
 		public int Update(OrderDetail t)

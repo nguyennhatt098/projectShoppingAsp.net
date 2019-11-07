@@ -10,9 +10,10 @@ namespace Repository.Interface
 {
 	public interface IOrderDetailRepository
 	{
-		IList<OrderDetailDTO> GetAll(int id);
+		IList<OrderDetail> GetListOrderDetailById(int id);
 		int Update(OrderDetail t);
 		int Inserts(Order order, List<OrderDetail> orderDetails);
 		IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize);
+		Order GetOrderById(string verifyCode);
 	}
 }

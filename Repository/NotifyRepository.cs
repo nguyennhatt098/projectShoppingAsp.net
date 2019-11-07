@@ -1,11 +1,8 @@
 ﻿using Model;
 using Repository.DAL;
 using Repository.Interface;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository
 {
@@ -19,9 +16,13 @@ namespace Repository
 
 		public IEnumerable<Notify> GetById(int id)
 		{
-			TimeSpan duration = new TimeSpan(30, 0, 0, 0);
-			var calculateDate = DateTime.Now.Subtract(duration);
-			return context.Notifies.OrderByDescending(x => x.CreatedDate).Where(c => c.UserId.Equals(id) && c.CreatedDate>calculateDate).ToList();
+			return context.Notifies.OrderByDescending(x => x.CreatedDate).Take(10).ToList();
+		}
+
+		public int Insert(Notify item)
+		{
+			context.Notifies.Add(item);
+			return context.SaveChanges();
 		}
 	}
 }

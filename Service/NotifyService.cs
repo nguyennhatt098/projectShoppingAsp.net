@@ -23,5 +23,10 @@ namespace Service
 		{
 			return repository.GetById(id);
 		}
+
+		public int Insert(Notify item)
+		{
+			return repository.Insert(item);
+		}
 	}
 }

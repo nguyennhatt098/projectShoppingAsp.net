@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Model;
 using Service;
 using ShopingCart.Common;
@@ -9,10 +10,12 @@ namespace ShopingCart.Areas.Admin.Controllers
     {
 		private OrderService _orderService;
 		private OrderDetailService _orderDetailService;
+		private NotifyService _notifyService;
 		public OrdersController()
 		{
 			_orderService = new OrderService();
 			_orderDetailService = new OrderDetailService();
+			_notifyService=new NotifyService();
 		}
 
 		// GET: Admin/Orders
@@ -26,7 +29,31 @@ namespace ShopingCart.Areas.Admin.Controllers
 		[HasCredential(ActionId = 36)]
 		public ActionResult Details(Order order)
 		{
-			var result= _orderService.Update(order);
+			int result=0;
+			string randomLink = Guid.NewGuid().ToString();
+			if (order.Status == 3)
+			{
+				var notify = new Notify
+				{
+					Status = 1,
+					Content = "Đơn hàng đã được giao.Bạn có thể đánh giá về sản phẩm",
+					CreatedDate = DateTime.Now,
+					UserId = order.UserId,
+					Link = "/Order/ReViewOrder/" + randomLink
+				};
+
+				var rs=_notifyService.Insert(notify);
+				if (rs > 0)
+				{
+					order.VerifyCode = randomLink;
+					result= _orderService.Update(order);
+				}
+			}
+			else
+			{
+				result = _orderService.Update(order);
+			}
+			
 			if (result > 0)
 			{
 				TempData["message"] = "Added";
@@ -41,8 +68,8 @@ namespace ShopingCart.Areas.Admin.Controllers
 		[HasCredential(ActionId = 36)]
 		public ActionResult Details(int id)
         {  
-           var orderDetail = _orderDetailService.GetAll(id);
-			ViewBag.Order = _orderService.GetById(orderDetail[0].Oder_ID);
+           var orderDetail = _orderDetailService.GetListOrderDetailById(id);
+			ViewBag.Order = _orderService.GetById(orderDetail[0].OrderId);
 			return View(orderDetail);
         }
     }

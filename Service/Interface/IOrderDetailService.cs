@@ -10,9 +10,10 @@ namespace Service.Interface
 {
 	public interface IOrderDetailService
 	{
-		IList<OrderDetailDTO> GetAll(int id);
+		IList<OrderDetail> GetListOrderDetailById(int id);
 		int Update(OrderDetail t);
 		int Inserts(Order order, List<OrderDetail> orderDetail);
 		IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize);
+		Order GetOrderById(string verifyCode);
 	}
 }

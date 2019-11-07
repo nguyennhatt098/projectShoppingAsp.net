@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<Model.ViewModel.OrderDetailDTO>
+﻿@model  IEnumerable<Model.OrderDetail>
 
 @{
 	ViewBag.Title = "Details";
@@ -15,7 +15,7 @@
 				<div>
 					<form method="POST">
 						<div class="panel panel-title">
-							
+
 							<div class="panel-body">
 								<table class="table">
 
@@ -45,21 +45,21 @@
 						<input name="Phone" hidden="hidden" value="@ViewBag.Order.Phone" />
 						<input name="Address" hidden="hidden" value="@ViewBag.Order.Address" />
 						<input name="Email" hidden="hidden" value="@ViewBag.Order.Email" />
-
+						<input name="UserId" hidden="hidden" value="@ViewBag.Order.UserId" />
 						@if (ViewBag.Order.Status == 0)
 						{
 							<input hidden name="Status" value="1" />
 							<p>
 								Trạng thái giao hàng: <label style="color: crimson">Đang chờ</label>
 							</p>
-							<p>Xử lý <button type="submit" value="1" class="btn btn-primary">Xác nhận</button></p> 
+							<p>Xử lý <button type="submit" value="1" class="btn btn-primary">Xác nhận</button></p>
 						}
 						else if (ViewBag.Order.Status == 1)
 						{
 							<input hidden name="Status" value="2" />
 							<p>
 								Trạng thái giao hàng:  <label style="color: blue">Xác Nhận</label>
-								
+
 							</p>
 							<p>Xử lý <button type="submit" value="2" class="btn btn-primary">Đang giao</button></p>
 						}
@@ -68,7 +68,7 @@
 							<input hidden name="Status" value="3" />
 							<p>
 								Trạng thái giao hàng:  <label style="color: darkolivegreen">Đang giao</label>
-								
+
 							</p>
 							<p>Xử lý <button type="submit" class="btn btn-primary">Đã giao</button></p>
 						}
@@ -86,19 +86,19 @@
 				<table class="table table-hover">
 					<tr>
 						<th>
-							@Html.DisplayNameFor(model => model.Oder_ID)
+							@Html.DisplayNameFor(model => model.OrderId)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.NameProduct)
+							@Html.DisplayNameFor(model => model.Product.Name)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.Images)
+							@Html.DisplayNameFor(model => model.Product.Images)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.Price)
+							Đơn giá
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.Quantity)
+							Số lượng
 						</th>
 						<th>
 							Tổng tiền
@@ -112,16 +112,16 @@
 						var currentTotal = item.Price * item.Quantity;
 						<tr>
 							<td>
-								@Html.DisplayFor(modelItem => item.Oder_ID)
+								@Html.DisplayFor(modelItem => item.OrderId)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.NameProduct)
+								@Html.DisplayFor(modelItem => item.Product.Name)
 							</td>
 							<td>
-								<img style="width:150px" src="@Html.DisplayFor(modelItem => item.Images)" alt="Alternate Text" />
+								<img style="width:150px" src="@Html.DisplayFor(modelItem => item.Product.Images)" alt="Alternate Text" />
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.Price) VND
+								@String.Format("{0:n0}", item.Price) VND
 							</td>
 							<td>
 								@Html.DisplayFor(modelItem => item.Quantity)
@@ -133,7 +133,7 @@
 					}
 
 				</table>
-				<h4 style="text-align: right">Tổng tiền đơn hàng:@total VND </h4>
+				<h4 style="text-align: right">Tổng tiền đơn hàng:@String.Format("{0:n0}", total) VND </h4>
 
 			</div>
 			<div>

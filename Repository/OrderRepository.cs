@@ -66,18 +66,7 @@ namespace Repository
 			currentItem.Email = t.Email;
 			currentItem.Created = t.Created;
 			currentItem.Address = t.Address;
-			if (t.Status == 3)
-			{
-				var notify = new Notify
-				{
-					Status = 1,
-					Content = "Đơn hàng "+ currentItem.ID+ "của bạn đã được giao thành công! Vui lòng kiểm tra lại email",
-					CreatedDate = DateTime.Now,
-					UserId = currentItem.UserId
-				};
-				context.Notifies.Add(notify);
-				context.SaveChanges();
-			}
+			currentItem.VerifyCode = t.VerifyCode;
 			context.Entry(currentItem).State = System.Data.Entity.EntityState.Modified;
 			return context.SaveChanges();
 		}
