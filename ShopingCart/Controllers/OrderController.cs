@@ -161,7 +161,7 @@ namespace ShopingCart.Controllers
 			{
 				TempData["message"] = "false";
 			}
-			return Redirect("/");
+			return JavaScript("window.location = '/'");
 		}
 
 	}
