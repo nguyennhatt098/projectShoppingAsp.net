@@ -1,4 +1,5 @@
 ﻿using Model;
+using Newtonsoft.Json;
 using Service;
 using ShopingCart.Common;
 using System;
@@ -135,13 +136,33 @@ namespace ShopingCart.Controllers
 			}
 			return View();
 		}
+		
 		public ActionResult ReviewOrder(string id)
 		{
 			var orderItem = _orderDetailService.GetOrderById(id);
 			if (orderItem == null) return Redirect("/Home/Error404");
 			ViewBag.OrderDetailList = _orderDetailService.GetListOrderDetailById(orderItem.ID);
 			return View();
-
 		}
-    }
+		[HttpPost]
+		public ActionResult InsertReviewOrder(string data)
+		{
+			var item = JsonConvert.DeserializeObject<List<ReviewProduct>>(data);
+			var result = _orderDetailService.InsertMultipleReviewProduct(item);
+			if (result > 0)
+			{
+				var orderItem = _orderService.GetById(item[0].OrderId);
+				orderItem.VerifyCode = "";
+				_orderService.Update(orderItem);
+				TempData["message"] = "Added";
+				TempData["DataSuccess"] = "Đánh giá thành công";
+			}
+			else
+			{
+				TempData["message"] = "false";
+			}
+			return Redirect("/");
+		}
+
+	}
 }

@@ -87,10 +87,10 @@
 						<h4 style="color:red" class="modal-title">Thông báo</h4>
 					</div>
 					<div class="modal-body">
-						Bạn phải đăng nhập mới được thực hiện chức năng này
+						Bạn chưa nhập thông tin đánh giá
 					</div>
 					<div class="modal-footer">
-						<button type="button" onclick="location.href = '/login';" class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
+						<button type="button"  class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
 					</div>
 				</div>
 			</div>
@@ -337,28 +337,42 @@
 			var productId=$(this).attr("valueId");
 			window.location.href = '/them-vao-gio-hang?productID='+productId+'&quantity=' + quantity
 		});
-	//event star
-		$('.star').on('change', function() {
-			var  stars = $(this).val();
-  console.log(stars);
-		});
+	
 		
 		$('.order-review').on('click', function () {
+		
 			var formElements = document.getElementsByClassName("form-review");
-			var obj ={};
 			var data = [];
 			for (var i = 0; i < formElements.length; i++) {
-				var item = formElements.item(i);
-				debugger 
-				obj[item.star_+i] = item.value;
+				var star = $("input[type='radio'][name='star']:checked")[i] == undefined ? 0 : $("input[type='radio'][name='star']:checked")[i].value;
+				var content = $("textarea[name='content']")[i].value; 
+				var productId = $("input[name='ProductId']")[i].value;
+				var orderId = $("input[name='OrderId']")[i].value;
+				debugger
+				if (content != "" || star != 0) {
 
-			}
-			console.log(obj)
+					var currentItem = { Rate: star, Content: content, ProductId: productId, OrderId: orderId };
+				data.push(currentItem);
+				}
 				
-			//$(".form-review").each(function() {
-			//	console.log($(this).val());
-			//});
-			
+			}
+			if (data.length > 0) {
+					
+				$.ajax({
+					url: '/Order/InsertReviewOrder',
+					data: { 'data': JSON.stringify(data) },
+					dataType: 'json',
+					type: 'POST',
+					success: (res) => {
+
+					}
+				});
+			} else {
+				window.setTimeout(function() {
+									$("#checkWishLish").modal();
+								},
+								200);
+			}
 		});
 		
 	});

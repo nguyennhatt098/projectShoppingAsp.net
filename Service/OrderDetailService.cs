@@ -38,5 +38,10 @@ namespace Service
 		{
 			return repository.Update(t);
 		}
+
+		public int InsertMultipleReviewProduct(List<ReviewProduct> items)
+		{
+			return repository.InsertMultipleReviewProduct(items);
+		}
 	}
 }

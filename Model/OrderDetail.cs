@@ -13,7 +13,6 @@ namespace Model
 		public  Order Order { get; set; }
 		[ForeignKey("ProductId")]
 		public virtual Product Product { get; set; }
-		public ReviewProduct ReviewProduct { get; set; }
 	}
 
 }

@@ -38,21 +38,22 @@
 					</div>
 				</div>
 				<div class="rating">
-					<input id="radio_1_@i" type="radio" name="star_@i" value="5" class="star" />
+					<input id="radio_1_@i" type="radio" name="star" value="5" class="star" />
 					<label for="radio_1_@i">&#9733;</label>
-					<input id="radio_2_@i" type="radio" name="star_@i" value="4" class="star" />
+					<input id="radio_2_@i" type="radio" name="star" value="4" class="star" />
 					<label for="radio_2_@i">&#9733;</label>
-					<input id="radio_3_@i" type="radio" name="star_@i" value="3" class="star" />
+					<input id="radio_3_@i" type="radio" name="star" value="3" class="star" />
 					<label for="radio_3_@i">&#9733;</label>
-					<input id="radio_4_@i" type="radio" name="star_@i" value="2" class="star" />
+					<input id="radio_4_@i" type="radio" name="star" value="2" class="star" />
 					<label for="radio_4_@i">&#9733;</label>
-					<input id="radio_5_@i" type="radio" name="star_@i" value="1" class="star" />
+					<input id="radio_5_@i" type="radio" name="star" value="1" class="star" />
 					<label for="radio_5_@i">&#9733;</label>
 				</div>
 				<div>
-					<textarea style="height:150px;border:1px solid grey;background:white" placeholder="Hãy chia sẻ những điều bạn thích về sản phẩm này nhé"></textarea>
-					<input class="uploadfile"/>
-
+					<textarea style="height:150px;border:1px solid grey;background:white" name="content" placeholder="Hãy chia sẻ những điều bạn thích về sản phẩm này nhé"></textarea>
+					@*<input class="uploadfile"/>*@
+					<input type="text" name="ProductId" value="@orderDetailList[i].ProductId" hidden />
+					<input type="text" name="OrderId" value="@orderDetailList[i].OrderId" hidden />
 				</div>
 			</div>
 				</form>
