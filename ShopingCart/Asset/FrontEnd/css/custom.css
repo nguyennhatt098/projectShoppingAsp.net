@@ -63,3 +63,8 @@ Note: This is the file where you can add your custom styles to change the look o
 	.rating .star:checked ~ label {
 		color: orange;
 	}
+
+.pro-rating .fa {
+	color: #ffae00;
+	font-size: 15px;
+}

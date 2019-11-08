@@ -13,13 +13,14 @@ namespace ShopingCart.Controllers
         private CategoryService categoryService;
         private WishListService wishListService;
 		private CommentService commentService;
-
+		private ReviewProductService reviewProductService;
 		public ProductController()
         {
             categoryService = new CategoryService();
             productService = new ProductService();
 			wishListService=new WishListService();
 			commentService = new CommentService();
+			reviewProductService=new ReviewProductService();
         }
         public ActionResult CategoryViewDetail(int id, int page = 1, int pageSize = 6)
         {

@@ -21,6 +21,7 @@ namespace ShopingCart.Controllers
 		private WishListService wishListService;
 		private NewsService newsService;
 		private NotifyService notifyService;
+		private ReviewProductService reviewProductService;
 		public HomeController()
 		{
 			newsService = new NewsService();
@@ -30,6 +31,7 @@ namespace ShopingCart.Controllers
 			categoryService = new CategoryService();
 			wishListService = new WishListService();
 			notifyService = new NotifyService();
+			reviewProductService=new ReviewProductService();
 		}
 		public ActionResult Index()
 		{
@@ -38,6 +40,7 @@ namespace ShopingCart.Controllers
 			ViewBag.ListProductNew = productService.ListProductNew();
 			ViewBag.ListNews = newsService.GetAll();
 			ViewBag.ListProductSale = productService.ListProductSale();
+			ViewBag.ReviewList = reviewProductService.GetAll();
 			return View(productService.ListProductHot());
 		}
 

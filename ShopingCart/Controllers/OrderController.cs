@@ -152,8 +152,8 @@ namespace ShopingCart.Controllers
 			if (result > 0)
 			{
 				var orderItem = _orderService.GetById(item[0].OrderId);
-				orderItem.VerifyCode = "";
-				_orderService.Update(orderItem);
+				//orderItem.VerifyCode = "";
+				//_orderService.Update(orderItem);
 				TempData["message"] = "Added";
 				TempData["DataSuccess"] = "Đánh giá thành công";
 			}
@@ -161,7 +161,10 @@ namespace ShopingCart.Controllers
 			{
 				TempData["message"] = "false";
 			}
-			return JavaScript("window.location = '/'");
+			return Json(new
+			{
+				status = true
+			});
 		}
 
 	}

@@ -4,7 +4,7 @@
 	var notifies = (List<Model.Notify>)ViewBag.notifies;
 }
 <header class="header-pos">
-	<div style="float:right;width:300px;position:relative;position:absolute;top:50px; right: 100px;z-index: 9999">
+	<div style="float:right;width:300px;position:relative;position:absolute;top:50px; right: 100px; z-index: 9999; height: 30px;">
 		<div class="alert alert-success" hidden>
 
 			@if (TempData["DataSuccess"] != null)
@@ -63,7 +63,7 @@
 							<ul class="dropdown-menu dropdown-menu-right">
 								@foreach (var item in notifies)
 								{
-									<li>
+									<li style="width: 100%">
 										<a href="@item.Link" class="top-text-block">
 											<div style="font-size:12px" class="top-text-heading">@item.Content</div>
 											<div style="font-size:14px" class="top-text-light"><b>Ngày tạo</b> @item.CreatedDate</div>

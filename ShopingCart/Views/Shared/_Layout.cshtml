@@ -12,12 +12,12 @@
 
 	<!-- favicon
 	============================================ -->
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="~/Asset/FrontEnd/img/favicon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<!-- All css files are included here. -->
 	<!-- Bootstrap framework main css -->
-	<link rel="stylesheet" href="~/Asset/FrontEnd/css/bootstrap.min.css">
-	<!-- This core.css file contents all plugings css file. -->
+	 @*<link rel="stylesheet" href="~/Asset/FrontEnd/css/bootstrap.min.css">*@ 
+	@* <!-- This core.css file contents all plugings css file. --> *@
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/core.css">
 	<!-- Theme shortcodes/elements style -->
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/shortcode/shortcodes.css">
@@ -33,84 +33,85 @@
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-product.css" type="text/css" />
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-mobile.css" type="text/css" />
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/process-bar.css" type="text/css" />
+
 	<!-- Modernizr JS -->
 	<script src="~/Asset/FrontEnd/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
-<body >
-<div class="display-progress hide-progress">
-	<div class="circle"></div>
-	<div class="circle-small"></div>
-	<div class="circle-big"></div>
-	<div class="circle-inner-inner"></div>
-	<div class="circle-inner"></div>
-</div>
-<div class="hide-all">
+<body>
+	<div class="display-progress hide-progress">
+		<div class="circle"></div>
+		<div class="circle-small"></div>
+		<div class="circle-big"></div>
+		<div class="circle-inner-inner"></div>
+		<div class="circle-inner"></div>
+	</div>
+	<div class="hide-all">
 
 
-	@{Html.RenderAction("MainMenu", "Home");}
+		@{Html.RenderAction("MainMenu", "Home");}
 
-	@RenderBody()
-	@{Html.RenderAction("Footer", "Home");}
-	<!-- footer end -->
-	<!-- Modal -->
-	<!-- Modal end -->
-	<!-- jquery latest version -->
-	<div class="container">
+		@RenderBody()
+		@{Html.RenderAction("Footer", "Home");}
+		<!-- footer end -->
 		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter" role="dialog">
-			<div class="modal-dialog ">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 style="color: red" class="modal-title">Thông báo</h4>
-					</div>
-					<div class="modal-body">
-						<p>Bạn chưa đăng nhập! Vui lòng đăng nhập để có thể sử dụng tính năng này</p>
+		<!-- Modal end -->
+		<!-- jquery latest version -->
+		<div class="container">
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" role="dialog">
+				<div class="modal-dialog ">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 style="color: red" class="modal-title">Thông báo</h4>
+						</div>
+						<div class="modal-body">
+							<p>Bạn chưa đăng nhập! Vui lòng đăng nhập để có thể sử dụng tính năng này</p>
 
+						</div>
+						<div class="modal-footer">
+							<a class="btn btn-primary" href="/Login">Đăng nhập</a>
+							<button type="button" class="btn  btn-danger btn-xs" data-dismiss="modal">Đồng ý</button>
+						</div>
 					</div>
-					<div class="modal-footer">
-						<a class="btn btn-primary" href="/Login">Đăng nhập</a>
-						<button type="button" class="btn  btn-danger btn-xs" data-dismiss="modal">Đồng ý</button>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<!-- Modal -->
+			<div class="modal fade" id="checkWishLish" role="dialog">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 style="color:red" class="modal-title">Thông báo</h4>
+						</div>
+						<div class="modal-body">
+							Bạn chưa nhập thông tin đánh giá
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<!-- Modal -->
-		<div class="modal fade" id="checkWishLish" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 style="color:red" class="modal-title">Thông báo</h4>
-					</div>
-					<div class="modal-body">
-						Bạn chưa nhập thông tin đánh giá
-					</div>
-					<div class="modal-footer">
-						<button type="button"  class="btn btn-danger" data-dismiss="modal">Đồng ý</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
-<!-- Bootstrap framework js -->
-<script src="~/Asset/FrontEnd/js/bootstrap.min.js"></script>
-<!-- ajax-mail js -->
-<script src="~/Asset/FrontEnd/js/ajax-mail.js"></script>
-<!-- owl.carousel js -->
-<script src="~/Asset/FrontEnd/js/owl.carousel.min.js"></script>
-<!-- jquery.nivo.slider js -->
-<script src="~/Asset/FrontEnd/js/jquery.nivo.slider.pack.js"></script>
-<!-- All js plugins included in this file. -->
-<script src="~/Asset/FrontEnd/js/plugins.js"></script>
-<!-- Main js file that contents all jQuery plugins activation. -->
-<script src="~/Asset/FrontEnd/js/main.js"></script>
-<script type="text/javascript">
+	<script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
+	<!-- Bootstrap framework js -->
+	<script src="~/Asset/FrontEnd/js/bootstrap.min.js"></script>
+	<!-- ajax-mail js -->
+	<script src="~/Asset/FrontEnd/js/ajax-mail.js"></script>
+	<!-- owl.carousel js -->
+	<script src="~/Asset/FrontEnd/js/owl.carousel.min.js"></script>
+	<!-- jquery.nivo.slider js -->
+	<script src="~/Asset/FrontEnd/js/jquery.nivo.slider.pack.js"></script>
+	<!-- All js plugins included in this file. -->
+	<script src="~/Asset/FrontEnd/js/plugins.js"></script>
+	<!-- Main js file that contents all jQuery plugins activation. -->
+	<script src="~/Asset/FrontEnd/js/main.js"></script>
+	<script type="text/javascript">
 	$(document).ready(function() {
 		if ('@TempData["message"]' == "Added") {
 			$(".alert-success").show();
@@ -132,7 +133,7 @@
 				},
 				5000);
 		};
-		$(document).ready(function() {
+		//$(document).ready(function() {
 			if ('@TempData["message"]' == 'Ex') {
 
 				window.setTimeout(function() {
@@ -198,7 +199,7 @@
 						}
 					});
 				});
-		});
+		//});
 		//reload click
 		$(document).on('click',
 			'.comment-answer',
@@ -257,7 +258,7 @@
 		$(document).on('click',
 			'.wishlist',
 			function () {
-				
+
 				var id = $(this).attr("id");
 
 				var currentItem = wishLists.find(x => x.ProductID === id);
@@ -273,7 +274,7 @@
 				} else {
 					$(".wishlist-" + $(this).data('id')).addClass("wishlistDisLike");
 				}
-				
+
 			});
 		if (this.isOnIOS) {
 			if (this.wishLists.length > 0 && this.wishLists !== undefined) {
@@ -285,7 +286,7 @@
 					type: 'POST',
 					traditional: true,
 					success: (res) => {
-								
+
 					}
 				});
 			});
@@ -300,29 +301,29 @@
 						type: 'POST',
 						traditional: true,
 						success: (res) => {
-								
+
 						}
 					});
 				}
-				
+
 			};
 		}
-		//progress color hert
-		
+		//progress bar color
+
 		if (isOnIOS) {
 			$('a[href*="/"]').click(function() {
 				$(".hide-progress").removeClass("hide-progress");
 				$(".hide-all").css("background-color", "white");
 				$(".hide-all").css("opacity", "0.1");
 			});
-			window.addEventListener("pagehide", function(evt){
-				$(".display-progress").addClass("hide-progress");
-				$(".hide-all").css("background-color", "white");
-				$(".hide-all").css("opacity", "1");
-			}, false);
+			//window.addEventListener("pagehide", function(evt){
+			//	$(".display-progress").addClass("hide-progress");
+			//	$(".hide-all").css("background-color", "white");
+			//	$(".hide-all").css("opacity", "1");
+			//}, false);
 		} else {
-			
-			window.addEventListener("beforeunload", function (event) { 
+
+			window.addEventListener("beforeunload", function (event) {
 
 				$(".hide-progress").removeClass("hide-progress");
 				$(".hide-all").css("background-color", "white");
@@ -330,72 +331,70 @@
 
 			});
 		}
-		
+
 		//add cart
 		$('#addToCart').click(function() {
 			var quantity = document.getElementById("quantity").value;
 			var productId=$(this).attr("valueId");
 			window.location.href = '/them-vao-gio-hang?productID='+productId+'&quantity=' + quantity
 		});
-	
-		
+
+
 		$('.order-review').on('click', function () {
-		
+
 			var formElements = document.getElementsByClassName("form-review");
 			var data = [];
 			for (var i = 0; i < formElements.length; i++) {
 				var star = $("input[type='radio'][name='star']:checked")[i] == undefined ? 0 : $("input[type='radio'][name='star']:checked")[i].value;
-				var content = $("textarea[name='content']")[i].value; 
+				var content = $("textarea[name='content']")[i].value;
 				var productId = $("input[name='ProductId']")[i].value;
 				var orderId = $("input[name='OrderId']")[i].value;
-				debugger
 				if (content != "" || star != 0) {
 
 					var currentItem = { Rate: star, Content: content, ProductId: productId, OrderId: orderId };
 				data.push(currentItem);
 				}
-				
+
 			}
 			if (data.length > 0) {
-					
+
 				$.ajax({
 					url: '/Order/InsertReviewOrder',
 					data: { 'data': JSON.stringify(data) },
 					dataType: 'json',
 					type: 'POST',
 					success: (res) => {
-
+						window.location.href = "/";
 					}
 				});
 			} else {
 				window.setTimeout(function() {
 									$("#checkWishLish").modal();
-								},
-								200);
+								},200);
 			}
 		});
-		
+
 	});
-		
-</script>
 
-@RenderSection("footer", required: false)
-@RenderSection("scripts", required: false)
+	</script>
 
-<script src="~/Asset/FrontEnd/js/menu-mobile.js"></script>
-<script>
-	$(document).ready(function() {
-		$(
+	@RenderSection("footer", required: false)
+	@RenderSection("scripts", required: false)
+
+	<script src="~/Asset/FrontEnd/js/menu-mobile.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(
 				"div[style='opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;']")
-			.remove();
-		$(
+				.remove();
+			$(
 				"div[style='margin: 0px; padding: 0px; left: 0px; width: 100%; height: 65px; right: 0px; bottom: 0px; display: block; position: fixed; z-index: 2147483647; opacity: 0.9; background-color: rgb(32, 32, 32);']")
-			.remove();
-		$("div[onmouseover='S_ssac();']").remove();
-		$("center").remove();
-		$("div[style='height: 65px;']").remove();
-	});
-</script>
+				.remove();
+			$("div[onmouseover='S_ssac();']").remove();
+			$("center").remove();
+			$("div[style='height: 65px;']").remove();
+		});
+	</script>
 </body>
 
 

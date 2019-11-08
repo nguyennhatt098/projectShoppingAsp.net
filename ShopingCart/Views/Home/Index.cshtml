@@ -7,11 +7,12 @@
 	var wishList = (List<Model.WishList>)ViewBag.wishList;
 	var user = (User)Session["User"];
 	var listNews = (List<Model.News>)ViewBag.ListNews;
-
+	var reviewProductList = (List<ReviewProduct>)ViewBag.ReviewList;
 }
 @section footer{
 	<script src="~/Asset/FrontEnd/js/WishList.js"></script>
 }
+
 <!-- header end -->
 <!-- slider-container start -->
 @{Html.RenderAction("Slider", "Home");}
@@ -53,6 +54,14 @@
 								<div class="product-carousel">
 									@foreach (var item in Model)
 									{
+										float totalStar = 0;
+										var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).ToList();
+										foreach (var itemReview in reviewProducts)
+										{
+											totalStar += itemReview.Rate;
+
+										}
+										float currentStar = totalStar / reviewProducts.Count();
 										var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
 
 										<div class="col-md-12">
@@ -69,7 +78,7 @@
 
 														@if (user == null)
 														{
-															<a data-toggle="modal" data-target="#checkWishLish" href="#"><i class="fa fa-heart"></i></a>
+															<a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart"></i></a>
 														}
 														else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 														{
@@ -100,6 +109,29 @@
 															}
 
 														</div>
+														<div class="pro-rating">
+															@if (reviewProducts.Count > 0)
+															{
+																var check = true;
+																for (int i = 1; i <= 5; i++)
+																{
+																	if (i <= currentStar)
+																	{
+																		<i class="fa fa-star"></i>
+
+																	}
+																	else if ( (Math.Abs(currentStar - Math.Floor(currentStar)) > 0)&&check)
+																	{
+																		check = false;
+																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
+																	}
+																	else
+																	{
+																		<i class="fa fa-star-o" aria-hidden="true"></i>
+																	}
+																}
+															}
+														</div>
 													</div>
 												</div>
 											</div>
@@ -128,17 +160,25 @@
 			<div class="product-carousel">
 				@foreach (var item in ListProductNew)
 				{
+					float totalStar = 0;
+					var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).ToList();
+					foreach (var itemReview in reviewProducts)
+					{
+						totalStar += itemReview.Rate;
+
+					}
+					float currentStar = totalStar / reviewProducts.Count();
 					var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
 					<div class="col-md-12">
 						<div class="product-wrapper mb-40">
 							<div class="product-img">
-								<a  href="@url"><img src="@item.Images" alt="@item.Name" /></a>
+								<a href="@url"><img src="@item.Images" alt="@item.Name" /></a>
 								<span class="new-label">New</span>
 								<div class="product-action">
 									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
 									@if (user == null)
 									{
-										<a data-toggle="modal" data-target="#checkWishLish" href="#"><i class="fa fa-heart"></i></a>
+										<a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart"></i></a>
 									}
 									else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
 									{
@@ -166,12 +206,29 @@
 											<span class="price product-price">@String.Format("{0:n0}", item.Price) VND</span>
 										}
 									</div>
+
 									<div class="pro-rating">
-										<a href="#"><i class="fa fa-star-o"></i></a>
-										<a href="#"><i class="fa fa-star-o"></i></a>
-										<a href="#"><i class="fa fa-star-o"></i></a>
-										<a href="#"><i class="fa fa-star-o"></i></a>
-										<a href="#"><i class="fa fa-star-o"></i></a>
+										@if (reviewProducts.Count > 0)
+										{
+											var check = true;
+											for (int i = 1; i <= 5; i++)
+											{
+												if (i <= currentStar)
+												{
+													<i class="fa fa-star"></i>
+
+												}
+												else if ( (Math.Abs(currentStar - Math.Floor(currentStar)) > 0)&&check)
+												{
+													check = false;
+													<i class="fa fa-star-half-o" aria-hidden="true"></i>
+												}
+												else
+												{
+													<i class="fa fa-star-o" aria-hidden="true"></i>
+												}
+											}
+										}
 									</div>
 								</div>
 							</div>
