@@ -27,8 +27,8 @@
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/responsive.css">
 	<!-- User style -->
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/custom.css">
-	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900' rel='stylesheet' type='text/css'>
+	@*<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900' rel='stylesheet' type='text/css'>*@
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu.css" type="text/css" />
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-product.css" type="text/css" />
 	<link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-mobile.css" type="text/css" />
@@ -200,19 +200,13 @@
 					});
 				});
 		//});
-		//reload click
+		//post answer comment
 		$(document).on('click',
 			'.comment-answer',
 			function() {
 				var commentId = $(this).attr("commentId");
-				var postData = {};
-				var inputs = $(".content-answer");
-				for (var i = 0; i < inputs.length; i++) {
-					if (commentId == $(inputs[i]).attr("commentIds")) {
-						postData = { content: $(inputs[i]).val(), commentId: commentId }
-					}
-				}
-				console.log(inputs);
+				var contentAnswer = $(".content-answer-" + commentId).val();
+				var postData = { content: contentAnswer, commentId: commentId };
 				var url = window.location.href;
 				$.ajax({
 					url: '/Product/CommentAnswer',
@@ -236,12 +230,42 @@
 					}
 				});
 			});
+
+			//post answer review
+		$(document).on('click',
+			'.review-answer',
+			function() {
+				var reviewId = $(this).attr("submitReview");
+				
+				var contentAnswerReview = $(".content-review-answer-" + reviewId).val();
+				if (contentAnswerReview === null || contentAnswerReview.match(/^ *$/) !== null) return;
+				var postData = { ReviewId: reviewId, Content: contentAnswerReview };
+				debugger
+				var url = window.location.href;
+				$.ajax({
+					url: '/Product/CommentReview',
+					data: { 'data': JSON.stringify(postData) },
+					dataType: 'json',
+					type: 'POST',
+					success: (res) => {
+						if (res.status) {
+							$('.load-review').load(url + " .load-review>*", "");
+						}
+						if (!res.status) {
+
+							window.setTimeout(function() {
+									$("#exampleModalCenter").modal();
+								},
+								200);
+						}
+					}
+				});
+			});
 		//progress event click comment
 		$(document).on('click',
 			'.comment-id',
 			function() {
 				var commentId = $(this).attr("checkComment");
-				console.log(commentId)
 				if ($(".active-question-" + commentId)[0]) {
 					$('.show-comment-id-' + commentId).removeClass("active-question-" + commentId);
 					$('.show-comment-id-' + commentId).hide("slow");
@@ -249,6 +273,21 @@
 
 					$('.show-comment-id-' + commentId).addClass("active-question-" + commentId);
 					$('.show-comment-id-' + commentId).show("slow");
+				}
+
+			});
+		//progress event click review question 
+		$(document).on('click',
+			'.review-id',
+			function() {
+				var reviewId = $(this).attr("checkReview");
+				if ($(".active-review-" + reviewId)[0]) {
+					$('.show-review-' + reviewId).removeClass("active-review-" + reviewId);
+					$('.show-review-' + reviewId).hide("slow");
+				} else {
+					
+					$('.show-review-' + reviewId).addClass("active-review-" + reviewId);
+					$('.show-review-' + reviewId).show("slow");
 				}
 
 			});
@@ -373,7 +412,18 @@
 								},200);
 			}
 		});
-
+		window.addEventListener("load", function () {
+			var url = window.location.href.split('?');
+			if (url.length > 1) {
+				if (url[1].split('=')[0] == 'pageRv') {
+					if ($(".check-active").hasClass("active")) {
+						$(".check-active").removeClass("active");
+						$(".show-active").addClass("active");
+					}
+				}
+				
+			}
+		});
 	});
 
 	</script>

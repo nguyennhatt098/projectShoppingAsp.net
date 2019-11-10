@@ -73,6 +73,7 @@
     <Compile Include="RoleAction.cs" />
     <Compile Include="Slider.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="ViewModel\CalculateRateDTO.cs" />
     <Compile Include="ViewModel\CategoryDTO.cs" />
     <Compile Include="ViewModel\CommentDTO.cs" />
     <Compile Include="ViewModel\RegisterUser.cs" />

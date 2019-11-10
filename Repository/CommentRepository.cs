@@ -21,7 +21,7 @@ namespace Repository
 
 		public IEnumerable<AnswerComment> answerComments()
 		{
-			return context.Answers.OrderByDescending(x=>x.CreatedDate).ToList();
+			return context.Answers.OrderByDescending(x => x.CreatedDate).ToList();
 		}
 
 		public IEnumerable<CategoryDTO> Categories()
@@ -40,7 +40,7 @@ namespace Repository
 						}).ToList();
 			var categories = context.Categories.ToList().Where(x => !list.Any(z => z.ID == x.ID)).AsEnumerable().Select(k => new CategoryDTO
 			{
-				ID=k.ID,
+				ID = k.ID,
 				Name = k.Name,
 				ParentName = "",
 				ModifileDate = k.CreatedDate,
@@ -54,7 +54,10 @@ namespace Repository
 
 		public int Count(int productId)
 		{
-			return context.Comments.Count(x => x.ProductId == productId);
+			using (DBEntityContext context = new DBEntityContext())
+			{
+				return context.Comments.Count(x => x.ProductId == productId);
+			}
 		}
 
 		public int Insert(Comment t)
@@ -71,12 +74,22 @@ namespace Repository
 
 		public IEnumerable<CommentDTO> Search(int productId, int Page, int Pagesize)
 		{
+			var total = Page * Pagesize;
+			if (total > Count(productId))
+			{
+				Pagesize = Count(productId) - (Pagesize * (Page - 1));
+			}
+
+			if (Pagesize <= 0)
+			{
+				Pagesize = 6;
+			}
 			var list = (from c in context.Comments
 						join u in context.Users on c.UserId equals u.UserId
 						where c.ProductId == productId
 						select new CommentDTO
 						{
-							CommentId=c.Id,
+							CommentId = c.Id,
 							Question = c.Question,
 							UserName = u.UserName,
 							CreatedDate = c.CreatedDate,

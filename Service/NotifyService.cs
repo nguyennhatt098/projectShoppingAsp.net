@@ -24,6 +24,11 @@ namespace Service
 			return repository.GetById(id);
 		}
 
+		public Notify GetNotifyByLink(string verifyCode)
+		{
+			return repository.GetNotifyByLink(verifyCode);
+		}
+
 		public int Insert(Notify item)
 		{
 			return repository.Insert(item);

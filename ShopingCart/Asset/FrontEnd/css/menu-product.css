@@ -120,3 +120,8 @@
 	display: flex ;
 	height: 460px;
 }
+/*//progress bar*/
+.left-title-star p {
+	text-align: center;
+	color: #444
+}

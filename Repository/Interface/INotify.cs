@@ -11,5 +11,6 @@ namespace Repository.Interface
 	{
 		IEnumerable<Notify> GetById(int id);
 		int Insert(Notify item);
+		Notify GetNotifyByLink(string verifyCode);
 	}
 }

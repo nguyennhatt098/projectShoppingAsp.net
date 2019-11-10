@@ -29,5 +29,6 @@ namespace Repository.DAL
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ReviewProduct> ReviewProducts { get; set; }
         public DbSet<AnswerComment> Answers { get; set; }
-    }
+		public DbSet<AnswerReview> AnswerReviews { get; set; }
+	}
 }

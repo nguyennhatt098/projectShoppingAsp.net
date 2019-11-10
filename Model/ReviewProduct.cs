@@ -21,7 +21,7 @@ namespace Model
 		public bool Status { get; set; }
 		public string Image { get; set; }
 		[ForeignKey("OrderId")]
-		public  Order Order { get; set; }
+		public virtual  Order Order { get; set; }
 		[ForeignKey("ProductId")]
 		public virtual Product Product { get; set; }
 		public ICollection<AnswerReview> AnswerReviews { get; set; }

@@ -1,17 +1,28 @@
-﻿@model PagedList.IPagedList<Model.Order>
-@using PagedList.Mvc
+﻿@model Model.User
 @{
-	ViewBag.Title = "OrderHistory";
+	ViewBag.Title = "UpdateUser";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+	var checkGirl = "";
+	var checkBoy = "";
+	var checkDefault = "";
+	if (Model.Gender == "Nam") {
+		checkBoy = "checked";
+	}
+	if (Model.Gender == "Nữ")
+	{
+		checkGirl = "checked";
+	}
+	if (Model.Gender == "Khác")
+	{
+		checkDefault = "checked";
+	}
 }
-
-
 <div class="space-custom"></div>
 @if (Session["User"] == null)
 {
 	<div style="margin: 30px;">
 		<p style="text-align: center"><i style=" font-size: 300px;" class="fa fa-user"></i></p>
-		<p style="text-align: center">Mời bạn đăng nhập để có thể đặt hàng</p>
+		<p style="text-align: center">Mời bạn đăng nhập để có thể sửa thông tin</p>
 		<button class="btn btn-primary center-block" onclick="location.href = '/Login';">Đăng nhập</button>
 	</div>
 }
@@ -72,77 +83,65 @@ else
 
 				<div class="col-md-9 col-sm-8">
 					<h2 class="page-heading mt-40">
-						<span class="cat-name">Lịch sử mua hàng</span>
-						<span class="heading-counter">Show @Model.Count order</span>
+						<span class="cat-name">Sửa thông tin</span>
 					</h2>
 					<div class="shop-page-bar">
 						<div>
 							<!-- Tab panes -->
-							<div class="tab-content">
+							<div style="background:white;padding:15px;" class="tab-content">
 								<div role="tabpanel" class="tab-pane active" id="home">
 									<div role="tabpanel" class="tab-pane" id="profile">
-										@foreach (var item in Model)
-												{
-													var productOrder = item.OdersDetail.Where(x => x.OrderId == item.ID).ToList();
-										<div style="margin-bottom:10px;background:white;padding:10px;">
-											<p style="font-size:30px;">MÃ ĐƠN HÀNG: @item.ID</p>
-											<div style="float:right">
-												Trạng thái:
-												@if (item.Status == 0)
-												{
-													<label style="color: crimson">Đang chờ</label>
-												}
-												else if (item.Status == 3)
-												{
-													<label style="color: darkgreen">Đã giao</label>
-												} 
-											</div>
-											@foreach (var itemOrder in productOrder)
-											{
-												var url = "/chi-tiet-san-pham/" + itemOrder.Product.Slug + "-" + itemOrder.Product.Id;
-											<div class="row mb-50">
-												<div class="col-xs-5 col-sm-5 col-md-4">
-													<div class="product-wrapper">
-														<div class="product-img">
-															<a href="@url"><img src="@itemOrder.Product.Images" alt="" /></a>
-															<span class="new-label">New</span>
-														</div>
-													</div>
-												</div>
-												<div class="col-xs-7 col-sm-7 col-md-8">
-													<div class="product-content product-list">
-														<div class="pro-title">
-															<h3><a href="product-details.html">@itemOrder.Product.Name </a> </h3>
-														</div>
-														<div class="price-reviews">
-															
-															<div class="price-box">
-																<span class="price product-price">@String.Format("{0:n0}", itemOrder.Price) VND </span>
-															</div>
+										@using (Html.BeginForm( "UpdateUser","Resgiter",FormMethod.Post,new { enctype = "multipart/form-data" }))
+										{
+											@Html.AntiForgeryToken()
+												<div class="billing-fields row">
+													@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-														</div>
-														<p>@itemOrder.Product.Content <b>x @itemOrder.Quantity</b></p>
 
-														<div class="color-list">
-															<a href="#"></a>
-															<a href="#"></a>
-														</div>
-													</div>
+													<p class="form-row col-sm-12">
+														@Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-4" })
+														@Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control col-md-5" } })
+														@Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+
+													</p>
+													<p class="form-row col-sm-12">
+														@Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+														@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+														@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+													</p>
+													<p class="form-row col-sm-12">
+														@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+														@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+														@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+													</p>
+													<p class="form-row col-sm-12">
+														@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+														@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+														@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+													</p>
+													<p class="form-row col-sm-12">
+														@Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+														<input style="background:white;" type="file" name="Image" />
+														<img style="height:100px;" src="@Model.Image" />
+													</p>
+													<p>
+														<span>Giới tính:</span>
+														<input style="width:3%;height:20px;" type="radio" name="Gender" value="Nam" @checkBoy />
+														<span>Nam</span>
+														<input style="width:3%;height:20px;" type="radio" name="Gender" value="Nữ" @checkGirl />
+														<span>Nữ</span>
+														<input style="width:3%;height:20px;" type="radio" name="Gender" value="Khác" @checkDefault />
+														<span>Khác</span>
+													</p>
+													<p style="" class="form-row">
+														<input style="margin-top:20px;margin-left:12px;" type="submit" value="Register" name="signup" class="theme-button marL0">
+													</p>
 												</div>
-											</div>
-											}
-										</div>
-											}
+											<!-- /.col-md-6 -->
+										}
 									</div>
 								</div>
-								<div class="content-sortpagibar">
 
-									@Html.PagedListPager(Model, Page => Url.Action("OrderHistory", new { Page, @searchString = @ViewBag.searchString }))
-
-									<div class="selector-field f-right">
-
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>

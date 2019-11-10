@@ -69,5 +69,30 @@ namespace Repository
 		{
 			return context.Users.FirstOrDefault(s => s.UserName == UserName);
 		}
+
+		public int UpdateUserCustomer(User user)
+		{
+			var userList = context.Users.ToList();
+			var currentItem = context.Users.Find(user.UserId);
+			userList.Remove(currentItem);
+
+			if (userList.Any(x => x.Email.ToLower().Equals(user.Email.ToLower()))) return -2;
+
+			if (userList.Any(x => x.Phone.Equals(user.Phone))) return -3;
+
+			if (currentItem != null)
+			{
+				currentItem.EditedDate = DateTime.Now;
+				currentItem.Address = user.Address;
+				currentItem.Email = user.Email;
+				currentItem.Phone = user.Phone;
+				currentItem.FullName = user.FullName;
+				currentItem.Image = user.Image;
+				currentItem.Gender = user.Gender;
+				currentItem.ConfirmPassword = currentItem.Password;
+			}
+			context.Entry(currentItem).State = System.Data.Entity.EntityState.Modified;
+			return context.SaveChanges();
+		}
 	}
 }

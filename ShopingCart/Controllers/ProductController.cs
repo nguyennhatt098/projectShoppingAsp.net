@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Model;
 using PagedList;
+using Newtonsoft.Json;
 
 namespace ShopingCart.Controllers
 {
@@ -35,29 +36,36 @@ namespace ShopingCart.Controllers
 			if (page <= 0) page = 1;
 			else page = (page > totalPage && totalPage > 0) ? totalPage : page;
 			var model = productService.ListProductGetByCategory(id, page, pageSize).ToList();
+			ViewBag.ReviewList = reviewProductService.GetAll();
 			ViewBag.CountProduct = total;
 			ViewBag.Page = page;
             ViewBag.TotalPage = totalPage;
-            ViewBag.Next = page + 1;
-            ViewBag.Prev = page - 1;
             return View(model);
         }
-        public ActionResult Detail(int id, int page = 1, int pageSize = 5)
+        public ActionResult Detail(int id, int page = 1, int pageSize = 5,int pageRv=1,int pageSizeRv=5)
         {
 	        var user = (User)Session["User"];
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			var total = commentService.Count(id);
-			var totalPage = (int)Math.Ceiling((double)(total / pageSize));
+			var totalPage = (commentService.Count(id) + pageSize - 1) / pageSize ;
 			if (page <= 0) page = 1;
 			else page = (page > totalPage && totalPage > 0) ? totalPage : page;
 			var model = commentService.Search(id, page, pageSize).ToList();
 			ViewBag.Page = page;
 			ViewBag.TotalPage = totalPage;
-			ViewBag.Next = page + 1;
-			ViewBag.Prev = page - 1;
 			ViewBag.CommentList = model;
-			//detail
 			ViewBag.AnswerComment = commentService.answerComments();
+			// review product list
+			var totalPageRv = (reviewProductService.CountReviewProductById(id) + pageSizeRv - 1) / pageSizeRv;
+			if (pageRv <= 0) pageRv = 1;
+			else pageRv = (pageRv > totalPageRv && totalPageRv > 0) ? totalPageRv : pageRv;
+			var modelRv = reviewProductService.GetReviewProductsByProductId(id, pageRv, pageSizeRv).ToList();
+			ViewBag.PageRv = pageRv;
+			ViewBag.TotalPageRv = totalPageRv;
+			ViewBag.ReviewList = modelRv;
+			ViewBag.AnserReview = reviewProductService.AnswerReviews();
+			ViewBag.CalculateReview = reviewProductService.CalculateRate(id);
+			//detail
+			ViewBag.ReviewStarList = reviewProductService.GetAll();
 			ViewBag.ListProductOther = productService.ListProductSale();
             var product = productService.GetById(id);
             ViewBag.Category = categoryService.GetById(product.Category_ID);
@@ -127,5 +135,34 @@ namespace ShopingCart.Controllers
 				status = true
 			});
 		}
-    }
+		[HttpPost]
+		public ActionResult CommentReview(string data)
+		{
+			var item = JsonConvert.DeserializeObject<AnswerReview>(data);
+			var user = (User)Session["User"];
+
+			if (user == null)
+			{
+				return Json(new
+				{
+					status = false
+				});
+			}
+
+			var answerReview = new AnswerReview
+			{
+				ReviewId = item.ReviewId,
+				Content = item.Content,
+				CreatedDate = DateTime.Now,
+				UserId = user.UserId,
+				Status = 1
+			};
+			reviewProductService.InsertAnswerReview(answerReview);
+
+			return Json(new
+			{
+				status = true
+			});
+		}
+	}
 }

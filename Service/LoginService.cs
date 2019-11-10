@@ -33,5 +33,10 @@ namespace Service
 		{
 			return repository.GetByUserName(UserName);
 		}
+
+		public int UpdateUserCustomer(User user)
+		{
+			return repository.UpdateUserCustomer(user);
+		}
 	}
 }

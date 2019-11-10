@@ -13,5 +13,6 @@ namespace Repository.Interface
 		int AddUser(User user);
 		bool Login(string username, string password);
 		User GetByUserName(string UserName);
+		int UpdateUserCustomer(User user);
 	}
 }

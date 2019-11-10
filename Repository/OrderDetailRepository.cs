@@ -68,24 +68,5 @@ namespace Repository
 			context.Entry(t).State = System.Data.Entity.EntityState.Modified;
 			return context.SaveChanges();
 		}
-
-		public int InsertMultipleReviewProduct(List<ReviewProduct> items)
-		{
-			foreach (var item in items)
-			{
-				var obj = new ReviewProduct
-				{
-					Content = item.Content,
-					CreatedDate = DateTime.Now,
-					ProductId = item.ProductId,
-					Rate = item.Rate,
-					Status = true,
-					OrderId=item.OrderId
-				};
-				context.ReviewProducts.Add(obj);
-				context.SaveChanges();
-			}
-			return 1;
-		}
 	}
 }

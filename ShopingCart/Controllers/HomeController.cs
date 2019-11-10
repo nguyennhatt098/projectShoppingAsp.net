@@ -69,7 +69,7 @@ namespace ShopingCart.Controllers
 			List<Category> lst = new List<Category>();
 			using (var context = new DBEntityContext())
 			{
-				lst = context.Categories.ToList();
+				lst = context.Categories.Where(x=>x.Status).ToList();
 			}
 
 			ViewBag.Categories = lst;

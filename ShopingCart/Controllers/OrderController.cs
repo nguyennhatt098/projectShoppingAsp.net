@@ -14,11 +14,15 @@ namespace ShopingCart.Controllers
 		private UserService _userService;
 		private OrderService _orderService;
 		private OrderDetailService _orderDetailService;
+		private ReviewProductService _reviewProductService;
+		private NotifyService _notifyService;
 		public OrderController()
 		{
 			_userService = new UserService();
 			_orderService = new OrderService();
 			_orderDetailService = new OrderDetailService();
+			_reviewProductService = new ReviewProductService();
+			_notifyService = new NotifyService();
 		}
         // GET: Order
         public ActionResult Index()
@@ -148,12 +152,13 @@ namespace ShopingCart.Controllers
 		public ActionResult InsertReviewOrder(string data)
 		{
 			var item = JsonConvert.DeserializeObject<List<ReviewProduct>>(data);
-			var result = _orderDetailService.InsertMultipleReviewProduct(item);
+			var result = _reviewProductService.InsertMultipleReviewProduct(item);
 			if (result > 0)
 			{
 				var orderItem = _orderService.GetById(item[0].OrderId);
-				//orderItem.VerifyCode = "";
-				//_orderService.Update(orderItem);
+				_notifyService.GetNotifyByLink(orderItem.VerifyCode);
+				orderItem.VerifyCode = "";
+				_orderService.Update(orderItem);
 				TempData["message"] = "Added";
 				TempData["DataSuccess"] = "Đánh giá thành công";
 			}

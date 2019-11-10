@@ -15,6 +15,5 @@ namespace Service.Interface
 		int Inserts(Order order, List<OrderDetail> orderDetail);
 		IEnumerable<Order> GetListOrderById(int userId, int Page, int Pagesize);
 		Order GetOrderById(string verifyCode);
-		int InsertMultipleReviewProduct(List<ReviewProduct> items);
 	}
 }

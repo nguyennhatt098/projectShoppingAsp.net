@@ -3447,6 +3447,7 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Order\OrderHistory.cshtml" />
     <Content Include="Views\Order\ReviewOrder.cshtml" />
+    <Content Include="Views\Resgiter\UpdateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
