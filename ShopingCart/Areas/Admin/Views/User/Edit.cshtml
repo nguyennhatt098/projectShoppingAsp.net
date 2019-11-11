@@ -4,6 +4,24 @@
 	ViewBag.Title = "Edit";
 	var user = (Model.User)@ViewBag.user;
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+	
+}
+@{
+	var checkGirl = "";
+	var checkBoy = "";
+	var checkDefault = "";
+	if (Model.Gender == "Nam")
+	{
+		checkBoy = "checked";
+	}
+	if (Model.Gender == "Nữ")
+	{
+		checkGirl = "checked";
+	}
+	if (Model.Gender == "Khác")
+	{
+		checkDefault = "checked";
+	}
 }
 
 <div class="box">
@@ -11,17 +29,17 @@
 
 	<div class="box-body">
 
-		@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "create" }))
+		@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "create",enctype = "multipart/form-data" }))
 		{
 			@Html.AntiForgeryToken()
 
 			<div class="form-horizontal container">
-				
+
 				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 				@Html.HiddenFor(model => model.UserId)
 
 				<div class="form-group">
-					 @Html.LabelFor(model => model.RoleId, "RoleId", htmlAttributes: new { @class = "control-label col-md-2" })
+					@Html.LabelFor(model => model.RoleId, "RoleId", htmlAttributes: new { @class = "control-label col-md-2" })
 					<div class="col-md-10">
 						@Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control" })
 						@Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
@@ -82,6 +100,26 @@
 						@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
 					</div>
 				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						<input style="background:white;" type="file" name="Image" />
+						<img style="height:100px;" src="@Model.Image" />
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+					
+						<span>Giới tính:</span>
+						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Nam" @checkBoy/>
+						<span>Nam</span>
+						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Nữ" @checkGirl/>
+						<span>Nữ</span>
+						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Khác" @checkDefault/>
+						<span>Khác</span>
+					</div>
+				</div>
 
 				<div class="form-group">
 					@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -107,5 +145,5 @@
 		<div>
 			<a class="btn btn-primary" href="@Url.Action("Index")">Back to List</a>
 		</div>
-		</div>
+	</div>
 </div>

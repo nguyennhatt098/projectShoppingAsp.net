@@ -77,6 +77,8 @@ namespace Repository
 					Phone = user.Phone,
 					Status = true,
 					ConfirmPassword = user.Password,
+					Gender = user.Gender,
+					Image = user.Image
 				};
 				context.Users.Add(currentUser);
 			}
@@ -117,6 +119,8 @@ namespace Repository
 				currentItem.UserName = t.UserName;
 				currentItem.FullName = t.FullName;
 				currentItem.ConfirmPassword = t.Password;
+				currentItem.Gender = t.Gender;
+				currentItem.Image = t.Image;
 			}
 			context.Entry(currentItem).State = System.Data.Entity.EntityState.Modified;
 			return context.SaveChanges();

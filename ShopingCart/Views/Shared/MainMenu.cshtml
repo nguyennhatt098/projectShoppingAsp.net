@@ -77,25 +77,33 @@
 						}
 					</div>
 					@{ Html.RenderAction("HeaderCart", "Home");}
-				<div  class="setting-menu display-inline">
-					@if (Session["User"] != null)
+				<div class="setting-menu display-inline">
+					@if (user != null)
 					{
-						<div class="icon-nav current" style="padding-right: 20px;"><i style="font-size: 20px " class="fa fa-user"></i> @user.FullName</div>
-						<ul class="content-nav toogle-content">
-							<li class="currencies-block-top">
-								<div class="current"><a href="@Url.Action("LogOut","Login")">Đăng xuất</a></div>
+						if (user.Image != null)
+						{
+							<div class="icon-nav current" style="padding-right: 20px;"><img style="width: 25px; height: 25px; border-radius: 100%" src="@user.Image"/> @user.FullName</div>
+						}
+						else
+						{
+							<div class="icon-nav current" style="padding-right: 20px;"><i style="font-size: 20px " class="fa fa-user"></i> @user.FullName</div>
+						}
 
-							</li>
+						<ul class="content-nav toogle-content">
+
 							<li class="currencies-block-top">
 								<div class="current"><a href="/Order/OrderHistory">Đơn mua</a></div>
 
 							</li>
+							<li class="currencies-block-top">
+								<div class="current"><a href="@Url.Action("LogOut","Login")">Đăng xuất</a></div>
 
+							</li>
 						</ul>
 					}
 					else
 					{
-						<div  class="icon-nav current" style="padding-right: 20px;"><i style="font-size: 20px " class="fa fa-user"></i>Đăng nhập | Đăng ký</div>
+						<div class="icon-nav current" style="padding-right: 20px;"><i style="font-size: 20px " class="fa fa-user"></i>Đăng nhập | Đăng ký</div>
 						<ul class="content-nav toogle-content">
 							<li class="currencies-block-top">
 								<div class="current"><a href="@Url.Action("Index", "Login")">Đăng nhập</a></div>
@@ -109,7 +117,7 @@
 						</ul>
 					}
 
-				
+
 				</div>
 				</div>
 			</div>

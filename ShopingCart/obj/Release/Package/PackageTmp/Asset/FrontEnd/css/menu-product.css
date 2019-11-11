@@ -104,8 +104,24 @@
 	#accordian{
 		display:block !important;
 	}
+	.product-parent .product-child {
+		
+		height: 160px !important;
+	}
+	
 }
 	#accordian{
 		display:none;
 	}
 
+.product-parent .product-child {
+	-webkit-flex: 1; /* Safari 6.1+ */
+	-ms-flex: 1; /* IE 10 */
+	display: flex ;
+	height: 460px;
+}
+/*//progress bar*/
+.left-title-star p {
+	text-align: center;
+	color: #444
+}

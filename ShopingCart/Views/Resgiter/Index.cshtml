@@ -6,6 +6,7 @@
 @{
 	ViewBag.Title = "Đăng Ký";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+	
 }
 <div class="space-custom"></div>
 <div class="breadcrumb-area">
@@ -26,7 +27,7 @@
 				<em>doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo <br>inventore veritatis et quasi architecto beatae</em>
 			</div>
 			<div class="clear"></div>
-			@using (Html.BeginForm())
+			@using (Html.BeginForm("Index","Resgiter",FormMethod.Post,new { enctype = "multipart/form-data" }))
 			{
 				@Html.AntiForgeryToken()
 				<div style="background:white" class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
@@ -74,6 +75,19 @@
 							<input class="form-control" type="password" name="ConfirmPassword" />
 							@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
 						</p>
+						<p class="form-row col-sm-12">
+							@Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+							<input style="background:white;" type="file" name="Image" />
+						</p>
+						<p>
+							<span>Giới tính:</span>
+							<input style="width:3%;height:20px;" type="radio" name="Gender" value="Nam"  />
+							<span>Nam</span>
+							<input style="width:3%;height:20px;" type="radio" name="Gender" value="Nữ"  />
+							<span>Nữ</span>
+							<input style="width:3%;height:20px;" type="radio" name="Gender" value="Khác" />
+							<span>Khác</span>
+						</p>
 						<div class="col-sm-12">
 							@Html.Captcha(registerCaptcha)
 							@Html.ValidationMessage("CaptchaCode", new { @class = "text-danger" })
@@ -81,7 +95,7 @@
 
 						</div>
 						<p style="" class="form-row">
-							<input style="margin-top:20px;margin-left:12px;" type="submit" value="Register" name="signup" class="theme-button marL0">
+							<input style="margin-top:20px;margin-left:12px;" type="submit" value="Đăng ký" name="signup" class="theme-button marL0">
 						</p>
 					</div>
 				</div>

@@ -192,7 +192,6 @@ form#searchbox input {
 }
 .icon-nav::after {
   color: #2c2c2c;
-  content: "";
   cursor: pointer;
   display: block;
   font-family: FontAwesome;

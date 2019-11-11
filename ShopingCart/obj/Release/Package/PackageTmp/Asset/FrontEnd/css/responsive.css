@@ -561,20 +561,6 @@ form#searchbox input {
 .content-sortpagibar {
   padding-bottom: 40px;
 }    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
 }
  
 /* Large Mobile :480px. */
@@ -584,10 +570,9 @@ form#searchbox input {
   display: none;
 }
 .box-quantity input {
-  display: block;;
+  display: block;
 } 
-
-
- 
 }
- 
+.form-register input{
+	border:1px solid grey;
+}

@@ -24,11 +24,16 @@ namespace ShopingCart.Controllers
 		}
 		[HttpPost]
 		[CaptchaValidationActionFilter("CaptchaCode", "registerCaptcha", "Mã Xác Nhận Không Đúng!")]
-		public ActionResult Index(User user)
+		public ActionResult Index(User user, HttpPostedFileBase Image)
 		{
 			if (ModelState.IsValid)
 			{
 				user.Password = Encryptor.MD5Hash(user.Password);
+				string pic = Path.GetFileName(Image.FileName);
+				string path = Path.Combine(Server.MapPath("~/Contents/Uploads"), pic);
+				// file is uploaded
+				Image.SaveAs(path);
+				user.Image = "/Contents/Uploads/" + Image.FileName;
 				var result = userService.Insert(user);
 				if (result > 0)
 				{
@@ -86,7 +91,7 @@ namespace ShopingCart.Controllers
 				if (result > 0)
 				{
 					TempData["message"] = "Added";
-					TempData["DataSuccess"] = "Đăng ký thành công";
+					TempData["DataSuccess"] = "Sửa thông tin thành công";
 				}
 				else if (result == -2)
 				{

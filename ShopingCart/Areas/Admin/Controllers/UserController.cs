@@ -1,4 +1,6 @@
-﻿using Model;
+﻿using System.IO;
+using System.Web;
+using Model;
 using Service;
 using System.Web.Mvc;
 using ShopingCart.Common;
@@ -34,11 +36,16 @@ namespace ShopingCart.Areas.Admin.Controllers
 
 		[HttpPost]
 		[HasCredential(ActionId = 24)]
-		public ActionResult Create(User user)
+		public ActionResult Create(User user, HttpPostedFileBase Image)
 		{
 			if (ModelState.IsValid)
 			{
 				user.Password = Encryptor.MD5Hash(user.Password);
+				string pic = Path.GetFileName(Image.FileName);
+				string path = Path.Combine(Server.MapPath("../../Contents/Uploads"), pic);
+				// file is uploaded
+				Image.SaveAs(path);
+				user.Image = "/Contents/Uploads/"+ Image.FileName;
 				var result = loginService.AddUser(user);
 				if (result > 0)
 				{
@@ -87,13 +94,17 @@ namespace ShopingCart.Areas.Admin.Controllers
 		[HttpPost]
 		[ValidateInput(false)]
 		[HasCredential(ActionId = 25)]
-		public ActionResult Edit(User user)
+		public ActionResult Edit(User user, HttpPostedFileBase Image)
 		{
 			if (ModelState.IsValid)
 			{
 				var userDetail = userService.GetById(user.UserId);
 				if(!userDetail.Password.Equals(user.Password)) user.Password = Encryptor.MD5Hash(user.Password);
-
+				string pic = Path.GetFileName(Image.FileName);
+				string path = Path.Combine(Server.MapPath("../../../Contents/Uploads"), pic);
+				// file is uploaded
+				Image.SaveAs(path);
+				user.Image = "/Contents/Uploads/"+Image.FileName;
 				var result = userService.Update(user);
 				if (result > 0)
 				{

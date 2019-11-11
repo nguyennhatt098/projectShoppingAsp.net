@@ -27,3 +27,44 @@ Note: This is the file where you can add your custom styles to change the look o
 .error{
     color:red;
 }
+
+
+
+	/*rate 2*/
+.rating {
+	display: block;
+	direction: rtl;
+	unicode-bidi: bidi-override;
+	text-align: center;
+	margin:15px;
+}
+
+	.rating .star {
+		display: none;
+	}
+
+	.rating label {
+		color: lightgray;
+		display: inline-block;
+		font-size: 60px;
+		margin: 0 -2px;
+		transition: transform .15s ease;
+	}
+
+		.rating label:hover {
+			transform: scale(1.35, 1.35);
+		}
+
+			.rating label:hover,
+			.rating label:hover ~ label {
+				color: orange;
+			}
+
+	.rating .star:checked ~ label {
+		color: orange;
+	}
+
+.pro-rating .fa {
+	color: #ffae00;
+	font-size: 15px;
+}
