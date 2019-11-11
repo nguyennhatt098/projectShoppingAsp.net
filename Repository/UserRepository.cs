@@ -120,7 +120,7 @@ namespace Repository
 				currentItem.FullName = t.FullName;
 				currentItem.ConfirmPassword = t.Password;
 				currentItem.Gender = t.Gender;
-				currentItem.Image = t.Image;
+				currentItem.Image = t.Image ?? currentItem.Image;
 			}
 			context.Entry(currentItem).State = System.Data.Entity.EntityState.Modified;
 			return context.SaveChanges();

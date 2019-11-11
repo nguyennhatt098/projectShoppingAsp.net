@@ -29,11 +29,15 @@ namespace ShopingCart.Controllers
 			if (ModelState.IsValid)
 			{
 				user.Password = Encryptor.MD5Hash(user.Password);
-				string pic = Path.GetFileName(Image.FileName);
-				string path = Path.Combine(Server.MapPath("~/Contents/Uploads"), pic);
-				// file is uploaded
-				Image.SaveAs(path);
-				user.Image = "/Contents/Uploads/" + Image.FileName;
+				if (Image != null)
+				{
+					string pic = Path.GetFileName(Image.FileName);
+					string path = Path.Combine(Server.MapPath("~/Contents/Uploads"), pic);
+					// file is uploaded
+					Image.SaveAs(path);
+					user.Image = "/Contents/Uploads/" + Image.FileName;
+				}
+				
 				var result = userService.Insert(user);
 				if (result > 0)
 				{
@@ -81,12 +85,15 @@ namespace ShopingCart.Controllers
 			if (Session["User"] != null)
 			{
 				var currentUser = (User)Session["User"];
-				string pic = Path.GetFileName(Image.FileName);
-				string path =Path.Combine(Server.MapPath("~/Contents/Uploads"), pic);
-				// file is uploaded
-				Image.SaveAs(path);
+				if (Image != null)
+				{
+					string pic = Path.GetFileName(Image.FileName);
+					string path = Path.Combine(Server.MapPath("~/Contents/Uploads"), pic);
+					// file is uploaded
+					Image.SaveAs(path);
+					u.Image = "/Contents/Uploads/" + Image.FileName;
+				}
 				u.UserId = currentUser.UserId;
-				u.Image ="/Contents/Uploads/"+ Image.FileName;
 				var result = loginService.UpdateUserCustomer(u);
 				if (result > 0)
 				{

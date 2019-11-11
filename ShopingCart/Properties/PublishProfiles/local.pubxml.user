@@ -112,7 +112,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2019 15:44:22</publishTime>
     </File>
     <File Include="Areas/Admin/Views/User/Edit.cshtml">
-      <publishTime>11/11/2019 15:44:22</publishTime>
+      <publishTime>11/11/2019 16:42:09</publishTime>
     </File>
     <File Include="Areas/Admin/Views/User/Index.cshtml">
       <publishTime>11/11/2019 15:44:22</publishTime>
@@ -31375,13 +31375,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2019 15:45:41</publishTime>
     </File>
     <File Include="bin/Model.dll">
-      <publishTime>11/11/2019 15:55:33</publishTime>
+      <publishTime>11/11/2019 16:59:35</publishTime>
     </File>
     <File Include="bin/Model.dll.config">
       <publishTime>11/11/2019 15:44:16</publishTime>
     </File>
     <File Include="bin/Model.pdb">
-      <publishTime>11/11/2019 15:55:33</publishTime>
+      <publishTime>11/11/2019 16:59:35</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>11/11/2019 15:45:42</publishTime>
@@ -31393,13 +31393,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2019 15:45:42</publishTime>
     </File>
     <File Include="bin/Repository.dll">
-      <publishTime>11/11/2019 15:55:34</publishTime>
+      <publishTime>11/11/2019 16:59:36</publishTime>
     </File>
     <File Include="bin/Repository.dll.config">
       <publishTime>11/11/2019 15:44:19</publishTime>
     </File>
     <File Include="bin/Repository.pdb">
-      <publishTime>11/11/2019 15:55:34</publishTime>
+      <publishTime>11/11/2019 16:59:36</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>11/11/2019 15:45:41</publishTime>
@@ -31540,19 +31540,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2019 15:45:41</publishTime>
     </File>
     <File Include="bin/Service.dll">
-      <publishTime>11/11/2019 15:55:34</publishTime>
+      <publishTime>11/11/2019 16:59:37</publishTime>
     </File>
     <File Include="bin/Service.dll.config">
       <publishTime>11/11/2019 15:44:20</publishTime>
     </File>
     <File Include="bin/Service.pdb">
-      <publishTime>11/11/2019 15:55:34</publishTime>
+      <publishTime>11/11/2019 16:59:37</publishTime>
     </File>
     <File Include="bin/ShopingCart.dll">
-      <publishTime>11/11/2019 15:55:36</publishTime>
+      <publishTime>11/11/2019 16:59:47</publishTime>
     </File>
     <File Include="bin/ShopingCart.pdb">
-      <publishTime>11/11/2019 15:55:36</publishTime>
+      <publishTime>11/11/2019 16:59:47</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>11/11/2019 15:45:44</publishTime>
@@ -31594,7 +31594,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2019 15:44:50</publishTime>
     </File>
     <File Include="Contents/Uploads/1531537383m34.jpg">
-      <publishTime>11/11/2019 15:44:50</publishTime>
+      <publishTime>11/11/2019 16:50:25</publishTime>
     </File>
     <File Include="Contents/Uploads/files/download %281%29.jpg">
       <publishTime>10/29/2019 10:05:08</publishTime>
@@ -31762,7 +31762,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2019 15:44:55</publishTime>
     </File>
     <File Include="Views/Resgiter/UpdateUser.cshtml">
-      <publishTime>11/11/2019 15:44:55</publishTime>
+      <publishTime>11/11/2019 16:56:36</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>10/26/2019 11:06:14</publishTime>
@@ -31795,7 +31795,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2019 15:44:55</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/11/2019 15:55:50</publishTime>
+      <publishTime>11/11/2019 17:00:11</publishTime>
     </File>
   </ItemGroup>
 </Project>

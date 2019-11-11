@@ -87,7 +87,7 @@ namespace Repository
 				currentItem.Email = user.Email;
 				currentItem.Phone = user.Phone;
 				currentItem.FullName = user.FullName;
-				currentItem.Image = user.Image;
+				currentItem.Image = user.Image ?? currentItem.Image;
 				currentItem.Gender = user.Gender;
 				currentItem.ConfirmPassword = currentItem.Password;
 			}

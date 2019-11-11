@@ -41,11 +41,15 @@ namespace ShopingCart.Areas.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				user.Password = Encryptor.MD5Hash(user.Password);
-				string pic = Path.GetFileName(Image.FileName);
-				string path = Path.Combine(Server.MapPath("../../Contents/Uploads"), pic);
-				// file is uploaded
-				Image.SaveAs(path);
-				user.Image = "/Contents/Uploads/"+ Image.FileName;
+				if (Image != null)
+				{
+					string pic = Path.GetFileName(Image.FileName);
+					string path = Path.Combine(Server.MapPath("../../Contents/Uploads"), pic);
+					// file is uploaded
+					Image.SaveAs(path);
+					user.Image = "/Contents/Uploads/" + Image.FileName;
+				}
+			
 				var result = loginService.AddUser(user);
 				if (result > 0)
 				{
@@ -100,11 +104,15 @@ namespace ShopingCart.Areas.Admin.Controllers
 			{
 				var userDetail = userService.GetById(user.UserId);
 				if(!userDetail.Password.Equals(user.Password)) user.Password = Encryptor.MD5Hash(user.Password);
-				string pic = Path.GetFileName(Image.FileName);
-				string path = Path.Combine(Server.MapPath("../../../Contents/Uploads"), pic);
-				// file is uploaded
-				Image.SaveAs(path);
-				user.Image = "/Contents/Uploads/"+Image.FileName;
+				if (Image != null)
+				{
+					string pic = Path.GetFileName(Image.FileName);
+					string path = Path.Combine(Server.MapPath("../../../Contents/Uploads"), pic);
+					// file is uploaded
+					Image.SaveAs(path);
+					user.Image = "/Contents/Uploads/" + Image.FileName;
+				}
+				
 				var result = userService.Update(user);
 				if (result > 0)
 				{

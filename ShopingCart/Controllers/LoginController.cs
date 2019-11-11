@@ -143,11 +143,9 @@ namespace ShopingCart.Controllers
                     model.ResetCode = id;
                     return View(model);
                 }
-                else
-                {
-                    return HttpNotFound();
-                }
-            }
+
+				return Redirect("/Home/Error404");
+			}
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
