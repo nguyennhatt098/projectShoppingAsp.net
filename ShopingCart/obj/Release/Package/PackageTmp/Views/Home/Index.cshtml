@@ -55,7 +55,11 @@
 									@foreach (var item in Model)
 									{
 										float totalStar = 0;
-										var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).ToList();
+										var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
+										{
+											ProductId = x.Id,
+											Rate = x.Rate
+										}).ToList();
 										foreach (var itemReview in reviewProducts)
 										{
 											totalStar += itemReview.Rate;
@@ -161,7 +165,11 @@
 				@foreach (var item in ListProductNew)
 				{
 					float totalStar = 0;
-					var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).ToList();
+					var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
+					{
+						ProductId = x.Id,
+						Rate = x.Rate
+					}).ToList();
 					foreach (var itemReview in reviewProducts)
 					{
 						totalStar += itemReview.Rate;

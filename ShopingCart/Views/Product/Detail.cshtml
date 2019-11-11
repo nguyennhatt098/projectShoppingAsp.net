@@ -399,7 +399,7 @@
 																<small class="text-muted">@item.CreatedDate</small>
 															</span>
 															<strong class="text-success">@item.Order.Users.UserName</strong>
-															<p>
+															<p style="display:inline-block">
 																@for (int a = 1; a <= 5; a++)
 																{
 																	if (a <= item.Rate)
@@ -538,7 +538,11 @@
 				@foreach (var item in listproductorther)
 				{
 					float totalStar = 0;
-					var reviewProducts = reviewStarList.Where(x => x.ProductId == item.Id).ToList();
+					var reviewProducts = reviewStarList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
+					{
+						ProductId = x.Id,
+						Rate = x.Rate
+					}).ToList();
 					foreach (var itemReview in reviewProducts)
 					{
 						totalStar += itemReview.Rate;

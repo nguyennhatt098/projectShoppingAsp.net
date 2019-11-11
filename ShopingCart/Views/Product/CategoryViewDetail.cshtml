@@ -181,7 +181,7 @@
 						<!-- Tab panes -->
 						<div class="tab-content reload-wish">
 							<div role="tabpanel" class="tab-pane active" id="home">
-								<div class="row product-parent">
+								<div class="row ">
 									@if (Model.Count > 0)
 									{
 										foreach (var item in Model)
@@ -195,8 +195,8 @@
 											}
 											float currentStar = totalStar / reviewProducts.Count();
 											var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
-											<div class="col-md-4 col-sm-6 product-child">
-												<div class="product-wrapper mb-40">
+											<div class="col-md-4 col-sm-6 ">
+												<div style="height: 460px;" class="product-wrapper mb-40">
 													<div class="product-img">
 
 														<a href="@url"><img style="width: 100%" src="@item.Images" alt="" /></a>
@@ -271,7 +271,7 @@
 									}
 								</div>
 							</div>
-							<div role="tabpanel" class="tab-pane" id="profile">
+							<div role="tabpanel" class="tab-pane " id="profile">
 								@if (Model.Count > 0)
 								{
 									foreach (var item in Model)

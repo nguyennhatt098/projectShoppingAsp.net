@@ -3000,6 +3000,7 @@
     <Content Include="Asset\FrontEnd\elements-blog.html" />
     <Content Include="Asset\FrontEnd\elements-products.html" />
     <Content Include="Asset\FrontEnd\fonts\fontawesome-webfont3295.svg" />
+    <Content Include="Asset\FrontEnd\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Asset\FrontEnd\fonts\Pe-icon-7-strokebb1d.svg" />
     <Content Include="Asset\FrontEnd\fonts\slick.svg" />
     <Content Include="Asset\FrontEnd\images\bg\1.jpg" />
@@ -3388,6 +3389,10 @@
     <Content Include="Asset\FrontEnd\fonts\slick.ttf" />
     <Content Include="Asset\FrontEnd\fonts\slick.woff" />
     <Content Include="Asset\FrontEnd\fonts\slickd41d.eot" />
+    <Content Include="Asset\FrontEnd\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Asset\FrontEnd\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Asset\FrontEnd\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Asset\FrontEnd\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
