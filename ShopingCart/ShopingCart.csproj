@@ -3101,18 +3101,8 @@
     <Content Include="Asset\FrontEnd\register.html" />
     <Content Include="Asset\FrontEnd\shop.html" />
     <Content Include="Asset\FrontEnd\style.css" />
-    <Content Include="Contents\Uploads\files\download %281%29.jpg" />
-    <Content Include="Contents\Uploads\files\download.jpg" />
-    <Content Include="Contents\Uploads\images\59879971_984130785310705_427847642546962432_n.jpg" />
-    <Content Include="Contents\Uploads\images\image3.png" />
-    <Content Include="Contents\Uploads\images\image4.png" />
-    <Content Include="Contents\Uploads\images\tải xuống.png" />
-    <Content Include="Contents\Uploads\_thumbs\Files\download %281%29.jpg" />
-    <Content Include="Contents\Uploads\_thumbs\Files\download.jpg" />
-    <Content Include="Contents\Uploads\_thumbs\Images\59879971_984130785310705_427847642546962432_n.jpg" />
-    <Content Include="Contents\Uploads\_thumbs\Images\image3.png" />
-    <Content Include="Contents\Uploads\_thumbs\Images\image4.png" />
-    <Content Include="Contents\Uploads\_thumbs\Images\tải xuống.png" />
+    <Content Include="Contents\Uploads\1531537383m34.jpg" />
+    <Content Include="Contents\Uploads\user_1.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -3453,6 +3443,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Contents\Uploads\files\" />
+    <Folder Include="Contents\Uploads\images\" />
+    <Folder Include="Contents\Uploads\_thumbs\Files\" />
     <Folder Include="Views\Footer\" />
   </ItemGroup>
   <ItemGroup>
