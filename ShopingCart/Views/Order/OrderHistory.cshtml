@@ -47,7 +47,7 @@ else
 
 							</div>
 						</div>
-						<div class="panel-body">
+						<div style="background: white" class="panel-body">
 							<div style="margin-bottom: 5px;margin-top: 52px;">
 								<i style="font-size: 20px;" class="fa fa-user"></i>
 								<a href="/Resgiter/UpdateUser">Tài khoản của tôi</a>
@@ -137,8 +137,9 @@ else
 								</div>
 								<div class="content-sortpagibar">
 
-									@Html.PagedListPager(Model, Page => Url.Action("OrderHistory", new { Page, @searchString = @ViewBag.searchString }))
-
+									@Html.PagedListPager(Model, Page => Url.Action("OrderHistory", new { Page, @searchString = @ViewBag.searchString }), new PagedListRenderOptions {
+										UlElementClasses = new[] {"shop-pagi display-inline"}
+									})
 									<div class="selector-field f-right">
 
 									</div>

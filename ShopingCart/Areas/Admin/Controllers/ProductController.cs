@@ -16,7 +16,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 		}
 		// GET: Admin/Category
 		[HasCredential(ActionId = 9)]
-		public ActionResult Index(string searchString, int Page = 1, int PageSize = 10)
+		public ActionResult Index(string searchString, int Page = 1, int PageSize = 8)
 		{
 			ViewBag.searchString = searchString;
 			return View(product.Search(searchString, Page, PageSize));
