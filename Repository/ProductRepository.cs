@@ -106,7 +106,7 @@ namespace Repository
 		
 		public IEnumerable<Product> ListProductSale()
 		{
-			var randomItem = context.Products.OrderBy(x => Guid.NewGuid()).Take(4).ToList();
+			var randomItem = context.Products.OrderBy(x => Guid.NewGuid()).Take(8).ToList();
 			return randomItem;
 		}
 

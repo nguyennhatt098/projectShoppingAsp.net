@@ -39,7 +39,6 @@ namespace ShopingCart.Controllers
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
 			ViewBag.ListProductNew = productService.ListProductNew();
 			ViewBag.ListNews = newsService.GetAll();
-			ViewBag.ListProductSale = productService.ListProductSale();
 			ViewBag.ReviewList = reviewProductService.GetAll();
 			return View(productService.ListProductHot());
 		}

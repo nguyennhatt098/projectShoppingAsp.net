@@ -13,7 +13,7 @@ namespace ShopingCart.Common
 		protected override bool AuthorizeCore(HttpContextBase httpContext)
 		{
 			
-			var session = (LoginModel)HttpContext.Current.Session[CommonConstants.USER_SESSION];
+			var session = (User)HttpContext.Current.Session[CommonConstants.USER_SESSION];
 			if (session == null)
 			{
 				httpContext.Response.Redirect("Login");

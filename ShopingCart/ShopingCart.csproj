@@ -222,7 +222,6 @@
     <Content Include="Asset\Backend\bower_components\datatables.net\js\jquery.dataTables.js" />
     <Content Include="Asset\Backend\bower_components\datatables.net\js\jquery.dataTables.min.js" />
     <Content Include="Asset\Backend\bower_components\datatables.net\License.txt" />
-    <Content Include="Asset\Backend\bower_components\fastclick\lib\fastclick.js" />
     <Content Include="Asset\Backend\bower_components\font-awesome\css\font-awesome.css" />
     <Content Include="Asset\Backend\bower_components\font-awesome\css\font-awesome.min.css" />
     <Content Include="Asset\Backend\bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -3255,10 +3254,6 @@
     <Content Include="Asset\Backend\bower_components\datatables.net\.bower.json" />
     <Content Include="Asset\Backend\bower_components\datatables.net\bower.json" />
     <Content Include="Asset\Backend\bower_components\datatables.net\Readme.md" />
-    <Content Include="Asset\Backend\bower_components\fastclick\.bower.json" />
-    <Content Include="Asset\Backend\bower_components\fastclick\bower.json" />
-    <Content Include="Asset\Backend\bower_components\fastclick\LICENSE" />
-    <Content Include="Asset\Backend\bower_components\fastclick\README.md" />
     <Content Include="Asset\Backend\bower_components\font-awesome\.bower.json" />
     <Content Include="Asset\Backend\bower_components\font-awesome\.npmignore" />
     <Content Include="Asset\Backend\bower_components\font-awesome\bower.json" />

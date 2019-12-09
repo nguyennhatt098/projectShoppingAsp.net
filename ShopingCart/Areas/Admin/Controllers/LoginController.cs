@@ -25,38 +25,34 @@ namespace ShopingCart.Areas.Admin.Controllers
 
 		public ActionResult Login(LoginModel model)
 		{
-			if (ModelState.IsValid)
-			{
-				var res = loginService.Login(model.UserName, Encryptor.MD5Hash(model.Password));
-				if (res)
-				{
-					var user = loginService.GetByUserName(model.UserName);
-					if (!user.Status)
-					{
-						ModelState.AddModelError("", "Tài khoản của bạn hiện đang bị khóa");
-						return View("Index"); 
-					}
+            if (!ModelState.IsValid) return View("Index");
+            var res = loginService.Login(model.UserName, Encryptor.MD5Hash(model.Password));
+            if (res)
+            {
+                var user = loginService.GetByUserName(model.UserName);
+                if (!user.Status)
+                {
+                    ModelState.AddModelError("", "Tài khoản của bạn hiện đang bị khóa");
+                    return View("Index"); 
+                }
 
-					if (roleService.GetById(user.RoleId).RoleName.ToLower().Equals("member"))
-					{
-						ModelState.AddModelError("", "Tài khoản của bạn không có quyền truy cập vào trang admin");
-						return View("Index");
-					}
-					Session.Add(CommonConstants.SESSION_CREDENTIALS, loginService.GetListAction(user.UserName));
-					var userSession = new LoginModel
-					{
-						UserName = user.UserName,
-					};
-					Session.Add(CommonConstants.USER_SESSION, userSession);
+                if (roleService.GetById(user.RoleId).RoleName.ToLower().Equals("member"))
+                {
+                    ModelState.AddModelError("", "Tài khoản của bạn không có quyền truy cập vào trang admin");
+                    return View("Index");
+                }
+                Session.Add(CommonConstants.SESSION_CREDENTIALS, loginService.GetListAction(user.UserName));
+                var userSession = new LoginModel
+                {
+                    UserName = user.UserName,
+                };
+                Session.Add(CommonConstants.USER_SESSION, user);
 
-					return RedirectToAction("Index", "HomeAdmin");
-				}
-				else
-				{
-					ModelState.AddModelError("", "Login sai");
-				}
-			}
-			return View("Index");
+                return RedirectToAction("Index", "HomeAdmin");
+            }
+
+            ModelState.AddModelError("", "Login sai");
+            return View("Index");
 		}
 		public ActionResult LogOut()
 		{
