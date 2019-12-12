@@ -93,7 +93,8 @@ namespace Repository
 							Question = c.Question,
 							UserName = u.UserName,
 							CreatedDate = c.CreatedDate,
-							ModifyDate = c.ModifyDate
+							ModifyDate = c.ModifyDate,
+                            Image = u.Image
 						}).OrderByDescending(x => x.CreatedDate).Skip((Page - 1) * Pagesize).Take(Pagesize).AsQueryable();
 			return list;
 		}

@@ -55,9 +55,10 @@
 					<th>
 						Email
 					</th>
-					<th>
-						Địa chỉ
-					</th>
+                    <th>
+                        Địa chỉ
+                    </th>
+                    <th>Hình ảnh</th>
 					<th>
 						Trạng thái
 					</th>
@@ -92,9 +93,13 @@
 					<td>
 						@Html.DisplayFor(modelItem => item.Email)
 					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Address)
-					</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        <img style="width: 50px;" src="@Html.DisplayFor(modelItem => item.Image)"/>
+                      
+                    </td>
                     <td>
                         @if (item.Status)
                         {

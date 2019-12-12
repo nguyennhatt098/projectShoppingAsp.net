@@ -28,8 +28,8 @@
 						<a><img style="width:150px;height:50px;" src="~/Asset/FrontEnd/images/Logo4.jfif" alt="Alternate Text" /></a>
 					</div>
 				</div>
-				<div class="col-md-10 col-sm-9 col-xs-12 text-right xs-center">
-					<div class="main-menu display-inline hidden-sm hidden-xs">
+				<div class="col-md-10 col-sm-10 col-xs-12 text-right xs-center">
+					<div  class="main-menu display-inline hidden-sm hidden-xs">
 						<nav>
 							<ul>
 								<li>
@@ -54,27 +54,43 @@
 						</nav>
 					</div>
 
-					<div style="width: 10%" class="search-block-top display-inline">
+					<div style="width: 7%" class="search-block-top display-inline">
 						
 						
-						@if (notifies.Count > 0)
-						{
-							<a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #2c2c2c;font-weight: 700;font-size:20px;" class="glyphicon glyphicon-bell "></a>
-							<ul class="dropdown-menu dropdown-menu-right">
-								@foreach (var item in notifies)
-								{
-									<li style="width: 100%">
-										<a href="@item.Link" class="top-text-block">
-											<div style="font-size:12px" class="top-text-heading">@item.Content</div>
-											<div style="font-size:14px" class="top-text-light"><b>Ngày tạo</b> @item.CreatedDate</div>
-										</a>
-									</li>
-								}
-								@*<li>
-										<div class="loader-topbar"></div>
-									</li>*@
-							</ul>
-						}
+						<div class="dropdown-customs" style="">
+                            <a  style="color: #2c2c2c;font-weight: 700;font-size:20px;" href="#"><i class="glyphicon glyphicon-bell "></i></a>
+                          
+                            <div class="dropdown-contents" style="left: 0;">
+                                @if (user != null)
+                                {
+                                    <p style="text-align: left; margin-top: 0px; margin-left: 25px">Thông báo mới nhận</p>
+                                    if (notifies.Any())
+                                    {
+                                        foreach (var item in notifies)
+                                        {
+                                            <a href="@item.Link"><img style="width: 30px; float: left" src="@item.Image" /> @item.Content</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a  style="text-align: center" href="javascript:void(0)"> Không có thông báo</a>
+                                        <br/>
+                                    }
+
+                                    <a style="text-align: center" href="javascript:void(0)">Xem tất cả</a>
+                                }
+                                else
+                                {
+                                    @*<p style="text-align: center; margin-top: 7px; margin-left: 25px">Đăng nhập để nhận thông báo</p>
+                                    <p style="display: inline-block">  <a href="#">Đăng nhập</a></p>*@ 
+                                    <div style="margin: 30px;">
+                                        <p style="text-align: center"><i style=" font-size: 100px;" class="fa fa-user"></i></p>
+                                        <p style="text-align: center">Đăng nhập để xem thông báo</p>
+                                        <button class="btn btn-primary center-block" onclick="location.href = '/Login';">Đăng nhập</button>
+                                    </div>
+                                }
+                            </div>
+</div>
 					</div>
 					@{ Html.RenderAction("HeaderCart", "Home");}
 				<div class="setting-menu display-inline">
@@ -82,35 +98,35 @@
 					{
 						if (user.Image != null)
 						{
-							<div class="icon-nav current" style="padding-right: 20px;"><img style="width: 25px; height: 25px; border-radius: 100%" src="@user.Image"/> @user.FullName</div>
+							<div class="icon-nav current" style="padding-right: 20px;"><span style="color: #2c2c2c"><img style="width: 20px; height: 20px; border-radius: 100%;" src="@user.Image" /> @user.FullName</span></div>
 						}
 						else
 						{
-							<div class="icon-nav current" style="padding-right: 20px;"><i style="font-size: 20px " class="fa fa-user"></i> @user.FullName</div>
+							<div class="icon-nav current" style="padding-right: 20px;"><span style="color: #2c2c2c"><i style="font-size: 12px " class="fa fa-user"></i> @user.FullName</span></div>
 						}
 
 						<ul class="content-nav toogle-content">
 
 							<li class="currencies-block-top">
-								<div class="current"><a href="/Order/OrderHistory">Đơn mua</a></div>
+								<div class="current"><a style="color: #2c2c2c" href="/Order/OrderHistory">Đơn mua</a></div>
 
 							</li>
 							<li class="currencies-block-top">
-								<div class="current"><a href="@Url.Action("LogOut","Login")">Đăng xuất</a></div>
+								<div class="current"><a style="color: #2c2c2c" href="@Url.Action("LogOut","Login")">Đăng xuất</a></div>
 
 							</li>
 						</ul>
 					}
 					else
 					{
-						<div class="icon-nav current" style="padding-right: 20px;"><i style="font-size: 20px " class="fa fa-user"></i>Đăng nhập | Đăng ký</div>
+						<div class="icon-nav current" style="padding-right: 20px;"><span style="color: #2c2c2c"><i style="font-size: 20px " class="fa fa-user"></i>Đăng nhập | Đăng ký</span> </div>
 						<ul class="content-nav toogle-content">
 							<li class="currencies-block-top">
-								<div class="current"><a href="@Url.Action("Index", "Login")">Đăng nhập</a></div>
+								<div class="current"><a style="color: #2c2c2c" href="@Url.Action("Index", "Login")">Đăng nhập</a></div>
 
 							</li>
 							<li class="currencies-block-top">
-								<div class="current"><a href="@Url.Action("Index", "Resgiter")">Đăng ký</a></div>
+								<div class="current"><a style="color: #2c2c2c" href="@Url.Action("Index", "Resgiter")">Đăng ký</a></div>
 
 							</li>
 

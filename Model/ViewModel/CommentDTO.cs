@@ -14,5 +14,6 @@ namespace Model.ViewModel
 		public DateTime ModifyDate { get; set; }
 		public bool Status { get; set; }
 		public string UserName { get; set; }
+        public string Image { get; set; }
 	}
 }

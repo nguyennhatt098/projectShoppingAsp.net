@@ -14,5 +14,6 @@ namespace Service.Interface
 		int Delete(WishList item);
 		IEnumerable<WishList> GetById(int id);
 		int AddMutiple(List<WishList> items);
-	}
+        int CountByProductId(int id);
+    }
 }

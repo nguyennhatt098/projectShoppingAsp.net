@@ -31,14 +31,15 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Description)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>
+                   
                     <th>
                         @Html.DisplayNameFor(model => model.Created)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ModifileDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
                     </th>
                     <th></th>
                 </tr>
@@ -50,7 +51,7 @@
                     var updatedDate = item.ModifileDate != null ? item.ModifileDate.Value.ToString("dd/MM/yyyy") : "";
                     <tr>
                         <td>
-                            <img style="width:150px;" src="@Html.DisplayFor(modelItem => item.Images)" alt="Alternate Text" />
+                            <img style="width:100px; height: 50px;" src="@Html.DisplayFor(modelItem => item.Images)" alt="Alternate Text" />
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DisplayOrder)
@@ -61,6 +62,13 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
+                       
+                        <td>
+                            @createdDate
+                        </td>
+                        <td>
+                            @updatedDate
+                        </td>
                         <td>
                             @if (item.Status)
                             {
@@ -70,12 +78,6 @@
                             {
                                 <span class="label label-danger">Ẩn</span>
                             }
-                        </td>
-                        <td>
-                            @createdDate
-                        </td>
-                        <td>
-                            @updatedDate
                         </td>
                         <td>
                             <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Edit", new { id=item.ID })"><i class="fa fa-fw  fa-pencil"></i></a>

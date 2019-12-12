@@ -65,8 +65,7 @@ namespace ShopingCart.Controllers
 					
 					};
 					orderDetails.Add(orderDetail);
-
-				}
+                }
 				var result=	_orderDetailService.Inserts(order,orderDetails);
 				if (result > 0)
 				{

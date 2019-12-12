@@ -28,6 +28,11 @@ namespace Repository
 	        return context.SaveChanges();
         }
 
+        public int CountByProductId(int id)
+        {
+            return context.wishLists.Count(x => x.ProductID == id);
+        }
+
         public void Dispose()
         {
             Dispose(true);

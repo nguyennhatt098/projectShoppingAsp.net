@@ -29,20 +29,24 @@
                         Tên người mua
                     </th>
                     <th>
-                        tên người nhận
+                        Tên người nhận
                     </th>
                     <th>
                         Email
                     </th>
                     <th>
-                        số điện thoại
+                        Số điện thoại
                     </th>
                     <th>
                         Địa chỉ
                     </th>
                     <th>
+                        Tin nhắn
+                    </th>
+                    <th>
                         Ngày tạo
                     </th>
+                   
                     <th>
                         Trạng thái
                     </th>
@@ -68,6 +72,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Message)
                         </td>
                         <td>
                             @createdDate

@@ -1,671 +1,855 @@
 ﻿@model Model.Product
 @{
-	ViewBag.Title = "Chi Tiết Sản Phẩm";
-	Layout = "~/Views/Shared/_Layout.cshtml";
-	var category = (Model.Category)ViewBag.Category;
-	String str = Model.Images + ";" + Model.MoreImages;
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var category = (Model.Category)ViewBag.Category;
+    String str = Model.Images + ";" + Model.MoreImages;
 
-	// using the method
-	String[] ListImages = new String[20];
-	ListImages = str.Split(';');
-	var listproductorther = (List<Model.Product>)ViewBag.ListProductOther;
-	var commentList = (List<Model.ViewModel.CommentDTO>)ViewBag.CommentList;
-	var answerComment = (List<Model.AnswerComment>)ViewBag.AnswerComment;
-	var wishList = (List<Model.WishList>)ViewBag.wishList;
-	var user = (Model.User)Session["User"];
-	//reviewlist
-	var reviewList = (List<Model.ReviewProduct>)ViewBag.ReviewList;
-	var answerReview = (List<Model.AnswerReview>)ViewBag.AnserReview;
-	var calculateReview = (Model.ViewModel.CalculateRateDTO)ViewBag.CalculateReview;
-	//var reviewProductList = (List<Model.ReviewProduct>)ViewBag.ReviewList;
-	var reviewStarList = (List<Model.ReviewProduct>)ViewBag.ReviewStarList;
+    // using the method
+    String[] ListImages = new String[20];
+    ListImages = str.Split(';');
+    var listproductorther = (List<Model.Product>)ViewBag.ListProductOther;
+    var commentList = (List<Model.ViewModel.CommentDTO>)ViewBag.CommentList;
+    var answerComment = (List<Model.AnswerComment>)ViewBag.AnswerComment;
+    var wishList = (List<Model.WishList>)ViewBag.wishList;
+    var user = (Model.User)Session["User"];
+    //reviewlist
+    var reviewList = (List<Model.ReviewProduct>)ViewBag.ReviewList;
+    var answerReview = (List<Model.AnswerReview>)ViewBag.AnserReview;
+    var calculateReview = (Model.ViewModel.CalculateRateDTO)ViewBag.CalculateReview;
+    var reviewStarList = (List<Model.ReviewProduct>)ViewBag.ReviewStarList;
+    float countReview = calculateReview.Average / 5*5;
 }
 <div class="space-custom"></div>
 <!-- breadcrumb start -->
 <div class="breadcrumb-area">
-	<div class="container">
-		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i></a></li>
-			@*<li><a href="#"> Sofa</a></li>*@
-			<li class="active">@category.Name</li>
-		</ol>
-	</div>
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            @*<li><a href="#"> Sofa</a></li>*@
+            <li class="active">@category.Name</li>
+        </ol>
+    </div>
 </div>
 <!-- breadcrumb end -->
 <!-- shop-area start -->
 @*<div class="container">*@
 <div class="shop-area ">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-5">
 
 
-				<div class="product-zoom">
-					<!-- Tab panes -->
-					<div class="tab-content">
-						@{int i = 0;}
-						@foreach (var item in ListImages)
-						{
+                <div class="product-zoom">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        @{int i = 0;}
+                        @foreach (var item in ListImages)
+                        {
 
-							if (i == 0)
-							{
-								<div class="tab-pane active" id="@("item" + i)">
-									<div class="pro-large-img">
-										<img style="width:100%" src="@item" alt="" />
-										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
-									</div>
-								</div>
-							}
-							else
-							{
-								<div class="tab-pane" id="@("item" + i)">
-									<div class="pro-large-img">
-										<img src="@item" alt="" />
-										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
-									</div>
-								</div>
-							}
-							i++;
+                            if (i == 0)
+                            {
+                                <div class="tab-pane active" id="@("item" + i)">
+                                    <div class="pro-large-img">
+                                        <img style="width: 100%; height: 350px;" src="@item" alt="" />
+                                        <a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="tab-pane" id="@("item" + i)">
+                                    <div class="pro-large-img">
+                                        <img style="width: 100%; height: 350px;" src="@item" alt="" />
+                                        <a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            }
+                            i++;
 
-						}
+                        }
 
 
-					</div>
-					<!-- Nav tabs -->
-					<div class="details-tab">
-						@{int i1 = 0;}
-						@foreach (var item in ListImages)
-						{
+                    </div>
+                    <!-- Nav tabs -->
+                    <div class="details-tab">
+                        @{int i1 = 0;}
+                        @foreach (var item in ListImages)
+                        {
 
-							if (i1 == 0)
-							{
-								<div class="active"><a href="@("#item" + i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
-							}
-							else
-							{
-								<div><a href="@("#item" + i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
-							}
-							i1++;
+                            if (i1 == 0)
+                            {
+                                <div class="active"><a href="@("#item" + i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+                            }
+                            else
+                            {
+                                <div><a href="@("#item" + i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+                            }
+                            i1++;
 
-						}
+                        }
 
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-7">
-				<div class="product-details">
-					<h2 class="pro-d-title">@Model.Name</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-7">
+                <div class="product-details">
+                    <h2 class="pro-d-title">@Model.Name</h2>
+                    <p class="pro-d-title">
+                    @if (calculateReview.Average > 0)
+                    {
+                        var check = true;
+                       
+                        <span>@countReview</span>
+                        for (int a = 1; a <= 5; a++)
+                         {
+                       
+                             if (a <= calculateReview.Average)
+                             {
+                                 <i style="color: #ffae00" class="fa fa-star"></i>
 
-					<div class="price-box">
-						@if (Model.Sale_Price != null)
-						{
-							<span class="old-price product-price">@String.Format("{0:n0}", Model.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", Model.Sale_Price) VND</span>
-						}
-						else
-						{
-							<span class="price product-price">@String.Format("{0:n0}", Model.Price) VND</span>
-						}
-					</div>
-					<div class="short-desc">
-						<p>@Model.Content</p>
-					</div>
+                             }
+                             else if ((Math.Abs(calculateReview.Average - Math.Floor(calculateReview.Average)) > 0) && check)
+                             {
+                                 check = false;
+                                 <i style="color: #ffae00" class="fa fa-star-half-o" aria-hidden="true"></i>
+                             }
+                             else
+                             {
+                                 <i style="color: #ffae00" class="fa fa-star-o" aria-hidden="true"></i>
+                             }
+                         }
+                    }
+                        | @reviewList.Count đánh giá | @reviewStarList.Count đã bán
+                    </p>
+                    <div class="pro-ref">
+                       
+                        <p>
+                            <label>Trạng thái: </label>
+                            <span>Sản phẩm mới</span>
+                        </p>
+                    </div>
+                    <div class="price-box">
+                        @if (Model.Sale_Price != null)
+                        {
+                            <span class="old-price product-price">@String.Format("{0:n0}", Model.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", Model.Sale_Price) VND</span>
+                        }
+                        else
+                        {
+                            <span class="price product-price">@String.Format("{0:n0}", Model.Price) VND</span>
+                        }
+                    </div>
+                    <div class="short-desc">
+                        <p>@Model.Content</p>
+                    </div>
 
-					<div class="box-quantity">
-						<label>Quantity</label>
-						<input type="number" id="quantity" value="1" />
-						<button id="addToCart" valueId="@Model.Id">add to cart</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div class="box-quantity">
+                        <label>Quantity</label>
+                        <input type="number" id="quantity" value="1" />
+                        <button id="addToCart" valueId="@Model.Id">add to cart</button>
+                    </div>
+                    <div class="usefull_link_block">
+                        <ul>
+                            @if (user == null)
+                            {
+                                <li> <a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart-o"></i> Đã thích  (@ViewBag.CountWish) </a></li>
+                            }
+                            else if (wishList.Any(x => x.ProductID.Equals(Model.Id)))
+                            {
+                                <li><a class="wishlist wishlistDisLike wishlist-@Model.Id" id="@Model.Id" data-id="@Model.Id" href="javascript:void(0)"><i class="fa fa-heart"></i> Đã thích  (@ViewBag.CountWish) </a></li>
+                            }
+                            else
+                            {
+                                <li>  <a class="wishlist wishlist-@Model.Id" data-id="@Model.Id" id="@Model.Id" href="javascript:void(0)"><i class="fa fa-heart-o"></i> Đã thích  (@ViewBag.CountWish) </a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @*</div>*@
 
-<!-- shop-area end -->
-<!-- pro-info-area start -->
+
 <div class="pro-info-area ptb-80">
-	<div class="container">
-		<div class="pro-info-box">
-			<!-- Nav tabs -->
-			<!-- Tab panes -->
+    <div class="container">
+        <div class="pro-info-box">
+            <!-- Nav tabs -->
+            <ul class="pro-info-tab" role="tablist">
+                <li class="active check-active"><a href="#home3" data-toggle="tab">HỎI, ĐÁP VỀ SẢN PHẨM</a></li>
+                <li class="show-active"><a href="#profile3" data-toggle="tab">Đánh giá sản phẩm</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active check-active" id="home3">
+                    <div class="row bootstrap snippets">
 
-		</div>
-	</div>
-</div>
-<div class="pro-info-area ptb-80">
-	<div class="container">
-		<div class="pro-info-box">
-			<!-- Nav tabs -->
-			<ul class="pro-info-tab" role="tablist">
-				<li class="active check-active"><a href="#home3" data-toggle="tab">HỎI, ĐÁP VỀ SẢN PHẨM</a></li>
-				<li class="show-active"><a href="#profile3" data-toggle="tab">Đánh giá sản phẩm</a></li>
-				<li class="check-active"><a href="#messages3" data-toggle="tab">Reviews</a></li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<div class="tab-pane active check-active" id="home3">
-					<div class="row bootstrap snippets">
+                        <div class="comment-wrapper">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    Bình luận sản phẩm
+                                </div>
+                                <div class="panel-body">
+                                    <form>
+                                        <input value="@Model.Id" name="productId" hidden />
+                                        <textarea class="form-control" name="content" placeholder="write a comment..." rows="3"></textarea>
+                                        <br>
+                                        <button id="comment" type="button" class="btn btn-info pull-right ">Gửi</button>
+                                    </form>
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                    <div onloadeddata="myScript" class="load-comment">
+                                        <ul class="media-list">
+                                            @foreach (var item in commentList)
+                                            {
+                                                var total = answerComment.Any(x => x.CommentId.Equals(item.CommentId)) ? answerComment.Count(x => x.CommentId.Equals(item.CommentId)).ToString() : "";
+                                                <li class="media">
+                                                    <a href="javascript:void(0)" class="pull-left">
+                                                        @if (item.Image == null)
+                                                        {
+                                                            <img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="@item.Image" alt="" class="img-circle">
 
-						<div class="comment-wrapper">
-							<div class="panel panel-info">
-								<div class="panel-heading">
-									Bình luận sản phẩm
-								</div>
-								<div class="panel-body">
-									<form>
-										<input value="@Model.Id" name="productId" hidden />
-										<textarea class="form-control" name="content" placeholder="write a comment..." rows="3"></textarea>
-										<br>
-										<button id="comment" type="button" class="btn btn-info pull-right ">Gửi</button>
-									</form>
-									<div class="clearfix"></div>
-									<hr>
-									<div onloadeddata="myScript" class="load-comment">
-										<ul class="media-list">
-											@foreach (var item in commentList)
-											{
-												var total = answerComment.Any(x => x.CommentId.Equals(item.CommentId)) ? answerComment.Count(x => x.CommentId.Equals(item.CommentId)).ToString() : "";
-												<li class="media">
-													<a href="#" class="pull-left">
-														<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
-													</a>
-													<div class="media-body">
-														<span class="text-muted pull-right">
-															<small class="text-muted">@item.CreatedDate</small>
-														</span>
-														<strong class="text-success">@item.UserName</strong>
-														<p>
-															@item.Question
-														</p>
-														<a href="javascript:void(0)" class="comment-id" checkComment="@item.CommentId"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
+                                                        }
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span class="text-muted pull-right">
+                                                            <small class="text-muted"> @item.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</small>
+                                                        </span>
+                                                        <strong class="text-success">@item.UserName</strong>
+                                                        <p>
+                                                            @item.Question
+                                                        </p>
+                                                        <a href="javascript:void(0)" class="comment-id" checkComment="@item.CommentId"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
 
-														<div style="display:none" class="show-comment-id-@item.CommentId ">
-															<div style="margin-top:30px;height:150px;">
-																<form class="answer-form">
+                                                        <div style="display: none;margin-bottom: 40px" class="show-comment-id-@item.CommentId ">
+                                                            <div style="margin-top:30px;height:150px;">
+                                                                <form class="answer-form">
 
-																	<textarea class="form-control content-answer-@item.CommentId" commentIds="@item.CommentId" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
-																	<br>
-																	<button commentId="@item.CommentId" id="comment-answer" type="button" class="btn btn-info pull-right comment-answer">Gửi</button>
-																</form>
-															</div>
-															@foreach (var itemAnswer in answerComment.Where(x => x.CommentId.Equals(item.CommentId)))
-															{
-																<div style="margin-top:10px">
-																	<a href="#">
-																		<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
-																	</a>
-																	<span class="text-muted pull-right">
-																		<small class="text-muted">@itemAnswer.CreatedDate</small>
-																	</span>
-																	<strong class="text-success">@itemAnswer.User.UserName</strong>
-																	<p>
-																		@itemAnswer.Content
-																	</p>
+                                                                    <textarea class="form-control content-answer-@item.CommentId" commentIds="@item.CommentId" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
+                                                                    <br>
+                                                                    <button commentId="@item.CommentId" id="comment-answer" type="button" class="btn btn-info pull-right comment-answer">Gửi</button>
+                                                                </form>
+                                                            </div>
+                                                            @foreach (var itemAnswer in answerComment.Where(x => x.CommentId.Equals(item.CommentId)))
+                                                            {
+                                                                <div style="margin-top:10px">
+                                                                    <a href="javascript:void(0)" class="pull-left">
+                                                                        @if (itemAnswer.User?.Image == null)
+                                                                        {
+                                                                            <img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="@itemAnswer.User.Image" alt="" class="img-circle">
 
-																</div>
-															}
-														</div>
+                                                                        }
+                                                                    </a>
+                                                                    <span class="text-muted pull-right">
+                                                                        <small class="text-muted"> @itemAnswer.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</small>
+                                                                    </span>
+                                                                    <strong class="text-success">@itemAnswer.User.UserName</strong>
+                                                                    <p>
+                                                                        @itemAnswer.Content
+                                                                    </p>
 
-													</div>
-												</li>
-											}
-										</ul>
-										@if (ViewBag.TotalPage > 0)
-										{
-											int totalpage = (int)ViewBag.TotalPage;
-											int cureentPage = ((int)ViewBag.Page);
-											var next20 = cureentPage + 20;
-											var prev20 = cureentPage - 20;
-											var prev = cureentPage - 1;
-											var next = cureentPage + 1;
-											var start = cureentPage <= 3 ? 1 : cureentPage - 3;
-											var end = totalpage >= cureentPage ? totalpage : cureentPage + 3;
-											var url = "/chi-tiet-san-pham/" + Model.Slug + "-" + Model.Id;
-											<div class="content-sortpagibar">
-												<ul class="shop-pagi display-inline">
-													@if (cureentPage > 1)
-													{
-														if (cureentPage > 20)
-														{
-															<li><a href="@url?page=@prev20"><i class="fa fa-backward"></i></a></li>
-														}
-														<li><a href="@url?page=@prev"><i class="fa fa-angle-left"></i></a></li>
+                                                                </div>
+                                                            }
+                                                        </div>
 
-													}
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                        @if (ViewBag.TotalPage > 0)
+                                        {
+                                            int totalpage = (int)ViewBag.TotalPage;
+                                            int cureentPage = ((int)ViewBag.Page);
+                                            var next20 = cureentPage + 20;
+                                            var prev20 = cureentPage - 20;
+                                            var prev = cureentPage - 1;
+                                            var next = cureentPage + 1;
+                                            var start = cureentPage <= 3 ? 1 : cureentPage - 3;
+                                            var end = totalpage >= cureentPage ? totalpage : cureentPage + 3;
+                                            var url = "/chi-tiet-san-pham/" + Model.Slug + "-" + Model.Id;
+                                            <div class="content-sortpagibar">
+                                                <ul class="shop-pagi display-inline">
+                                                    @if (cureentPage > 1)
+                                                    {
+                                                        if (cureentPage > 20)
+                                                        {
+                                                            <li><a href="@url?page=@prev20"><i class="fa fa-backward"></i></a></li>
+                                                        }
+                                                        <li><a href="@url?page=@prev"><i class="fa fa-angle-left"></i></a></li>
 
-													@for (int a = start; a <= end; a++)
-													{
-														if (cureentPage == a)
-														{
-															<li class="active"><a href="@url?page=@a">@a</a></li>
-														}
-														else
-														{
-															<li><a href="@url?page=@a">@a</a></li>
-														}
-													}
+                                                    }
 
+                                                    @for (int a = start; a <= end; a++)
+                                                    {
+                                                        if (cureentPage == a)
+                                                        {
+                                                            <li class="active"><a href="@url?page=@a">@a</a></li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li><a href="@url?page=@a">@a</a></li>
+                                                        }
+                                                    }
+                                                    @if (cureentPage < totalpage)
+                                                    {
+                                                        <li><a href="@url?page=@next"><i class="fa fa-angle-right"></i></a></li>
+                                                        if (totalpage > cureentPage + 20)
+                                                        {
+                                                            <li><a href="@url?page=@next20"><i class="fa fa-fast-forward"></i></a></li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane show-active" id="profile3">
+                    <div class="row bootstrap snippets">
+                        @if (reviewList.Any() || calculateReview.Average > 0)
+                        {
+                            <div class="comment-wrapper">
+                                <div class="panel panel-info">
+                                    @if (calculateReview.Average > 0)
+                                    {
+                                        var check = true;
+                                        <div class="panel-heading">
+                                            <div style="margin-top:10px;" class="container">
 
+                                                <div class="col-md-2 left-title-star">
 
-													@if (cureentPage < totalpage)
-													{
-														<li><a href="@url?page=@next"><i class="fa fa-angle-right"></i></a></li>
-														if (totalpage > cureentPage + 20)
-														{
-															<li><a href="@url?page=@next20"><i class="fa fa-fast-forward"></i></a></li>
-														}
+                                                    <p>Đánh giá trung bình</p>
+                                                    <p>@countReview trên 5</p>
+                                                    <p style="font-size:13px;">
+                                                        @for (int a = 1; a <= 5; a++)
+                                                        {
+                                                            if (a <= calculateReview.Average)
+                                                            {
+                                                                <i style="color:#ffae00" class="fa fa-star"></i>
 
-													}
-
-												</ul>
-
-											</div>
-										}
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-				<div class="tab-pane show-active" id="profile3">
-					<div class="row bootstrap snippets">
-						@if (reviewList.Any() || calculateReview.Average > 0)
-						{
-							<div class="comment-wrapper">
-								<div class="panel panel-info">
-									@if (calculateReview.Average > 0)
-									{
-										var check = true;
-										<div class="panel-heading">
-											<div style="margin-top:10px;" class="container">
-
-												<div class="col-md-2 left-title-star">
-
-													<p>Đánh giá trung bình</p>
-													<p>@calculateReview.Average /5</p>
-
-
-													<p style="font-size:13px;">
-														@for (int a = 1; a <= 5; a++)
-														{
-															if (a <= calculateReview.Average)
-															{
-																<i style="color:#ffae00" class="fa fa-star"></i>
-
-															}
-															else if ((Math.Abs(calculateReview.Average - Math.Floor(calculateReview.Average)) > 0) && check)
-															{
-																check = false;
-																<i style="color:#ffae00" class="fa fa-star-half-o" aria-hidden="true"></i>
-															}
-															else
-															{
-																<i style="color:#ffae00" class="fa fa-star-o" aria-hidden="true"></i>
-															}
-														}
-													</p>
-													<p>(@calculateReview.CountReview nhận xét)</p>
+                                                            }
+                                                            else if ((Math.Abs(calculateReview.Average - Math.Floor(calculateReview.Average)) > 0) && check)
+                                                            {
+                                                                check = false;
+                                                                <i style="color:#ffae00" class="fa fa-star-half-o" aria-hidden="true"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i style="color:#ffae00" class="fa fa-star-o" aria-hidden="true"></i>
+                                                            }
+                                                        }
+                                                    </p>
+                                                    <p>(@calculateReview.CountReview nhận xét)</p>
 
 
-												</div>
+                                                </div>
 
-												<div class="col-md-10  ">
-													<div class="clearfix">
-														<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-															<span style="color:black">5	</span><i class="fa fa-star"></i>
-														</div>
-														<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-															<div style="height:20px" class="progress">
-																<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star5%">
-																	@calculateReview.Star5%
-																</div>
-															</div>
+                                                <div class="col-md-10  ">
+                                                    <div class="clearfix">
+                                                        <div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+                                                            <span style="color:black">5	</span><i class="fa fa-star"></i>
+                                                        </div>
+                                                        <div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+                                                            <div style="height:20px" class="progress">
+                                                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star5%">
+                                                                    @calculateReview.Star5%
+                                                                </div>
+                                                            </div>
 
-														</div>
-													</div>
-													<div class="clearfix">
-														<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-															<span style="color:black">4	</span><i class="fa fa-star"></i>
-														</div>
-														<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-															<div style="height:20px" class="progress">
-																<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star4%">
-																	@calculateReview.Star4%
-																</div>
-															</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix">
+                                                        <div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+                                                            <span style="color:black">4	</span><i class="fa fa-star"></i>
+                                                        </div>
+                                                        <div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+                                                            <div style="height:20px" class="progress">
+                                                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star4%">
+                                                                    @calculateReview.Star4%
+                                                                </div>
+                                                            </div>
 
-														</div>
-													</div>
-													<div class="clearfix">
-														<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-															<span style="color:black">3	</span><i class="fa fa-star"></i>
-														</div>
-														<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-															<div style="height:20px" class="progress">
-																<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star3%">
-																	@calculateReview.Star3%
-																</div>
-															</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix">
+                                                        <div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+                                                            <span style="color:black">3	</span><i class="fa fa-star"></i>
+                                                        </div>
+                                                        <div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+                                                            <div style="height:20px" class="progress">
+                                                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star3%">
+                                                                    @calculateReview.Star3%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix">
+                                                        <div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+                                                            <span style="color:black">2	</span><i class="fa fa-star"></i>
+                                                        </div>
+                                                        <div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+                                                            <div style="height:20px" class="progress">
+                                                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star2%">
+                                                                    @calculateReview.Star2%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix">
+                                                        <div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+                                                            <span style="color:black">1	</span><i class="fa fa-star"></i>
+                                                        </div>
+                                                        <div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+                                                            <div style="height:20px" class="progress">
+                                                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star1%">
+                                                                    @calculateReview.Star1%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="panel-body">
+                                        <div onloadeddata="myScript" class="load-review">
+                                            <ul class="media-list">
+                                                @foreach (var item in reviewList)
+                                                {
+                                                    var createdDate = item.CreatedDate != null ? item.CreatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : "";
+                                                    var total = answerReview.Any(x => x.ReviewId.Equals(item.Id)) ? answerReview.Count(x => x.ReviewId.Equals(item.Id)).ToString() : "";
+                                                    <li class="media">
+                                                        <a href="javascript:void(0)" class="pull-left">
+                                                            @if (item.Order.Users.Image != null)
+                                                            {
+                                                                <img src="@item.Order.Users.Image" alt="" class="img-circle">
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+                                                            }
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted"> @createdDate</small>
+                                                            </span>
+                                                            <strong class="text-success">@item.Order.Users.UserName</strong>
+                                                            <p>
+                                                                <span style="display: inline-block">
+                                                                    @for (int a = 1; a <= 5; a++)
+                                                                    {
+                                                                        if (a <= item.Rate)
+                                                                        {
+                                                                            <i style="color: #ffae00" class="fa fa-star"></i>
 
-														</div>
-													</div>
-													<div class="clearfix">
-														<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-															<span style="color:black">2	</span><i class="fa fa-star"></i>
-														</div>
-														<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-															<div style="height:20px" class="progress">
-																<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star2%">
-																	@calculateReview.Star2%
-																</div>
-															</div>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <i style="color: #ffae00" class="fa fa-star-o" aria-hidden="true"></i>
+                                                                        }
+                                                                    }
+                                                                </span>
+                                                            </p>
+                                                            <p>
+                                                                @item.Content
+                                                            </p>
+                                                            <a href="javascript:void(0)" class="review-id" checkReview="@item.Id"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
 
-														</div>
-													</div>
-													<div class="clearfix">
-														<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-															<span style="color:black">1	</span><i class="fa fa-star"></i>
-														</div>
-														<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-															<div style="height:20px" class="progress">
-																<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@calculateReview.Star1%">
-																	@calculateReview.Star1%
-																</div>
-															</div>
+                                                            <div style="display: none;margin-bottom: 40px" class="show-review-@item.Id ">
+                                                                <div style="margin-top:30px;height:150px;">
+                                                                    <form class="answer-form">
 
-														</div>
-													</div>
+                                                                        <textarea class="form-control content-review-answer-@item.Id" reviewId="@item.Id" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
+                                                                        <br>
+                                                                        <button submitReview="@item.Id" type="button" class="btn btn-info pull-right review-answer">Gửi</button>
+                                                                    </form>
+                                                                </div>
+                                                                @foreach (var itemAnswer in answerReview.Where(x => x.ReviewId.Equals(item.Id)))
+                                                                {
+                                                                    <div style="margin-top:10px">
+                                                                        <a href="javascript:void(0)" class="pull-left">
+                                                                            @if (itemAnswer.User.Image != null)
+                                                                            {
+                                                                                <img src="@itemAnswer.User.Image" alt="" class="img-circle">
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+                                                                            }
+                                                                        </a>
+                                                                        <span class="text-muted pull-right">
+                                                                            <small class="text-muted">@itemAnswer.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss") </small>
+                                                                        </span>
+                                                                        <strong class="text-success">@itemAnswer.User.UserName</strong>
+                                                                        <p>
+                                                                            @itemAnswer.Content
+                                                                        </p>
+                                                                    </div>
+                                                                }
+                                                            </div>
 
-												</div>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+                                            @if (ViewBag.TotalPageRv > 0)
+                                            {
+                                                int totalpage = (int)ViewBag.TotalPageRv;
+                                                int cureentPage = ((int)ViewBag.PageRv);
+                                                var next20 = cureentPage + 20;
+                                                var prev20 = cureentPage - 20;
+                                                var prev = cureentPage - 1;
+                                                var next = cureentPage + 1;
+                                                var start = cureentPage <= 3 ? 1 : cureentPage - 3;
+                                                var end = totalpage >= cureentPage ? totalpage : cureentPage + 3;
+                                                var url = "/chi-tiet-san-pham/" + Model.Slug + "-" + Model.Id;
+                                                <div class="content-sortpagibar">
+                                                    <ul class="shop-pagi display-inline">
+                                                        @if (cureentPage > 1)
+                                                        {
+                                                            if (cureentPage > 20)
+                                                            {
+                                                                <li><a href="@url?pageRv=@prev20"><i class="fa fa-backward"></i></a></li>
+                                                            }
+                                                            <li><a href="@url?pageRv=@prev"><i class="fa fa-angle-left"></i></a></li>
+                                                        }
 
-											</div>
-										</div>
-									}
-									<div class="panel-body">
-										<div onloadeddata="myScript" class="load-review">
-											<ul class="media-list">
-												@foreach (var item in reviewList)
-												{
-													var total = answerReview.Any(x => x.ReviewId.Equals(item.Id)) ? answerReview.Count(x => x.ReviewId.Equals(item.Id)).ToString() : "";
-													<li class="media">
-														<a href="#" class="pull-left">
-															<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
-														</a>
-														<div class="media-body">
-															<span class="text-muted pull-right">
-																<small class="text-muted">@item.CreatedDate</small>
-															</span>
-															<strong class="text-success">@item.Order.Users.UserName</strong>
-															<p style="display:inline-block">
-																@for (int a = 1; a <= 5; a++)
-																{
-																	if (a <= item.Rate)
-																	{
-																		<i style="color:#ffae00" class="fa fa-star"></i>
+                                                        @for (int a = start; a <= end; a++)
+                                                        {
+                                                            if (cureentPage == a)
+                                                            {
+                                                                <li class="active"><a href="@url?pageRv=@a">@a</a></li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li><a href="@url?pageRv=@a">@a</a></li>
+                                                            }
+                                                        }
+                                                        @if (cureentPage < totalpage)
+                                                        {
+                                                            <li><a c href="@url?pageRv=@next"><i class="fa fa-angle-right"></i></a></li>
+                                                            if (totalpage > cureentPage + 20)
+                                                            {
+                                                                <li><a href="@url?pageRv=@next20"><i class="fa fa-fast-forward"></i></a></li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="background:white" class="pro-desc">
+                                <h2>Chưa có đánh giá</h2>
+                            </div>
+                        }
 
-																	}
-																	else
-																	{
-																		<i style="color:#ffae00" class="fa fa-star-o" aria-hidden="true"></i>
-																	}
-																}
-															</p>
-															<p>
-																@item.Content
-															</p>
-															<a href="javascript:void(0)" class="review-id" checkReview="@item.Id"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
+                    </div>
+                </div>
+                <div class="tab-pane check-active" id="messages3">
+                    <div class="pro-desc">
 
-															<div style="display:none" class="show-review-@item.Id ">
-																<div style="margin-top:30px;height:150px;">
-																	<form class="answer-form">
-
-																		<textarea class="form-control content-review-answer-@item.Id" reviewId="@item.Id" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
-																		<br>
-																		<button submitReview="@item.Id" type="button" class="btn btn-info pull-right review-answer">Gửi</button>
-																	</form>
-																</div>
-																@foreach (var itemAnswer in answerReview.Where(x => x.ReviewId.Equals(item.Id)))
-																{
-																	<div style="margin-top:10px">
-																		<a href="#">
-																			<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
-																		</a>
-																		<span class="text-muted pull-right">
-																			<small class="text-muted">@itemAnswer.CreatedDate</small>
-																		</span>
-																		<strong class="text-success">@itemAnswer.User.UserName</strong>
-																		<p>
-																			@itemAnswer.Content
-																		</p>
-
-																	</div>
-																}
-															</div>
-
-														</div>
-													</li>
-												}
-											</ul>
-											@if (ViewBag.TotalPageRv > 0)
-											{
-												int totalpage = (int)ViewBag.TotalPageRv;
-												int cureentPage = ((int)ViewBag.PageRv);
-												var next20 = cureentPage + 20;
-												var prev20 = cureentPage - 20;
-												var prev = cureentPage - 1;
-												var next = cureentPage + 1;
-												var start = cureentPage <= 3 ? 1 : cureentPage - 3;
-												var end = totalpage >= cureentPage ? totalpage : cureentPage + 3;
-												var url = "/chi-tiet-san-pham/" + Model.Slug + "-" + Model.Id;
-												<div class="content-sortpagibar">
-													<ul class="shop-pagi display-inline">
-														@if (cureentPage > 1)
-														{
-															if (cureentPage > 20)
-															{
-																<li><a href="@url?pageRv=@prev20"><i class="fa fa-backward"></i></a></li>
-															}
-															<li><a href="@url?pageRv=@prev"><i class="fa fa-angle-left"></i></a></li>
-
-														}
-
-														@for (int a = start; a <= end; a++)
-														{
-															if (cureentPage == a)
-															{
-																<li class="active"><a href="@url?pageRv=@a">@a</a></li>
-															}
-															else
-															{
-																<li><a href="@url?pageRv=@a">@a</a></li>
-															}
-														}
-
-
-
-														@if (cureentPage < totalpage)
-														{
-															<li><a c href="@url?pageRv=@next"><i class="fa fa-angle-right"></i></a></li>
-															if (totalpage > cureentPage + 20)
-															{
-																<li><a href="@url?pageRv=@next20"><i class="fa fa-fast-forward"></i></a></li>
-															}
-
-														}
-
-													</ul>
-
-												</div>
-											}
-										</div>
-									</div>
-								</div>
-							</div>
-						}
-						else
-						{
-							<div style="background:white" class="pro-desc">
-								<h2>Chưa có đánh giá</h2>
-							</div>
-						}
-
-					</div>
-				</div>
-				<div class="tab-pane check-active" id="messages3">
-					<div class="pro-desc">
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- pro-info-area end -->
 <!-- pro-info-area end -->
 <!-- best-sell-area start -->
 <div class="best-sell-area">
-	<div class="container">
-		<div class="row">
-			<div class="section-title text-center mb-50">
-				<h2>Sản Phẩm Liên Quan</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="product-carousel">
-				@foreach (var item in listproductorther)
-				{
-					float totalStar = 0;
-					var reviewProducts = reviewStarList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
-					{
-						ProductId = x.Id,
-						Rate = x.Rate
-					}).ToList();
-					foreach (var itemReview in reviewProducts)
-					{
-						totalStar += itemReview.Rate;
+    <div class="container">
+        <div class="row">
+            <div class="section-title text-center mb-50">
+                <h2>Sản Phẩm Liên Quan</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="product-carousel">
+                @foreach (var item in listproductorther)
+                {
+                    float totalStar = 0;
+                    var reviewProducts = reviewStarList.Where(x => x.ProductId == item.Id).Select(x => new Model.ReviewProduct
+                    {
+                        ProductId = x.Id,
+                        Rate = x.Rate
+                    }).ToList();
+                    foreach (var itemReview in reviewProducts)
+                    {
+                        totalStar += itemReview.Rate;
 
-					}
-					float currentStar = totalStar / reviewProducts.Count();
-					<div class="col-md-12">
-						<div class="product-wrapper mb-40 mrg-nn-xs">
-							<div class="product-img">
-								<a href="#"><img src="@item.Images" alt="" /></a>
-								<span class="new-label">New</span>
-								<div class="product-action">
-									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
-									@if (user == null)
-									{
-										<a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart"></i></a>
-									}
-									else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
-									{
-										<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
-									}
-									else
-									{
-										<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
-									}
-									<a href="#"><i class="pe-7s-folder"></i></a>
+                    }
+                    float currentStar = totalStar / reviewProducts.Count();
+                    <div class="col-md-12">
+                        <div class="product-wrapper mb-40 mrg-nn-xs">
+                            <div class="product-img">
+                                <a href="#"><img src="@item.Images" alt="" /></a>
+                                <span class="new-label">New</span>
+                                <div class="product-action">
+                                    <a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
+                                    @if (user == null)
+                                    {
+                                        <a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart"></i></a>
+                                    }
+                                    else if (wishList.Any(x => x.ProductID.Equals(item.Id)))
+                                    {
+                                        <a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
+                                    }
+                                    <a href="#"><i class="pe-7s-folder"></i></a>
 
-								</div>
-							</div>
-							<div class="product-content">
-								<div class="pro-title">
-									<h3><a href="">@item.Name</a></h3>
-								</div>
-								<div class="price-reviews">
-									<div class="price-box">
-										@if (item.Sale_Price != null)
-										{
-											<span class="old-price product-price">@String.Format("{0:n0}", item.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", item.Sale_Price) VND</span>
-										}
-										else
-										{
-											<span class="price product-price">@String.Format("{0:n0}", item.Price) VND</span>
-										}
-									</div>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="pro-title">
+                                    <h3><a href="">@item.Name</a></h3>
+                                </div>
+                                <div class="price-reviews">
+                                    <div class="price-box">
+                                        @if (item.Sale_Price != null)
+                                        {
+                                            <span class="old-price product-price">@String.Format("{0:n0}", item.Price)  VND</span> <span class="price product-price">@String.Format("{0:n0}", item.Sale_Price) VND</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price product-price">@String.Format("{0:n0}", item.Price) VND</span>
+                                        }
+                                    </div>
 
-								</div>
-								<div class="pro-rating">
-									@if (reviewProducts.Count > 0)
-									{
-										var check = true;
-										for (int a = 1; a <= 5; a++)
-										{
-											if (a <= currentStar)
-											{
-												<i class="fa fa-star"></i>
+                                </div>
+                                <div class="pro-rating">
+                                    @if (reviewProducts.Count > 0)
+                                    {
+                                        var check = true;
+                                        for (int a = 1; a <= 5; a++)
+                                        {
+                                            if (a <= currentStar)
+                                            {
+                                                <i class="fa fa-star"></i>
 
-											}
-											else if ((Math.Abs(currentStar - Math.Floor(currentStar)) > 0) && check)
-											{
-												check = false;
-												<i class="fa fa-star-half-o" aria-hidden="true"></i>
-											}
-											else
-											{
-												<i class="fa fa-star-o" aria-hidden="true"></i>
-											}
-										}
-									}
-								</div>
-							</div>
-						</div>
-					</div>
-				}
+                                            }
+                                            else if ((Math.Abs(currentStar - Math.Floor(currentStar)) > 0) && check)
+                                            {
+                                                check = false;
+                                                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="brand-area">
-	<div class="container">
-		<div class="brand-sep ptb-50">
-			<div class="row">
-				<div class="brand-active">
-					<div class="col-lg-12">
-						<div class="single-brand">
-							<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-lg-12">
-						<div class="single-brand">
-							<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-lg-12">
-						<div class="single-brand">
-							<a href="#"><img src="~/Asset/FrontEnd/img/brand/3.jpg" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-lg-12">
-						<div class="single-brand">
-							<a href="#"><img src="~/Asset/FrontEnd/img/brand/4.jpg" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-lg-12">
-						<div class="single-brand">
-							<a href="#"><img src="~/Asset/FrontEnd/img/brand/5.jpg" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-lg-12">
-						<div class="single-brand">
-							<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-lg-12">
-						<div class="single-brand">
-							<a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="brand-sep ptb-50">
+            <div class="row">
+                <div class="brand-active">
+                    <div class="col-lg-12">
+                        <div class="single-brand">
+                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand">
+                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand">
+                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/3.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand">
+                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/4.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand">
+                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/5.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand">
+                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand">
+                            <a href="#"><img src="~/Asset/FrontEnd/img/brand/2.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- brand-area end -->
 <!-- service-area start -->
+@section productDetail
+{
+    <script>
+        $(document).ready(function () {
+            $('#addToCart').click(function () {
+                var quantity = document.getElementById("quantity").value;
+                var productId = $(this).attr("valueId");
+                window.location.href = '/them-vao-gio-hang?productID=' + productId + '&quantity=' + quantity
+            });
+        });
+        //progress event click comment
+        $(document).on('click',
+            '.comment-id',
+            function () {
+                var commentId = $(this).attr("checkComment");
+                if ($(".active-question-" + commentId)[0]) {
+                    $('.show-comment-id-' + commentId).removeClass("active-question-" + commentId);
+                    $('.show-comment-id-' + commentId).hide("slow");
+                } else {
+
+                    $('.show-comment-id-' + commentId).addClass("active-question-" + commentId);
+                    $('.show-comment-id-' + commentId).show("slow");
+                }
+
+            });
+        //progress event click review question
+        $(document).on('click',
+            '.review-id',
+            function () {
+                var reviewId = $(this).attr("checkReview");
+                if ($(".active-review-" + reviewId)[0]) {
+                    $('.show-review-' + reviewId).removeClass("active-review-" + reviewId);
+                    $('.show-review-' + reviewId).hide("slow");
+                } else {
+
+                    $('.show-review-' + reviewId).addClass("active-review-" + reviewId);
+                    $('.show-review-' + reviewId).show("slow");
+                }
+
+            });
+        $(document).on('click',
+            '.review-answer',
+            function () {
+                var reviewId = $(this).attr("submitReview");
+
+                var contentAnswerReview = $(".content-review-answer-" + reviewId).val();
+                if (contentAnswerReview === null || contentAnswerReview.match(/^ *$/) !== null) return;
+                var postData = { ReviewId: reviewId, Content: contentAnswerReview };
+                var url = window.location.href;
+                $.ajax({
+                    url: '/Product/CommentReview',
+                    data: { 'data': JSON.stringify(postData) },
+                    dataType: 'json',
+                    type: 'POST',
+                    success: (res) => {
+                        if (res.status) {
+                            $('.load-review').load(url + " .load-review>*", "");
+                        }
+                        if (!res.status) {
+
+                            window.setTimeout(function () {
+                                $("#exampleModalCenter").modal();
+                            },
+                                200);
+                        }
+                    }
+                });
+            });
+        window.addEventListener("load", function () {
+            var url = window.location.href.split('?');
+            if (url.length > 1) {
+                if (url[1].split('=')[0] == 'pageRv') {
+                    if ($(".check-active").hasClass("active")) {
+                        $(".check-active").removeClass("active");
+                        $(".show-active").addClass("active");
+                    }
+                }
+
+            }
+        });
+        //post answer comment
+        $(document).on('click',
+            '.comment-answer',
+            function () {
+                var commentId = $(this).attr("commentId");
+                var contentAnswer = $(".content-answer-" + commentId).val();
+                var postData = { content: contentAnswer, commentId: commentId };
+                var url = window.location.href;
+                $.ajax({
+                    url: '/Product/CommentAnswer',
+                    data: postData,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: (res) => {
+
+                        $("textarea[name=content-answer]").val("")
+                        if (res.status) {
+                            $('.load-comment').load(url + " .load-comment>*", "");
+                        }
+                        if (!res.status) {
+
+                            window.setTimeout(function () {
+                                $("#exampleModalCenter").modal();
+                            },
+                                200);
+                        }
+
+                    }
+                });
+            });
+        $("#comment").on("click",
+            function () {
+                var url = window.location.href;
+                var productId = $("input[name=productId]").val();
+                var content = $("textarea[name=content]").val();
+                $.ajax({
+                    url: '/Product/Comment',
+                    data: { content: content, productId: productId },
+                    dataType: 'json',
+                    type: 'POST',
+                    success: (res) => {
+                        $("textarea[name=content]").val("")
+                        if (res.status) {
+                            $('.load-comment').load(url + ' .load-comment');
+                        }
+                        if (!res.status) {
+                            window.setTimeout(function () {
+                                $("#exampleModalCenter").modal();
+                            },
+                                200);
+                        }
+                    }
+                });
+            });
+    </script>
+}

@@ -14,5 +14,6 @@ namespace Repository.Interface
         int Delete(WishList item);
         IEnumerable<WishList> GetById(int id);
         int AddMultiple(List<WishList> items);
+        int CountByProductId(int id);
     }
 }

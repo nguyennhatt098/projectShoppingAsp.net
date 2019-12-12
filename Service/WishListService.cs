@@ -31,6 +31,11 @@ namespace Service
 	        return repository.AddMultiple(items);
         }
 
+        public int CountByProductId(int id)
+        {
+            return repository.CountByProductId(id);
+        }
+
         public IEnumerable<WishList> GetAll()
         {
             return repository.GetAll();

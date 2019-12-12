@@ -28,6 +28,7 @@ namespace Model
 		public DateTime? Created { get; set; }
 		[DisplayName("Trạng thái")]
 		public int Status { get; set; }
+        public string Message { get; set; }
 		public string VerifyCode { get; set; }
 		[ForeignKey("UserId")]
 		public virtual User Users { get; set; }

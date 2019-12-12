@@ -654,8 +654,7 @@
 		</script>
 
 		<script type="text/javascript">
-
-	function message() {
+            function message() {
 		if ('@TempData["message"]' == "Added" ) {
 			$(".alert-success").show();
 			window.setTimeout(function () {
@@ -732,13 +731,11 @@
 					$(".hide-all").css("opacity", "1");
 				}, false);
 			} else {
-				window.addEventListener("beforeunload", function (event) { 
-
-					$(".hide-progress").removeClass("hide-progress");
+				window.addEventListener("beforeunload", function (event) {
+                    $(".hide-progress").removeClass("hide-progress");
 					$(".hide-all").css("background-color", "white");
 					$(".hide-all").css("opacity", "0.1");
-
-				});
+                });
 			}
 		</script>
 </body>

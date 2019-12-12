@@ -65,6 +65,7 @@ namespace ShopingCart.Controllers
 			ViewBag.AnserReview = reviewProductService.AnswerReviews();
 			ViewBag.CalculateReview = reviewProductService.CalculateRate(id);
 			//detail
+            ViewBag.CountWish = wishListService.CountByProductId(id);
 			ViewBag.ReviewStarList = reviewProductService.GetAll();
 			ViewBag.ListProductOther = productService.ListProductSale();
             var product = productService.GetById(id);

@@ -37,7 +37,7 @@ namespace Repository
 
 		public int Insert(Notify item)
 		{
-			context.Notifies.Add(item);
+            context.Notifies.Add(item);
 			return context.SaveChanges();
 		}
 	}
