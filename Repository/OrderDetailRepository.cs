@@ -34,7 +34,12 @@ namespace Repository
 			return context.Orders.FirstOrDefault(x => x.VerifyCode == verifyCode);
 		}
 
-		public int Inserts(Order order, List<OrderDetail> orderDetails)
+        public IEnumerable<OrderDetail> GetAll()
+        {
+            return context.OrderDetails;
+        }
+
+        public int Inserts(Order order, List<OrderDetail> orderDetails)
 		{
 			using (var transaction = context.Database.BeginTransaction())
 			{

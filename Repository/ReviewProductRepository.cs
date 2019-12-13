@@ -84,12 +84,25 @@ namespace Repository
 			foreach (var item in list)
 			{
 				star += item.Rate;
-				if (item.Rate == 1) { star1 += 1; }
-				if (item.Rate == 2) { star2 += 1; }
-				if (item.Rate == 3) { star3 += 1; }
-				if (item.Rate == 4) { star4 += 1; }
-				if (item.Rate == 5) { star5 += 1; }
-			}
+				switch (item.Rate)
+                {
+                    case 1:
+                        star1 += 1;
+                        break;
+                    case 2:
+                        star2 += 1;
+                        break;
+                    case 3:
+                        star3 += 1;
+                        break;
+                    case 4:
+                        star4 += 1;
+                        break;
+                    case 5:
+                        star5 += 1;
+                        break;
+                }
+            }
 			var calculateItem = new CalculateRateDTO
 			{
 				Star1 = (int)Math.Round((star1 / list.Count()) * 100),

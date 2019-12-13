@@ -25,7 +25,8 @@
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
 		 folder instead of downloading all of them to reduce the load. -->
 	<link rel="stylesheet" href="../../../Asset/Backend/dist/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="../../../Asset/FrontEnd/css/process-bar.css">
+    <link rel="stylesheet" href="../../../Asset/FrontEnd/css/process-bar.css">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="display-progress hide-progress">
@@ -269,17 +270,13 @@
 							<a href="@Url.Action("Index","product")">
 								<i class="fa fa-files-o"></i>
 								<span>Quản lý sản phẩm</span>
-								<span class="pull-right-container">
-									<span class="label label-primary pull-right">4</span>
-								</span>
+								
 							</a>
                         </li>
 						<li>
 							<a href="/Admin/Orders">
 								<i class="fa fa-th"></i> <span>Quản lý đơn hàng</span>
-								<span class="pull-right-container">
-									<small class="label pull-right bg-green">Hot</small>
-								</span>
+							
 							</a>
 						</li>
 						<li class="treeview">
@@ -595,7 +592,7 @@
 		<!-- SlimScroll -->
 		<script src="../../../Asset/Backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 		<!-- FastClick -->
-		<script src="../../../Asset/Backend/bower_components/fastclick/lib/fastclick.js"></script>
+		@*<script src="../../../Asset/Backend/bower_components/fastclick/lib/fastclick.js"></script>*@
 		<!-- AdminLTE App -->
 		<script src="../../../Asset/Backend/dist/js/adminlte.min.js"></script>
 		<!-- AdminLTE for demo purposes -->

@@ -50,7 +50,7 @@ namespace Repository
 
 		public IEnumerable<Product> GetAll()
 		{
-			return context.Products.ToList();
+			return context.Products.OrderByDescending(x=>x.Created);
 		}
 
 		public Product GetById(int id)

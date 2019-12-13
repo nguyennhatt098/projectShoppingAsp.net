@@ -29,7 +29,12 @@ namespace Service
 			return repository.GetOrderById(verifyCode);
 		}
 
-		public int Inserts(Order order, List<OrderDetail> orderDetails)
+        public IEnumerable<OrderDetail> GetAll()
+        {
+            return repository.GetAll();
+        }
+
+        public int Inserts(Order order, List<OrderDetail> orderDetails)
 		{
 			return repository.Inserts(order, orderDetails);
 		}
