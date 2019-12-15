@@ -187,6 +187,7 @@ form#searchbox input {
   vertical-align: top;
 }
 .setting-menu{
+	top: -3px;
   display: inline-block;
   margin: 45px 0 0 30px;
   position: relative;

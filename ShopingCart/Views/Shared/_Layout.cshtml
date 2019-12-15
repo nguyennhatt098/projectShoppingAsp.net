@@ -115,12 +115,10 @@
 		if ('@TempData["message"]' == "Added") {
 			$(".alert-success").show();
 			window.setTimeout(function() {
-					$(".alert-success").slideUp(1000,
-						function() {
+					$(".alert-success").slideUp(1000, function() {
 							$(this).remove();
 						});
-				},
-				5000);
+				}, 5000);
 		}
 		if ('@TempData["message"]' == 'false') {
 			$(".alert-danger").show();
@@ -129,17 +127,8 @@
 						function() {
 							$(this).remove();
 						});
-				},
-				5000);
+				}, 5000);
 		};
-		//$(document).ready(function() {
-			if ('@TempData["message"]' == 'Ex') {
-
-				window.setTimeout(function() {
-						$("#exampleModalCenter").modal();
-					},
-					200);
-			};
 
 		//progress data wishlish
 		window.wishLists = [];
@@ -160,7 +149,6 @@
 				} else {
 					$(".wishlist-" + $(this).data('id')).addClass("wishlistDisLike");
 				}
-
 			});
 		if (this.isOnIOS) {
 			if (this.wishLists.length > 0 && this.wishLists !== undefined) {

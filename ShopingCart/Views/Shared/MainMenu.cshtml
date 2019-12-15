@@ -49,7 +49,7 @@
                     </div>
                     <div style="width: 7%" class="search-block-top display-inline">
                         <div class="dropdown-customs" style="">
-                            <a style="color: #2c2c2c;font-weight: 700;font-size:20px;" href="#"><i class="glyphicon glyphicon-bell "></i></a>
+                            <a style="color: #2c2c2c;font-weight: 700;font-size:20px;" href="javascript:void(0)"><i class="glyphicon glyphicon-bell "></i></a>
                             <div class="dropdown-contents">
                                 @if (user != null)
                                 {
@@ -71,8 +71,6 @@
                                 }
                                 else
                                 {
-                                    @*<p style="text-align: center; margin-top: 7px; margin-left: 25px">Đăng nhập để nhận thông báo</p>
-                                        <p style="display: inline-block">  <a href="#">Đăng nhập</a></p>*@
                                     <div style="margin: 30px;">
                                         <p style="text-align: center"><i style=" font-size: 100px;" class="fa fa-user"></i></p>
                                         <p style="text-align: center">Đăng nhập để xem thông báo</p>
@@ -92,7 +90,7 @@
                             }
                             else
                             {
-                                <div class="icon-nav current" style="padding-right: 20px;"><span style="color: #2c2c2c"><i style="font-size: 12px " class="fa fa-user"></i> @user.FullName</span></div>
+                                <div class="icon-nav current" style="padding-right: 20px;"><span style="color: #2c2c2c"><i style="font-size: 18px " class="fa fa-user"></i> @user.FullName</span></div>
                             }
                             <ul class="content-nav toogle-content">
                                 <li class="currencies-block-top">
