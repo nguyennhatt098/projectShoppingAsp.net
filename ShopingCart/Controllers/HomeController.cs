@@ -120,14 +120,12 @@ namespace ShopingCart.Controllers
 						wishListService.Insert(w);
 					}
 				}
-
-			}
+            }
 			
 			return Json(new
 			{
 				status = false
-
-			});
+            });
 		}
 
 		public ActionResult Contact()

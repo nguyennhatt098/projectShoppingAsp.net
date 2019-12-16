@@ -60,12 +60,12 @@ namespace Repository
 
 		public int Insert(Product product)
 		{
-			var productList = context.Products.ToList();
-			if (productList.Any(x => x.Name.ToLower().Equals(product.Name.ToLower()))) return -2;
-			product.Created = DateTime.Now;
-			context.Products.Add(product);
-			return context.SaveChanges();
-		}
+            var productList = context.Products.ToList();
+            if (productList.Any(x => x.Name.ToLower().Equals(product.Name.ToLower()))) return -2;
+            product.Created = DateTime.Now;
+            context.Products.Add(product);
+            return context.SaveChanges();
+        }
 
 		public int Update(Product t)
 		{
@@ -100,8 +100,7 @@ namespace Repository
 
 		public IEnumerable<Product> ListProductHot()
 		{
-
-			return context.Products.Where(s => s.TopHot && s.Status).OrderByDescending(s => s.Created).Take(8).ToList();
+            return context.Products.Where(s => s.TopHot && s.Status).OrderByDescending(s => s.Created).Take(8).ToList();
 		}
 		
 		public IEnumerable<Product> ListProductSale()

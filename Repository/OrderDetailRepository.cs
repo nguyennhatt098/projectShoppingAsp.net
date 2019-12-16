@@ -36,7 +36,7 @@ namespace Repository
 
         public IEnumerable<OrderDetail> GetAll()
         {
-            return context.OrderDetails;
+            return context.OrderDetails.OrderByDescending(x=>x.ID);
         }
 
         public int Inserts(Order order, List<OrderDetail> orderDetails)

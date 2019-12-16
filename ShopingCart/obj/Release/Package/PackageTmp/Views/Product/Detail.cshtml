@@ -17,7 +17,6 @@
 	var reviewList = (List<Model.ReviewProduct>)ViewBag.ReviewList;
 	var answerReview = (List<Model.AnswerReview>)ViewBag.AnserReview;
 	var calculateReview = (Model.ViewModel.CalculateRateDTO)ViewBag.CalculateReview;
-	//var reviewProductList = (List<Model.ReviewProduct>)ViewBag.ReviewList;
 	var reviewStarList = (List<Model.ReviewProduct>)ViewBag.ReviewStarList;
 }
 <div class="space-custom"></div>
@@ -51,7 +50,7 @@
 							{
 								<div class="tab-pane active" id="@("item" + i)">
 									<div class="pro-large-img">
-										<img style="width:100%" src="@item" alt="" />
+										<img style="width: 100%; height: 350px;" src="@item" alt="" />
 										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
 									</div>
 								</div>
@@ -60,7 +59,7 @@
 							{
 								<div class="tab-pane" id="@("item" + i)">
 									<div class="pro-large-img">
-										<img src="@item" alt="" />
+										<img style="width: 100%; height: 350px;" src="@item" alt="" />
 										<a class="popup-link" href="@item">View larger <i class="fa fa-search-plus" aria-hidden="true"></i></a>
 									</div>
 								</div>
@@ -79,11 +78,11 @@
 
 							if (i1 == 0)
 							{
-								<div class="active"><a href="@("#item" + i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+								<div class="active"><a href="@("#item" + i1)" data-toggle="tab"><img src="@item" style="height: 100px;width: 100px" alt="" /></a></div>
 							}
 							else
 							{
-								<div><a href="@("#item" + i1)" data-toggle="tab"><img src="@item" alt="" /></a></div>
+								<div><a href="@("#item" + i1)" data-toggle="tab"><img style="height: 100px; width: 100px;" src="@item" alt="" /></a></div>
 							}
 							i1++;
 
@@ -95,7 +94,47 @@
 			<div class="col-xs-12 col-sm-6 col-md-7">
 				<div class="product-details">
 					<h2 class="pro-d-title">@Model.Name</h2>
+					@if (reviewList.Any())
+					{
+						<p class="pro-d-title">
+							@if (calculateReview.Average > 0)
+							{
+								var check = true;
 
+								<span>@calculateReview.Average</span>
+								for (int a = 1; a <= 5; a++)
+								{
+
+									if (a <= calculateReview.Average)
+									{
+										<i style="color: #ffae00; margin-right: 0px;" class="fa fa-star"></i>
+
+									}
+									else if ((Math.Abs(calculateReview.Average - Math.Floor(calculateReview.Average)) > 0) && check)
+									{
+										check = false;
+										<i style="color: #ffae00; margin-right: 0px;" class="fa fa-star-half-o" aria-hidden="true"></i>
+									}
+									else
+									{
+										<i style="color: #ffae00; margin-right: 0px;" class="fa fa-star-o" aria-hidden="true"></i>
+									}
+								}
+							}
+							| @reviewList.Count đánh giá | @reviewStarList.Count đã bán
+						</p>
+					}
+					<div class="pro-ref">
+
+						<p>
+							<label>Trạng thái: </label>
+							<span>Sản phẩm mới</span>
+						</p>
+						<p>
+							<label>Vận chuyển: </label>
+							<span>Miễn phí vận chuyển</span>
+						</p>
+					</div>
 					<div class="price-box">
 						@if (Model.Sale_Price != null)
 						{
@@ -111,9 +150,25 @@
 					</div>
 
 					<div class="box-quantity">
-						<label>Quantity</label>
+						<label>Số lượng</label>
 						<input type="number" id="quantity" value="1" />
-						<button id="addToCart" valueId="@Model.Id">add to cart</button>
+						<button id="addToCart" valueId="@Model.Id">Thêm vào giỏ hàng</button>
+					</div>
+					<div class="usefull_link_block">
+                        <ul>
+                            @if (user == null)
+                            {
+                                <li> <a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart"></i> Đã thích (@ViewBag.CountWish) </a></li>
+                            }
+                            else if (wishList.Any(x => x.ProductID.Equals(Model.Id)))
+                            {
+                                <li><a class="wishlist wishlistDisLike wishlist-@Model.Id" id="@Model.Id" data-id="@Model.Id" href="javascript:void(0)"><i class="fa fa-heart"></i> Đã thích (@ViewBag.CountWish) </a></li>
+                            }
+                            else
+                            {
+                                <li> <a class="wishlist wishlist-@Model.Id" data-id="@Model.Id" id="@Model.Id" href="javascript:void(0)"><i class="fa fa-heart"></i> Đã thích (@ViewBag.CountWish) </a></li>
+                            }
+                        </ul>
 					</div>
 				</div>
 			</div>
@@ -122,17 +177,7 @@
 </div>
 @*</div>*@
 
-<!-- shop-area end -->
-<!-- pro-info-area start -->
-<div class="pro-info-area ptb-80">
-	<div class="container">
-		<div class="pro-info-box">
-			<!-- Nav tabs -->
-			<!-- Tab panes -->
 
-		</div>
-	</div>
-</div>
 <div class="pro-info-area ptb-80">
 	<div class="container">
 		<div class="pro-info-box">
@@ -140,7 +185,6 @@
 			<ul class="pro-info-tab" role="tablist">
 				<li class="active check-active"><a href="#home3" data-toggle="tab">HỎI, ĐÁP VỀ SẢN PHẨM</a></li>
 				<li class="show-active"><a href="#profile3" data-toggle="tab">Đánh giá sản phẩm</a></li>
-				<li class="check-active"><a href="#messages3" data-toggle="tab">Reviews</a></li>
 			</ul>
 			<!-- Tab panes -->
 			<div class="tab-content">
@@ -167,12 +211,20 @@
 											{
 												var total = answerComment.Any(x => x.CommentId.Equals(item.CommentId)) ? answerComment.Count(x => x.CommentId.Equals(item.CommentId)).ToString() : "";
 												<li class="media">
-													<a href="#" class="pull-left">
-														<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+													<a href="javascript:void(0)" class="pull-left">
+														@if (item.Image == null)
+														{
+															<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+														}
+														else
+														{
+															<img src="@item.Image" alt="" class="img-circle">
+
+														}
 													</a>
 													<div class="media-body">
 														<span class="text-muted pull-right">
-															<small class="text-muted">@item.CreatedDate</small>
+															<small class="text-muted"> @item.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</small>
 														</span>
 														<strong class="text-success">@item.UserName</strong>
 														<p>
@@ -180,7 +232,7 @@
 														</p>
 														<a href="javascript:void(0)" class="comment-id" checkComment="@item.CommentId"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
 
-														<div style="display:none" class="show-comment-id-@item.CommentId ">
+														<div style="display: none;margin-bottom: 40px" class="show-comment-id-@item.CommentId ">
 															<div style="margin-top:30px;height:150px;">
 																<form class="answer-form">
 
@@ -191,12 +243,20 @@
 															</div>
 															@foreach (var itemAnswer in answerComment.Where(x => x.CommentId.Equals(item.CommentId)))
 															{
-																<div style="margin-top:10px">
-																	<a href="#">
-																		<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+																<div style="margin-top:40px">
+																	<a href="javascript:void(0)" class="pull-left">
+																		@if (itemAnswer.User?.Image == null)
+																		{
+																			<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+																		}
+																		else
+																		{
+																			<img src="@itemAnswer.User.Image" alt="" class="img-circle">
+
+																		}
 																	</a>
 																	<span class="text-muted pull-right">
-																		<small class="text-muted">@itemAnswer.CreatedDate</small>
+																		<small class="text-muted"> @itemAnswer.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</small>
 																	</span>
 																	<strong class="text-success">@itemAnswer.User.UserName</strong>
 																	<p>
@@ -245,9 +305,6 @@
 															<li><a href="@url?page=@a">@a</a></li>
 														}
 													}
-
-
-
 													@if (cureentPage < totalpage)
 													{
 														<li><a href="@url?page=@next"><i class="fa fa-angle-right"></i></a></li>
@@ -255,19 +312,14 @@
 														{
 															<li><a href="@url?page=@next20"><i class="fa fa-fast-forward"></i></a></li>
 														}
-
 													}
-
 												</ul>
-
 											</div>
 										}
 									</div>
 								</div>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 				<div class="tab-pane show-active" id="profile3">
@@ -285,9 +337,7 @@
 												<div class="col-md-2 left-title-star">
 
 													<p>Đánh giá trung bình</p>
-													<p>@calculateReview.Average /5</p>
-
-
+													<p>@calculateReview.Average trên 5</p>
 													<p style="font-size:13px;">
 														@for (int a = 1; a <= 5; a++)
 														{
@@ -349,7 +399,6 @@
 																	@calculateReview.Star3%
 																</div>
 															</div>
-
 														</div>
 													</div>
 													<div class="clearfix">
@@ -362,7 +411,6 @@
 																	@calculateReview.Star2%
 																</div>
 															</div>
-
 														</div>
 													</div>
 													<div class="clearfix">
@@ -375,12 +423,9 @@
 																	@calculateReview.Star1%
 																</div>
 															</div>
-
 														</div>
 													</div>
-
 												</div>
-
 											</div>
 										</div>
 									}
@@ -389,36 +434,46 @@
 											<ul class="media-list">
 												@foreach (var item in reviewList)
 												{
+													var createdDate = item.CreatedDate != null ? item.CreatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : "";
 													var total = answerReview.Any(x => x.ReviewId.Equals(item.Id)) ? answerReview.Count(x => x.ReviewId.Equals(item.Id)).ToString() : "";
 													<li class="media">
-														<a href="#" class="pull-left">
-															<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+														<a href="javascript:void(0)" class="pull-left">
+															@if (item.Order.Users.Image != null)
+															{
+																<img src="@item.Order.Users.Image" alt="" class="img-circle">
+															}
+															else
+															{
+																<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+															}
 														</a>
 														<div class="media-body">
 															<span class="text-muted pull-right">
-																<small class="text-muted">@item.CreatedDate</small>
+																<small class="text-muted"> @createdDate</small>
 															</span>
 															<strong class="text-success">@item.Order.Users.UserName</strong>
-															<p style="display:inline-block">
-																@for (int a = 1; a <= 5; a++)
-																{
-																	if (a <= item.Rate)
+															<p>
+																<span style="display: inline-block">
+																	@for (int a = 1; a <= 5; a++)
 																	{
-																		<i style="color:#ffae00" class="fa fa-star"></i>
+																		if (a <= item.Rate)
+																		{
+																			<i style="color: #ffae00" class="fa fa-star"></i>
 
+																		}
+																		else
+																		{
+																			<i style="color: #ffae00" class="fa fa-star-o" aria-hidden="true"></i>
+																		}
 																	}
-																	else
-																	{
-																		<i style="color:#ffae00" class="fa fa-star-o" aria-hidden="true"></i>
-																	}
-																}
+																</span>
 															</p>
 															<p>
 																@item.Content
 															</p>
 															<a href="javascript:void(0)" class="review-id" checkReview="@item.Id"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
 
-															<div style="display:none" class="show-review-@item.Id ">
+															<div style="display: none;margin-bottom: 40px" class="show-review-@item.Id ">
 																<div style="margin-top:30px;height:150px;">
 																	<form class="answer-form">
 
@@ -429,18 +484,24 @@
 																</div>
 																@foreach (var itemAnswer in answerReview.Where(x => x.ReviewId.Equals(item.Id)))
 																{
-																	<div style="margin-top:10px">
-																		<a href="#">
-																			<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+																	<div style="margin-top:40px">
+																		<a href="javascript:void(0)" class="pull-left">
+																			@if (itemAnswer.User.Image != null)
+																			{
+																				<img src="@itemAnswer.User.Image" alt="" class="img-circle">
+																			}
+																			else
+																			{
+																				<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+																			}
 																		</a>
 																		<span class="text-muted pull-right">
-																			<small class="text-muted">@itemAnswer.CreatedDate</small>
+																			<small class="text-muted">@itemAnswer.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss") </small>
 																		</span>
 																		<strong class="text-success">@itemAnswer.User.UserName</strong>
 																		<p>
 																			@itemAnswer.Content
 																		</p>
-
 																	</div>
 																}
 															</div>
@@ -469,7 +530,6 @@
 																<li><a href="@url?pageRv=@prev20"><i class="fa fa-backward"></i></a></li>
 															}
 															<li><a href="@url?pageRv=@prev"><i class="fa fa-angle-left"></i></a></li>
-
 														}
 
 														@for (int a = start; a <= end; a++)
@@ -483,9 +543,6 @@
 																<li><a href="@url?pageRv=@a">@a</a></li>
 															}
 														}
-
-
-
 														@if (cureentPage < totalpage)
 														{
 															<li><a c href="@url?pageRv=@next"><i class="fa fa-angle-right"></i></a></li>
@@ -493,11 +550,8 @@
 															{
 																<li><a href="@url?pageRv=@next20"><i class="fa fa-fast-forward"></i></a></li>
 															}
-
 														}
-
 													</ul>
-
 												</div>
 											}
 										</div>
@@ -538,7 +592,7 @@
 				@foreach (var item in listproductorther)
 				{
 					float totalStar = 0;
-					var reviewProducts = reviewStarList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
+					var reviewProducts = reviewStarList.Where(x => x.ProductId == item.Id).Select(x => new Model.ReviewProduct
 					{
 						ProductId = x.Id,
 						Rate = x.Rate
@@ -669,3 +723,126 @@
 </div>
 <!-- brand-area end -->
 <!-- service-area start -->
+@section productDetail
+{
+	<script>
+		$(document).ready(function () {
+			$('#addToCart').click(function () {
+				var quantity = document.getElementById("quantity").value;
+				var productId = $(this).attr("valueId");
+				window.location.href = '/them-vao-gio-hang?productID=' + productId + '&quantity=' + quantity
+			});
+		});
+		//progress event click comment
+		$(document).on('click', '.comment-id',
+			function () {
+				var commentId = $(this).attr("checkComment");
+				if ($(".active-question-" + commentId)[0]) {
+					$('.show-comment-id-' + commentId).removeClass("active-question-" + commentId);
+					$('.show-comment-id-' + commentId).hide("slow");
+				} else {
+					$('.show-comment-id-' + commentId).addClass("active-question-" + commentId);
+					$('.show-comment-id-' + commentId).show("slow");
+				}
+			});
+		//progress event click review question
+		$(document).on('click', '.review-id',
+			function () {
+				var reviewId = $(this).attr("checkReview");
+				if ($(".active-review-" + reviewId)[0]) {
+					$('.show-review-' + reviewId).removeClass("active-review-" + reviewId);
+					$('.show-review-' + reviewId).hide("slow");
+				} else {
+					$('.show-review-' + reviewId).addClass("active-review-" + reviewId);
+					$('.show-review-' + reviewId).show("slow");
+				}
+			});
+		$(document).on('click', '.review-answer',
+			function () {
+				var reviewId = $(this).attr("submitReview");
+				var contentAnswerReview = $(".content-review-answer-" + reviewId).val();
+				if (contentAnswerReview === null || contentAnswerReview.match(/^ *$/) !== null) return;
+				var postData = { ReviewId: reviewId, Content: contentAnswerReview };
+				var url = window.location.href;
+				$.ajax({
+					url: '/Product/CommentReview',
+					data: { 'data': JSON.stringify(postData) },
+					dataType: 'json',
+					type: 'POST',
+					success: (res) => {
+						if (res.status) {
+							$('.load-review').load(url + " .load-review>*", function() {
+								$('.show-review-' + reviewId).addClass("active-review-" + reviewId);
+								$('.show-review-' + reviewId).show();
+							});
+						}
+						if (!res.status) {
+							window.setTimeout(function () {
+								$("#exampleModalCenter").modal();
+							}, 200);
+						}
+					}
+				});
+			});
+		window.addEventListener("load", function () {
+			var url = window.location.href.split('?');
+			if (url.length > 1) {
+				if (url[1].split('=')[0] == 'pageRv') {
+					if ($(".check-active").hasClass("active")) {
+						$(".check-active").removeClass("active");
+						$(".show-active").addClass("active");
+					}
+				}
+			}
+		});
+		//post answer comment
+		$(document).on('click', '.comment-answer',
+			function () {
+				var commentId = $(this).attr("commentId");
+				var contentAnswer = $(".content-answer-" + commentId).val();
+				var postData = { content: contentAnswer, commentId: commentId };
+				var url = window.location.href;
+				$.ajax({
+					url: '/Product/CommentAnswer',
+					data: postData,
+					dataType: 'json',
+					type: 'POST',
+					success: (res) => {
+						if (res.status) {
+							$('.load-comment').load(url + " .load-comment>*", function() {
+								$('.show-comment-id-' + commentId).addClass("active-question-" + commentId);
+								$('.show-comment-id-' + commentId).show();
+							});
+						}
+						if (!res.status) {
+							window.setTimeout(function () {
+								$("#exampleModalCenter").modal();
+							}, 200);
+						}
+					}
+				});
+			});
+		$("#comment").on("click",
+			function () {
+				var url = window.location.href;
+				var productId = $("input[name=productId]").val();
+				var content = $("textarea[name=content]").val();
+				$.ajax({
+					url: '/Product/Comment',
+					data: { content: content, productId: productId },
+					dataType: 'json',
+					type: 'POST',
+					success: (res) => {
+						if (res.status) {
+							$('.load-comment').load(url + ' .load-comment');
+						}
+						if (!res.status) {
+							window.setTimeout(function () {
+								$("#exampleModalCenter").modal();
+							}, 200);
+						}
+					}
+				});
+			});
+	</script>
+}

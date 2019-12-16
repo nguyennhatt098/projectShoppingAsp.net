@@ -150,25 +150,25 @@
 					</div>
 
 					<div class="box-quantity">
-						<label>Quantity</label>
+						<label>Số lượng</label>
 						<input type="number" id="quantity" value="1" />
-						<button id="addToCart" valueId="@Model.Id">add to cart</button>
+						<button id="addToCart" valueId="@Model.Id">Thêm vào giỏ hàng</button>
 					</div>
 					<div class="usefull_link_block">
-						<ul>
-							@if (user == null)
-							{
-								<li> <a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart-o"></i> Đã thích  (@ViewBag.CountWish) </a></li>
-							}
-							else if (wishList.Any(x => x.ProductID.Equals(Model.Id)))
-							{
-								<li><a class="wishlist wishlistDisLike wishlist-@Model.Id" id="@Model.Id" data-id="@Model.Id" href="javascript:void(0)"><i class="fa fa-heart"></i> Đã thích  (@ViewBag.CountWish) </a></li>
-							}
-							else
-							{
-								<li>  <a class="wishlist wishlist-@Model.Id" data-id="@Model.Id" id="@Model.Id" href="javascript:void(0)"><i class="fa fa-heart-o"></i> Đã thích  (@ViewBag.CountWish) </a></li>
-							}
-						</ul>
+                        <ul>
+                            @if (user == null)
+                            {
+                                <li> <a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart"></i> Đã thích (@ViewBag.CountWish) </a></li>
+                            }
+                            else if (wishList.Any(x => x.ProductID.Equals(Model.Id)))
+                            {
+                                <li><a class="wishlist wishlistDisLike wishlist-@Model.Id" id="@Model.Id" data-id="@Model.Id" href="javascript:void(0)"><i class="fa fa-heart"></i> Đã thích (@ViewBag.CountWish) </a></li>
+                            }
+                            else
+                            {
+                                <li> <a class="wishlist wishlist-@Model.Id" data-id="@Model.Id" id="@Model.Id" href="javascript:void(0)"><i class="fa fa-heart"></i> Đã thích (@ViewBag.CountWish) </a></li>
+                            }
+                        </ul>
 					</div>
 				</div>
 			</div>
@@ -833,7 +833,6 @@
 					dataType: 'json',
 					type: 'POST',
 					success: (res) => {
-						$("textarea[name=content]").val("")
 						if (res.status) {
 							$('.load-comment').load(url + ' .load-comment');
 						}

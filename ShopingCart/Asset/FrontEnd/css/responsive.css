@@ -436,9 +436,7 @@ header.header-4 {
 .product-details {
   margin-top: 20px;
 }
-.box-quantity input {
-  display: none;;
-} 
+
 .share-icon a {
   margin-bottom: 5px;
 }
@@ -573,6 +571,4 @@ form#searchbox input {
   display: block;
 } 
 }
-.form-register input{
-	border:1px solid grey;
-}
+

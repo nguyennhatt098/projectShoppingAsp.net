@@ -66,5 +66,37 @@ Note: This is the file where you can add your custom styles to change the look o
 
 .pro-rating .fa {
 	color: #ffae00;
-	font-size: 15px;
+	font-size: 12px;
+}
+
+/*dropdow*/
+
+.dropdown-customs {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-contents {
+    display: none;
+    position: absolute;
+    right: -100px;
+    background-color: #f9f9f9;
+    min-width: 280px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+.dropdown-contents a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-contents a:hover {background-color: #f1f1f1;}
+.dropdown-customs:hover .dropdown-contents {
+    display: block;
+}
+.dropdown-custom:hover .dropbtn {
+    background-color: #3e8e41;
 }

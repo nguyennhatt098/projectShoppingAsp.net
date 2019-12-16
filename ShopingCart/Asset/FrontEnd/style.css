@@ -1108,7 +1108,6 @@ label.inline > a {
     line-height: 1.6em;
 }
 .login-form {
-    border: 1px solid rgba(0, 0, 0, 0.12);
     display: inline-block;
     margin-left: 0;
     margin-right: 0;
@@ -1116,10 +1115,7 @@ label.inline > a {
     padding: 25px 30px;
     width: 100%;
 }
-.login-form input {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border: 1px solid #eceff8;
-}
+
 .lost_password > a {
     color: #ffae00;
 }

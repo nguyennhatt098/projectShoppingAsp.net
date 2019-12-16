@@ -8,10 +8,8 @@ namespace ShopingCart.Areas.Admin.Controllers
 	public class ProductController : BaseController
 	{
 		private ProductService product;
-		private CategoryService category;
 		public ProductController()
 		{
-			category = new CategoryService();
 			product = new ProductService();
 		}
 		// GET: Admin/Category

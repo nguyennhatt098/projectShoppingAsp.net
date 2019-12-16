@@ -16,7 +16,7 @@ namespace Repository
 
 		public IEnumerable<Notify> GetById(int id)
 		{
-			return context.Notifies.OrderByDescending(x => x.CreatedDate).Take(10).ToList();
+			return context.Notifies.OrderByDescending(x => x.CreatedDate).Take(5).ToList();
 		}
 
 		public Notify GetNotifyByLink(string verifyCode)

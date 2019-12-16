@@ -1,7 +1,9 @@
-﻿@model Model.User
+﻿@using Model
+@model Model.User
 @{
 	ViewBag.Title = "UpdateUser";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = (User) Session["User"];
 	var checkGirl = "";
 	var checkBoy = "";
 	var checkDefault = "";
@@ -52,7 +54,7 @@ else
 								<i style="font-size: 50px;" class="fa fa-user"></i>
 							</div>
 							<div class="col-md-9 col-sm-9 	col-xs-9 col-lg-9">
-								<p>nguyennhat</p>
+								<p>@user.FullName</p>
 								<div style="margin-top: -15px">
 									<a href="/Resgiter/UpdateUser"><span class="glyphicon glyphicon-pencil"></span>Sửa hồ sơ</a>
 								</div>

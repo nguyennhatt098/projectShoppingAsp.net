@@ -1,9 +1,252 @@
-﻿
+﻿@using Model
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var productList = (List<Product>)ViewBag.ProdutList;
+    var orderDetailList = (List<OrderDetail>)ViewBag.OrderDetailList;
+    var userList = (List<User>) ViewBag.userList;
 }
 
 
-<h2>Index</h2>
+  
+       
 
+<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>@ViewBag.countOrder</h3>
+
+                <p>Đơn hàng</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a href="/Admin/Orders" class="small-box-footer">Xem thêm <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>@ViewBag.wishList</h3>
+
+                <p>Lượt yêu thích sản phẩm</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-heart"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>@ViewBag.countUser</h3>
+
+                <p>Người dùng đã đăng ký</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="/Admin/User" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>65</h3>
+
+                <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+</div>
+            <!-- Small boxes (Stat box) -->
+    <div class="row">
+     
+        <div class="col-md-8">
+           
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- USERS LIST -->
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Người dùng mới nhất</h3>
+
+                            <div class="box-tools pull-right">
+                                <span class="label label-danger">@ViewBag.countUser Người dùng mới nhất</span>
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            <ul class="users-list clearfix">
+                                @foreach (var item in userList)
+                                {
+                                    var createdDate = item.CreatedDate != null ? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "";
+                                    <li>
+                                        @if (item.Image != null)
+                                        {
+                                            <img src="@item.Image" alt="User Image">
+                                        }
+                                        else
+                                        {
+                                            <img src="../../../../Asset/Backend/dist/img/user1-128x128.jpg" alt="User Image">
+                                        }
+
+                                        <a class="users-list-name" href="#">@item.FullName</a>
+                                        <span class="users-list-date">@createdDate</span>
+                                    </li>
+                                }
+                              
+
+                            </ul>
+                            <!-- /.users-list -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer text-center">
+                            <a href="/Admin/User" class="uppercase">Xem tất cả</a>
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <!--/.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Đơn hàng mới nhất</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in orderDetailList)
+                            {
+                                <tr>
+                                    <td><a href="pages/examples/invoice.html">@item.ID</a></td>
+                                    <td>@item.Product.Name</td>
+                                    <td>
+                                     <img style="width: 100px; height: 50px;" src="@item.Product.Images"/>   
+                                    </td>
+                                    <td>  @if (item.Order.Status == 0)
+                                          {
+                                              <span class="label label-danger">Đang chờ</span>
+                                          }
+                                          else if (item.Order.Status == 1)
+                                          {
+                                              <span class="label label-warning">Xác Nhận</span>
+                                          }
+                                          else if (item.Order.Status == 2)
+                                          {
+                                              <span class="label label-primary">Đang giao</span>
+                                          }
+                                          else
+                                          {
+                                              <span class="label label-success">Hoàn thành</span>
+                                          }</td>
+                                  
+                                </tr>
+                            }
+                           
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <a href="/Admin/Order" class="btn btn-sm btn-default btn-flat pull-right">Xem tất cả</a>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-md-4">
+         
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Sản phẩm mới thêm</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="products-list product-list-in-box">
+                        @foreach (var item in productList)
+                        {
+                            <li class="item">
+                                <div class="product-img">
+                                    <img src="@item.Images" alt="Product Image">
+                                </div>
+                                <div class="product-info">
+                                    <a href="javascript:void(0)" class="product-title">
+                                        @item.Name
+                                        <span class="label label-success pull-right">@String.Format("{0:n0}", item.Price) VND</span>
+                                    </a>
+                                    <span class="product-description">
+                                       @item.Content
+                                    </span>
+                                </div>
+                            </li>
+                        }
+                       
+                     
+                        <!-- /.item -->
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer text-center">
+                    <a href="/Admin/Product" class="uppercase">Xem tất cả</a>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <!-- ./col -->
+    </div>
+          

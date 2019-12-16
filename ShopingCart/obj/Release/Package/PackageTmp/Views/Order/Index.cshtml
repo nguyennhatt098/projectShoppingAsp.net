@@ -72,7 +72,7 @@ else
 								<div class="col-md-12" hidden>
 									<div class="checkout-form-list">
 										<label>Email</label>
-										<input type="text" name="Email" value="@ViewBag.User.Email" placeholder="" hidden/>
+										<input type="text" name="Email" value="@ViewBag.User.Email" placeholder="" />
 										@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
 									</div>
@@ -80,7 +80,7 @@ else
 								<div class="col-md-12" >
 									<div class="checkout-form-list">
 										<label>Số điện thoại</label>
-										<input type="text" name="Phone" value="@ViewBag.User.Phone" placeholder="" />
+										<input type="text" name="Phone" value="@ViewBag.User.Phone" placeholder="Số điện thoại" />
 										@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
 									</div>
 								</div>
@@ -92,7 +92,13 @@ else
 
 									</div>
 								</div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Tin nhắn </label>
+                                        <input type="text" name="Message" placeholder="tin nhắn dành cho shop" />
 
+                                    </div>
+                                </div>
 								
 							</div>
 
