@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Service;
+﻿using Service;
 using System.Web.Mvc;
-using Model;
 
 namespace ShopingCart.Controllers
 {

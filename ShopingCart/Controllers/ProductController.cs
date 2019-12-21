@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 using Model;
-using PagedList;
 using Newtonsoft.Json;
 
 namespace ShopingCart.Controllers

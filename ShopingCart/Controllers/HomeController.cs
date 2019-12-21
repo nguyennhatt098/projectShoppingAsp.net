@@ -4,9 +4,6 @@ using Service;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using Microsoft.Ajax.Utilities;
-using Model.ViewModel;
 using Newtonsoft.Json;
 
 namespace ShopingCart.Controllers
