@@ -1,80 +1,89 @@
 ﻿@model IEnumerable<Model.ViewModel.CategoryDTO>
 
 @{
-	ViewBag.Title = "Index";
-	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-	<div class="box container">
-		<div class="box-header">
-			<h2 style="text-align:center">Quản lý danh mục</h2>
-			<p>
-				<a class="btn btn-primary" href="/Admin/Category/Create">Tạo mới</a>
-			</p>
-			</div>
-			<div style="overflow-x:auto;" class="box-body">
-				<table id="example1" class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>
-								@Html.DisplayNameFor(model => model.ID)
-							</th>
-							<th>
-								Tên
-							</th>
-							<th>
-								Tên danh mục cha
-							</th>
-							<th>
-								@Html.DisplayNameFor(model => model.Slug)
-							</th>
-							<th>
-								Trạng thái
-							</th>
-							<th>
-								Ngày tạo
-							</th>
-							<th>
-								Ngày sửa
-							</th>
-							<th></th>
-						</tr>
-					</thead>
+<div class="box container">
+    <div class="box-header">
+        <h2 style="text-align:center">Quản lý danh mục</h2>
+        <p>
+            <a class="btn btn-primary" href="/Admin/Category/Create">Tạo mới</a>
+        </p>
+    </div>
+    <div style="overflow-x:auto;" class="box-body">
+        <table id="example1" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID)
+                    </th>
+                    <th>
+                        Tên
+                    </th>
+                    <th>
+                        Tên danh mục cha
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Slug)
+                    </th>
+                    <th>
+                        Ngày tạo
+                    </th>
+                    <th>
+                        Ngày sửa
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
 
-					<tbody>
-						@foreach (var item in Model)
-						{
-							<tr>
-								<td>
-									@Html.DisplayFor(modelItem => item.ID)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.ParentName)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Slug)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Status)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.CreatedDate)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.ModifileDate)
-								</td>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var createdDate = item.CreatedDate != null ? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "";
+                    var updatedDate = item.ModifileDate != null ? item.ModifileDate.Value.ToString("dd/MM/yyyy") : "";
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Slug)
+                        </td>
+                       
+                        <td>
+                            @createdDate
+                        </td>
+                        <td>
+                           @updatedDate
+                        </td>
+                        <td>
+                            @if (item.Status)
+                            {
+                                <span class="label label-success">Hiện</span>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">Ẩn</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Edit", new { id=item.ID })"><i class="fa fa-fw  fa-pencil"></i></a>
+                            <a class="btn btn-danger" style="margin-left:10px;font-size:10px;" href="@Url.Action("Delete", new { id=item.ID })"><i class="fa fa-fw fa-trash"></i></a>
 
-								<td>
-									<a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Edit", new { id=item.ID })"><i class="fa fa-fw  fa-pencil"></i></a>
-									<a class="btn btn-danger" style="margin-left:10px;font-size:10px;" href="@Url.Action("Delete", new { id=item.ID })"><i class="fa fa-fw fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
 
-								</td>
-							</tr>
-						}
-
-					</tbody>
-				</table>
-			</div>
-		</div>
+            </tbody>
+        </table>
+    </div>
+</div>

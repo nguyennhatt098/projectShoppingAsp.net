@@ -129,10 +129,19 @@
 					@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
 					<div class="col-md-10">
 						<div class="checkbox">
-							<select name="Status">
-								<option value="true">Hoạt động</option>
-								<option value="false">Khóa</option>
-							</select>
+                            <select name="Status">
+                                @if (user.Status)
+                                {
+                                    <option value="true" selected="">Hoạt động</option>
+                                    <option value="false">Khóa</option>
+                                }
+                                else
+                                {
+                                    <option value="true">Hoạt động</option>
+                                    <option value="false" selected="">Khóa</option>
+                                }
+
+                            </select>
 							@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
 						</div>
 					</div>

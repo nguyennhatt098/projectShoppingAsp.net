@@ -101,6 +101,7 @@ transition: all 300ms ease-in 0s;font-family: 'Raleway', sans-serif;}
 .main-menu ul li .mega-2-col ul{width:50%}
 .search-block-top {
   margin-top: 25px;
+    top: 2px;
   position: relative;
 }
 .icon-search {
@@ -173,19 +174,20 @@ form#searchbox input {
 }
 .shopping-cart > a:first-child b {
   color: #ffae00;
-  line-height: 30px;
+  line-height: 33px;
   padding-right: 5px;
 }
 .shopping-cart > a:first-child::before {
   color: #2c2c2c;
   content: "";
   font-family: FontAwesome;
-  font-size: 12px;
-  line-height: 30px;
+  font-size: 23px;
+  line-height: 25px;
   margin-right: 7px;
   vertical-align: top;
 }
 .setting-menu{
+	top: -3px;
   display: inline-block;
   margin: 45px 0 0 30px;
   position: relative;

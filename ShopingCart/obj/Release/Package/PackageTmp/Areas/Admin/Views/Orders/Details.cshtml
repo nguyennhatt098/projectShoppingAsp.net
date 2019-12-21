@@ -1,143 +1,163 @@
-﻿@model  IEnumerable<Model.OrderDetail>
+﻿@using System.Globalization
+@using Model
+@model  IEnumerable<Model.OrderDetail>
 
 @{
-	ViewBag.Title = "Details";
-	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-	double total = 0;
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    double total = 0;
 }
 
-	<div class="box">
-		<h2 style="text-align:center">Thông tin khách Hàng</h2>
+<div class="col-md-3">
 
-		<div class="box-body">
+    <!-- Profile Image -->
+    <div class="box box-primary">
+        <div class="box-body box-profile">
+            @if (ViewBag.Order.Users.Image != null)
+            {
+                <img class="profile-user-img img-responsive img-circle" src="@ViewBag.Order.Users.Image" alt="User profile picture">
+            }
+            else
+            {
+                <img class="profile-user-img img-responsive img-circle" src="../../../Asset/Backend/dist/img/user4-128x128.jpg" alt="User profile picture">
+            }
 
-			<div>
-				<div>
-					<form method="POST">
-						<div class="panel panel-title">
+            <h3 class="profile-username text-center">@ViewBag.Order.Users.UserName</h3>
 
-							<div class="panel-body">
-								<table class="table">
+            <p class="text-muted text-center">@ViewBag.Order.Users.Email</p>
+            <form method="POST">
+                <input name="Name" hidden="hidden" value="@ViewBag.Order.Name"/>
+                <input name="Created" hidden="hidden" value="@ViewBag.Order.Created"/>
+                <input name="Phone" hidden="hidden" value="@ViewBag.Order.Phone"/>
+                <input name="Address" hidden="hidden" value="@ViewBag.Order.Address"/>
+                <input name="Email" hidden="hidden" value="@ViewBag.Order.Email"/>
+                <input name="UserId" hidden="hidden" value="@ViewBag.Order.UserId"/>
+                <ul class="list-group list-group-unbordered">
+                    <h2 style="text-align: center">Thông tin người nhận</h2>
+                  
+                    <li class="list-group-item">
+                        <b>Người nhận</b> <a class="pull-right">@ViewBag.Order.Name</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Địa chỉ nhận hàng</b> <a class="pull-right">@ViewBag.Order.Address</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Email</b> <a class="pull-right">@ViewBag.Order.Email</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Số điện thoại</b> <a class="pull-right">@ViewBag.Order.Phone</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Ngày đặt</b> <a class="pull-right">@ViewBag.Order.Created.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture)</a>
+                    </li>
+                    @if (ViewBag.Order.Status == 0)
+                    {
+                        <li class="list-group-item">
+                            <b>Trạng thái đơn hàng</b> <a class="pull-right"> <span class="label label-danger">Đang chờ</span> </a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Xử lý đơn hàng</b> <button style="padding-bottom: 4px;margin-top: -5px" type="submit" name="Status" value="1" class="btn btn-warning pull-right">Xác nhận</button>
+                        </li>
+                    }
+                    else if (ViewBag.Order.Status == 1)
+                    {
+                        <li class="list-group-item">
+                            <b>Trạng thái đơn hàng</b> <a class="pull-right"> <span class="label label-warning">Xác nhận</span> </a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Xử lý đơn hàng</b> <button style="padding-bottom: 4px;margin-top: -5px" type="submit" name="Status" value="2" class="btn btn-success pull-right">Đang giao</button>
+                        </li>
+                    }
+                    else if (ViewBag.Order.Status == 2)
+                    {
+                        <li class="list-group-item">
+                            <b>Trạng thái đơn hàng</b> <a class="pull-right"> <span class="label label-info">Đang giao</span> </a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Xử lý đơn hàng</b> <button style="padding-bottom: 4px;margin-top: -5px" type="submit" name="Status" value="3" class="btn btn-primary pull-right">Đã giao</button>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item">
+                            <b>Trạng thái đơn hàng</b> <a class="pull-right"> <span class="label label-success">Hoàn thành</span> </a>
+                        </li>
+                    }
+                </ul>
+            </form>
+        </div>
+        <!-- /.box-body -->
+    </div>
+   
+</div>
+<!-- /.col -->
+<div class="col-md-9">
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+            <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="active tab-pane" id="activity">
+                <h2 style="text-align:center">Chi tiết đơn hàng @ViewBag.Order.ID</h2>
+                <div style="overflow-x:auto;" class="box-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OrderId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Product.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Product.Images)
+                            </th>
+                            <th>
+                                Đơn giá
+                            </th>
+                            <th>
+                                Số lượng
+                            </th>
+                            <th>
+                                Tổng tiền
+                            </th>
 
-									<tbody>
-										<tr>
-											<td>Tên khách hàng</td>
-											<td>Ngày đặt hàng</td>
-											<td>Số điện thoại</td>
-											<td>Địa chỉ</td>
-											<td>Email</td>
+                        </tr>
 
-										</tr>
-										<tr>
-											<td>@ViewBag.Order.Name</td>
-											<td>@ViewBag.Order.Created</td>
-											<td>@ViewBag.Order.Phone</td>
-											<td>@ViewBag.Order.Address</td>
-											<td>@ViewBag.Order.Email</td>
-										</tr>
+                        @foreach (var item in Model)
+                        {
+                            total += item.Price * item.Quantity;
+                            var currentTotal = item.Price * item.Quantity;
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.Name)
+                                </td>
+                                <td>
+                                    <img style="width:150px" src="@Html.DisplayFor(modelItem => item.Product.Images)" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    @String.Format("{0:n0}", item.Price) VND
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td>
+                                    @String.Format("{0:n0}", currentTotal) VND
+                                </td>
+                            </tr>
+                        }
 
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<input name="Name" hidden="hidden" value="@ViewBag.Order.Name" />
-						<input name="Created" hidden="hidden" value="@ViewBag.Order.Created" />
-						<input name="Phone" hidden="hidden" value="@ViewBag.Order.Phone" />
-						<input name="Address" hidden="hidden" value="@ViewBag.Order.Address" />
-						<input name="Email" hidden="hidden" value="@ViewBag.Order.Email" />
-						<input name="UserId" hidden="hidden" value="@ViewBag.Order.UserId" />
-						@if (ViewBag.Order.Status == 0)
-						{
-							<input hidden name="Status" value="1" />
-							<p>
-								Trạng thái giao hàng: <label style="color: crimson">Đang chờ</label>
-							</p>
-							<p>Xử lý <button type="submit" value="1" class="btn btn-primary">Xác nhận</button></p>
-						}
-						else if (ViewBag.Order.Status == 1)
-						{
-							<input hidden name="Status" value="2" />
-							<p>
-								Trạng thái giao hàng:  <label style="color: blue">Xác Nhận</label>
+                    </table>
+                    </div>
+                    <h4 style="text-align: right">Tổng tiền đơn hàng:@String.Format("{0:n0}", total) VND </h4>
+                </div>
 
-							</p>
-							<p>Xử lý <button type="submit" value="2" class="btn btn-primary">Đang giao</button></p>
-						}
-						else if (ViewBag.Order.Status == 2)
-						{
-							<input hidden name="Status" value="3" />
-							<p>
-								Trạng thái giao hàng:  <label style="color: darkolivegreen">Đang giao</label>
-
-							</p>
-							<p>Xử lý <button type="submit" class="btn btn-primary">Đã giao</button></p>
-						}
-						else
-						{
-							<p>
-								Trạng thái giao hàng:  <label style="color: darkgreen">Hoàn thành</label>
-
-							</p>
-						}
-
-					</form>
-				</div>
-				<h2 style="text-align:center">Chi tiết đơn hàng</h2>
-				<table class="table table-hover">
-					<tr>
-						<th>
-							@Html.DisplayNameFor(model => model.OrderId)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Product.Name)
-						</th>
-						<th>
-							@Html.DisplayNameFor(model => model.Product.Images)
-						</th>
-						<th>
-							Đơn giá
-						</th>
-						<th>
-							Số lượng
-						</th>
-						<th>
-							Tổng tiền
-						</th>
-
-					</tr>
-
-					@foreach (var item in Model)
-					{
-						total += item.Price * item.Quantity;
-						var currentTotal = item.Price * item.Quantity;
-						<tr>
-							<td>
-								@Html.DisplayFor(modelItem => item.OrderId)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Product.Name)
-							</td>
-							<td>
-								<img style="width:150px" src="@Html.DisplayFor(modelItem => item.Product.Images)" alt="Alternate Text" />
-							</td>
-							<td>
-								@String.Format("{0:n0}", item.Price) VND
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Quantity)
-							</td>
-							<td>
-								@currentTotal VND
-							</td>
-						</tr>
-					}
-
-				</table>
-				<h4 style="text-align: right">Tổng tiền đơn hàng:@String.Format("{0:n0}", total) VND </h4>
-
-			</div>
-			<div>
-				<a class="btn btn-primary" href="@Url.Action("Index")">Quay về</a>
-			</div>
-		</div>
+            </div>
+        <!-- /.tab-content -->
+    </div>
+    <!-- /.nav-tabs-custom -->
 </div>

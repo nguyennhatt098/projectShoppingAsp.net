@@ -21,8 +21,7 @@ else
 	<div class="breadcrumb-area">
 		<div class="container">
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-home"></i></a></li>
-				<li><a href="#">Shop</a></li>
+				<li><a href="/"><i class="fa fa-home"></i></a></li>
 				<li class="active">Lịch sử mua hàng</li>
 			</ol>
 		</div>
@@ -47,7 +46,7 @@ else
 
 							</div>
 						</div>
-						<div class="panel-body">
+						<div style="background: white" class="panel-body">
 							<div style="margin-bottom: 5px;margin-top: 52px;">
 								<i style="font-size: 20px;" class="fa fa-user"></i>
 								<a href="/Resgiter/UpdateUser">Tài khoản của tôi</a>
@@ -73,7 +72,7 @@ else
 				<div class="col-md-9 col-sm-8">
 					<h2 class="page-heading mt-40">
 						<span class="cat-name">Lịch sử mua hàng</span>
-						<span class="heading-counter">Show @Model.Count order</span>
+						<span class="heading-counter">Hiển thị @Model.Count đơn hàng</span>
 					</h2>
 					<div class="shop-page-bar">
 						<div>
@@ -88,14 +87,22 @@ else
 											<p style="font-size:30px;">MÃ ĐƠN HÀNG: @item.ID</p>
 											<div style="float:right">
 												Trạng thái:
-												@if (item.Status == 0)
-												{
-													<label style="color: crimson">Đang chờ</label>
-												}
-												else if (item.Status == 3)
-												{
-													<label style="color: darkgreen">Đã giao</label>
-												} 
+                                                @if (item.Status == 0)
+                                                {
+                                                    <span class="label label-danger">Đang chờ</span>
+                                                }
+                                                else if (item.Status == 1)
+                                                {
+                                                    <span class="label label-warning">Xác Nhận</span>
+                                                }
+                                                else if (item.Status == 2)
+                                                {
+                                                    <span class="label label-primary">Đang giao</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="label label-success">Hoàn thành</span>
+                                                }
 											</div>
 											@foreach (var itemOrder in productOrder)
 											{
@@ -112,7 +119,7 @@ else
 												<div class="col-xs-7 col-sm-7 col-md-8">
 													<div class="product-content product-list">
 														<div class="pro-title">
-															<h3><a href="product-details.html">@itemOrder.Product.Name </a> </h3>
+															<h3><a href="@url">@itemOrder.Product.Name </a> </h3>
 														</div>
 														<div class="price-reviews">
 															
@@ -137,8 +144,9 @@ else
 								</div>
 								<div class="content-sortpagibar">
 
-									@Html.PagedListPager(Model, Page => Url.Action("OrderHistory", new { Page, @searchString = @ViewBag.searchString }))
-
+									@Html.PagedListPager(Model, Page => Url.Action("OrderHistory", new { Page, @searchString = @ViewBag.searchString }), new PagedListRenderOptions {
+										UlElementClasses = new[] {"shop-pagi display-inline"}
+									})
 									<div class="selector-field f-right">
 
 									</div>

@@ -8,14 +8,12 @@ namespace ShopingCart.Areas.Admin.Controllers
 	public class LoginController : Controller
 	{
 		private LoginService loginService;
-		private UserService userService;
-		private RoleService roleService;
+        private RoleService roleService;
 		public LoginController()
 		{
 			roleService=new RoleService();
 			loginService = new LoginService();
-			userService = new UserService();
-		}
+        }
 
 		// GET: Admin/Login
 		public ActionResult Index()

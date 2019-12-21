@@ -8,9 +8,17 @@ namespace ShopingCart
 		// For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
 		public static void RegisterBundles(BundleCollection bundles)
 		{
-		
 			bundles.Add(new ScriptBundle("~/bundles/core").Include(
-				"~/Scripts/bootstrap.js"));
+				"~/Asset/FrontEnd/js/vendor/modernizr-2.8.3.min.js",
+				"~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js",
+				"~/Asset/FrontEnd/js/bootstrap.min.js",
+				"~/Asset/FrontEnd/js/ajax-mail.js",
+				"~/Asset/FrontEnd/js/owl.carousel.min.js",
+				"~/Asset/FrontEnd/js/jquery.nivo.slider.pack.js",
+				"~/Asset/FrontEnd/js/plugins.js",
+				"~/Asset/FrontEnd/js/main.js",
+				"~/Asset/FrontEnd/js/custom.js",
+				"~/Asset/FrontEnd/js/menu-mobile.js"));
 			bundles.Add(new StyleBundle("~/bundles/css-core").Include(
 				"~/Asset/FrontEnd/css/font-awesome.min.css",
 				"~/Asset/FrontEnd/css/pe-icon-7-stroke.css",
