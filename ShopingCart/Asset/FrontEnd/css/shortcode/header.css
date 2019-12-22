@@ -11,6 +11,7 @@ NOTE: This is Header style file. All Header related style included in this file.
   right: 0;
   top: 0;
   z-index: 999;
+	padding: 25px 15px 0;
 }
 .header-area{}
 .logo{padding-top: 35px;}

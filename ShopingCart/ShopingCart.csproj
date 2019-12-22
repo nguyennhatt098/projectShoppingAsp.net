@@ -1771,6 +1771,7 @@
     <Content Include="Asset\Backend\dist\js\demo.js" />
     <Content Include="Asset\Backend\dist\js\pages\dashboard.js" />
     <Content Include="Asset\Backend\dist\js\pages\dashboard2.js" />
+    <Content Include="Asset\Backend\js\custom.js" />
     <Content Include="Asset\Backend\js\demo\chart-area-demo.js" />
     <Content Include="Asset\Backend\js\demo\chart-bar-demo.js" />
     <Content Include="Asset\Backend\js\demo\chart-pie-demo.js" />

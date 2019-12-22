@@ -3,8 +3,7 @@
 	//progress data wishlish
 	window.wishLists = [];
 	window.isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
-	$(document).on('click', '.wishlist',
-		function () {
+	$(document).on('click', '.wishlist', function () {
 			var id = $(this).attr("id");
 			var currentItem = wishLists.find(x => x.ProductID === id);
 
