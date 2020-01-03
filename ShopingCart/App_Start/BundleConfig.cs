@@ -20,6 +20,7 @@ namespace ShopingCart
 				"~/Asset/FrontEnd/js/custom.js",
 				"~/Asset/FrontEnd/js/menu-mobile.js"));
 			bundles.Add(new StyleBundle("~/bundles/css-core").Include(
+				"~/Asset/FrontEnd/css/bootstrap.min.css",
 				"~/Asset/FrontEnd/css/font-awesome.min.css",
 				"~/Asset/FrontEnd/css/pe-icon-7-stroke.css",
 				"~/Asset/FrontEnd/css/nivo-slider.css",

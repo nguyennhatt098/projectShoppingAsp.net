@@ -291,3 +291,4 @@ C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\Shop
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.csproj.CopyComplete
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\obj\Release\ShopingCart.pdb
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\CKFinder.dll

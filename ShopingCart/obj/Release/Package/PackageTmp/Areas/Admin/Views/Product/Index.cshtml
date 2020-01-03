@@ -5,140 +5,145 @@
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-	<div class="box container">
-		<div class="box-header">
-			<h2 style="text-align:center">Quản lý sản phẩm</h2>
-			<p>
-				<a class="btn btn-primary" href="@Url.Action("Create")">Tạo mới</a>
-			</p>
-			@using (Html.BeginForm("Index", "Product", FormMethod.Get))
-			{
-				<div class="row">
-					<div class="col-md-2">
-						<input type="text" placeholder="tìm kiếm theo tên" name="searchString" value="@ViewBag.searchString" />
-					</div>
-					<div class="col-md-2">
-						<button class="btn btn-primary" type="submit">Tìm kiếm</button>
-					</div>
-					<div class="col-md-6">
+<div class="box container">
+    <div class="box-header">
+        <h2 style="text-align:center">Quản lý sản phẩm</h2>
+        <p>
+            <a class="btn btn-primary" href="@Url.Action("Create")">Tạo mới</a>
+        </p>
+        @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="text" placeholder="tìm kiếm theo tên" name="searchString" value="@ViewBag.searchString" />
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </div>
+                <div class="col-md-6">
 
-					</div>
-				</div>
-			}
-			</div>
-			<div style="overflow-x:auto;" class="box-body">
-				<table id="example1" class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>
-								Tên danh mục
-							</th>
-							<th>
-								Tên sản phẩm
-							</th>
-							<th>
-								Slug
-							</th>
-							<th>
-								Nội dung
-							</th>
-							<th>
-								Hình ảnh
-							</th>
-							<th>
-								Giá gốc
-							</th>
-							<th>
-								Giá khuyến mãi
-							</th>
+                </div>
+            </div>
+        }
+    </div>
+    <div style="overflow-x:auto;" class="box-body">
+        <table id="example1" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>
+                    Tên danh mục
+                </th>
+                <th>
+                    Tên sản phẩm
+                </th>
+                <th>
+                    Slug
+                </th>
+                <th>
+                    Nội dung
+                </th>
+                <th>
+                    Hình ảnh
+                </th>
+                <th>
+                    Giá gốc
+                </th>
+                <th>
+                    Giá khuyến mãi
+                </th>
 
-							<th>
-								Ngày tạo
-							</th>
-							<th>
-								Ngày sửa
-							</th>
-							<th>
-								Trạng thái
-							</th>
-							<th>
-								Sản phẩm hot
-							</th>
-							<th></th>
-						</tr>
-					</thead>
+                <th>
+                    Ngày tạo
+                </th>
+                <th>
+                    Ngày sửa
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th>
+                    Sản phẩm hot
+                </th>
+                <th></th>
+            </tr>
+            </thead>
 
-					<tbody>
-						@foreach (var item in Model)
-						{
-						    var createdDate = item.Created != null ? item.Created.Value.ToString("dd/MM/yyyy") : "";
-						    var updatedDate=item.ModifileDate != null ? item.ModifileDate.Value.ToString("dd/MM/yyyy") : "";
-							<tr>
-								<td>
-									@Html.DisplayFor(modelItem => item.Categorys.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Slug)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Content)
-								</td>
-								<td>
-									<img style="width: 60px;height: 50px" src="@Html.DisplayFor(modelItem => item.Images)" alt="Alternate Text" />
-								</td>
-								<td>
-									@String.Format("{0:n0}",item.Price) VND
-								</td>
-								<td>
-									@if (item.Sale_Price != null)
-									{
-									<span>@String.Format("{0:n0}", item.Sale_Price)VND</span>
-									}
+            <tbody>
+            @foreach (var item in Model)
+            {
+                var createdDate = item.Created != null ? item.Created.Value.ToString("dd/MM/yyyy") : "";
+                var updatedDate=item.ModifileDate != null ? item.ModifileDate.Value.ToString("dd/MM/yyyy") : "";
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categorys.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Slug)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        <img style="width: 60px;height: 50px" src="@Html.DisplayFor(modelItem => item.Images)" alt="Alternate Text" />
+                    </td>
+                    <td>
+                        @String.Format("{0:n0}",item.Price) VND
+                    </td>
+                    <td>
+                        @if (item.Sale_Price != null)
+                        {
+                            <span>@String.Format("{0:n0}", item.Sale_Price)VND</span>
+                        }
 
-								</td>
+                    </td>
 
-								<td>
+                    <td>
 									
-									@createdDate
-								</td>
-								<td>
-									@updatedDate
-								</td>
-								<td>
-                                    @if (item.Status)
-                                    {
-                                        <span class="label label-success">Hiện</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="label label-danger">Ẩn</span>
-                                    }
-								</td>
-                                <td>
-                                    @if (item.TopHot)
-                                    {
-                                        <span class="label label-success">Hoạt động</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="label label-danger">Tắt</span>
-                                    }
-                                </td>
-								<td>
-									<a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Edit", new { id=item.Id })"><i class="fa fa-fw  fa-pencil"></i></a>
-									<a class="btn btn-danger" style="font-size:10px;" href="@Url.Action("Delete", new { id=item.Id })"><i class="fa fa-fw fa-trash"></i></a>
-								</td>
-							</tr>
+                        @createdDate
+                    </td>
+                    <td>
+                        @updatedDate
+                    </td>
+                    <td>
+                        @if (item.Status)
+                        {
+                            <span class="label label-success">Hiện</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">Ẩn</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.TopHot)
+                        {
+                            <span class="label label-success">Hoạt động</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">Tắt</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Edit", new { id=item.Id })"><i class="fa fa-fw  fa-pencil"></i></a>
+                        <a class="btn btn-danger" style="font-size:10px;" href="@Url.Action("Delete", new { id=item.Id })"><i class="fa fa-fw fa-trash"></i></a>
+                    </td>
+                </tr>
 
-						}
-					</tbody>
-				</table>
-				@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, @searchString = @ViewBag.searchString }))
-			</div>
-		</div>
+            }
+            </tbody>
+        </table>
+
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, @searchString = @ViewBag.searchString }))
+    </div>
+</div>
+<div class="md-form">
+									<input type="text" id="form1" class="form-control">
+									<label for="form1" class="">Example label</label>
+								</div>
 		@section Scripts {
 			<script>
 				$(document).ready(function () {

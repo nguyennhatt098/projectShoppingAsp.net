@@ -4,37 +4,95 @@
 
 <!-- Mirrored from demo.devitems.com/gicor-preview/gicor/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Nov 2018 04:48:35 GMT -->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@ViewBag.Title</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>@ViewBag.Title</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- favicon
-    ============================================ -->
-     <link rel="shortcut icon" type="image/x-icon" href="~/Asset/FrontEnd/img/favicon.png"> 
-    @* <!-- All css files are included here. --> *@
-    @* <!-- Bootstrap framework main css --> *@
-    <link rel="stylesheet" href="~/Asset/FrontEnd/css/bootstrap.min.css">
-    @* $1$ $2$ <!-- This core.css file contents all plugings css file. --> #2# #1# *@
-     @* <link rel="stylesheet" href="~/Asset/FrontEnd/css/core.css">  *@
-    @* <!-- Theme shortcodes/elements style --> *@
-     @* <link rel="stylesheet" href="~/Asset/FrontEnd/css/shortcode/shortcodes.css">  *@
-    @* <!-- Theme main style --> *@
-    @*  <link rel="stylesheet" href="~/Asset/FrontEnd/style.css">  *@
-    @* <!-- Responsive css --> *@
-    @* <link rel="stylesheet" href="~/Asset/FrontEnd/css/responsive.css"> *@
-    @* <!-- User style --> *@
-    @* <link rel="stylesheet" href="~/Asset/FrontEnd/css/custom.css"> *@
-    @* $1$ <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> #1# *@
-    @* $1$     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900' rel='stylesheet' type='text/css'>  #1# *@
-    @* <link rel="stylesheet" href="~/Asset/FrontEnd/css/menu.css" type="text/css" /> *@
-    @* <link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-product.css" type="text/css" /> *@
-    @* <link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-mobile.css" type="text/css" /> *@
-    @* <link rel="stylesheet" href="~/Asset/FrontEnd/css/process-bar.css" type="text/css" /> *@
-	 @Styles.Render("~/bundles/css-core");
-    <!-- Modernizr JS -->
-    @*<script src="~/Asset/FrontEnd/js/vendor/modernizr-2.8.3.min.js"></script>*@
+	<!-- favicon
+	============================================ -->
+	<link rel="shortcut icon" type="image/x-icon" href="~/Asset/FrontEnd/img/favicon.png">
+	@* <!-- All css files are included here. --> *@
+	@* <!-- Bootstrap framework main css --> *@
+	@* $1$ $2$ <!-- This core.css file contents all plugings css file. --> #2# #1# *@
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/core.css">  *@
+	@* <!-- Theme shortcodes/elements style --> *@
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/shortcode/shortcodes.css">  *@
+	@* <!-- Theme main style --> *@
+	@*  <link rel="stylesheet" href="~/Asset/FrontEnd/style.css">  *@
+	@* <!-- Responsive css --> *@
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/responsive.css"> *@
+	@* <!-- User style --> *@
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/custom.css"> *@
+	@* $1$ <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> #1# *@
+	@* $1$     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900' rel='stylesheet' type='text/css'>  #1# *@
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/menu.css" type="text/css" /> *@
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-product.css" type="text/css" /> *@
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/menu-mobile.css" type="text/css" /> *@
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/process-bar.css" type="text/css" /> *@
+ @* 	<script src="~/Asset/FrontEnd/js/jquery.min.js"></script>  *@
+ @* *@
+	@* <script  src="~/Asset/FrontEnd/js/jquery.lazy.min.js"></script> *@
+	<script>
+		// $(function () {
+		//          $("img.lazy").lazyload({
+		//              effect: "fadeIn"
+		//          });
+		//      });
+		//$(document).ready(function () {
+		//	//     	    $('.lazy').Lazy({
+		//	//     // your configuration goes here
+		//	//     scrollDirection: 'vertical',
+		//	//     effect: 'fadeIn',
+		//	//     visibleOnly: true,
+		//	//     onError: function(element) {
+		//	//         console.log('error loading ' + element.data('src'));
+		//	//     }
+		//	// });
+		//	$('img').lazy();
+		//});
+
+
+//		document.addEventListener("DOMContentLoaded", function() {
+//			var lazyloadImages = document.querySelectorAll("img.lazy");    
+//			var lazyloadThrottleTimeout;
+//  
+//			function lazyload () {
+//				if(lazyloadThrottleTimeout) {
+//					clearTimeout(lazyloadThrottleTimeout);
+//				}    
+//    
+//				lazyloadThrottleTimeout = setTimeout(function() {
+//					var scrollTop = window.pageYOffset;
+//					lazyloadImages.forEach(function(img) {
+//						if(img.offsetTop < (window.innerHeight + scrollTop)) {
+//							img.src = img.dataset.src;
+//							img.classList.remove('lazy');
+//						}
+//					});
+//					if(lazyloadImages.length == 0) { 
+//						document.removeEventListener("scroll", lazyload);
+//						window.removeEventListener("resize", lazyload);
+//						window.removeEventListener("orientationChange", lazyload);
+//					}
+//				}, 20);
+//			}
+//  
+//			document.addEventListener("scroll", lazyload);
+//			window.addEventListener("resize", lazyload);
+//			window.addEventListener("orientationChange", lazyload);
+//		});
+	</script>
+	@* <link rel="stylesheet" href="~/Asset/FrontEnd/css/bootstrap.min.css"> *@
+
+	 @Styles.Render("~/bundles/css-core"); 
+
+
+
+
+	<!-- Modernizr JS -->
+	@*<script src="~/Asset/FrontEnd/js/vendor/modernizr-2.8.3.min.js"></script>*@
 </head>
 
 <body>
@@ -117,19 +175,19 @@
 		if ('@TempData["message"]' == "Added") {
 			$(".alert-success").show();
 			window.setTimeout(function() {
-					$(".alert-success").slideUp(1000, function() {
-							$(this).remove();
-						});
-				}, 5000);
+				$(".alert-success").slideUp(1000, function() {
+					$(this).remove();
+				});
+			}, 5000);
 		}
 		if ('@TempData["message"]' == 'false') {
 			$(".alert-danger").show();
 			window.setTimeout(function() {
-					$(".alert-danger").slideUp(1000,
-						function() {
-							$(this).remove();
-						});
-				}, 5000);
+				$(".alert-danger").slideUp(1000,
+					function() {
+						$(this).remove();
+					});
+			}, 5000);
 		};
 	});
 </script>
