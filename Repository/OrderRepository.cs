@@ -47,12 +47,12 @@ namespace Repository
 
 		public IEnumerable<Order> Search(string searchString, int Page, int Pagesize)
 		{
-			var model = context.Orders.OrderByDescending(x => x.Created).ToList();
+			var model = context.Orders.ToList();
 			if (!string.IsNullOrWhiteSpace(searchString))
 			{
-				model = model.Where(x => x.Name.Contains(searchString)).ToList();
+				model = model.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
 			}
-			return model.OrderByDescending(x => x.Created).ToPagedList(Page, Pagesize);
+			return model.OrderByDescending(x => x.ID).ToPagedList(Page, Pagesize);
 		}
 
 		public int Update(Order t)

@@ -80,7 +80,7 @@ Note: This is the file where you can add your custom styles to change the look o
 .dropdown-contents {
 	display: none;
 	position: absolute;
-	right: -100px;
+	left: -50px;
 	background-color: #f9f9f9;
 	min-width: 280px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
