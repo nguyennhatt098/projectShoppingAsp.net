@@ -12,17 +12,17 @@ namespace Service
     {
         private IRepository<Product> repository;
         private IListProduct<Product> rep;
+
         public ProductService()
         {
             rep = new ProductRepository(new DBEntityContext());
             repository = new ProductRepository(new DBEntityContext());
         }
+
         public int Delete(int id)
         {
             return repository.Delete(id);
         }
-
-      
 
         public IEnumerable<Product> GetAll()
         {
@@ -66,7 +66,6 @@ namespace Service
 
         public IEnumerable<Product> ListProductSale()
         {
-
             return rep.ListProductSale();
         }
 

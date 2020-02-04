@@ -17,9 +17,9 @@ namespace Repository
 		{
 			this.context = context;
 		}
-		public List<ReviewProduct> GetAll()
+		public IEnumerable<ReviewProduct> GetAll()
 		{
-			return context.ReviewProducts.ToList();
+			return context.ReviewProducts.AsQueryable();
 		}
 
 		public IEnumerable<ReviewProduct> GetReviewProductsByProductId(int id, int page, int pagesize)
@@ -67,14 +67,14 @@ namespace Repository
 			return context.SaveChanges();
 		}
 
-		public List<AnswerReview> AnswerReviews()
+		public IEnumerable<AnswerReview> AnswerReviews()
 		{
-			return context.AnswerReviews.OrderByDescending(x=>x.CreatedDate).ToList();
+			return context.AnswerReviews.OrderByDescending(x=>x.CreatedDate).AsQueryable();
 		}
 
 		public CalculateRateDTO CalculateRate(int productId)
 		{
-			var list = context.ReviewProducts.Where(x => x.ProductId == productId);
+			var list = context.ReviewProducts.Where(x => x.ProductId == productId).AsQueryable();
 			float star1 = 0;
 			float star2 = 0;
 			float star3 = 0;

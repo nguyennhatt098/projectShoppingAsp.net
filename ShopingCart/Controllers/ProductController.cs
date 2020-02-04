@@ -14,6 +14,7 @@ namespace ShopingCart.Controllers
         private WishListService wishListService;
         private CommentService commentService;
         private ReviewProductService reviewProductService;
+
         public ProductController()
         {
             categoryService = new CategoryService();
@@ -22,6 +23,7 @@ namespace ShopingCart.Controllers
             commentService = new CommentService();
             reviewProductService = new ReviewProductService();
         }
+
         public ActionResult CategoryViewDetail(int id, int page = 1, int pageSize = 6)
         {
             var user = (User)Session["User"];
@@ -41,6 +43,7 @@ namespace ShopingCart.Controllers
             ViewBag.TotalPage = totalPage;
             return View(model);
         }
+
         public ActionResult Detail(int id, int page = 1, int pageSize = 5, int pageRv = 1, int pageSizeRv = 5)
         {
             var user = (User)Session["User"];
@@ -66,11 +69,12 @@ namespace ShopingCart.Controllers
             //detail
             ViewBag.CountWish = wishListService.CountByProductId(id);
             ViewBag.ReviewStarList = reviewProductService.GetAll();
-            ViewBag.ListProductOther = productService.ListProductSale();
+            ViewBag.ListProductOther = productService.ListProductSale().ToList();
             var product = productService.GetById(id);
             ViewBag.Category = categoryService.GetById(product.Category_ID);
             return View(product);
         }
+
         [HttpPost]
         public ActionResult Comment(string content, int productId)
         {
@@ -102,6 +106,7 @@ namespace ShopingCart.Controllers
                 status = true
             });
         }
+
         [HttpPost]
         public ActionResult CommentAnswer(string content, int commentId)
         {
@@ -135,6 +140,7 @@ namespace ShopingCart.Controllers
                 status = true
             });
         }
+
         [HttpPost]
         public ActionResult CommentReview(string data)
         {

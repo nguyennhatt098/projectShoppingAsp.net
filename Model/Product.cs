@@ -45,6 +45,12 @@ namespace Model
 		public bool Status { get; set; }
 		[DisplayName("Sản phẩm hot")]
 		public bool TopHot { get; set; }
+		public float? Star1 { get; set; }
+		public float? Star2 { get; set; }
+		public float? Star3 { get; set; }
+		public float? Star4 { get; set; }
+		public float? Star5 { get; set; }
+		public float? AverageStar { get; set; }
 		[ForeignKey("Category_ID")]
         public virtual Category Categorys { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }

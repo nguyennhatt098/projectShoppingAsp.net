@@ -18,9 +18,9 @@ namespace Service
 		{
 			repository = new ReviewProductRepository(new DBEntityContext());
 		}
-		public List<ReviewProduct> GetAll()
+		public IEnumerable<ReviewProduct> GetAll()
 		{
-			return repository.GetAll();
+			return repository.GetAll().ToList();
 		}
 
 		public IEnumerable<ReviewProduct> GetReviewProductsByProductId(int id, int page, int pagesize)
@@ -43,9 +43,9 @@ namespace Service
 			return repository.InsertAnswerReview(item);
 		}
 
-		public List<AnswerReview> AnswerReviews()
+		public IEnumerable<AnswerReview> AnswerReviews()
 		{
-			return repository.AnswerReviews();
+			return repository.AnswerReviews().ToList();
 		}
 
 		public CalculateRateDTO CalculateRate(int productId)

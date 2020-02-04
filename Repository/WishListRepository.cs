@@ -19,7 +19,7 @@ namespace Repository
 
         public IEnumerable<WishList> GetById(int id)
         {
-	        return context.wishLists.Where(x => x.UserID.Equals(id)).ToList();
+	        return context.wishLists.Where(x => x.UserID.Equals(id)).AsQueryable();
         }
 
         public int AddMultiple(List<WishList> items)

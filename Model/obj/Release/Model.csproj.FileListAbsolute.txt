@@ -105,3 +105,13 @@ C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.cspr
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.csproj.CopyComplete
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.pdb
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\DevExpress.Data.v18.2.xml
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\DevExpress.Xpo.v18.2.xml
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\de\DevExpress.Data.v18.2.resources.dll
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\es\DevExpress.Data.v18.2.resources.dll
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\ja\DevExpress.Data.v18.2.resources.dll
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\ru\DevExpress.Data.v18.2.resources.dll
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\de\DevExpress.Xpo.v18.2.resources.dll
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\es\DevExpress.Xpo.v18.2.resources.dll
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\ja\DevExpress.Xpo.v18.2.resources.dll
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\ru\DevExpress.Xpo.v18.2.resources.dll

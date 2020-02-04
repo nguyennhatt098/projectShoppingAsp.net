@@ -28,16 +28,23 @@ namespace ShopingCart.Controllers
 			categoryService = new CategoryService();
 			wishListService = new WishListService();
 			notifyService = new NotifyService();
-			reviewProductService=new ReviewProductService();
+			reviewProductService = new ReviewProductService();
 		}
 		public ActionResult Index()
 		{
 			var user = (User)Session["User"];
 			if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			ViewBag.ListProductNew = productService.ListProductNew();
-			ViewBag.ListNews = newsService.GetAll();
+			ViewBag.ListProductNew = productService.ListProductNew().ToList();
+			ViewBag.ListNews = newsService.GetAll().ToList();
 			ViewBag.ReviewList = reviewProductService.GetAll();
 			return View(productService.ListProductHot());
+		}
+		[HttpGet]
+		public string GetProductNew()
+		{
+			//return productService.ListProductNew().ToList();
+			var data = JsonConvert.SerializeObject(productService.ListProductNew().ToList(), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+			return data;
 		}
 
 		[ChildActionOnly]
@@ -65,7 +72,7 @@ namespace ShopingCart.Controllers
 			List<Category> lst = new List<Category>();
 			using (var context = new DBEntityContext())
 			{
-				lst = context.Categories.Where(x=>x.Status).ToList();
+				lst = context.Categories.Where(x => x.Status).ToList();
 			}
 
 			ViewBag.Categories = lst;
@@ -95,7 +102,7 @@ namespace ShopingCart.Controllers
 		{
 			var items = JsonConvert.DeserializeObject<List<WishList>>(data);
 			var user = (Model.User)Session["User"];
-			
+
 			if (user != null)
 			{
 				var wishLists = wishListService.GetById(user.UserId).ToList();
@@ -117,12 +124,12 @@ namespace ShopingCart.Controllers
 						wishListService.Insert(w);
 					}
 				}
-            }
-			
+			}
+
 			return Json(new
 			{
 				status = false
-            });
+			});
 		}
 
 		public ActionResult Contact()

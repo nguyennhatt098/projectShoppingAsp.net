@@ -3,7 +3,7 @@
 @{
 	ViewBag.Title = "Trang Chủ";
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	var ListProductNew = (List<Model.Product>)ViewBag.ListProductNew;
+	//var ListProductNew = (List<Model.Product>)ViewBag.ListProductNew;
 	var wishList = (List<Model.WishList>)ViewBag.wishList;
 	var user = (User)Session["User"];
 	var listNews = (List<Model.News>)ViewBag.ListNews;
@@ -52,18 +52,18 @@
 								<div class="product-carousel">
 									@foreach (var item in Model)
 									{
-										float totalStar = 0;
-										var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
-										{
-											ProductId = x.Id,
-											Rate = x.Rate
-										}).ToList();
-										foreach (var itemReview in reviewProducts)
-										{
-											totalStar += itemReview.Rate;
+										//float totalStar = 0;
+										//var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
+										//{
+										//	ProductId = x.Id,
+										//	Rate = x.Rate
+										//}).ToList();
+										//foreach (var itemReview in reviewProducts)
+										//{
+										//	totalStar += itemReview.Rate;
 
-										}
-										float currentStar = totalStar / reviewProducts.Count();
+										//}
+										//float currentStar = totalStar / reviewProducts.Count();
 										var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
 
 										<div class="col-md-12">
@@ -112,27 +112,26 @@
 
 														</div>
 														<div class="pro-rating">
-															@if (reviewProducts.Count > 0)
-															{
-																var check = true;
-																for (int i = 1; i <= 5; i++)
+															@*@if (item.AverageStar > 0)
 																{
-																	if (i <= currentStar)
+																	var check = true;
+																	for (int i = 1; i <= 5; i++)
 																	{
-																		<i class="fa fa-star"></i>
-
+																		if (i <= item.AverageStar)
+																		{
+																			<i class="fa fa-star"></i>
+																		}
+																		else if ( (Math.Abs(currentStar - Math.Floor(currentStar)) > 0)&&check)
+																		{
+																			check = false;
+																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
+																		}
+																		else
+																		{
+																			<i class="fa fa-star-o" aria-hidden="true"></i>
+																		}
 																	}
-																	else if ( (Math.Abs(currentStar - Math.Floor(currentStar)) > 0)&&check)
-																	{
-																		check = false;
-																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																	}
-																	else
-																	{
-																		<i class="fa fa-star-o" aria-hidden="true"></i>
-																	}
-																}
-															}
+																}*@
 														</div>
 													</div>
 												</div>
@@ -159,26 +158,34 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="product-carousel">
-				@foreach (var item in ListProductNew)
-				{
-					float totalStar = 0;
-					var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
-					{
-						ProductId = x.Id,
-						Rate = x.Rate
-					}).ToList();
-					foreach (var itemReview in reviewProducts)
-					{
-						totalStar += itemReview.Rate;
+			<div id="productNew">
+					@*<div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 3395px;"  >*@
+					@*<div id="productNew">
 
-					}
-					float currentStar = totalStar / reviewProducts.Count();
-					var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
-					<div class="col-md-12">
-						<div class="product-wrapper mb-40">
+						</div>*@
+					@*@foreach (var item in ListProductNew)
+						{
+							float totalStar = 0;
+							var reviewProducts = reviewProductList.Where(x => x.ProductId == item.Id).Select(x=>new Model.ReviewProduct
+							{
+								ProductId = x.Id,
+								Rate = x.Rate
+							}).ToList();
+							foreach (var itemReview in reviewProducts)
+							{
+								totalStar += itemReview.Rate;
+
+							}
+							float currentStar = totalStar / reviewProducts.Count();
+							var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;*@
+					@*<div  class="col-md-12">*@
+					@*<div id="productNew">
+
+						</div>*@
+
+					@*<div class="product-wrapper mb-40">
 							<div class="product-img">
-								<a href="@url"><img class="lazy" src="@item.Images" alt="@item.Name" /></a>
+								<a href="@url"><img  src="@item.Images" alt="@item.Name" /></a>
 								<span class="new-label">New</span>
 								<div class="product-action">
 									<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
@@ -238,10 +245,12 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>*@
 
-					</div>
-				}
+					@*</div>
+							}
+						</div>*@
+					@*</div>*@
 			</div>
 		</div>
 	</div>
@@ -288,7 +297,7 @@
 				<div class="brand-active">
 					<div class="col-lg-12">
 						<div class="single-brand">
-							<a href="#" ><img  src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
+							<a href="#"><img src="~/Asset/FrontEnd/img/brand/1.jpg" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-lg-12">
@@ -326,7 +335,94 @@
 		</div>
 	</div>
 </div>
-<!-- brand-area end -->
-<!-- service-area start -->
-<!-- service-area end -->
-<!-- footer start -->
+@section index
+{
+	<script>
+		$.ajax({
+			url: '/Home/GetProductNew',
+			type: 'GET',
+			success: (res) => {
+				if (res) {
+					var data = JSON.parse(res);
+					var txt = '';
+					for (i in data) {
+						var url = /chi-tiet-san-pham/ + data[i].Slug + '-' + data[i].Id;
+						var urlCart = "/them-vao-gio-hang?productID=" + data[i].Id + "&quantity=1";
+						txt += "<div class='col-md-12'>";
+						txt += "<div class='product-wrapper mb-40'>";
+						txt += "<div class='product-img'>";
+						txt += "<a href=" + url + "><img  src=" + data[i].Images + " alt=" + data[i].Name + " /></a>";
+						txt += "<span class='new-label'>New</span>";
+						txt += "<div class='product-action'>";
+						txt += "<a href=" + urlCart + "><i class='pe-7s-cart' ></i></a>";
+						if ('@user' == '') {
+							txt += "<a data-toggle='modal' data-target='#exampleModalCenter' ><i class='fa fa-heart'></i></a>";
+						}
+						else if ($.inArray(data[i].Id, data[i].wishList) != -1) {
+							txt += "<a class='wishlist wishlistDisLike wishlist-" + data[i].Id + "' id=" + data[i].Id + " data-id=" + data[i].Id + " href='javascript:void(0)'><i class='fa fa-heart'></i></a>";
+						}
+						else {
+							txt += "<a class='wishlist wishlist-" + data[i].Id + "' id=" + data[i].Id + " data-id=" + data[i].Id + " href='javascript:void(0)'><i class='fa fa-heart'></i></a>";
+						}
+						txt += "<a href=" + url + "><i class='pe-7s-look'></i></a>";
+						txt += "</div>";
+						txt += "</div>";
+						txt += "<div class='product-content'>";
+						txt += "<div class='pro-title'>";
+						txt += "<h3><a href='" + url + "'>" + data[i].Name + "</a></h3>";
+						txt += "</div>";
+						txt += "<div class='price-reviews'>";
+						txt += "<div class='price-box'>";
+						if (data[i].Sale_Price != null) {
+							txt += "<span class='old-price product-price'>" + data[i].Price + "VND</span> <span class='price product-price'>" + data[i].Sale_Price + "VND</span>";
+						} else {
+							txt += "<span class='price product-price'>" + data[i].Price + "VND</span>";
+						}
+						txt += "</div>";
+						txt += "<div class='pro-rating'>";
+						if (data[i].AverageStar > 0) {
+							var check = true;
+							for (i = 1; i <= 5; i++) {
+								if (i <= currentStar) {
+									txt += "<i class='fa fa-star'></i>";
+								}
+								else if (data[i].AverageStar % 1 !== 0 && check) {
+									check = false;
+									txt += "<i class='fa fa-star-half-o' aria-hidden='true'></i>";
+								}
+								else {
+									txt += "<i class='fa fa-star-o' aria-hidden='true'></i>";
+								}
+							}
+						}
+						txt += "</div>";
+						txt += "</div>";
+						txt += "</div>";
+						txt += "</div>";
+						txt += "</div>";
+					}
+					document.querySelector("#productNew").innerHTML = txt;
+					$("#productNew").owlCarousel({
+						loop: false,
+						nav: true,
+						navText: ['<i class="fa fa-long-arrow-left"></i>', '<i class="fa fa-long-arrow-right"></i>'],
+						responsive: {
+							0: {
+								items: 1
+							},
+							767: {
+								items: 2
+							},
+							1000: {
+								items: 3
+							},
+							1200: {
+								items: 4
+							}
+						}
+					})
+				}
+			}
+		});
+	</script>
+}

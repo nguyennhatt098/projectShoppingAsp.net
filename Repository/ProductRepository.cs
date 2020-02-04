@@ -19,7 +19,7 @@ namespace Repository
 		}
 		public int Delete(int id)
 		{
-			var orderDetailList = context.OrderDetails.ToList();
+			var orderDetailList = context.OrderDetails.AsQueryable();
 
 			if (orderDetailList.Any(x => x.ProductId == id)) return -1;
 
@@ -50,7 +50,7 @@ namespace Repository
 
 		public IEnumerable<Product> GetAll()
 		{
-			return context.Products.OrderByDescending(x=>x.Created);
+			return context.Products.OrderByDescending(x => x.Created).AsQueryable();
 		}
 
 		public Product GetById(int id)
@@ -60,12 +60,12 @@ namespace Repository
 
 		public int Insert(Product product)
 		{
-            var productList = context.Products.ToList();
-            if (productList.Any(x => x.Name.ToLower().Equals(product.Name.ToLower()))) return -2;
-            product.Created = DateTime.Now;
-            context.Products.Add(product);
-            return context.SaveChanges();
-        }
+			var productList = context.Products.ToList();
+			if (productList.Any(x => x.Name.ToLower().Equals(product.Name.ToLower()))) return -2;
+			product.Created = DateTime.Now;
+			context.Products.Add(product);
+			return context.SaveChanges();
+		}
 
 		public int Update(Product t)
 		{
@@ -100,19 +100,19 @@ namespace Repository
 
 		public IEnumerable<Product> ListProductHot()
 		{
-            return context.Products.Where(s => s.TopHot && s.Status).OrderByDescending(s => s.Created).Take(8).ToList();
+			return context.Products.Where(s => s.TopHot && s.Status).OrderByDescending(s => s.Created).Take(8).AsQueryable();
 		}
-		
+
 		public IEnumerable<Product> ListProductSale()
 		{
-			var randomItem = context.Products.OrderBy(x => Guid.NewGuid()).Take(8).ToList();
+			var randomItem = context.Products.OrderBy(x => Guid.NewGuid()).Take(8).AsQueryable();
 			return randomItem;
 		}
 
 
 		public IEnumerable<Product> ListProductNew()
 		{
-			return context.Products.Where(s => s.Status).OrderByDescending(s => s.Created).Take(8).ToList();
+			return context.Products.Where(s => s.Status).OrderByDescending(s => s.Created).Take(8).AsQueryable();
 		}
 
 		public IEnumerable<Product> Search(string searchString, int Page, int Pagesize)
@@ -127,10 +127,10 @@ namespace Repository
 
 		public IEnumerable<Product> ListProductGetByCategory(int id, int pageIndex, int pageSize)
 		{
-			var total =pageIndex*pageSize;
+			var total = pageIndex * pageSize;
 			if (total > Count(id))
 			{
-				pageSize = Count(id) - (pageSize * (pageIndex-1));
+				pageSize = Count(id) - (pageSize * (pageIndex - 1));
 			}
 
 			if (pageSize <= 0)
@@ -142,24 +142,24 @@ namespace Repository
 
 		public int Count(int id)
 		{
-			return context.Products.Count(x => x.Category_ID==id);
+			return context.Products.Count(x => x.Category_ID == id);
 		}
 
 		public IEnumerable<Category> Categories()
 		{
 			var listLv2 = (from c1 in context.Categories
-					join c2 in context.Categories on c1.ParentID equals c2.ID
-					select c1
+						   join c2 in context.Categories on c1.ParentID equals c2.ID
+						   select c1
 				).ToList();
 			var listLv3 = (from c1 in context.Categories
-					join c2 in context.Categories on c1.ParentID equals c2.ID
-					join c3 in context.Categories on c2.ParentID equals c3.ID
-					select c1
-				).ToList();
+						   join c2 in context.Categories on c1.ParentID equals c2.ID
+						   join c3 in context.Categories on c2.ParentID equals c3.ID
+						   select c1
+				).AsQueryable();
 			var listLv23 = (from c1 in listLv2
 							join c2 in listLv3 on c1.ID equals c2.ParentID
-					select c1
-				).ToList();
+							select c1
+				).AsQueryable();
 			foreach (var item in listLv23)
 			{
 				listLv2.Remove(item);
