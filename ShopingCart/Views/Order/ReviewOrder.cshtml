@@ -66,32 +66,24 @@
 		<!-- /.row -->
 	</div>
 </div>
-<!-- login-area end -->
-<!-- service-area start -->
-@* @section footer{ *@
-@* 	@Scripts.Render("~/bundles/jqueryval"); *@
-@* } *@
+
 @section orderReview{
     <script>
         $(document).ready(function() {
             $('.order-review').on('click', function () {
-
                 var formElements = document.getElementsByClassName("form-review");
                 var data = [];
                 for (var i = 0; i < formElements.length; i++) {
-                    var star = $("input[type='radio'][name='star']:checked")[i] == undefined ? 0 : $("input[type='radio'][name='star']:checked")[i].value;
+                    var star = $("input[type='radio'][name='star']:checked")[i] == undefined ? 5 : $("input[type='radio'][name='star']:checked")[i].value;
                     var content = $("textarea[name='content']")[i].value;
                     var productId = $("input[name='ProductId']")[i].value;
                     var orderId = $("input[name='OrderId']")[i].value;
                     if (content != "" || star != 0) {
-
                         var currentItem = { Rate: star, Content: content, ProductId: productId, OrderId: orderId };
                         data.push(currentItem);
                     }
-
                 }
                 if (data.length > 0) {
-
                     $.ajax({
                         url: '/Order/InsertReviewOrder',
                         data: { 'data': JSON.stringify(data) },

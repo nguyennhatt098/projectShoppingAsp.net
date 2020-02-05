@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -16,8 +12,8 @@ namespace Model
 		public DateTime CreatedDate { get; set; }
 		public int Status { get; set; }
 		[ForeignKey("ReviewId")]
-		public virtual ReviewProduct ReviewProduct { get; set; }
+		public  ReviewProduct ReviewProduct { get; set; }
 		[ForeignKey("UserId")]
-		public virtual User User { get; set; }
+		public virtual  User User { get; set; }
 	}
 }

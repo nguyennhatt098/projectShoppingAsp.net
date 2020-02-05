@@ -3,11 +3,8 @@ using Model;
 using Model.ViewModel;
 using Repository.DAL;
 using Repository.Interface;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository
 {
@@ -72,7 +69,7 @@ namespace Repository
 			return context.SaveChanges();
 		}
 
-		public IEnumerable<CommentDTO> Search(int productId, int Page, int Pagesize)
+		public IEnumerable<Comment> Search(int productId, int Page, int Pagesize)
 		{
 			var total = Page * Pagesize;
 			if (total > Count(productId))
@@ -84,18 +81,7 @@ namespace Repository
 			{
 				Pagesize = 6;
 			}
-			var list = (from c in context.Comments
-						join u in context.Users on c.UserId equals u.UserId
-						where c.ProductId == productId
-						select new CommentDTO
-						{
-							CommentId = c.Id,
-							Question = c.Question,
-							UserName = u.UserName,
-							CreatedDate = c.CreatedDate,
-							ModifyDate = c.ModifyDate,
-                            Image = u.Image
-						}).OrderByDescending(x => x.CreatedDate).Skip((Page - 1) * Pagesize).Take(Pagesize).AsQueryable();
+			var list =  context.Comments.Where(x=> x.ProductId == productId).OrderByDescending(x => x.CreatedDate).Skip((Page - 1) * Pagesize).Take(Pagesize).AsQueryable();
 			return list;
 		}
 	}

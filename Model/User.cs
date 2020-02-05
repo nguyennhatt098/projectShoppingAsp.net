@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -50,6 +47,6 @@ namespace Model
         public string Image { get; set; }
         public string Gender { get; set; }
         public virtual Role Role { get; set; }
-        public virtual ICollection<Notify> Notifies { get; set; }
+        public  ICollection<Notify> Notifies { get; set; }
 	}
 }

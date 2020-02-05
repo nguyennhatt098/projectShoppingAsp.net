@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using Model.ViewModel;
 using Repository.DAL;
@@ -10,7 +8,7 @@ using Repository.Interface;
 
 namespace Repository
 {
-	public class ReviewProductRepository:IReviewProduct
+	public class ReviewProductRepository : IReviewProduct
 	{
 		private DBEntityContext context;
 		public ReviewProductRepository(DBEntityContext context)
@@ -46,6 +44,30 @@ namespace Repository
 		{
 			foreach (var item in items)
 			{
+				var currentProduct = context.Products.FirstOrDefault(x => x.Id == item.ProductId);
+				switch (item.Rate)
+				{
+					case 1:
+						currentProduct.Star1 += 1;
+						break;
+					case 2:
+						currentProduct.Star2 += 1;
+						break;
+					case 3:
+						currentProduct.Star3 += 1;
+						break;
+					case 4:
+						currentProduct.Star4 += 1;
+						break;
+					case 5:
+						currentProduct.Star5 += 1;
+						break;
+					default:
+						break;
+				}
+				currentProduct.AverageStar = (currentProduct.Star1 + currentProduct.Star2 * 2 + currentProduct.Star3 * 3 + currentProduct.Star4 * 4 + currentProduct.Star5 * 5) /
+					(currentProduct.Star1 + currentProduct.Star2 + currentProduct.Star3 + currentProduct.Star4 + currentProduct.Star5);
+				context.Entry(currentProduct).State = System.Data.Entity.EntityState.Modified;
 				var obj = new ReviewProduct
 				{
 					Content = item.Content,
@@ -69,7 +91,7 @@ namespace Repository
 
 		public IEnumerable<AnswerReview> AnswerReviews()
 		{
-			return context.AnswerReviews.OrderByDescending(x=>x.CreatedDate).AsQueryable();
+			return context.AnswerReviews.OrderByDescending(x => x.CreatedDate).AsQueryable();
 		}
 
 		public CalculateRateDTO CalculateRate(int productId)
@@ -85,24 +107,24 @@ namespace Repository
 			{
 				star += item.Rate;
 				switch (item.Rate)
-                {
-                    case 1:
-                        star1 += 1;
-                        break;
-                    case 2:
-                        star2 += 1;
-                        break;
-                    case 3:
-                        star3 += 1;
-                        break;
-                    case 4:
-                        star4 += 1;
-                        break;
-                    case 5:
-                        star5 += 1;
-                        break;
-                }
-            }
+				{
+					case 1:
+						star1 += 1;
+						break;
+					case 2:
+						star2 += 1;
+						break;
+					case 3:
+						star3 += 1;
+						break;
+					case 4:
+						star4 += 1;
+						break;
+					case 5:
+						star5 += 1;
+						break;
+				}
+			}
 			var calculateItem = new CalculateRateDTO
 			{
 				Star1 = (int)Math.Round((star1 / list.Count()) * 100),
@@ -111,7 +133,7 @@ namespace Repository
 				Star4 = (int)Math.Round((star4 / list.Count()) * 100),
 				Star5 = (int)Math.Round((star5 / list.Count()) * 100),
 				Average = star / list.Count(),
-				CountReview=context.ReviewProducts.Count(x=>x.ProductId==productId)
+				CountReview = context.ReviewProducts.Count(x => x.ProductId == productId)
 			};
 			return calculateItem;
 		}

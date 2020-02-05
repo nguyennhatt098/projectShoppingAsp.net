@@ -3,19 +3,20 @@ using Service;
 using System.Linq;
 using System.Web.Mvc;
 using ShopingCart.Common;
+using Service.Interface;
 
 namespace ShopingCart.Areas.Admin.Controllers
 {
 	public class CategoryController : BaseController
 	{
-		private CategoryService category;
+		private IServices<Category> _categoryService;
 		private CommentService commentService;
-		public CategoryController()
+		public CategoryController(IServices<Category> categoryService)
 		{
 			commentService = new CommentService();
-			category = new CategoryService();
+			_categoryService = categoryService;
 		}
-		// GET: Admin/Category
+		// GET: Admin/_categoryService
 		[HasCredential(ActionId = 1)]
 		public ActionResult Index()
 		{
@@ -25,7 +26,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 		[HasCredential(ActionId = 2)]
 		public ActionResult Create()
 		{
-			ViewBag.ParentID = new SelectList(category.GetAll(), "ID", "Name");
+			ViewBag.ParentID = new SelectList(_categoryService.GetAll(), "ID", "Name");
 			return View();
 		}
 		[HttpPost]
@@ -35,15 +36,15 @@ namespace ShopingCart.Areas.Admin.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var result = category.Insert(c);
+				var result = _categoryService.Insert(c);
 				if (result > 0)
 				{
 					TempData["message"] = "Added";
 				}
 				else if (result == -2)
 				{
-					ModelState.AddModelError("Name", "category Name Đã Tồn Tại");
-					ViewBag.ParentID = new SelectList(category.GetAll(), "ID", "Name");
+					ModelState.AddModelError("Name", "_categoryService Name Đã Tồn Tại");
+					ViewBag.ParentID = new SelectList(_categoryService.GetAll(), "ID", "Name");
 					return View();
 				}
 				else
@@ -52,7 +53,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 				}
 				return RedirectToAction("Index");
 			}
-			ViewBag.ParentID = new SelectList(category.GetAll(), "ID", "Name");
+			ViewBag.ParentID = new SelectList(_categoryService.GetAll(), "ID", "Name");
 			return View();
 		}
 		[HttpGet]
@@ -60,7 +61,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 		public ActionResult Edit(int id)
 		{
 			
-			return View(category.GetById(id));
+			return View(_categoryService.GetById(id));
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
@@ -69,15 +70,15 @@ namespace ShopingCart.Areas.Admin.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var result = category.Update(c);
+				var result = _categoryService.Update(c);
 				if (result > 0)
 				{
 					TempData["message"] = "Added";
 				}
 				else if (result == -2)
 				{
-					ModelState.AddModelError("Name", "category Name Đã Tồn Tại");
-					ViewBag.ParentID = new SelectList(category.GetAll().Where(s => s.ParentID == null), "ID", "Name", category.GetById(c.ID).ParentID);
+					ModelState.AddModelError("Name", "_categoryService Name Đã Tồn Tại");
+					ViewBag.ParentID = new SelectList(_categoryService.GetAll().Where(s => s.ParentID == null), "ID", "Name", _categoryService.GetById(c.ID).ParentID);
 					return View();
 				}
 				else
@@ -94,7 +95,7 @@ namespace ShopingCart.Areas.Admin.Controllers
 		public ActionResult Delete(int id)
 		{
            
-			var result = category.Delete(id);
+			var result = _categoryService.Delete(id);
 			if (result > 0)
 			{
 				TempData["message"] = "Added";

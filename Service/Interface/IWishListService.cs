@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Model;
 
 namespace Service.Interface
 {
-   public  interface IWishListService<T> where T : class
+	public  interface IWishListService<T> where T : class
     {
         IEnumerable<T> GetAll();
         int Insert(T t);

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Model;
 
 namespace Repository.Interface
 {
-    public interface IListProduct<T> where T : class
+	public interface IListProduct<T> where T : class
     {
         IEnumerable<T> ListProductHot();
         IEnumerable<T> ListProductSale();

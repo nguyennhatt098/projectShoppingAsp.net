@@ -16,7 +16,6 @@ namespace Repository
             this.context = context;
         }
       
-
         public IEnumerable<WishList> GetById(int id)
         {
 	        return context.wishLists.Where(x => x.UserID.Equals(id)).AsQueryable();

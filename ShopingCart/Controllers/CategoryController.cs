@@ -18,8 +18,5 @@ namespace ShopingCart.Controllers
         {
             return View(service.GetById(id));
         }
-        
-
-
     }
 }

@@ -40,7 +40,7 @@ namespace Service
 			return repository.InsertAnswer(item);
 		}
 
-		public IEnumerable<CommentDTO> Search(int productId, int Page, int Pagesize)
+		public IEnumerable<Comment> Search(int productId, int Page, int Pagesize)
 		{
 			return repository.Search(productId, Page, Pagesize);
 		}

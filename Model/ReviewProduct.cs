@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -23,7 +20,7 @@ namespace Model
 		[ForeignKey("OrderId")]
 		public virtual  Order Order { get; set; }
 		[ForeignKey("ProductId")]
-		public virtual Product Product { get; set; }
-		public ICollection<AnswerReview> AnswerReviews { get; set; }
+		public  Product Product { get; set; }
+		public virtual ICollection<AnswerReview> AnswerReviews { get; set; }
 	}
 }

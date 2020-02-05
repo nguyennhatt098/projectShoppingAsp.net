@@ -46,8 +46,8 @@ namespace ShopingCart.Controllers
 
         public ActionResult Detail(int id, int page = 1, int pageSize = 5, int pageRv = 1, int pageSizeRv = 5)
         {
-            var user = (User)Session["User"];
-            if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
+            //var user = (User)Session["User"];
+            //if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
             var totalPage = (commentService.Count(id) + pageSize - 1) / pageSize;
             if (page <= 0) page = 1;
             else page = (page > totalPage && totalPage > 0) ? totalPage : page;
@@ -55,7 +55,7 @@ namespace ShopingCart.Controllers
             ViewBag.Page = page;
             ViewBag.TotalPage = totalPage;
             ViewBag.CommentList = model;
-            ViewBag.AnswerComment = commentService.answerComments();
+            //ViewBag.AnswerComment = commentService.answerComments();
             // review product list
             var totalPageRv = (reviewProductService.CountReviewProductById(id) + pageSizeRv - 1) / pageSizeRv;
             if (pageRv <= 0) pageRv = 1;
@@ -64,15 +64,14 @@ namespace ShopingCart.Controllers
             ViewBag.PageRv = pageRv;
             ViewBag.TotalPageRv = totalPageRv;
             ViewBag.ReviewList = modelRv;
-            ViewBag.AnserReview = reviewProductService.AnswerReviews();
-            ViewBag.CalculateReview = reviewProductService.CalculateRate(id);
+            //ViewBag.AnserReview = reviewProductService.AnswerReviews();
+            //ViewBag.CalculateReview = reviewProductService.CalculateRate(id);
             //detail
-            ViewBag.CountWish = wishListService.CountByProductId(id);
-            ViewBag.ReviewStarList = reviewProductService.GetAll();
-            ViewBag.ListProductOther = productService.ListProductSale().ToList();
-            var product = productService.GetById(id);
-            ViewBag.Category = categoryService.GetById(product.Category_ID);
-            return View(product);
+            //ViewBag.CountWish = wishListService.CountByProductId(id);
+            //ViewBag.ReviewStarList = reviewProductService.GetAll();
+            //ViewBag.ListProductOther = productService.ListProductSale().ToList();
+            //var product = productService.GetById(id);
+            return View(productService.GetById(id));
         }
 
         [HttpPost]

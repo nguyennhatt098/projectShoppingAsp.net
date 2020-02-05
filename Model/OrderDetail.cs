@@ -14,5 +14,4 @@ namespace Model
 		[ForeignKey("ProductId")]
 		public virtual Product Product { get; set; }
 	}
-
 }

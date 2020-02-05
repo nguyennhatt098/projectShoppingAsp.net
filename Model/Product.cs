@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace Model
 {
-    public class Product
+	public class Product
     {
         [Key]
         [Required]
@@ -45,17 +41,17 @@ namespace Model
 		public bool Status { get; set; }
 		[DisplayName("Sản phẩm hot")]
 		public bool TopHot { get; set; }
-		public float? Star1 { get; set; }
-		public float? Star2 { get; set; }
-		public float? Star3 { get; set; }
-		public float? Star4 { get; set; }
-		public float? Star5 { get; set; }
-		public float? AverageStar { get; set; }
+		public float Star1 { get; set; }
+		public float Star2 { get; set; }
+		public float Star3 { get; set; }
+		public float Star4 { get; set; }
+		public float Star5 { get; set; }
+		public float AverageStar { get; set; }
 		[ForeignKey("Category_ID")]
         public virtual Category Categorys { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<WishList> wishLists { get; set; }
         public virtual ICollection<ReviewProduct> ReviewProducts { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+        public  ICollection<Comment> Comments { get; set; }
 	}
 }
