@@ -76,8 +76,10 @@
     <Compile Include="ViewModel\CalculateRateDTO.cs" />
     <Compile Include="ViewModel\CategoryDTO.cs" />
     <Compile Include="ViewModel\CommentDTO.cs" />
+    <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\RegisterUser.cs" />
     <Compile Include="ViewModel\ResetPassWord.cs" />
+    <Compile Include="ViewModel\SearchResponse.cs" />
     <Compile Include="WishList.cs" />
   </ItemGroup>
   <ItemGroup>

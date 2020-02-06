@@ -1,150 +1,158 @@
 ﻿@model Model.Product
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+	ViewBag.Title = "Edit";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+	var moreImages = Model.MoreImages?.Split(';');
 }
 
-	<div class="box">
+<div class="box">
 
-		<h2>Sửa sản phẩm</h2>
-		<div class="box-body">
+	<h2>Sửa sản phẩm</h2>
+	<div class="box-body">
 
-			@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "create" }))
-			{
-				@Html.AntiForgeryToken()
+		@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "create" }))
+		{
+			@Html.AntiForgeryToken()
 
-				<div class="form-horizontal container">
+			<div class="form-horizontal container">
 
-					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-					@Html.HiddenFor(model => model.Id)
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				@Html.HiddenFor(model => model.Id)
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-							@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-						</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 					</div>
+				</div>
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
-							@Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
-						</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
 					</div>
+				</div>
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-							@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-						</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
 					</div>
+				</div>
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.Images, new { htmlAttributes = new { data_multiple = "false", @class = "form-control uploadfile" } })
-							@Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
-							<img style="width:150px;height:200px;" src="@Model.Images" />
-						</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Images, new { htmlAttributes = new { data_multiple = "false", @class = "form-control uploadfile" } })
+						@Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
+						<img class="img-main" style="width:100px;" src="@Model.Images" />
 					</div>
+				</div>
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-							@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-						</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
 					</div>
+				</div>
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.Sale_Price, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.Sale_Price, new {htmlAttributes = new {@class = "form-control"}})
-							@Html.ValidationMessageFor(model => model.Sale_Price, "", new {@class = "text-danger"})
-						</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Sale_Price, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Sale_Price, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Sale_Price, "", new { @class = "text-danger" })
 					</div>
+				</div>
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.Category_ID, "Category_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.DropDownList("Category_ID", null, htmlAttributes: new { @class = "form-control" })
-							@Html.ValidationMessageFor(model => model.Category_ID, "", new { @class = "text-danger" })
-						</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Category_ID, "Category_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.DropDownList("Category_ID", null, htmlAttributes: new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Category_ID, "", new { @class = "text-danger" })
 					</div>
+				</div>
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.MoreImages, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.MoreImages, new { htmlAttributes = new { data_multiple = "true", @class = "form-control uploadfile" } })
-							@Html.ValidationMessageFor(model => model.MoreImages, "", new { @class = "text-danger" })
-						</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.MoreImages, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.MoreImages, new { htmlAttributes = new { data_multiple = "true", @class = "form-control uploadfile" } })
+						@Html.ValidationMessageFor(model => model.MoreImages, "", new { @class = "text-danger" })
+						@if (moreImages != null)
+						{
+							foreach (var item in moreImages)
+							{
+								<img class="img-mores" style="width:100px;" src="@item" />
+							}
+						}
+
 					</div>
+				</div>
 
-
-
-
-					<div class="form-group">
-						@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							<div class="checkbox">
-								@Html.EditorFor(model => model.Status)
-								@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(model => model.TopHot, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							<div class="checkbox">
-								@Html.EditorFor(model => model.TopHot)
-								@Html.ValidationMessageFor(model => model.TopHot, "", new { @class = "text-danger" })
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-10">
-							<input id="check-click" type="submit" value="Sửa" class="btn btn-default" />
+				<div class="form-group">
+					@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						<div class="checkbox">
+							@Html.EditorFor(model => model.Status)
+							@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
 						</div>
 					</div>
 				</div>
-			}
-
-			<div>
-				<a class="btn btn-primary" href="@Url.Action("Index")">Quay về</a>
+				<div class="form-group">
+					@Html.LabelFor(model => model.TopHot, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						<div class="checkbox">
+							@Html.EditorFor(model => model.TopHot)
+							@Html.ValidationMessageFor(model => model.TopHot, "", new { @class = "text-danger" })
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input id="check-click" type="submit" value="Sửa" class="btn btn-default" />
+					</div>
+				</div>
 			</div>
+		}
+
+		<div>
+			<a class="btn btn-primary" href="@Url.Action("Index")">Quay về</a>
 		</div>
+	</div>
 </div>
 @section Scripts {
-			@* <script src="~/Asset/ckeditor/ckeditor.js"></script> *@
-			<script src="~/Asset/ckfinder/ckfinder.js"></script>
-			<script>
-				$(function () {
-					//CKEDITOR.replace("Content");
-					$(".uploadfile").click(function () {
-						var ip = $(this);
-						var finder = new CKFinder();
-						finder.selectActionFunction = function (url, file, files) {
-							if (ip.data("multiple") == true) {
-								var imgs = "";
-								$.each(files, function () {
-									imgs += $(this)[0].url + ";"
-									ip.after("<img src='" + $(this)[0].url + "' width='75px'/>");
-								})
-								ip.val(imgs);
-							} else {
-								ip.val(url);
-								ip.after("<img src='" + url + "' width='75px'/>");
-							}
+	@* <script src="~/Asset/ckeditor/ckeditor.js"></script> *@
+	<script src="~/Asset/ckfinder/ckfinder.js"></script>
+	<script>
+		$(function () {
+			//CKEDITOR.replace("Content");
+			$(".uploadfile").click(function () {
+				var ip = $(this);
+				var finder = new CKFinder();
+				finder.selectActionFunction = function (url, file, files) {
+					if (ip.data("multiple") == true) {
+						var imgs = "";
+						$(".img-mores").remove();
+						$.each(files, function () {
+							imgs += $(this)[0].url + ";";
+							ip.after("<img class='img-mores' src='" + $(this)[0].url + "' width='100px'/>");
+						})
+						ip.val(imgs);
+					} else {
+						ip.val(url);
+						$(".img-main").remove();
+						ip.after("<img class='img-main' src='" + url + "' width='100px'/>");
+					}
 
-						}
-						finder.popup();
+				}
+				finder.popup();
 
-					});
+			});
 
-				})
-			</script>
-		}
+		})
+	</script>
+}

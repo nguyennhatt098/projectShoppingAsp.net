@@ -404,7 +404,7 @@
 					var txt = '';
 					var data = JSON.parse(res);
 					for (i in data) {
-						var url = /chi-tiet-tin-tuc/ + data[i].Slug + '-' + data[i].Id;
+						var url = /chi-tiet-tin-tuc/ + data[i].Slug + '-' + data[i].ID;
 						 var date = new Date(data[i].CreateDate); 
 						var day = date.getDate();
 						var monthIndex = date.getMonth()+1;

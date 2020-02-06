@@ -11,10 +11,10 @@ namespace ShopingCart.Areas.Admin.Controllers
 	{
 		private IServices<Category> _categoryService;
 		private CommentService commentService;
-		public CategoryController(IServices<Category> categoryService)
+		public CategoryController()
 		{
 			commentService = new CommentService();
-			_categoryService = categoryService;
+			_categoryService = new CategoryService();
 		}
 		// GET: Admin/_categoryService
 		[HasCredential(ActionId = 1)]

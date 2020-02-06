@@ -4,22 +4,22 @@
 	ViewBag.Title = "Edit";
 	var user = (Model.User)@ViewBag.user;
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-	
+
 }
 @{
 	var checkGirl = "";
 	var checkBoy = "";
 	var checkDefault = "";
 
-	if (Model!=null&& Model.Gender == "Nam")
+	if (Model != null && Model.Gender == "Nam")
 	{
 		checkBoy = "checked";
 	}
-	if (Model!=null&&Model.Gender == "Nữ")
+	if (Model != null && Model.Gender == "Nữ")
 	{
 		checkGirl = "checked";
 	}
-	if (Model!=null&&Model.Gender == "Khác")
+	if (Model != null && Model.Gender == "Khác")
 	{
 		checkDefault = "checked";
 	}
@@ -30,7 +30,7 @@
 
 	<div class="box-body">
 
-		@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "create",enctype = "multipart/form-data" }))
+		@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "create", enctype = "multipart/form-data" }))
 		{
 			@Html.AntiForgeryToken()
 
@@ -104,23 +104,21 @@
 				<div class="form-group">
 					@Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
 					<div class="col-md-10">
-						<input style="background:white;" type="file" name="Image" />
-						@if (Model != null && Model.Image != null)
-						{
-							<img style="height:100px;" src="@Model.Image" />
-						}
+						@Html.EditorFor(model => model.Image, new { htmlAttributes = new { data_multiple = "false", @class = "form-control uploadfile" } })
+						@Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+						<img class="img-main" style="width:100px;" src="@Model.Image" />
 					</div>
 				</div>
 				<div class="form-group">
 					@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
 					<div class="col-md-10">
-					
+
 						<span>Giới tính:</span>
-						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Nam" @checkBoy/>
+						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Nam" @checkBoy />
 						<span>Nam</span>
-						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Nữ" @checkGirl/>
+						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Nữ" @checkGirl />
 						<span>Nữ</span>
-						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Khác" @checkDefault/>
+						<input style="width: 3%; height: 20px;" type="radio" name="Gender" value="Khác" @checkDefault />
 						<span>Khác</span>
 					</div>
 				</div>
@@ -129,19 +127,19 @@
 					@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
 					<div class="col-md-10">
 						<div class="checkbox">
-                            <select name="Status">
-                                @if (user.Status)
-                                {
-                                    <option value="true" selected="">Hoạt động</option>
-                                    <option value="false">Khóa</option>
-                                }
-                                else
-                                {
-                                    <option value="true">Hoạt động</option>
-                                    <option value="false" selected="">Khóa</option>
-                                }
+							<select name="Status">
+								@if (user.Status)
+								{
+									<option value="true" selected="">Hoạt động</option>
+									<option value="false">Khóa</option>
+								}
+								else
+								{
+									<option value="true">Hoạt động</option>
+									<option value="false" selected="">Khóa</option>
+								}
 
-                            </select>
+							</select>
 							@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
 						</div>
 					</div>
@@ -160,3 +158,20 @@
 		</div>
 	</div>
 </div>
+@section Scripts {
+	<script src="~/Asset/ckfinder/ckfinder.js"></script>
+	<script>
+		$(function () {
+			$(".uploadfile").click(function () {
+				var ip = $(this);
+				var finder = new CKFinder();
+				finder.selectActionFunction = function (url, file, files) {
+					ip.val(url);
+					$(".img-main").remove();
+					ip.after("<img class='img-main' src='" + url + "' width='75px'/>");
+				}
+				finder.popup();
+			});
+		})
+	</script>
+}

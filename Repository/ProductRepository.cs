@@ -125,7 +125,7 @@ namespace Repository
 			return model.OrderByDescending(x => x.Created).ToPagedList(Page, Pagesize);
 		}
 
-		public IEnumerable<Product> ListProductGetByCategory(int id, int pageIndex, int pageSize)
+		public List<ProductViewModel> ListProductGetByCategory(int id, int pageIndex, int pageSize)
 		{
 			var total = pageIndex * pageSize;
 			if (total > Count(id))
@@ -137,7 +137,24 @@ namespace Repository
 			{
 				pageSize = 6;
 			}
-			return context.Products.Where(x => x.Category_ID == id).OrderByDescending(x => x.Created).Skip((pageIndex - 1) * pageSize).Take(pageSize).AsQueryable();
+			var res = context.Products.Where(x => x.Category_ID == id).OrderByDescending(x => x.Created).Skip((pageIndex - 1) * pageSize).Take(pageSize).Select(x => new ProductViewModel
+			{
+				Id=x.Id,
+				Name=x.Name,
+				Slug=x.Slug,
+				Content=x.Content,
+				Categorys=x.Categorys,
+				AverageStar=x.AverageStar,
+				wishLists=x.wishLists,
+				Created=x.Created,
+				Images=x.Images,
+				Price=x.Price,
+				Sale_Price=x.Sale_Price,
+				Status=x.Status,
+				TopHot=x.TopHot,
+				
+			}).ToList();
+			return res;
 		}
 
 		public int Count(int id)

@@ -148,6 +148,7 @@ C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\roslyn\VBCSC
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\Antlr3.Runtime.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\BotDetect.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\BotDetect.Web.Mvc.dll
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\CKFinder.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\EntityFramework.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\EntityFramework.SqlServer.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -179,9 +180,9 @@ C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\PagedList.xm
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\PagedList.Mvc.xml
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Data.SQLite.xml
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Data.SQLite.dll.config
+C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Web.Optimization.xml
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Web.Helpers.xml
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Web.Mvc.xml
-C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Web.Optimization.xml
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Web.Razor.xml
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Web.WebPages.xml
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\System.Web.WebPages.Deployment.xml
@@ -193,4 +194,3 @@ C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\obj\Debug\Shopin
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\obj\Debug\ShopingCart.csproj.CopyComplete
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\obj\Debug\ShopingCart.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\obj\Debug\ShopingCart.pdb
-C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\ShopingCart\bin\CKFinder.dll

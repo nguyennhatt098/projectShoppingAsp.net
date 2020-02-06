@@ -39,7 +39,7 @@ namespace Service
             return repository.Insert(t);
         }
 
-        public IEnumerable<Product> ListProductGetByCategory(int id, int pageIndex, int pageSize)
+        public List<ProductViewModel> ListProductGetByCategory(int id, int pageIndex, int pageSize)
         {
             return rep.ListProductGetByCategory(id,pageIndex,pageSize);
         }

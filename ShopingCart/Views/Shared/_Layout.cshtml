@@ -121,7 +121,7 @@
 	@* <script src="~/Asset/FrontEnd/js/main.js"></script> *@
 	@* <script src="~/Asset/FrontEnd/js/custom.js"></script> *@
 	@Scripts.Render("~/bundles/core")
-<script>
+	<script>
 	$(document).ready(function() {
 		if ('@TempData["message"]' == "Added") {
 			$(".alert-success").show();
@@ -139,17 +139,18 @@
 						$(this).remove();
 					});
 			}, 5000);
-			
+
 		};
 	});
-</script>
+	</script>
 
 	@RenderSection("footer", required: false)
 	@RenderSection("scripts", required: false)
 	@RenderSection("productDetail", required: false)
 	@RenderSection("cart", required: false)
 	@RenderSection("orderReview", required: false)
-	@RenderSection("index",required:false)
+	@RenderSection("index", required: false)
+	@RenderSection("categoryProduct", required: false)
 	@*<script src="~/Asset/FrontEnd/js/menu-mobile.js"></script>*@
 
 </body>

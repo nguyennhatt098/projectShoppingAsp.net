@@ -5,16 +5,13 @@
 }
 <div class="slider-1" style="">
 	<div style="margin-top: -15px" id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
 		</ol>
 
-		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
-			
 			@foreach (var item in Model)
 			{
 				if (check)
@@ -34,7 +31,6 @@
 			}
 		</div>
 
-		<!-- Left and right controls -->
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left"></span>
 			<span class="sr-only">Previous</span>
@@ -75,18 +71,14 @@
 													</li>
 												}
 											}
-
 										</ul>
 									</li>
-
 								}
 								else if (itemGrandParent.ID == itemParent.ParentID)
 								{
 									<li><a href="@urlParent">@itemParent.Name</a></li>
 								}
-
 							}
-
 						</ul>
 					</li>
 				}
@@ -94,10 +86,8 @@
 				{
 					<li><a href="@url">@itemGrandParent.Name</a></li>
 				}
-
 			}
 		</ul>
-
 	</div>
 </div>
 

@@ -63,6 +63,8 @@ namespace ShopingCart.Controllers
 		[ChildActionOnly]
 		public ActionResult MainMenu()
 		{
+			ViewBag.Categories = categoryService.Search("", 1, 1).ToList();
+			ViewBag.Sliders=sliderService.GetAll();
 			var currentUser = (User)Session["User"];
 			ViewBag.notifies = currentUser != null ? notifyService.GetById(currentUser.UserId) : new List<Notify>();
 			var lst = categoryService.Search("", 1, 1).ToList();
@@ -82,13 +84,13 @@ namespace ShopingCart.Controllers
 		[ChildActionOnly]
 		public ActionResult Slider()
 		{
-			List<Category> lst = new List<Category>();
-			using (var context = new DBEntityContext())
-			{
-				lst = context.Categories.Where(x => x.Status).ToList();
-			}
+			//List<Category> lst = new List<Category>();
+			//using (var context = new DBEntityContext())
+			//{
+			//	lst = context.Categories.Where(x => x.Status).ToList();
+			//}
 
-			ViewBag.Categories = lst;
+			ViewBag.Categories = categoryService.Search("",1,1).ToList();
 			return PartialView(sliderService.GetAll());
 		}
 

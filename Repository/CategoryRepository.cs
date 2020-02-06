@@ -98,7 +98,7 @@ namespace Repository
 
 		public IEnumerable<Category> Search(string searchString, int Page, int Pagesize)
 		{
-			return context.Categories.OrderByDescending(x=>x.CreatedDate).ToList();
+			return context.Categories.OrderByDescending(x=>x.CreatedDate).AsQueryable();
 		}
 	}
 }
