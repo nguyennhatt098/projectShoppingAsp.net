@@ -1,11 +1,7 @@
-﻿@model List<Model.Category>
+﻿@model IEnumerable<Model.ViewModel.MenuViewModel>
 @{
 	var user = (Model.User)Session["User"];
 	var notifies = (List<Model.Notify>)ViewBag.notifies;
-	var isMobile = true;
-	var check = true;
-	var listCategory = (List<Model.Category>)ViewBag.Categories;
-	var sliders = (List<Model.Slider>)ViewBag.Sliders;
 }
 <header class="header-pos">
 	<div style="float:right;width:300px;position:fixed;bottom:20px; right: 0px; z-index: 9999; height: 40px;">
@@ -144,54 +140,57 @@
 									<a href="/Blog/Index">Blog</a>
 								</li>
 								<li>
-									<a href="#">Danh mục</a>
-									<ul>
-										@foreach (var itemGrandParent in Model)
-										{
-											var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-											if (itemGrandParent.ParentID == null && Model.Any(x => x.ParentID == itemGrandParent.ID))
+									<a href="#">Danh mục sản phẩm</a>
+									@{
+										Html.RenderPartial("MenuHeader", Model);
+									}
+									@*<ul>
+			@foreach (var itemGrandParent in Model)
+			{
+				var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
+				if (itemGrandParent.ParentID == null && Model.Any(x => x.ParentID == itemGrandParent.ID))
+				{
+					<li>
+						<a href="javascript:void(0)">@itemGrandParent.Name </a>
+						<ul>
+							@foreach (var itemParent in Model)
+							{
+								var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
+								if (itemGrandParent.ID == itemParent.ParentID && Model.Any(x => x.ParentID == itemParent.ID))
+								{
+									<li>
+										<a href="javascript:void(0)">@itemParent.Name</a>
+										<ul>
+											@foreach (var itemChild in Model)
 											{
-												<li>
-													<a href="javascript:void(0)">@itemGrandParent.Name </a>
-													<ul>
-														@foreach (var itemParent in Model)
-														{
-															var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
-															if (itemGrandParent.ID == itemParent.ParentID && Model.Any(x => x.ParentID == itemParent.ID))
-															{
-																<li>
-																	<a href="javascript:void(0)">@itemParent.Name</a>
-																	<ul>
-																		@foreach (var itemChild in Model)
-																		{
-																			var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
-																			if (itemParent.ID == itemChild.ParentID)
-																			{
-																				<li>
-																					<a href="@urlChild">
-																						@itemChild.Name
-																					</a>
-																				</li>
-																			}
-																		}
+												var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
+												if (itemParent.ID == itemChild.ParentID)
+												{
+													<li>
+														<a href="@urlChild">
+															@itemChild.Name
+														</a>
+													</li>
+												}
+											}
 
-																	</ul>
-																</li>
-															}
-															else if (itemGrandParent.ID == itemParent.ParentID)
-															{
-																<li><a href="@urlParent">@itemParent.Name</a></li>
-															}
-														}
-													</ul>
-												</li>
-											}
-											else if (itemGrandParent.ParentID == null)
-											{
-												<li><a href="@url">@itemGrandParent.Name</a></li>
-											}
-										}
-									</ul>
+										</ul>
+									</li>
+								}
+								else if (itemGrandParent.ID == itemParent.ParentID)
+								{
+									<li><a href="@urlParent">@itemParent.Name</a></li>
+								}
+							}
+						</ul>
+					</li>
+				}
+				else if (itemGrandParent.ParentID == null)
+				{
+					<li><a href="@url">@itemGrandParent.Name</a></li>
+				}
+			}
+		</ul>*@
 								</li>
 							</ul>
 						</nav>
@@ -201,96 +200,3 @@
 		</div>
 	</div>
 </header>
-@*<div class="slider-1" style="">
-		<div style="margin-top: -15px" id="myCarousel" class="carousel slide" data-ride="carousel">
-
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-			</ol>
-
-			<div class="carousel-inner">
-
-				@foreach (var item in sliders)
-				{
-					if (check)
-					{
-						check = false;
-						<div class="banner-main item active">
-							<img style="width: 100%;" src="@item.Images" alt="Los Angeles">
-						</div>
-					}
-					else
-					{
-						<div class="banner-main item">
-							<img style="width: 100%;" src="@item.Images" alt="Los Angeles">
-						</div>
-					}
-
-				}
-			</div>
-
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div>
-		<div class="container-menu" id="container-menu">
-			<ul class="">
-				@foreach (var itemGrandParent in listCategory)
-				{
-					var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-					if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
-					{
-						<li class="">
-							<a href="#">@itemGrandParent.Name <span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-							<ul class="">
-								@foreach (var itemParent in listCategory)
-								{
-									var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
-									if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
-									{
-
-										<li class="">
-											<a href="#">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-											<ul class="parent">
-												@foreach (var itemChild in listCategory)
-												{
-													var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
-													if (itemParent.ID == itemChild.ParentID)
-													{
-														<li>
-															<a href="@urlChild">
-																@itemChild.Name
-															</a>
-														</li>
-													}
-												}
-											</ul>
-										</li>
-									}
-									else if (itemGrandParent.ID == itemParent.ParentID)
-									{
-										<li><a href="@urlParent">@itemParent.Name</a></li>
-									}
-
-								}
-
-							</ul>
-						</li>
-					}
-					else if (itemGrandParent.ParentID == null)
-					{
-						<li><a href="@url">@itemGrandParent.Name</a></li>
-					}
-
-				}
-			</ul>
-
-		</div>
-	</div>*@

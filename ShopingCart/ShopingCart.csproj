@@ -3778,6 +3778,8 @@
     <Content Include="Views\Order\OrderHistory.cshtml" />
     <Content Include="Views\Order\ReviewOrder.cshtml" />
     <Content Include="Views\Resgiter\UpdateUser.cshtml" />
+    <Content Include="Views\Shared\MenuPartial.cshtml" />
+    <Content Include="Views\Shared\MenuHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3798,7 +3800,7 @@
       <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{2D42435D-2138-428D-877F-F61BC50720C2}</Project>
+      <Project>{2d42435d-2138-428d-877f-f61bc50720c2}</Project>
       <Name>Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Service\Service.csproj">

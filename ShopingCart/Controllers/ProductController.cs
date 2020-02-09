@@ -1,11 +1,11 @@
 ﻿using Service;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Model;
 using Newtonsoft.Json;
 using Model.ViewModel;
-using System.Collections.Generic;
 
 namespace ShopingCart.Controllers
 {
@@ -13,7 +13,6 @@ namespace ShopingCart.Controllers
 	{
 		private ProductService productService;
 		private CategoryService categoryService;
-		private WishListService wishListService;
 		private CommentService commentService;
 		private ReviewProductService reviewProductService;
 
@@ -21,28 +20,29 @@ namespace ShopingCart.Controllers
 		{
 			categoryService = new CategoryService();
 			productService = new ProductService();
-			wishListService = new WishListService();
 			commentService = new CommentService();
 			reviewProductService = new ReviewProductService();
 		}
 
+		public IEnumerable<MenuViewModel> CreateVM(int? parentid, List<Category> source)
+		{
+			return from men in source
+				where men.ParentID == parentid
+				select new MenuViewModel()
+				{
+					MenuId = men.ID,
+					Name = men.Name,
+					Slug = men.Slug,
+					Children = CreateVM(men.ID, source).ToList()
+				};
+		}
+
 		public ActionResult CategoryViewDetail(int id, int page = 1, int pageSize = 6)
 		{
-			//var user = (User)Session["User"];
-			//if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			ViewBag.ListCategory = categoryService.Search("", page, pageSize).ToList();
+			var data=categoryService.Search("", page, pageSize).ToList();
+			ViewBag.ListCategory = CreateVM(null, data);
 			var category = categoryService.GetById(id);
 			ViewBag.Category = category;
-			//var total = productService.Count(id);
-			//var totalPage = (int)Math.Ceiling((double)(total / pageSize));
-			//if (total % pageSize != 0) totalPage += 1;
-			//if (page <= 0) page = 1;
-			//else page = (page > totalPage && totalPage > 0) ? totalPage : page;
-			//var model = productService.ListProductGetByCategory(id, page, pageSize).ToList();
-			////ViewBag.ReviewList = reviewProductService.GetAll();
-			//ViewBag.CountProduct = total;
-			//ViewBag.Page = page;
-			//ViewBag.TotalPage = totalPage;
 			return View();
 		}
 
@@ -50,15 +50,8 @@ namespace ShopingCart.Controllers
 		public JsonResult GetProduct(int id, int page = 1, int pageSize = 6)
 		{
 			var total = productService.Count(id);
-			//var totalPage = (int)Math.Ceiling((double)(total / pageSize));
-			//if (total % pageSize != 0) totalPage += 1;
-			//if (page <= 0) page = 1;
-			//else page = (page > totalPage && totalPage > 0) ? totalPage : page;
 			var model = productService.ListProductGetByCategory(id, page, pageSize);
-			//ViewBag.ReviewList = reviewProductService.GetAll();
 			var data = new SearchResponse<ProductViewModel> { items = model, TotalRecords = total };
-	
-			//var response = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
 
@@ -66,22 +59,23 @@ namespace ShopingCart.Controllers
 		{
 			//var user = (User)Session["User"];
 			//if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			var totalPage = (commentService.Count(id) + pageSize - 1) / pageSize;
-			if (page <= 0) page = 1;
-			else page = (page > totalPage && totalPage > 0) ? totalPage : page;
-			var model = commentService.Search(id, page, pageSize).ToList();
-			ViewBag.Page = page;
-			ViewBag.TotalPage = totalPage;
-			ViewBag.CommentList = model;
-			//ViewBag.AnswerComment = commentService.answerComments();
-			// review product list
-			var totalPageRv = (reviewProductService.CountReviewProductById(id) + pageSizeRv - 1) / pageSizeRv;
-			if (pageRv <= 0) pageRv = 1;
-			else pageRv = (pageRv > totalPageRv && totalPageRv > 0) ? totalPageRv : pageRv;
-			var modelRv = reviewProductService.GetReviewProductsByProductId(id, pageRv, pageSizeRv).ToList();
-			ViewBag.PageRv = pageRv;
-			ViewBag.TotalPageRv = totalPageRv;
-			ViewBag.ReviewList = modelRv;
+			var product = productService.GetProductById(id);
+			//var totalPage = (product.Comments.Count + pageSize - 1) / pageSize;
+			////if (page <= 0) page = 1;
+			////else page = (page > totalPage && totalPage > 0) ? totalPage : page;
+			//var model = commentService.Search(id, page, pageSize);
+			//ViewBag.Page = page;
+			//ViewBag.TotalPage = totalPage;
+			////ViewBag.CommentList = model;
+			////ViewBag.AnswerComment = commentService.answerComments();
+			//// review product list
+			//var totalPageRv = (product.ReviewProducts.Count + pageSizeRv - 1) / pageSizeRv;
+			////if (pageRv <= 0) pageRv = 1;
+			////else pageRv = (pageRv > totalPageRv && totalPageRv > 0) ? totalPageRv : pageRv;
+			//var modelRv = reviewProductService.GetReviewProductsByProductId(id, pageRv, pageSizeRv).ToList();
+			//ViewBag.PageRv = pageRv;
+			//ViewBag.TotalPageRv = totalPageRv;
+			//ViewBag.ReviewList = modelRv;
 			//ViewBag.AnserReview = reviewProductService.AnswerReviews();
 			//ViewBag.CalculateReview = reviewProductService.CalculateRate(id);
 			//detail
@@ -89,7 +83,21 @@ namespace ShopingCart.Controllers
 			//ViewBag.ReviewStarList = reviewProductService.GetAll();
 			//ViewBag.ListProductOther = productService.ListProductSale().ToList();
 			//var product = productService.GetById(id);
-			return View(productService.GetById(id));
+			return View(product);
+		}
+
+		[HttpGet]
+		public JsonResult GetComments(int id, int page = 1, int pageSize = 6)
+		{
+			var data = commentService.Search(id, page, pageSize);
+			return Json(data, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public JsonResult GetReviews(int id, int pageRv = 1, int pageSizeRv = 5)
+		{
+			var data = reviewProductService.GetReviewProductsByProductId(id, pageRv, pageSizeRv);
+			return Json(data, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]

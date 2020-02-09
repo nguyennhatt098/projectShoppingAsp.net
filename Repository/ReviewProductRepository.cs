@@ -20,7 +20,7 @@ namespace Repository
 			return context.ReviewProducts.AsQueryable();
 		}
 
-		public IEnumerable<ReviewProduct> GetReviewProductsByProductId(int id, int page, int pagesize)
+		public SearchResponse<ReviewProductViewModel> GetReviewProductsByProductId(int id, int page, int pagesize)
 		{
 			var total = page * pagesize;
 			if (total > CountReviewProductById(id))
@@ -32,7 +32,23 @@ namespace Repository
 			{
 				pagesize = 6;
 			}
-			return context.ReviewProducts.Where(x => x.ProductId == id).OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pagesize).Take(pagesize).AsQueryable();
+			var data= context.ReviewProducts.Where(x => x.ProductId == id).OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pagesize).Take(pagesize).Select(x=>new ReviewProductViewModel
+			{
+				Id = x.Id,
+				Rate = x.Rate,
+				CreatedDate = x.CreatedDate,
+				AnswerReviews = x.AnswerReviews,
+				Image = x.Image,
+				Content = x.Content,
+				User = x.Order.Users,
+
+			}).ToList();
+			var response = new SearchResponse<ReviewProductViewModel>
+			{
+				TotalRecords = CountReviewProductById(id),
+				items = data
+			};
+			return response;
 		}
 
 		public int CountReviewProductById(int id)

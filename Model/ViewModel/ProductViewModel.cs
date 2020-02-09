@@ -27,5 +27,9 @@ namespace Model
 		public float AverageStar { get; set; }
 		public  Category Categorys { get; set; }
 		public  ICollection<WishList> wishLists { get; set; }
+		public  ICollection<ReviewProduct> ReviewProducts { get; set; }
+		public ICollection<Comment> Comments { get; set; }
+		public  int CountOrders { get; set; }
+		public int CountReviews { get; set; }
 	}
 }

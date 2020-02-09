@@ -2,15 +2,12 @@
 @{
 	ViewBag.Title = "Danh Mục Sản Phẩm";
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	var listCategory = (List<Model.Category>)ViewBag.ListCategory;
+	var listCategory = (IEnumerable<Model.ViewModel.MenuViewModel>)ViewBag.ListCategory;
 	var category = (Model.Category)ViewBag.Category;
-	//var wishList = (List<Model.WishList>)ViewBag.wishList;
-	var user = (Model.User)Session["User"];
-	//var reviewProductList = (List<Model.ReviewProduct>)ViewBag.ReviewList;
 }
 
 <div class="space-custom"></div>
-<div style="height: 400px; width: 100%; background-image: url(/Contents/Uploads/files/master-slide-03.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
+<div style="height: 400px; width: 100%; background-image: url(/Contents/Uploads/files/master-slide-03.jpg); background-repeat: no-repeat; background-size: 100%;">
 
 </div>
 <!-- breadcrumb start -->
@@ -30,7 +27,7 @@
 		<div class="row ">
 			<div style="background:#f0f0f0;height:auto" class="col-md-3 col-sm-4">
 				@*menu mobile*@
-				<div id="accordian">
+				@*<div id="accordian">
 					<ul>
 						<li class="active">
 							<h3><a href="javascript:void(0)"><i class="fa fa-lg fa-tasks"></i>Danh mục</a></h3>
@@ -82,59 +79,62 @@
 							</ul>
 						</li>
 					</ul>
-				</div>
+				</div>*@
 				<div class="column" style="border:1px solid;width:105%">
 					<h2 class="title-block">Danh Mục Sản Phẩm</h2>
 
 					@*menu desktop*@
-					<div class="container-menu-product">
+				<div class="container-menu-product">
+					@{
+						Html.RenderPartial("MenuPartial", listCategory);
+					}
+					@*<ul class="">
+			@foreach (var itemGrandParent in listCategory)
+			{
+				var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
+				if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
+				{
+					<li class="">
+						<a href="javascript:void(0)">@itemGrandParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
 						<ul class="">
-							@foreach (var itemGrandParent in listCategory)
+							@foreach (var itemParent in listCategory)
 							{
-								var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-								if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
+								var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
+								if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
 								{
 									<li class="">
-										<a href="javascript:void(0)">@itemGrandParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-										<ul class="">
-											@foreach (var itemParent in listCategory)
+										<a href="javascript:void(0)">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
+										<ul>
+											@foreach (var itemChild in listCategory)
 											{
-												var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
-												if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
+												var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
+												if (itemParent.ID == itemChild.ParentID)
 												{
-													<li class="">
-														<a href="javascript:void(0)">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-														<ul>
-															@foreach (var itemChild in listCategory)
-															{
-																var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
-																if (itemParent.ID == itemChild.ParentID)
-																{
-																	<li>
-																		<a href="@urlChild">
-																			@itemChild.Name
-																		</a>
-																	</li>
-																}
-															}
-														</ul>
+													<li>
+														<a href="@urlChild">
+															@itemChild.Name
+														</a>
 													</li>
-												}
-												else if (itemGrandParent.ID == itemParent.ParentID)
-												{
-													<li><a href="@urlParent">@itemParent.Name</a></li>
 												}
 											}
 										</ul>
 									</li>
 								}
-								else if (itemGrandParent.ParentID == null)
+								else if (itemGrandParent.ID == itemParent.ParentID)
 								{
-									<li><a href="@url">@itemGrandParent.Name</a></li>
+									<li><a href="@urlParent">@itemParent.Name</a></li>
 								}
 							}
 						</ul>
-					</div>
+					</li>
+				}
+				else if (itemGrandParent.ParentID == null)
+				{
+					<li><a href="@url">@itemGrandParent.Name</a></li>
+				}
+			}
+		</ul>*@
+				</div>
 				</div>
 			</div>
 			<div class="col-md-8 col-sm-8">
@@ -169,234 +169,20 @@
 
 							</div>
 							<div class="selector-field f-right ml-30">
-								<form action="#">
-								</form>
+								<form action="#"></form>
 							</div>
 						</div>
 						<!-- Tab panes -->
 						<div class="tab-content reload-wish">
 							<div role="tabpanel" class="tab-pane active" id="home">
 								<div id="productHot" class="row ">
-									@*@if (Model.Count > 0)
-										{
-											foreach (var item in Model)
-											{
-												var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
-												<div class="col-md-4 col-sm-6 ">
-													<div style="height: 460px;" class="product-wrapper mb-40">
-														<div class="product-img">
-
-															<a href="@url"><img style="width: 100%" src="@item.Images" alt="" /></a>
-															<span class="new-label">New</span>
-															<div class="product-action">
-																<a href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><i class="pe-7s-cart"></i></a>
-																@if (user == null)
-																{
-																	<a data-toggle="modal" data-target="#checkWishLish" href="#"><i class="fa fa-heart"></i></a>
-																}
-																else if (item.wishLists.Any(x => x.UserID.Equals(user.UserId)))
-																{
-																	<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
-																}
-																else
-																{
-																	<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
-																}
-																<a href="@url"><i class="pe-7s-look"></i></a>
-															</div>
-														</div>
-														<div class="product-content">
-															<div class="pro-title">
-																<h3><a href="@url">@item.Name</a></h3>
-															</div>
-															<div class="price-reviews">
-																<div class="price-box">
-																	<span class="price product-price">
-																		@if (item.Sale_Price != null)
-																		{
-																			<span class="old-price product-price">@String.Format("{0:n0}", item.Price) VND</span>
-																			<span class="price product-price">@String.Format("{0:n0}", item.Sale_Price) VND</span>
-																		}
-																		else
-																		{
-																			<span class="price product-price">@String.Format("{0:n0}", item.Price) VND</span>
-																		}
-																	</span>
-																</div>
-																<div class="pro-rating">
-																	@if (item.AverageStar > 0)
-																	{
-																		var check = true;
-																		float floatValue;
-																		for (int i = 1; i <= 5; i++)
-																		{
-																			if (i <= item.AverageStar)
-																			{
-																				<i class="fa fa-star"></i>
-																			}
-																			else if (float.TryParse(item.AverageStar.ToString(), out floatValue) && check)
-																			{
-																				check = false;
-																				<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																			}
-																			else
-																			{
-																				<i class="fa fa-star-o" aria-hidden="true"></i>
-																			}
-																		}
-																	}
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											}
-										}
-										else
-										{
-											<p>Danh Mục Không Có Sản Phẩm</p>
-										}*@
+								
 								</div>
 							</div>
-							@*<div role="tabpanel" class="tab-pane " id="profile">
-								@if (Model.Count > 0)
-								{
-									foreach (var item in Model)
-									{
-										var url = "/chi-tiet-san-pham/" + item.Slug + "-" + item.Id;
-										<div class="row mb-50">
-											<div class="col-xs-5 col-sm-5 col-md-4">
-												<div class="product-wrapper">
-													<div class="product-img">
-														<a href="@url"><img src="@item.Images" alt="" /></a>
-														<span class="new-label">New</span>
-													</div>
-												</div>
-											</div>
-											<div class="col-xs-7 col-sm-7 col-md-8">
-												<div class="product-content product-list">
-													<div class="pro-title">
-														<h3><a href="@url">@item.Name </a></h3>
-													</div>
-													<div class="price-reviews">
-														<div class="price-box">
-															@if (item.Sale_Price != null)
-															{
-																<span class="old-price product-price">@String.Format("{0:n0}", item.Price) VND</span>
-																<span class="price product-price">@String.Format("{0:n0}", item.Sale_Price) VND</span>
-															}
-															else
-															{
-																<span class="price product-price">@String.Format("{0:n0}", item.Price) VND</span>
-															}
-														</div>
-														<div class="pro-rating">
-															@if (item.AverageStar > 0)
-															{
-																var check = true;
-																float floatValue;
-																for (int i = 1; i <= 5; i++)
-																{
-																	if (i <= item.AverageStar)
-																	{
-																		<i class="fa fa-star"></i>
-																	}
-																	else if (float.TryParse(item.AverageStar.ToString(), out floatValue) && check)
-																	{
-																		check = false;
-																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																	}
-																	else
-																	{
-																		<i class="fa fa-star-o" aria-hidden="true"></i>
-																	}
-																}
-															}
-														</div>
-													</div>
-													<p>@item.Content</p>
-													<div class="product-action">
-														<a class="cart" href="/them-vao-gio-hang?productID=@item.Id&quantity=1"><span>Add to cart</span></a>
-														@if (user == null)
-														{
-															<a data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-heart"></i></a>
-														}
-														else if (item.wishLists.Any(x => x.UserID.Equals(user.UserId)))
-														{
-															<a class="wishlist wishlistDisLike wishlist-@item.Id" id="@item.Id" data-id="@item.Id" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
-														}
-														else
-														{
-															<a class="wishlist wishlist-@item.Id" data-id="@item.Id" id="@item.Id" href="javascript:void(0)"><i class="fa fa-heart"></i></a>
-														}
-														<a href="@url"><i class="pe-7s-look"></i></a>
-													</div>
-													<div class="color-list">
-														<a href="#"></a>
-														<a href="#"></a>
-													</div>
-												</div>
-											</div>
-										</div>
-									}
-								}
-							</div>*@
+						
 							<div id="paginator" class="content-sortpagibar">
 
-								@*@if (ViewBag.TotalPage > 1)
-								{
-									int totalpage = (int)ViewBag.TotalPage;
-									int cureentPage = ((int)ViewBag.Page);
-									var next20 = cureentPage + 20;
-									var prev20 = cureentPage - 20;
-									var prev = cureentPage - 1;
-									var next = cureentPage + 1;
-									var start = (cureentPage <= 3 || totalpage == 0) ? 1 : cureentPage - 3;
-									var end = (totalpage <= cureentPage) ? cureentPage : cureentPage + 3;
-									if (end >= totalpage)
-									{
-										end = totalpage;
-									}
-									var url = "/danh-muc-san-pham/" + category.Slug + "-" + category.ID;
-									<div class="product-count display-inline">Showing 1 - @Model.Count of @ViewBag.CountProduct items</div>
-									<ul class="shop-pagi display-inline">
-										@if (cureentPage > 1)
-										{
-											if (cureentPage > 20)
-											{
-												<li><a href="@url?page=@prev20"><i class="fa fa-backward"></i></a></li>
-											}
-											<li><a href="@url?page=@prev"><i class="fa fa-angle-left"></i></a></li>
-										}
-
-										@for (int i = start; i <= end; i++)
-										{
-											if (cureentPage == i)
-											{
-												<li class="active"><a href="@url?page=@i">@i</a></li>
-											}
-											else
-											{
-												<li><a href="@url?page=@i">@i</a></li>
-											}
-										}
-
-										@if (cureentPage < totalpage)
-										{
-											<li><a href="@url?page=@next"><i class="fa fa-angle-right"></i></a></li>
-											if (totalpage > cureentPage + 20)
-											{
-												<li><a href="@url?page=@next20"><i class="fa fa-fast-forward"></i></a></li>
-											}
-										}
-									</ul>
-								}
-								else
-								{
-									<ul class="shop-pagi display-inline">
-										<li class="active"><a href="javascript:void(0)">1</a></li>
-									</ul>
-								}*@
+							
 							</div>
 						</div>
 					</div>
@@ -459,6 +245,7 @@
 <!-- service-area start -->
 @section categoryProduct{
 	<script>
+
 		var getUrlParameter = function getUrlParameter(sParam) {
 			var sPageURL = window.location.search.substring(1),
 				sURLVariables = sPageURL.split('&'),
@@ -475,8 +262,9 @@
 		};
 		var currentUrl = window.location.pathname;
 		var categoryId = currentUrl.split('-')[currentUrl.split('-').length - 1];
-		var url = getUrlParameter('page') ? '/Product/GetProduct?id' + categoryId + '&page=' + getUrlParameter('page') : '/Product/GetProduct?id=' + categoryId;
-
+		var url = getUrlParameter('page')
+			? '/Product/GetProduct?id=' + categoryId + '&page=' + getUrlParameter('page')
+			: '/Product/GetProduct?id=' + categoryId;
 		$.ajax({
 			url: url,
 			type: 'GET',
@@ -500,24 +288,42 @@
 			var userId = this.getCookie('UserID');
 			var txt = '';
 			for (i in data) {
-				var checkWishList = userId == undefined ? false : getWishListByUserProduct(data[i].wishLists, userId, data[i].Id);
+				var checkWishList = userId == undefined
+					? false
+					: getWishListByUserProduct(data[i].wishLists, userId, data[i].Id);
 				var url = /chi-tiet-san-pham/ + data[i].Slug + '-' + data[i].Id;
 				var urlCart = "/them-vao-gio-hang?productID=" + data[i].Id + "&quantity=1";
 				txt += "<div class='col-md-4 col-sm-6'>";
 				txt += "<div style='height: 460px;' class='product-wrapper mb-40'>";
 				txt += "<div class='product-img'>";
-				txt += "<a href=" + url + "><img  style='width: 100%'  src=" + data[i].Images + " alt=" + data[i].Name + " /></a>";
+				txt += "<a href=" +
+					url +
+					"><img  style='width: 100%'  src=" +
+					data[i].Images +
+					" alt=" +
+					data[i].Name +
+					" /></a>";
 				txt += data[i].TopHot ? "<span class='new-label-hot'>Hot</span>" : "<span class='new-label'>New</span>";
 				txt += "<div class='product-action'>";
 				txt += "<a href=" + urlCart + "><i class='pe-7s-cart' ></i></a>";
 				if (userId == undefined) {
 					txt += "<a data-toggle='modal' data-target='#exampleModalCenter' ><i class='fa fa-heart'></i></a>";
-				}
-				else if (checkWishList) {
-					txt += "<a class='wishlist wishlistDisLike wishlist-" + data[i].Id + "' id=" + data[i].Id + " data-id=" + data[i].Id + " href='javascript:void(0)'><i class='fa fa-heart'></i></a>";
-				}
-				else {
-					txt += "<a class='wishlist wishlist-" + data[i].Id + "' id=" + data[i].Id + " data-id=" + data[i].Id + " href='javascript:void(0)'><i class='fa fa-heart'></i></a>";
+				} else if (checkWishList) {
+					txt += "<a class='wishlist wishlistDisLike wishlist-" +
+						data[i].Id +
+						"' id=" +
+						data[i].Id +
+						" data-id=" +
+						data[i].Id +
+						" href='javascript:void(0)'><i class='fa fa-heart'></i></a>";
+				} else {
+					txt += "<a class='wishlist wishlist-" +
+						data[i].Id +
+						"' id=" +
+						data[i].Id +
+						" data-id=" +
+						data[i].Id +
+						" href='javascript:void(0)'><i class='fa fa-heart'></i></a>";
 				}
 				txt += "<a href=" + url + "><i class='pe-7s-look'></i></a>";
 				txt += "</div>";
@@ -530,7 +336,11 @@
 				txt += "<div class='price-box'>";
 				var nf = new Intl.NumberFormat();
 				if (data[i].Sale_Price != null) {
-					txt += "<span class='old-price product-price'>" + nf.format(data[i].Price) + "VND</span> <span class='price product-price'>" + nf.format(data[i].Sale_Price) + "VND</span>";
+					txt += "<span class='old-price product-price'>" +
+						nf.format(data[i].Price) +
+						"VND</span> <span class='price product-price'>" +
+						nf.format(data[i].Sale_Price) +
+						"VND</span>";
 				} else {
 					txt += "<span class='price product-price'>" + nf.format(data[i].Price) + "VND</span>";
 				}
@@ -541,12 +351,10 @@
 					for (j = 1; j <= 5; j++) {
 						if (j <= data[i].AverageStar) {
 							txt += "<i class='fa fa-star'></i>";
-						}
-						else if (data[i].AverageStar % 1 !== 0 && check) {
+						} else if (data[i].AverageStar % 1 !== 0 && check) {
 							check = false;
 							txt += "<i class='fa fa-star-half-o' aria-hidden='true'></i>";
-						}
-						else {
+						} else {
 							txt += "<i class='fa fa-star-o' aria-hidden='true'></i>";
 						}
 					}
@@ -557,8 +365,12 @@
 				txt += "</div>";
 				txt += "</div>";
 			}
+			if (data.length == 0) {
+				txt += "<p>Danh mục không có sản phẩm</p>";
+			}
 			return txt;
 		}
+
 		function getWishListByUserProduct(wishLists, userId, productId) {
 			for (var i = 0; i < wishLists.length; i++) {
 				var obj = wishLists[i];
@@ -567,38 +379,71 @@
 			}
 			return false;
 		}
+
 		function getPagination(res) {
 			var txt = '';
 			var data = res.items;
-			var url = '/Product/GetProduct?id=' + categoryId;
-			var pageIndex = getUrlParameter('page') ? getUrlParameter('page'):1;
-			var totalpage = res.TotalRecords / data.length;
-			var prev = pageIndex - 1;
-			var next = pageIndex + 1;
-			var start = (pageIndex <= 3 || totalpage == 0) ? 1 : pageIndex - 3;
-			var end = (res.TotalRecords / data.length <= pageIndex) ? pageIndex : pageIndex + 3;
-			if (end >= totalpage ) {
-				end = Math.ceil(totalpage);
+			var pageIndex = getUrlParameter('page') ? getUrlParameter('page') : 1;
+			var totalPage = Math.ceil(res.TotalRecords / 6);
+			 
+			var start = (pageIndex <= 3 || totalPage == 0) ? 1 : pageIndex - 3;
+			var end = (totalPage <= pageIndex+3) ? totalPage : pageIndex + 3;
+			if (end >= totalPage) {
+				end = totalPage;
 			}
-				txt += "<div class='product-count display-inline'>Showing 1 - " + data.length + " of " + res.TotalRecords + " items</div> ";
+			txt += "<div class='product-count display-inline'>Showing 1 - " +
+				data.length +
+				" of " +
+				res.TotalRecords +
+				" items</div> ";
 			txt += "<ul class='shop-pagi display-inline'>";
-			
-				if (res.TotalRecords) {
-					txt += "<li><a href='" + url + "?page=" + prev + "' ><i class='fa fa-angle-left'></i></a></li>";
-					for (var i = start; i <= end; i++) {
-						debugger
-						txt += pageIndex == i ? "<li class='active'><a href='" + url + "&page=" + i + "'>" + i + "</a></li>" : "<li><a href='" + url + "&page=" + i + "' >" + i + "</a></li>";
-						if (pageIndex < totalpage) {
-							txt += "<li><a href='" + url + "&page=" + next + "'><i class='fa fa-angle-right'></i></a></li>";
-						}
+
+			if (res.TotalRecords) {
+				if (pageIndex > 1)
+					txt += "<li class='navigate' events='back'><a href='javascript:void(0)' ><i class='fa fa-angle-left'></i></a></li>";
+				for (var i = start; i <= end; i++) {
+					if (pageIndex == i) {
+						txt += "<li class='active navigate'><a href='javascript:void(0)'>" + i + "</a></li>";
+					} else {
+						txt += "<li class='navigate'><a href='javascript:void(0)' >" + i + "</a></li>";
 					}
-				} else {
-					txt += "<ul class='shop-pagi display-inline'>";
-					txt += "<li class='active'><a href='javascript:void(0)'>1</a></li>";
-					txt += "</ul>";
 				}
+				if (pageIndex < totalPage) {
+					txt += "<li class='navigate' events='next'><a href='javascript:void(0)'><i class='fa fa-angle-right'></i></a></li>";
+				}
+			} else {
+				txt += "<ul class='shop-pagi display-inline'>";
+				txt += "<li class='active'><a href='javascript:void(0)'>1</a></li>";
+				txt += "</ul>";
+			}
 			return txt;
 		}
-		
+		$(document).on("click",".navigate", function () {
+			var urlNavigate = '';
+			var pageIndex = getUrlParameter('page') ? getUrlParameter('page') : 1;
+			if ($(this).text() == '') {
+				if ($(this).attr("events") == 'back') {
+					pageIndex -= 1;
+					urlNavigate = '/Product/GetProduct?id=' + categoryId + '&page=' + pageIndex;
+				} else {
+					pageIndex =+pageIndex+ 1;
+					urlNavigate = '/Product/GetProduct?id=' + categoryId + '&page=' + pageIndex;
+				}
+			} else {
+				pageIndex = $(this).text();
+				urlNavigate = '/Product/GetProduct?id=' + categoryId + '&page=' + $(this).text();
+			}
+			$.ajax({
+				url: urlNavigate,
+				type: 'GET',
+				success: (res) => {
+					if (res.items) {
+						document.querySelector("#productHot").innerHTML = getData(res);
+						window.history.pushState('Danh mục sản phẩm', 'Title',  currentUrl+'?page='+pageIndex);
+						document.getElementById("paginator").innerHTML = getPagination(res);
+					}
+				}
+			});
+		});
 	</script>
 }

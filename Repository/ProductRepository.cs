@@ -98,9 +98,24 @@ namespace Repository
 			GC.SuppressFinalize(this);
 		}
 
-		public IEnumerable<Product> ListProductHot()
+		public IEnumerable<ProductViewModel> ListProductHot()
 		{
-			return context.Products.Where(s => s.TopHot && s.Status).OrderByDescending(s => s.Created).Take(8).AsQueryable();
+			return context.Products.Where(s => s.TopHot && s.Status).OrderByDescending(s => s.Created).Take(8).Select(x=> new ProductViewModel
+			{
+				Id = x.Id,
+				Name = x.Name,
+				Slug = x.Slug,
+				Content = x.Content,
+				Categorys = x.Categorys,
+				AverageStar = x.AverageStar,
+				wishLists = x.wishLists,
+				Created = x.Created,
+				Images = x.Images,
+				Price = x.Price,
+				Sale_Price = x.Sale_Price,
+				Status = x.Status,
+				TopHot = x.TopHot
+			}).AsQueryable();
 		}
 
 		public IEnumerable<Product> ListProductSale()
@@ -110,9 +125,24 @@ namespace Repository
 		}
 
 
-		public IEnumerable<Product> ListProductNew()
+		public IEnumerable<ProductViewModel> ListProductNew()
 		{
-			return context.Products.Where(s => s.Status).OrderByDescending(s => s.Created).Take(8).AsQueryable();
+			return context.Products.Where(s => s.Status).OrderByDescending(s => s.Created).Take(8).Select(x => new ProductViewModel
+			{
+				Id = x.Id,
+				Name = x.Name,
+				Slug = x.Slug,
+				Content = x.Content,
+				Categorys = x.Categorys,
+				AverageStar = x.AverageStar,
+				wishLists = x.wishLists,
+				Created = x.Created,
+				Images = x.Images,
+				Price = x.Price,
+				Sale_Price = x.Sale_Price,
+				Status = x.Status,
+				TopHot = x.TopHot
+			}).AsQueryable();
 		}
 
 		public IEnumerable<Product> Search(string searchString, int Page, int Pagesize)
@@ -139,20 +169,19 @@ namespace Repository
 			}
 			var res = context.Products.Where(x => x.Category_ID == id).OrderByDescending(x => x.Created).Skip((pageIndex - 1) * pageSize).Take(pageSize).Select(x => new ProductViewModel
 			{
-				Id=x.Id,
-				Name=x.Name,
-				Slug=x.Slug,
-				Content=x.Content,
-				Categorys=x.Categorys,
-				AverageStar=x.AverageStar,
-				wishLists=x.wishLists,
-				Created=x.Created,
-				Images=x.Images,
-				Price=x.Price,
-				Sale_Price=x.Sale_Price,
-				Status=x.Status,
-				TopHot=x.TopHot,
-				
+				Id = x.Id,
+				Name = x.Name,
+				Slug = x.Slug,
+				Content = x.Content,
+				Categorys = x.Categorys,
+				AverageStar = x.AverageStar,
+				wishLists = x.wishLists,
+				Created = x.Created,
+				Images = x.Images,
+				Price = x.Price,
+				Sale_Price = x.Sale_Price,
+				Status = x.Status,
+				TopHot = x.TopHot
 			}).ToList();
 			return res;
 		}
@@ -182,6 +211,37 @@ namespace Repository
 				listLv2.Remove(item);
 			}
 			return listLv2;
+		}
+
+		public ProductViewModel GetProductById(int id)
+		{
+			var product= context.Products.Where(z => z.Id.Equals(id)).Select(x=>new ProductViewModel
+			{
+				Id = x.Id,
+				Name = x.Name,
+				Slug = x.Slug,
+				Content = x.Content,
+				Categorys = x.Categorys,
+				AverageStar = x.AverageStar,
+				wishLists = x.wishLists,
+				Created = x.Created,
+				Images = x.Images,
+				Price = x.Price,
+				Sale_Price = x.Sale_Price,
+				Status = x.Status,
+				TopHot = x.TopHot,
+				//ReviewProducts = x.ReviewProducts,
+				//Comments = x.Comments,
+				MoreImages = x.MoreImages,
+				Star1 = x.Star1,
+				Star2 = x.Star2,
+				Star3 = x.Star3,
+				Star4 = x.Star4,
+				Star5 = x.Star5,
+				CountOrders = x.OrderDetails.Count,
+				CountReviews = x.ReviewProducts.Count
+			}).FirstOrDefault();
+			return product;
 		}
 	}
 }

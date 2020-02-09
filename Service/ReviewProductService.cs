@@ -23,9 +23,9 @@ namespace Service
 			return repository.GetAll().ToList();
 		}
 
-		public IEnumerable<ReviewProduct> GetReviewProductsByProductId(int id, int page, int pagesize)
+		public SearchResponse<ReviewProductViewModel> GetReviewProductsByProductId(int id, int page, int pagesize)
 		{
-			return repository.GetReviewProductsByProductId(id,page,pagesize);
+			return repository.GetReviewProductsByProductId(id, page, pagesize);
 		}
 
 		public int CountReviewProductById(int id)

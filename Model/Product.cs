@@ -52,6 +52,6 @@ namespace Model
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<WishList> wishLists { get; set; }
         public virtual ICollection<ReviewProduct> ReviewProducts { get; set; }
-        public  ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 	}
 }

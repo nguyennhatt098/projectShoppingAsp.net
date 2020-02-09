@@ -54,12 +54,17 @@ namespace Service
 	        return rep.Categories();
         }
 
-        public IEnumerable<Product> ListProductHot()
+        public ProductViewModel GetProductById(int id)
+        {
+	        return rep.GetProductById(id);
+        }
+
+        public IEnumerable<ProductViewModel> ListProductHot()
         {
             return rep.ListProductHot();
         }
 
-        public IEnumerable<Product> ListProductNew()
+        public IEnumerable<ProductViewModel> ListProductNew()
         {
             return rep.ListProductNew();
         }

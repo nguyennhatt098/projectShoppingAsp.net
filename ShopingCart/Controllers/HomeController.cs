@@ -1,9 +1,9 @@
 ﻿using Model;
-using Repository.DAL;
 using Service;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Model.ViewModel;
 using Newtonsoft.Json;
 
 namespace ShopingCart.Controllers
@@ -11,24 +11,20 @@ namespace ShopingCart.Controllers
 	public class HomeController : Controller
 	{
 		private const string CartSession = "CartSession";
-		private MenuService menuService;
 		private ProductService productService;
 		private SliderService sliderService;
 		private CategoryService categoryService;
 		private WishListService wishListService;
 		private NewsService newsService;
 		private NotifyService notifyService;
-		private ReviewProductService reviewProductService;
 		public HomeController()
 		{
 			newsService = new NewsService();
 			sliderService = new SliderService();
 			productService = new ProductService();
-			menuService = new MenuService();
 			categoryService = new CategoryService();
 			wishListService = new WishListService();
 			notifyService = new NotifyService();
-			reviewProductService = new ReviewProductService();
 		}
 		public ActionResult Index()
 		{
@@ -40,57 +36,61 @@ namespace ShopingCart.Controllers
 			return View();
 		}
 		[HttpGet]
-		public string GetProductNew()
+		public JsonResult GetProductNew()
 		{
-			var data = JsonConvert.SerializeObject(productService.ListProductNew().ToList(), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-			return data;
+			//var data = JsonConvert.SerializeObject(productService.ListProductNew().ToList(), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+			//return data;
+			var data = productService.ListProductNew().ToList();
+			return Json(data, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpGet]
-		public string GetProductHot()
+		public JsonResult GetProductHot()
 		{
-			var data = JsonConvert.SerializeObject(productService.ListProductHot().ToList(), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-			return data;
+			var data = productService.ListProductHot().ToList();
+			return Json(data, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpGet]
 		public string GetBlog()
 		{
-			var data = JsonConvert.SerializeObject(newsService.GetAll().ToList(), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+			var data = JsonConvert.SerializeObject(newsService.GetAll().ToList());
 			return data;
 		}
 
 		[ChildActionOnly]
 		public ActionResult MainMenu()
 		{
-			ViewBag.Categories = categoryService.Search("", 1, 1).ToList();
-			ViewBag.Sliders=sliderService.GetAll();
 			var currentUser = (User)Session["User"];
 			ViewBag.notifies = currentUser != null ? notifyService.GetById(currentUser.UserId) : new List<Notify>();
 			var lst = categoryService.Search("", 1, 1).ToList();
-			return PartialView(lst);
+			var categories= CreateVM(null, lst);
+			return PartialView(categories);
 		}
 		[ChildActionOnly]
 		public ActionResult Footer()
 		{
-			var model = new Footer();
-			using (var context = new DBEntityContext())
-			{
-				model = context.Footers.FirstOrDefault(x => x.Status);
-			}
-			return PartialView(model);
+			return PartialView();
+		}
+
+		public IEnumerable<MenuViewModel> CreateVM(int? parentid, List<Category> source)
+		{
+			return from men in source
+				where men.ParentID == parentid
+				select new MenuViewModel()
+				{
+					MenuId = men.ID,
+					Name = men.Name,
+					Slug = men.Slug,
+					Children = CreateVM(men.ID, source).ToList()
+				};
 		}
 
 		[ChildActionOnly]
 		public ActionResult Slider()
 		{
-			//List<Category> lst = new List<Category>();
-			//using (var context = new DBEntityContext())
-			//{
-			//	lst = context.Categories.Where(x => x.Status).ToList();
-			//}
-
-			ViewBag.Categories = categoryService.Search("",1,1).ToList();
+			var categories = categoryService.Search("", 1, 1).ToList();
+			ViewBag.Categories = CreateVM( null,categories);
 			return PartialView(sliderService.GetAll());
 		}
 

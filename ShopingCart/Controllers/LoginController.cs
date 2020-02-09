@@ -14,11 +14,9 @@ namespace ShopingCart.Controllers
 {
 	public class LoginController : Controller
 	{
-		private UserService _userService;
 		private LoginService _loginService;
 		public LoginController()
 		{
-			_userService = new UserService();
 			_loginService = new LoginService();
 		}
 		// GET: Login

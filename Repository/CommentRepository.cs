@@ -69,10 +69,12 @@ namespace Repository
 			return context.SaveChanges();
 		}
 
-		public IEnumerable<Comment> Search(int productId, int Page, int Pagesize)
+		public SearchResponse<CommentViewModel> Search(int productId, int Page, int Pagesize)
 		{
+			//context.Configuration.ProxyCreationEnabled = false;
+			var totalRecord = Count(productId);
 			var total = Page * Pagesize;
-			if (total > Count(productId))
+			if (total > totalRecord)
 			{
 				Pagesize = Count(productId) - (Pagesize * (Page - 1));
 			}
@@ -81,8 +83,17 @@ namespace Repository
 			{
 				Pagesize = 6;
 			}
-			var list =  context.Comments.Where(x=> x.ProductId == productId).OrderByDescending(x => x.CreatedDate).Skip((Page - 1) * Pagesize).Take(Pagesize).AsQueryable();
-			return list;
+			var list = context.Comments.Where(x => x.ProductId == productId).OrderByDescending(x => x.CreatedDate).Skip((Page - 1) * Pagesize).Take(Pagesize).Select(x => new CommentViewModel
+			{
+				Id = x.Id,
+				Answers = x.Answers,
+				CreatedDate = x.CreatedDate,
+				User = x.User,
+				Question = x.Question,
+				
+			}).ToList();
+			var response = new SearchResponse<CommentViewModel> { TotalRecords = totalRecord, items = list };
+			return response;
 		}
 	}
 }

@@ -12,7 +12,6 @@ namespace ShopingCart.Controllers
         public CartController()
         {
             productService = new ProductService();
-          
         }
         private const string CartSession = "CartSession";
         // GET: Cart
@@ -53,7 +52,6 @@ namespace ShopingCart.Controllers
             {
                 status = true
             });
-
         }
         public JsonResult DeleteAll()
         {
@@ -81,23 +79,15 @@ namespace ShopingCart.Controllers
                             {
                                 item.Quantity += quantity;
                             }
-
                         }
-
                     }
                     else
                     {
                         var item = new CartItem();
                             item.Product = product;
                             item.Quantity = quantity;
-
                             list.Add(item);
-                        
-                   
-                        
-                       
                     }
-
                     Session[CartSession] = list;
                 }
                 else
@@ -109,10 +99,7 @@ namespace ShopingCart.Controllers
                     list.Add(item);
                     Session[CartSession] = list;
                 }
-            
-            
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
         }
-        
     }
 }

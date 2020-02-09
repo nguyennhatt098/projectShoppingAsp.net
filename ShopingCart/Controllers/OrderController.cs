@@ -5,7 +5,6 @@ using ShopingCart.Common;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using Action = System.Action;
 
 namespace ShopingCart.Controllers
 {

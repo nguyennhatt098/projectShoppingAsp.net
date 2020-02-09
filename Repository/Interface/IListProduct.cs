@@ -5,11 +5,12 @@ namespace Repository.Interface
 {
 	public interface IListProduct<T> where T : class
     {
-        IEnumerable<T> ListProductHot();
+        IEnumerable<ProductViewModel> ListProductHot();
         IEnumerable<T> ListProductSale();
-        IEnumerable<T> ListProductNew();
+        IEnumerable<ProductViewModel> ListProductNew();
         List<ProductViewModel> ListProductGetByCategory(int id,int pageIndex,int pageSize);
         int Count(int id);
         IEnumerable<Category> Categories();
+        ProductViewModel GetProductById(int id);
     }
 }

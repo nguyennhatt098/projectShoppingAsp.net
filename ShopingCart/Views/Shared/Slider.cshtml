@@ -1,6 +1,9 @@
-﻿@model List<Model.Slider>
+﻿@using System.Web.Mvc.Html
+@using Model.ViewModel
+@model List<Model.Slider>
 @{
-	var listCategory = (List<Model.Category>)ViewBag.Categories;
+	//var listCategory = (List<Model.Category>)ViewBag.Categories;
+	var menusList =(IEnumerable<MenuViewModel>) ViewBag.Categories;
 	var check = true;
 }
 <div class="slider-1" style="">
@@ -40,54 +43,11 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-	<div class="container-menu" id="container-menu">
-		<ul class="">
-			@foreach (var itemGrandParent in listCategory)
-			{
-				var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-				if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
-				{
-					<li class="">
-						<a href="#">@itemGrandParent.Name <span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-						<ul class="">
-							@foreach (var itemParent in listCategory)
-							{
-								var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
-								if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
-								{
-
-									<li class="">
-										<a href="#">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-										<ul class="parent">
-											@foreach (var itemChild in listCategory)
-											{
-												var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
-												if (itemParent.ID == itemChild.ParentID)
-												{
-													<li>
-														<a href="@urlChild">
-															@itemChild.Name
-														</a>
-													</li>
-												}
-											}
-										</ul>
-									</li>
-								}
-								else if (itemGrandParent.ID == itemParent.ParentID)
-								{
-									<li><a href="@urlParent">@itemParent.Name</a></li>
-								}
-							}
-						</ul>
-					</li>
-				}
-				else if (itemGrandParent.ParentID == null)
-				{
-					<li><a href="@url">@itemGrandParent.Name</a></li>
-				}
-			}
-		</ul>
-	</div>
+<div class="container-menu" id="container-menu">
+	@{
+		Html.RenderPartial("MenuPartial", menusList);
+	}
+	
+</div>
 </div>
 

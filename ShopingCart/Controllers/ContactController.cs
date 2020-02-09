@@ -7,12 +7,10 @@ namespace ShopingCart.Controllers
 {
     public class ContactController : Controller
     {
-        private ContactService service;
         private FeedBackService feedBack;
         public ContactController()
         {
             feedBack = new FeedBackService();
-            service = new ContactService();
         }
         // GET: Contact
         public ActionResult Index()
@@ -33,7 +31,6 @@ namespace ShopingCart.Controllers
             {
                 status = true
             });
-
         }
     }
 }

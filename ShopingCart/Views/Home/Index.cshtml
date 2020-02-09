@@ -458,8 +458,7 @@
 			}
 			return false;
 		}
-		function getData(res, isNew) {
-			var data = JSON.parse(res);
+		function getData(data, isNew) {
 			var userId = this.getCookie('UserID');
 			var txt = '';
 			for (i in data) {
