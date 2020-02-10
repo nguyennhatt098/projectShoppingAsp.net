@@ -302,235 +302,233 @@
 				</div>
 				<div class="tab-pane show-active" id="profile3">
 					<div class="row bootstrap snippets">
-						@if (Model.AverageStar > 0)
-							{
-								<div class="comment-wrapper">
-									<div class="panel panel-info">
-										@if (Model.AverageStar > 0)
-										{
-											var check = true;
-											float floatValue;
-											var totalReview = Model.Star1 + Model.Star2 + Model.Star3 + Model.Star4 + Model.Star5;
-											var star1 = Model.Star1 / totalReview*100;
-											var star2 = Model.Star2 / totalReview*100;
-											var star3 = Model.Star3 / totalReview*100;
-											var star4 = Model.Star4 / totalReview*100;
-											var star5 = Model.Star5 / totalReview*100;
-											<div class="panel-heading">
-												<div style="margin-top:10px;" class="container">
-													<div class="col-md-2 left-title-star">
-														<p>Đánh giá trung bình</p>
-														<p>@Model.AverageStar trên 5</p>
-														<p style="font-size:13px;">
-															@for (int a = 1; a <= 5; a++)
-															{
-																if (a <= Model.AverageStar)
-																{
-																	<i style="color:#ffae00" class="fa fa-star"></i>
-																}
-																else if (float.TryParse(Model.AverageStar.ToString(), out floatValue) && check)
-																{
-																	check = false;
-																	<i style="color:#ffae00" class="fa fa-star-half-o" aria-hidden="true"></i>
-																}
-																else
-																{
-																	<i style="color:#ffae00" class="fa fa-star-o" aria-hidden="true"></i>
-																}
-															}
-														</p>
-														<p>(@Model.CountReviews nhận xét)</p>
-													</div>
-													<div class="col-md-10  ">
-														<div class="clearfix">
-															<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-																<span style="color:black">5	</span><i class="fa fa-star"></i>
-															</div>
-															<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-																<div style="height:20px" class="progress">
-																	<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star5%">
-																		@star5%
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="clearfix">
-															<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-																<span style="color:black">4	</span><i class="fa fa-star"></i>
-															</div>
-															<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-																<div style="height:20px" class="progress">
-																	<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star4%">
-																		@star4%
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="clearfix">
-															<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-																<span style="color:black">3	</span><i class="fa fa-star"></i>
-															</div>
-															<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-																<div style="height:20px" class="progress">
-																	<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star3%">
-																		@star3%
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="clearfix">
-															<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-																<span style="color:black">2	</span><i class="fa fa-star"></i>
-															</div>
-															<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-																<div style="height:20px" class="progress">
-																	<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star2%">
-																		@star2%
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="clearfix">
-															<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
-																<span style="color:black">1	</span><i class="fa fa-star"></i>
-															</div>
-															<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
-																<div style="height:20px" class="progress">
-																	<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star1%">
-																		@star1%
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										}
-										<div class="panel-body">
-											<div onloadeddata="myScript" class="load-review">
-												<ul id="show-all-reviews" class="media-list">
-													@*@foreach (var item in Model.ReviewProducts)
+						<div class="comment-wrapper">
+							<div class="panel panel-info">
+								@if (Model.AverageStar > 0)
+								{
+									var check = true;
+									float floatValue;
+									var totalReview = Model.Star1 + Model.Star2 + Model.Star3 + Model.Star4 + Model.Star5;
+									var star1 = Model.Star1 / totalReview * 100;
+									var star2 = Model.Star2 / totalReview * 100;
+									var star3 = Model.Star3 / totalReview * 100;
+									var star4 = Model.Star4 / totalReview * 100;
+									var star5 = Model.Star5 / totalReview * 100;
+									<div class="panel-heading">
+										<div style="margin-top:10px;" class="container">
+											<div class="col-md-2 left-title-star">
+												<p>Đánh giá trung bình</p>
+												<p>@Model.AverageStar trên 5</p>
+												<p style="font-size:13px;">
+													@for (int a = 1; a <= 5; a++)
 													{
-														var createdDate = item.CreatedDate != null ? item.CreatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : "";
-														var total = item.AnswerReviews.Any() ?item.AnswerReviews.Count().ToString() : "";
-														<li class="media">
-															<a href="javascript:void(0)" class="pull-left">
-																@if (item.Order.Users.Image != null)
-																{
-																	<img src="@item.Order.Users.Image" alt="" class="img-circle">
-																}
-																else
-																{
-																	<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
-																}
-															</a>
-															<div class="media-body">
-																<span class="text-muted pull-right">
-																	<small class="text-muted"> @createdDate</small>
-																</span>
-																<strong class="text-success">@item.Order.Users.UserName</strong>
-																<p>
-																	<span style="display: inline-block">
-																		@for (int a = 1; a <= 5; a++)
-																		{
-																			if (a <= item.Rate)
-																			{
-																				<i style="color: #ffae00" class="fa fa-star"></i>
-																			}
-																			else
-																			{
-																				<i style="color: #ffae00" class="fa fa-star-o" aria-hidden="true"></i>
-																			}
-																		}
-																	</span>
-																</p>
-																<p>
-																	@item.Content
-																</p>
-																<a href="javascript:void(0)" class="review-id" checkReview="@item.Id"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
-																<div style="display: none;margin-bottom: 40px" class="show-review-@item.Id ">
-																	<div style="margin-top:30px;height:150px;">
-																		<form class="answer-form">
-																			<textarea class="form-control content-review-answer-@item.Id" reviewId="@item.Id" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
-																			<br>
-																			<button submitReview="@item.Id" type="button" class="btn btn-info pull-right review-answer">Gửi</button>
-																		</form>
-																	</div>
-																	@foreach (var itemAnswer in item.AnswerReviews)
-																	{
-																		<div style="margin-top:40px">
-																			<a href="javascript:void(0)" class="pull-left">
-																				@if (itemAnswer.User.Image != null)
-																				{
-																					<img src="@itemAnswer.User.Image" alt="" class="img-circle">
-																				}
-																				else
-																				{
-																					<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
-																				}
-																			</a>
-																			<span class="text-muted pull-right">
-																				<small class="text-muted">@itemAnswer.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss") </small>
-																			</span>
-																			<strong class="text-success">@itemAnswer.User.UserName</strong>
-																			<p>
-																				@itemAnswer.Content
-																			</p>
-																		</div>
-																	}
-																</div>
-															</div>
-														</li>
-													}*@
-												</ul>
-												<div id="show-pagination-reviews">
-
-												</div>
-												@*@if (ViewBag.TotalPageRv > 0)
-												{
-													int totalpage = (int)ViewBag.TotalPageRv;
-													int cureentPage = ((int)ViewBag.PageRv);
-													var prev = cureentPage - 1;
-													var next = cureentPage + 1;
-													var start = cureentPage <= 3 ? 1 : cureentPage - 3;
-													var end = totalpage >= cureentPage ? totalpage : cureentPage + 3;
-													var url = "/chi-tiet-san-pham/" + Model.Slug + "-" + Model.Id;
-													<div class="content-sortpagibar">
-														<ul class="shop-pagi display-inline">
-															@if (cureentPage > 1)
-															{
-																<li><a href="@url?pageRv=@prev"><i class="fa fa-angle-left"></i></a></li>
-															}
-
-															@for (int a = start; a <= end; a++)
-															{
-																if (cureentPage == a)
-																{
-																	<li class="active"><a href="@url?pageRv=@a">@a</a></li>
-																}
-																else
-																{
-																	<li><a href="@url?pageRv=@a">@a</a></li>
-																}
-															}
-															@if (cureentPage < totalpage)
-															{
-																<li><a c href="@url?pageRv=@next"><i class="fa fa-angle-right"></i></a></li>
-															}
-														</ul>
+														if (a <= Model.AverageStar)
+														{
+															<i style="color:#ffae00" class="fa fa-star"></i>
+														}
+														else if (float.TryParse(Model.AverageStar.ToString(), out floatValue) && check)
+														{
+															check = false;
+															<i style="color:#ffae00" class="fa fa-star-half-o" aria-hidden="true"></i>
+														}
+														else
+														{
+															<i style="color:#ffae00" class="fa fa-star-o" aria-hidden="true"></i>
+														}
+													}
+												</p>
+												<p>(@Model.CountReviews nhận xét)</p>
+											</div>
+											<div class="col-md-10  ">
+												<div class="clearfix">
+													<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+														<span style="color:black">5	</span><i class="fa fa-star"></i>
 													</div>
-												}*@
+													<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+														<div style="height:20px" class="progress">
+															<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star5%">
+																@star5%
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="clearfix">
+													<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+														<span style="color:black">4	</span><i class="fa fa-star"></i>
+													</div>
+													<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+														<div style="height:20px" class="progress">
+															<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star4%">
+																@star4%
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="clearfix">
+													<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+														<span style="color:black">3	</span><i class="fa fa-star"></i>
+													</div>
+													<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+														<div style="height:20px" class="progress">
+															<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star3%">
+																@star3%
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="clearfix">
+													<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+														<span style="color:black">2	</span><i class="fa fa-star"></i>
+													</div>
+													<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+														<div style="height:20px" class="progress">
+															<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star2%">
+																@star2%
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="clearfix">
+													<div style="color:#484848;font-size:20px;" class="col-md-2 col-sm-2 	col-xs-4 col-lg-1 ">
+														<span style="color:black">1	</span><i class="fa fa-star"></i>
+													</div>
+													<div style="height:30px;" class="col-md-10 col-sm-10 	col-xs-8 col-lg-11">
+														<div style="height:20px" class="progress">
+															<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:@star1%">
+																@star1%
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
+								}
+								<div class="panel-body">
+									<div onloadeddata="myScript" class="load-review">
+										<ul id="show-all-reviews" class="media-list">
+											@*@foreach (var item in Model.ReviewProducts)
+												{
+													var createdDate = item.CreatedDate != null ? item.CreatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : "";
+													var total = item.AnswerReviews.Any() ?item.AnswerReviews.Count().ToString() : "";
+													<li class="media">
+														<a href="javascript:void(0)" class="pull-left">
+															@if (item.Order.Users.Image != null)
+															{
+																<img src="@item.Order.Users.Image" alt="" class="img-circle">
+															}
+															else
+															{
+																<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+															}
+														</a>
+														<div class="media-body">
+															<span class="text-muted pull-right">
+																<small class="text-muted"> @createdDate</small>
+															</span>
+															<strong class="text-success">@item.Order.Users.UserName</strong>
+															<p>
+																<span style="display: inline-block">
+																	@for (int a = 1; a <= 5; a++)
+																	{
+																		if (a <= item.Rate)
+																		{
+																			<i style="color: #ffae00" class="fa fa-star"></i>
+																		}
+																		else
+																		{
+																			<i style="color: #ffae00" class="fa fa-star-o" aria-hidden="true"></i>
+																		}
+																	}
+																</span>
+															</p>
+															<p>
+																@item.Content
+															</p>
+															<a href="javascript:void(0)" class="review-id" checkReview="@item.Id"><span class="glyphicon glyphicon-share-alt"></span>@total Trả lời</a>
+															<div style="display: none;margin-bottom: 40px" class="show-review-@item.Id ">
+																<div style="margin-top:30px;height:150px;">
+																	<form class="answer-form">
+																		<textarea class="form-control content-review-answer-@item.Id" reviewId="@item.Id" name="content-answer" placeholder="write a comment..." rows="3"></textarea>
+																		<br>
+																		<button submitReview="@item.Id" type="button" class="btn btn-info pull-right review-answer">Gửi</button>
+																	</form>
+																</div>
+																@foreach (var itemAnswer in item.AnswerReviews)
+																{
+																	<div style="margin-top:40px">
+																		<a href="javascript:void(0)" class="pull-left">
+																			@if (itemAnswer.User.Image != null)
+																			{
+																				<img src="@itemAnswer.User.Image" alt="" class="img-circle">
+																			}
+																			else
+																			{
+																				<img src="~/Asset/FrontEnd/img/logo/user_1.jpg" alt="" class="img-circle">
+																			}
+																		</a>
+																		<span class="text-muted pull-right">
+																			<small class="text-muted">@itemAnswer.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss") </small>
+																		</span>
+																		<strong class="text-success">@itemAnswer.User.UserName</strong>
+																		<p>
+																			@itemAnswer.Content
+																		</p>
+																	</div>
+																}
+															</div>
+														</div>
+													</li>
+												}*@
+										</ul>
+										<div id="show-pagination-reviews">
+
+										</div>
+										@*@if (ViewBag.TotalPageRv > 0)
+											{
+												int totalpage = (int)ViewBag.TotalPageRv;
+												int cureentPage = ((int)ViewBag.PageRv);
+												var prev = cureentPage - 1;
+												var next = cureentPage + 1;
+												var start = cureentPage <= 3 ? 1 : cureentPage - 3;
+												var end = totalpage >= cureentPage ? totalpage : cureentPage + 3;
+												var url = "/chi-tiet-san-pham/" + Model.Slug + "-" + Model.Id;
+												<div class="content-sortpagibar">
+													<ul class="shop-pagi display-inline">
+														@if (cureentPage > 1)
+														{
+															<li><a href="@url?pageRv=@prev"><i class="fa fa-angle-left"></i></a></li>
+														}
+
+														@for (int a = start; a <= end; a++)
+														{
+															if (cureentPage == a)
+															{
+																<li class="active"><a href="@url?pageRv=@a">@a</a></li>
+															}
+															else
+															{
+																<li><a href="@url?pageRv=@a">@a</a></li>
+															}
+														}
+														@if (cureentPage < totalpage)
+														{
+															<li><a c href="@url?pageRv=@next"><i class="fa fa-angle-right"></i></a></li>
+														}
+													</ul>
+												</div>
+											}*@
+									</div>
 								</div>
-							}
+							</div>
+						</div>
+						@*}
 							else
 							{
 								<div style="background:white" class="pro-desc">
 									<h2>Chưa có đánh giá</h2>
 								</div>
-							}
+							}*@
 
 					</div>
 				</div>
@@ -618,6 +616,7 @@
 				window.location.href = '/them-vao-gio-hang?productID=' + productId + '&quantity=' + quantity
 			});
 		});
+
 		//progress event click comment
 		$(document).on('click',
 			'.comment-id',
@@ -631,6 +630,7 @@
 					$('.show-comment-id-' + commentId).show("slow");
 				}
 			});
+
 		//progress event click review question
 		$(document).on('click',
 			'.review-id',
@@ -644,6 +644,7 @@
 					$('.show-review-' + reviewId).show("slow");
 				}
 			});
+
 		$(document).on('click',
 			'.review-answer',
 			function () {
@@ -651,7 +652,6 @@
 				var contentAnswerReview = $(".content-review-answer-" + reviewId).val();
 				if (contentAnswerReview === null || contentAnswerReview.match(/^ *$/) !== null) return;
 				var postData = { ReviewId: reviewId, Content: contentAnswerReview };
-				var url = window.location.href;
 				$.ajax({
 					url: '/Product/CommentReview',
 					data: { 'data': JSON.stringify(postData) },
@@ -666,16 +666,11 @@
 									if (res) {
 										document.getElementById("show-all-reviews").innerHTML = getReviews(res.items);
 										document.getElementById("show-pagination-reviews").innerHTML = getPaginationComment(res.TotalRecords);
-												$('.show-review-' + reviewId).addClass("active-review-" + reviewId);
-												$('.show-review-' + reviewId).show();
+										$('.show-review-' + reviewId).addClass("active-review-" + reviewId);
+										$('.show-review-' + reviewId).show();
 									}
 								}
 							});
-							//$('.load-review').load(url + " .load-review>*",
-							//	function () {
-							//		$('.show-review-' + reviewId).addClass("active-review-" + reviewId);
-							//		$('.show-review-' + reviewId).show();
-							//	});
 						}
 						if (!res.status) {
 							window.setTimeout(function () {
@@ -686,18 +681,18 @@
 					}
 				});
 			});
-		window.addEventListener("load",
-			function () {
-				var url = window.location.href.split('?');
-				if (url.length > 1) {
-					if (url[1].split('=')[0] == 'pageRv') {
-						if ($(".check-active").hasClass("active")) {
-							$(".check-active").removeClass("active");
-							$(".show-active").addClass("active");
-						}
-					}
-				}
-			});
+		//window.addEventListener("load",
+		//	function () {
+		//		var url = window.location.href.split('?');
+		//		if (url.length > 1) {
+		//			if (url[1].split('=')[0] == 'pageRv') {
+		//				if ($(".check-active").hasClass("active")) {
+		//					$(".check-active").removeClass("active");
+		//					$(".show-active").addClass("active");
+		//				}
+		//			}
+		//		}
+		//	});
 		//post answer comment
 		$(document).on('click', '.comment-answer',
 			function () {
@@ -727,8 +722,7 @@
 						if (!res.status) {
 							window.setTimeout(function () {
 								$("#exampleModalCenter").modal();
-							},
-								200);
+							}, 200);
 						}
 					}
 				});
@@ -754,6 +748,20 @@
 					}
 				});
 			});
+
+		function callBackComments() {
+			$.ajax({
+				url: url,
+				type: 'GET',
+				success: (res) => {
+					if (res) {
+						document.querySelector(".show-all-comments").innerHTML = this.getComments(res.items);
+						document.getElementById("show-pagination-comment").innerHTML = this.getPaginationComment(res.TotalRecords);
+					}
+				}
+			});
+		}
+
 		$.ajax({
 			url: '/Home/GetProductHot',
 			type: 'GET',
@@ -905,6 +913,32 @@
 			}
 		});
 
+		function get_time_diff(datetime) {
+			//var datetime = typeof datetime !== 'undefined' ? datetime : "2014-01-01 01:02:03.123456";
+
+			var datetime = datetime.getTime();
+			var now = new Date().getTime();
+
+			//if (isNaN(datetime)) {
+			//	return "";
+			//}
+
+			//console.log(datetime + " " + now);
+			var msec = (now - datetime)/1000;
+			var year=Math.floor(msec / 1000 / 60 / (60 * 24)/30/12);
+						var month= Math.floor(msec / 1000 / 60 / (60 * 24)/30);
+			var week= Math.floor(msec / (86400*7));
+			var days = Math.floor(msec /86400);
+			var hh = Math.floor(msec /3600)%24;
+			//msec -= hh * 1000 * 60 * 60;
+			var mm = Math.floor(msec  / 60)%60;
+			//msec -= mm * 1000 * 60;
+			var ss = msec%60 ;
+			//msec -= ss * 1000;
+
+			return "year: " + year+ "month" + month + "wwekk: "+week+ " Days " + days + " Hours " +  hh  + " Minutes "+mm+ " Seconds" + ss ;
+		}
+
 		function getComments(data) {
 			var txt = '';
 			for (i in data) {
@@ -918,7 +952,11 @@
 				txt += "</a>";
 				txt += "<div class='media-body'>";
 				txt += "<span class='text-muted pull-right'>";
-				txt += "<small class='text-muted'>" + data[i].CreatedDate + "</small>";
+
+				var date = new Date(parseInt(data[i].CreatedDate.replace("/Date(", "").replace(")/", ""), 10));
+				var a = this.get_time_diff(date);
+				console.log(a)
+				txt += "<small class='text-muted'>" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + "</small>";
 				txt += "</span>";
 				txt += "<strong class='text-success'>" + data[i].User.UserName + "</strong>";
 				txt += "<p>" + data[i].Question + "</p>";
@@ -1007,31 +1045,24 @@
 				type: 'GET',
 				success: (res) => {
 					if (res.items) {
+						var pageIndexReview = getUrlParameter('pageRv') ? getUrlParameter('pageRv') : null;
 						document.querySelector(".show-all-comments").innerHTML = getComments(res.items);
-						window.history.pushState('Chi tiết sản phẩm', 'Title', currentUrl + '?page=' + pageIndex);
+						if (pageIndexReview == null) {
+							window.history.pushState('Chi tiết sản phẩm', 'Title', currentUrl + '?page=' + pageIndex);
+						} else {
+							window.history.pushState('Chi tiết sản phẩm', 'Title', currentUrl + '?page=' + pageIndex + '&pageRv=' + pageIndexReview);
+						}
 						document.getElementById("show-pagination-comment").innerHTML = getPaginationComment(res.TotalRecords);
 					}
 				}
 			});
 		});
 
-		function callBackComments() {
-			$.ajax({
-				url: url,
-				type: 'GET',
-				success: (res) => {
-					if (res) {
-						document.querySelector(".show-all-comments").innerHTML = this.getComments(res.items);
-						document.getElementById("show-pagination-comment").innerHTML = this.getPaginationComment(res.TotalRecords);
-					}
-				}
-			});
-			}
 
-			function getReviews(data) {
+
+		function getReviews(data) {
 			var txt = '';
-				for (i in data) {
-					debugger 
+			for (i in data) {
 				txt += "<li class='media'>";
 				txt += "<a href='javascript:void(0)' class='pull-left'>";
 				if (data[i].User.Image == null) {
@@ -1050,9 +1081,8 @@
 					if (a <= data[i].Rate) {
 						txt += "<i style='color: #ffae00' class='fa fa-star'></i>";
 					}
-					else
-					{
-						txt +=	"<i style='color: #ffae00' class='fa fa-star-o' aria-hidden='true'></i>";
+					else {
+						txt += "<i style='color: #ffae00' class='fa fa-star-o' aria-hidden='true'></i>";
 					}
 				}
 				txt += "<p>" + data[i].Content + "</p>";
@@ -1061,7 +1091,7 @@
 				txt += "<div style='margin-top:30px;height:150px;'>";
 				txt += "<form class='answer-form'>";
 				txt += "<textarea class='form-control content-review-answer-" + data[i].Id + "' reviewId='" + data[i].Id + "' name='content-answer' placeholder='write a comment...' rows='3'></textarea><br>";
-				txt += "<button submitReview='"+data[i].Id+"' type='button' class='btn btn-info pull-right review-answer'>Gửi</button>";
+				txt += "<button submitReview='" + data[i].Id + "' type='button' class='btn btn-info pull-right review-answer'>Gửi</button>";
 				txt += "</form>";
 				txt += "</div>";
 				for (var j = 0; j < data[i].AnswerReviews.length; j++) {
@@ -1086,11 +1116,11 @@
 				txt += "</div>";
 			}
 			return txt;
-			}
+		}
 
 		function getPaginationReviews(TotalRecords) {
 			var txt = '';
-			var pageIndex = getUrlParameter('page') ? getUrlParameter('page') : 1;
+			var pageIndex = getUrlParameter('pageRv') ? getUrlParameter('pageRv') : 1;
 			var totalPage = Math.ceil(TotalRecords / 6);
 
 			var start = (pageIndex <= 3 || totalPage == 0) ? 1 : pageIndex - 3;
@@ -1103,16 +1133,16 @@
 
 			if (TotalRecords) {
 				if (pageIndex > 1)
-					txt += "<li class='navigate' events='back'><a href='javascript:void(0)' ><i class='fa fa-angle-left'></i></a></li>";
+					txt += "<li class='navigateRv' events='back'><a href='javascript:void(0)' ><i class='fa fa-angle-left'></i></a></li>";
 				for (var i = start; i <= end; i++) {
 					if (pageIndex == i) {
-						txt += "<li class='active navigate'><a href='javascript:void(0)'>" + i + "</a></li>";
+						txt += "<li class='active navigateRv'><a href='javascript:void(0)'>" + i + "</a></li>";
 					} else {
-						txt += "<li class='navigate'><a href='javascript:void(0)' >" + i + "</a></li>";
+						txt += "<li class='navigateRv'><a href='javascript:void(0)' >" + i + "</a></li>";
 					}
 				}
 				if (pageIndex < totalPage) {
-					txt += "<li class='navigate' events='next'><a href='javascript:void(0)'><i class='fa fa-angle-right'></i></a></li>";
+					txt += "<li class='navigateRv' events='next'><a href='javascript:void(0)'><i class='fa fa-angle-right'></i></a></li>";
 				}
 			} else {
 				txt += "<ul class='shop-pagi display-inline'>";
@@ -1120,7 +1150,8 @@
 				txt += "</ul>";
 			}
 			return txt;
-			}
+		}
+
 		var urlReview = getUrlParameter('pageRv')
 			? '/Product/GetReviews?id=' + productId + '&pageRv=' + getUrlParameter('pageRv')
 			: '/Product/GetReviews?id=' + productId;
@@ -1130,9 +1161,42 @@
 			success: (res) => {
 				if (res) {
 					document.getElementById("show-all-reviews").innerHTML = this.getReviews(res.items);
-					document.getElementById("show-pagination-reviews").innerHTML = this.getPaginationComment(res.TotalRecords);
+					document.getElementById("show-pagination-reviews").innerHTML = this.getPaginationReviews(res.TotalRecords);
 				}
 			}
+		});
+
+		$(document).on("click", ".navigateRv", function () {
+			var urlNavigate = '';
+			var pageIndex = getUrlParameter('pageRv') ? getUrlParameter('pageRv') : 1;
+			if ($(this).text() == '') {
+				if ($(this).attr("events") == 'back') {
+					pageIndex -= 1;
+					urlNavigate = '/Product/GetReviews?id=' + productId + '&pageRv=' + pageIndex;
+				} else {
+					pageIndex = +pageIndex + 1;
+					urlNavigate = '/Product/GetReviews?id=' + productId + '&pageRv=' + pageIndex;
+				}
+			} else {
+				pageIndex = $(this).text();
+				urlNavigate = '/Product/GetReviews?id=' + productId + '&pageRv=' + $(this).text();
+			}
+			$.ajax({
+				url: urlNavigate,
+				type: 'GET',
+				success: (res) => {
+					if (res.items) {
+						var pageIndexComment = getUrlParameter('page') ? getUrlParameter('page') : null;
+						document.getElementById("show-all-reviews").innerHTML = getReviews(res.items);
+						if (pageIndexComment == null) {
+							window.history.pushState('Chi tiết sản phẩm', 'Title', currentUrl + '?pageRv=' + pageIndex);
+						} else {
+							window.history.pushState('Chi tiết sản phẩm', 'Title', currentUrl + '?page=' + pageIndexComment + '&pageRv=' + pageIndex);
+						}
+						document.getElementById("show-pagination-reviews").innerHTML = getPaginationReviews(res.TotalRecords);
+					}
+				}
+			});
 		});
 
 	</script>
