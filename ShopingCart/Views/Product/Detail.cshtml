@@ -913,35 +913,38 @@
 			}
 		});
 
-		function get_time_diff(datetime) {
-			//var datetime = typeof datetime !== 'undefined' ? datetime : "2014-01-01 01:02:03.123456";
+		function get_time_diff(date) {
+			var datetime = new Date(parseInt(date.replace("/Date(", "").replace(")/", "")));
+
+			if (isNaN(datetime)) return "";
 
 			var datetime = datetime.getTime();
 			var now = new Date().getTime();
+			var msec = (now - datetime) / 1000;
 
-			//if (isNaN(datetime)) {
-			//	return "";
-			//}
+			var year = Math.floor(msec / 31104000);
+			if (year > 0) return year + " năm trước";
 
-			//console.log(datetime + " " + now);
-			var msec = (now - datetime)/1000;
-			var year=Math.floor(msec / 1000 / 60 / (60 * 24)/30/12);
-						var month= Math.floor(msec / 1000 / 60 / (60 * 24)/30);
-			var week= Math.floor(msec / (86400*7));
-			var days = Math.floor(msec /86400);
-			var hh = Math.floor(msec /3600)%24;
-			//msec -= hh * 1000 * 60 * 60;
-			var mm = Math.floor(msec  / 60)%60;
-			//msec -= mm * 1000 * 60;
-			var ss = msec%60 ;
-			//msec -= ss * 1000;
+			var month = Math.floor(msec / 2592000);
+			if (month > 0) return month + " tháng trước";
 
-			return "year: " + year+ "month" + month + "wwekk: "+week+ " Days " + days + " Hours " +  hh  + " Minutes "+mm+ " Seconds" + ss ;
+			var week = Math.floor(msec / 604800);
+			if (week > 0) return week + " tuần trước";
+			 
+			var days = Math.floor(msec / 86400);
+			if (days > 0) return days + " ngày trước";
+
+			var hh = Math.floor(msec / 3600);
+			if (hh > 0) return hh + " giờ trước";
+
+			var mm = Math.floor(msec / 60);
+			if (mm > 0) return mm + " phút trước";
 		}
 
 		function getComments(data) {
 			var txt = '';
 			for (i in data) {
+				var total = data[i].Answers.length > 0 ? data[i].Answers.length : "";
 				txt += "<li class='media'>";
 				txt += "<a href='javascript:void(0)' class='pull-left'>";
 				if (data[i].User.Image == null) {
@@ -952,15 +955,11 @@
 				txt += "</a>";
 				txt += "<div class='media-body'>";
 				txt += "<span class='text-muted pull-right'>";
-
-				var date = new Date(parseInt(data[i].CreatedDate.replace("/Date(", "").replace(")/", ""), 10));
-				var a = this.get_time_diff(date);
-				console.log(a)
-				txt += "<small class='text-muted'>" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + "</small>";
+				txt += "<small class='text-muted'>" + this.get_time_diff(data[i].CreatedDate) + "</small>";
 				txt += "</span>";
 				txt += "<strong class='text-success'>" + data[i].User.UserName + "</strong>";
 				txt += "<p>" + data[i].Question + "</p>";
-				txt += "<a href='javascript:void(0)' class='comment-id' checkComment='" + data[i].Id + "'><span class='glyphicon glyphicon-share-alt'></span>" + data[i].Answers.length + " Trả lời</a>";
+				txt += "<a href='javascript:void(0)' class='comment-id' checkComment='" + data[i].Id + "'><span class='glyphicon glyphicon-share-alt'></span>" + total + " Trả lời</a>";
 				txt += "<div style='display: none;margin-bottom: 40px' class='show-comment-id-" + data[i].Id + "'>";
 				txt += "<div style='margin-top:30px;height:150px;'>";
 				txt += "<form class='answer-form'>";
@@ -979,10 +978,10 @@
 					}
 					txt += "</a>";
 					txt += "<span class='text-muted pull-right'>";
-					txt += "<small class='text-muted'>" + itemAnswer[j].CreatedDate + "</small>";
+					txt += "<small class='text-muted'>" + this.get_time_diff(itemAnswer[j].CreatedDate)  + "</small>";
 					txt += "</span>";
-					txt += "<strong class='text-success'>" + itemAnswer[j].User.UserName + "</strong>";
-					txt += "<p>" + itemAnswer[j].Content + " </p>";
+					txt += "<strong style='margin-left:15px;' class='text-success'>" + itemAnswer[j].User.UserName + "</strong>";
+					txt += "<p style='margin-left:80px;'>" + itemAnswer[j].Content + " </p>";
 					txt += "</div>";
 				}
 				txt += "</div>";
@@ -1063,6 +1062,7 @@
 		function getReviews(data) {
 			var txt = '';
 			for (i in data) {
+				var total = data[i].AnswerReviews.length > 0 ? data[i].AnswerReviews.length : "";
 				txt += "<li class='media'>";
 				txt += "<a href='javascript:void(0)' class='pull-left'>";
 				if (data[i].User.Image == null) {
@@ -1073,7 +1073,7 @@
 				txt += "</a>";
 				txt += "<div class='media-body'>";
 				txt += "<span class='text-muted pull-right'>";
-				txt += "<small class='text-muted'>" + data[i].CreatedDate + "</small>";
+				txt += "<small class='text-muted'>" + this.get_time_diff(data[i].CreatedDate)+ "</small>";
 				txt += "</span>";
 				txt += "<strong class='text-success'>" + data[i].User.UserName + "</strong>";
 				txt += "<p><span style='display: inline-block'>";
@@ -1086,7 +1086,7 @@
 					}
 				}
 				txt += "<p>" + data[i].Content + "</p>";
-				txt += "<a href='javascript:void(0)' class='review-id' checkReview='" + data[i].Id + "'><span class='glyphicon glyphicon-share-alt'></span>" + data[i].AnswerReviews.length + " Trả lời</a>";
+				txt += "<a href='javascript:void(0)' class='review-id' checkReview='" + data[i].Id + "'><span class='glyphicon glyphicon-share-alt'></span>" + total + " Trả lời</a>";
 				txt += "<div style='display: none;margin-bottom: 40px' class='show-review-" + data[i].Id + "'>";
 				txt += "<div style='margin-top:30px;height:150px;'>";
 				txt += "<form class='answer-form'>";
@@ -1105,10 +1105,10 @@
 					}
 					txt += "</a>";
 					txt += "<span class='text-muted pull-right'>";
-					txt += "<small class='text-muted'>" + itemAnswer[j].CreatedDate + "</small>";
+					txt += "<small class='text-muted'>" + this.get_time_diff(itemAnswer[j].CreatedDate) + "</small>";
 					txt += "</span>";
-					txt += "<strong class='text-success'>" + itemAnswer[j].User.UserName + "</strong>";
-					txt += "<p>" + itemAnswer[j].Content + " </p>";
+					txt += "<strong style='margin-left:15px;' class='text-success'>" + itemAnswer[j].User.UserName + "</strong>";
+					txt += "<p style='margin-left:80px;'>" + itemAnswer[j].Content + " </p>";
 					txt += "</div>";
 				}
 				txt += "</div>";
