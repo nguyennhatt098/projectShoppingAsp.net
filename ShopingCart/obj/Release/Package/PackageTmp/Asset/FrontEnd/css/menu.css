@@ -34,7 +34,7 @@
 	.container-menu > ul {
 		width: 250px;
 		background-color: #f0f0f0;
-		box-shadow: 3px 3px 0 1px grey;
+		/*box-shadow: 3px 3px 0 1px grey;*/
 		position: relative;
 		overflow: visible;
 	}
@@ -42,14 +42,14 @@
 		.container-menu > ul > li > a {
 		}
 
-			.container-menu > ul > li:hover {
-				background-color: #e6eaf0;
-				color: #ffae00
-			}
+		.container-menu > ul > li:hover {
+			background-color: #e6eaf0;
+			color: #ffae00
+		}
 
-			.container-menu > ul > li > a:hover {
-				color: #ffae00
-			}
+		.container-menu > ul > li > a:hover {
+			color: #ffae00
+		}
 
 		.container-menu > ul > li > ul {
 			display: none;
@@ -58,20 +58,20 @@
 			top: 0;
 			width: 250px;
 			background-color: #f0f0f0;
-			box-shadow: 3px 3px 0 1px grey;
+			/*box-shadow: 3px 3px 0 1px grey;*/
 		}
 
-			.container-menu > ul > li:hover > ul {
-				display: block;
-			}
+		.container-menu > ul > li:hover > ul {
+			display: block;
+		}
 
-			.container-menu > ul > li > ul > li:hover {
-				background-color: #e6eaf0;
-			}
+		.container-menu > ul > li > ul > li:hover {
+			background-color: #e6eaf0;
+		}
 
-			.container-menu > ul > li > ul > li > a:hover {
-				color: #ffae00
-			}
+		.container-menu > ul > li > ul > li > a:hover {
+			color: #ffae00
+		}
 
 		.container-menu > ul > li > ul > li > ul {
 			display: none;
@@ -80,33 +80,34 @@
 			top: 0;
 			width: 250px;
 			background-color: #f0f0f0;
-			box-shadow: 3px 3px 0 1px grey;
+			/*box-shadow: 3px 3px 0 1px grey;*/
 		}
 
-			.container-menu > ul > li > ul > li:hover ul {
-				display: block;
-			}
+		.container-menu > ul > li > ul > li:hover ul {
+			display: block;
+		}
 
-			.container-menu > ul > li > ul > li > ul > li:hover {
-				background-color: #e6eaf0;
-			}
+		.container-menu > ul > li > ul > li > ul > li:hover {
+			background-color: #e6eaf0;
+		}
 
-			.container-menu > ul > li > ul > li > ul > li > a:hover {
-				color: #ffae00
-			}
+		.container-menu > ul > li > ul > li > ul > li > a:hover {
+			color: #ffae00
+		}
 
-			.container-menu > ul > li > ul > li ul li ul li {
-				padding: 20px;
-			}
+		.container-menu > ul > li > ul > li ul li ul li {
+			padding: 20px;
+		}
 
 .container-menu {
 	position: relative;
 	position: absolute;
-	top: 150px;
+	top: 135px;
 	left: 150px;
 	z-index: 9999;
 	background: white
 }
+
 .banner-main > img {
 	height: 500px !important;
 }
@@ -115,28 +116,28 @@
 	.container-menu {
 		display: none !important;
 	}
+
 	.banner-main > img {
 		height: 300px !important;
 	}
+
 	.slider-1 {
 		margin-top: 0px !important;
 	}
-	
-	
 }
 /*760px*/
 @media only screen and (max-width: 766px) {
 	.container-menu {
-		display:none;
+		display: none;
 	}
+
 	.banner-main > img {
 		height: 200px !important;
 	}
+
 	.slider-1 {
 		margin-top: 0px !important;
 	}
-
-	
 }
 
 .slider-1 {

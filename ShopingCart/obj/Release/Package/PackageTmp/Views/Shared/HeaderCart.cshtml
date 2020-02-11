@@ -8,7 +8,7 @@
         {
             var count = 0;
 
-    <ul style="width: 220px">
+    <ul style="width: 250px">
         @foreach (var item in Model)
         {
             if (count >= 3){ break;}
@@ -22,20 +22,14 @@
 			        <a href="@url"><img style="width: 100%; height: 70px;" src="@item.Product.Images" alt=""/></a>
 		        </div>
 		        <div class="cart-content">
-
 			        <span>@item.Product.Name<b>x @item.Quantity</b></span>
 					<span class="cart-price">Đơn giá:@String.Format("{0:n0}", item.Product.Price) VND</span>
 		        </div>
 		        <div class="cart-del">
 			        <a data-id="@item.Product.Id" class="btn-delete"><i class="fa fa-times-circle"></i></a>
 		        </div>
-
 	        </li>
-
         }
-
-
-
         <li>
             <hr class="shipping-border" />
             <div class="shipping">
@@ -44,9 +38,6 @@
             </div>
         </li>
        @if(Model.Count>=3){<a href="/cart" style="float: left">Xem thêm</a>}  @Html.ActionLink("Thanh Toán", "Index", "Order")
-       
-       
     </ul>
         }
-
     </div>

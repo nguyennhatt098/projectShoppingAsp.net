@@ -1,0 +1,21 @@
+﻿
+@model IEnumerable<Model.ViewModel.MenuViewModel>
+	
+<ul class="">
+@foreach (var menuitem in Model)
+{
+	var url = "/danh-muc-san-pham/" + menuitem.Slug + "-" + menuitem.MenuId;
+	<li >
+			@if (menuitem.Children.Any())
+			{
+				<a href="javascript:void(0)">@menuitem.Name <span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
+				Html.RenderPartial("MenuPartial", menuitem.Children);
+			}
+			else
+			{
+				<a class="category" url="/Product/GetProduct?id=@menuitem.MenuId" urlHome="@url" href="javascript:void(0)">@menuitem.Name <span style="float: right" ></span></a>
+			}
+	</li>
+}
+</ul>
+	

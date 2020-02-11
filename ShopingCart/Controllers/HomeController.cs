@@ -28,18 +28,11 @@ namespace ShopingCart.Controllers
 		}
 		public ActionResult Index()
 		{
-			//var user = (User)Session["User"];
-			//if (user != null) ViewBag.wishList = wishListService.GetById(user.UserId).ToList();
-			//ViewBag.ListProductNew = productService.ListProductNew().ToList();
-			//ViewBag.ListNews = newsService.GetAll().ToList();
-			//ViewBag.ReviewList = reviewProductService.GetAll();
 			return View();
 		}
 		[HttpGet]
 		public JsonResult GetProductNew()
 		{
-			//var data = JsonConvert.SerializeObject(productService.ListProductNew().ToList(), new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-			//return data;
 			var data = productService.ListProductNew().ToList();
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
