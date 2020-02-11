@@ -3,7 +3,7 @@
 	ViewBag.Title = "Danh Mục Sản Phẩm";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	var listCategory = (IEnumerable<Model.ViewModel.MenuViewModel>)ViewBag.ListCategory;
-	var category = (Model.Category)ViewBag.Category;
+	//var category = (Model.Category)ViewBag.Category;
 }
 
 <div class="space-custom"></div>
@@ -16,7 +16,7 @@
 		<ol class="breadcrumb">
 			<li><a href="/"><i class="fa fa-home"></i></a></li>
 			<li><a href="#">Danh Mục Sản Phẩm</a></li>
-			<li class="active">@category.Name</li>
+			<li class="active category-name"></li>
 		</ol>
 	</div>
 </div>
@@ -28,25 +28,82 @@
 			<div style="background:#f0f0f0;height:auto" class="col-md-3 col-sm-4">
 				@*menu mobile*@
 				@*<div id="accordian">
-					<ul>
-						<li class="active">
-							<h3><a href="javascript:void(0)"><i class="fa fa-lg fa-tasks"></i>Danh mục</a></h3>
-							<ul>
+						<ul>
+							<li class="active">
+								<h3><a href="javascript:void(0)"><i class="fa fa-lg fa-tasks"></i>Danh mục</a></h3>
+								<ul>
+									@foreach (var itemGrandParent in listCategory)
+									{
+										var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
+										if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
+										{
+											<li>
+												<a href="javascript:void(0)">@itemGrandParent.Name</a>
+												<ul>
+													@foreach (var itemParent in listCategory)
+													{
+														var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
+														if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
+														{
+															<li>
+																<a href="javascript:void(0)">@itemParent.Name</a>
+																<ul>
+																	@foreach (var itemChild in listCategory)
+																	{
+																		var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
+																		if (itemParent.ID == itemChild.ParentID)
+																		{
+																			<li>
+																				<a href="@urlChild">
+																					@itemChild.Name
+																				</a>
+																			</li>
+																		}
+																	}
+																</ul>
+															</li>
+														}
+														else if (itemGrandParent.ID == itemParent.ParentID)
+														{
+															<li><a href="@urlParent">@itemParent.Name</a></li>
+														}
+													}
+												</ul>
+											</li>
+										}
+										else if (itemGrandParent.ParentID == null)
+										{
+											<li><a href="@url"> @itemGrandParent.Name </a></li>
+										}
+									}
+								</ul>
+							</li>
+						</ul>
+					</div>*@
+				<div class="column" style="border:1px solid;width:105%">
+					<h2 class="title-block">Danh Mục Sản Phẩm</h2>
+
+					@*menu desktop*@
+					<div class="container-menu-product">
+						@{
+							Html.RenderPartial("MenuPartial", listCategory);
+						}
+						@*<ul class="">
 								@foreach (var itemGrandParent in listCategory)
 								{
 									var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
 									if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
 									{
-										<li>
-											<a href="javascript:void(0)">@itemGrandParent.Name</a>
-											<ul>
+										<li class="">
+											<a href="javascript:void(0)">@itemGrandParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
+											<ul class="">
 												@foreach (var itemParent in listCategory)
 												{
 													var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
 													if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
 													{
-														<li>
-															<a href="javascript:void(0)">@itemParent.Name</a>
+														<li class="">
+															<a href="javascript:void(0)">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
 															<ul>
 																@foreach (var itemChild in listCategory)
 																{
@@ -73,74 +130,17 @@
 									}
 									else if (itemGrandParent.ParentID == null)
 									{
-										<li><a href="@url"> @itemGrandParent.Name </a></li>
+										<li><a href="@url">@itemGrandParent.Name</a></li>
 									}
 								}
-							</ul>
-						</li>
-					</ul>
-				</div>*@
-				<div class="column" style="border:1px solid;width:105%">
-					<h2 class="title-block">Danh Mục Sản Phẩm</h2>
-
-					@*menu desktop*@
-				<div class="container-menu-product">
-					@{
-						Html.RenderPartial("MenuPartial", listCategory);
-					}
-					@*<ul class="">
-			@foreach (var itemGrandParent in listCategory)
-			{
-				var url = "/danh-muc-san-pham/" + itemGrandParent.Slug + "-" + itemGrandParent.ID;
-				if (itemGrandParent.ParentID == null && listCategory.Any(x => x.ParentID == itemGrandParent.ID))
-				{
-					<li class="">
-						<a href="javascript:void(0)">@itemGrandParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-						<ul class="">
-							@foreach (var itemParent in listCategory)
-							{
-								var urlParent = "/danh-muc-san-pham/" + itemParent.Slug + "-" + itemParent.ID;
-								if (itemGrandParent.ID == itemParent.ParentID && listCategory.Any(x => x.ParentID == itemParent.ID))
-								{
-									<li class="">
-										<a href="javascript:void(0)">@itemParent.Name<span style="float: right" class="glyphicon glyphicon-chevron-right"></span></a>
-										<ul>
-											@foreach (var itemChild in listCategory)
-											{
-												var urlChild = "/danh-muc-san-pham/" + itemChild.Slug + "-" + itemChild.ID;
-												if (itemParent.ID == itemChild.ParentID)
-												{
-													<li>
-														<a href="@urlChild">
-															@itemChild.Name
-														</a>
-													</li>
-												}
-											}
-										</ul>
-									</li>
-								}
-								else if (itemGrandParent.ID == itemParent.ParentID)
-								{
-									<li><a href="@urlParent">@itemParent.Name</a></li>
-								}
-							}
-						</ul>
-					</li>
-				}
-				else if (itemGrandParent.ParentID == null)
-				{
-					<li><a href="@url">@itemGrandParent.Name</a></li>
-				}
-			}
-		</ul>*@
-				</div>
+							</ul>*@
+					</div>
 				</div>
 			</div>
 			<div class="col-md-8 col-sm-8">
 				<h2 class="page-heading mt-40">
-					<span class="cat-name">@category.Name</span>
-					<span class="heading-counter">Hiển thị @ViewBag.CountProduct sản phẩm</span>
+					<span class="cat-name"></span>
+					<span class="heading-counter"></span>
 				</h2>
 				<div class="shop-page-bar">
 					<div>
@@ -176,13 +176,13 @@
 						<div class="tab-content reload-wish">
 							<div role="tabpanel" class="tab-pane active" id="home">
 								<div id="productHot" class="row ">
-								
+
 								</div>
 							</div>
-						
+
 							<div id="paginator" class="content-sortpagibar">
 
-							
+
 							</div>
 						</div>
 					</div>
@@ -368,6 +368,7 @@
 			if (data.length == 0) {
 				txt += "<p>Danh mục không có sản phẩm</p>";
 			}
+			document.querySelector(".heading-counter").innerHTML ="Hiển thị "+ data.length+" sản phẩm";
 			return txt;
 		}
 
@@ -385,9 +386,9 @@
 			var data = res.items;
 			var pageIndex = getUrlParameter('page') ? getUrlParameter('page') : 1;
 			var totalPage = Math.ceil(res.TotalRecords / 6);
-			 
+
 			var start = (pageIndex <= 3 || totalPage == 0) ? 1 : pageIndex - 3;
-			var end = (totalPage <= pageIndex+3) ? totalPage : pageIndex + 3;
+			var end = (totalPage <= pageIndex + 3) ? totalPage : pageIndex + 3;
 			if (end >= totalPage) {
 				end = totalPage;
 			}
@@ -418,7 +419,12 @@
 			}
 			return txt;
 		}
-		$(document).on("click",".navigate", function () {
+		$(document).on("click", ".navigate", function () {
+			let currentUrl = window.location.pathname;
+			let categoryId = currentUrl.split('-')[currentUrl.split('-').length - 1];
+			$('html, body').animate({
+				scrollTop: $("#productHot").offset().top - 200
+			}, 1000);
 			var urlNavigate = '';
 			var pageIndex = getUrlParameter('page') ? getUrlParameter('page') : 1;
 			if ($(this).text() == '') {
@@ -426,7 +432,7 @@
 					pageIndex -= 1;
 					urlNavigate = '/Product/GetProduct?id=' + categoryId + '&page=' + pageIndex;
 				} else {
-					pageIndex =+pageIndex+ 1;
+					pageIndex = +pageIndex + 1;
 					urlNavigate = '/Product/GetProduct?id=' + categoryId + '&page=' + pageIndex;
 				}
 			} else {
@@ -439,11 +445,45 @@
 				success: (res) => {
 					if (res.items) {
 						document.querySelector("#productHot").innerHTML = getData(res);
-						window.history.pushState('Danh mục sản phẩm', 'Title',  currentUrl+'?page='+pageIndex);
+						window.history.pushState('Danh mục sản phẩm', 'Title', currentUrl + '?page=' + pageIndex);
 						document.getElementById("paginator").innerHTML = getPagination(res);
 					}
 				}
 			});
 		});
+		$(document).on("click", ".category", function () {
+			let url = $(this).attr("url");
+			$.ajax({
+				url: url,
+				type: 'GET',
+				success: (res) => {
+
+					if (res.items) {
+						window.history.pushState('Danh mục sản phẩm', 'Title', $(this).attr('urlHome'));
+						document.querySelector("#productHot").innerHTML = getData(res);
+						document.getElementById("paginator").innerHTML = getPagination(res);
+									GetCategorybyId();
+
+					}
+				}
+			});
+		});
+		function GetCategorybyId() {
+			
+			 let currentUrl = window.location.pathname;
+			let categoryId = currentUrl.split('-')[currentUrl.split('-').length - 1];
+			$.ajax({
+				url: '/Product/GetCategoryById?id=' + categoryId,
+				type: 'GET',
+				success: (item) => {
+
+					if (item) {
+						document.querySelector(".category-name").innerHTML = item.Name;
+						document.querySelector(".cat-name").innerHTML = item.Name;
+					}
+				}
+			});
+		}
+		GetCategorybyId();
 	</script>
 }

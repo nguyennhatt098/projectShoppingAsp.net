@@ -37,9 +37,9 @@ namespace ShopingCart.Controllers
 				};
 		}
 
-		public ActionResult CategoryViewDetail(int id, int page = 1, int pageSize = 6)
+		public ActionResult CategoryViewDetail(int id)
 		{
-			var data=categoryService.Search("", page, pageSize).ToList();
+			var data=categoryService.Search("", 1, 1).ToList();
 			ViewBag.ListCategory = CreateVM(null, data);
 			var category = categoryService.GetById(id);
 			ViewBag.Category = category;
@@ -53,6 +53,13 @@ namespace ShopingCart.Controllers
 			var model = productService.ListProductGetByCategory(id, page, pageSize);
 			var data = new SearchResponse<ProductViewModel> { items = model, TotalRecords = total };
 			return Json(data, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public JsonResult GetCategoryById(int id)
+		{
+			var category = categoryService.GetById(id);
+			return Json(category, JsonRequestBehavior.AllowGet);
 		}
 
 		public ActionResult Detail(int id, int page = 1, int pageSize = 5, int pageRv = 1, int pageSizeRv = 5)

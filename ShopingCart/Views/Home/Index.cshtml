@@ -522,5 +522,9 @@
 			return txt;
 		}
 
+		$(document).on("click", ".category", function () {
+			window.location.href = $(this).attr('urlHome');
+		});
+
 	</script>
 }
