@@ -70,7 +70,7 @@ $.ajax({
 				txt += "<div class='col-lg-12'>";
 				txt += "<div class='blog-wrapper mb-40'>";
 				txt += "<div class='blog-img'>";
-				txt += "<a href=" + url + "><img  src=" + data[i].Images + " alt=" + data[i].Name + " /></a>'>";
+				txt += "<a href=" + url + "><img  src=" + data[i].Images + " alt=" + data[i].Name + " /></a>";
 				txt += "</div>";
 				txt += "<div class='blog-info'>";
 				txt += "<h3><a href=" + url + ">" + data[i].Summary + "</a></h3>";

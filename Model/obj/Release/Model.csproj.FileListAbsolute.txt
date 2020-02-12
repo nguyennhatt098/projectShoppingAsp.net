@@ -93,7 +93,6 @@ C:\Users\nmnhat\Desktop\pub\projectShoppingAsp.net\Model\obj\Release\Model.cspro
 C:\Users\nmnhat\Desktop\pub\projectShoppingAsp.net\Model\obj\Release\Model.csproj.CopyComplete
 C:\Users\nmnhat\Desktop\pub\projectShoppingAsp.net\Model\obj\Release\Model.dll
 C:\Users\nmnhat\Desktop\pub\projectShoppingAsp.net\Model\obj\Release\Model.pdb
-C:\Users\PC\Desktop\projectShoppingAsp.net\Model\obj\Release\Model.csprojAssemblyReference.cache
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\Model.dll.config
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\Model.dll
 C:\Users\nmnhat.LDAP\Desktop\projectShoppingAsp.net\Model\bin\Release\Model.pdb
