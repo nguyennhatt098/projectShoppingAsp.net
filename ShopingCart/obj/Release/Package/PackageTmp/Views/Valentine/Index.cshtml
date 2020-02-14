@@ -1,23 +1,27 @@
-﻿@* <style> *@
-@* 	canvas { *@
-@* 		background-color:#312; *@
-@* 	} *@
-@* </style> *@
+﻿
 @{
-	ViewBag.Title = "Trang Chủ";
+	ViewBag.Title = "Valentine";
 	Layout = null;
 }
 
-<style> 
-	canvas { 
-	background-color:#312; 
- 	} 
- </style> 
+<style>
+	canvas {
+		background-color: #312;
+	}
+	.show-button{
+		display:none;
+	}
+</style>
+<iframe class="show-button" src="https://vnso-qt-3-tf-mp3-s1-zmp3.zadn.vn/056429f02ab4c3ea9aa5/3845639893463822202?authen=exp=1581811328~acl=/056429f02ab4c3ea9aa5/*~hmac=fa4c4923863657afc4e55d00c56d89f4" allow="autoplay"  id="iframeAudio">
+</iframe>
+
 <div style="height: auto">
 	<canvas id="testCanvas" width="550" height="500"></canvas>
 </div>
+
 <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
 <script src="~/Asset/FrontEnd/js/vendor/jquery-1.12.0.min.js"></script>
+
 <script>
 	var canvas;
 	var stage;
@@ -117,3 +121,8 @@
 	});
 </script>
 
+<audio controls>
+	<source src="https://vnso-qt-3-tf-mp3-s1-zmp3.zadn.vn/056429f02ab4c3ea9aa5/3845639893463822202?authen=exp=1581811328~acl=/056429f02ab4c3ea9aa5/*~hmac=fa4c4923863657afc4e55d00c56d89f4" type="audio/ogg">
+	<source src="https://vnso-qt-3-tf-mp3-s1-zmp3.zadn.vn/056429f02ab4c3ea9aa5/3845639893463822202?authen=exp=1581811328~acl=/056429f02ab4c3ea9aa5/*~hmac=fa4c4923863657afc4e55d00c56d89f4" type="audio/mpeg">
+	
+</audio>
